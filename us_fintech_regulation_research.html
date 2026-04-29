@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Fintech Regulation Research</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@400;700;800&display=swap');
+  :root{--primary:222 47% 11%;--secondary:215 25% 27%;--gold:32 95% 44%;--font-display:"Playfair Display",Georgia,serif;--font-body:"DM Sans",system-ui,sans-serif;--bg:hsl(var(--primary));--surface:hsl(var(--primary));--surface2:hsl(var(--secondary));--border:hsl(var(--secondary));--accent:hsl(var(--gold));--accent2:#4EFEE7;--accent3:#FE4E7A;--text:#ffffff;--muted:#e2e8f0;--muted2:#cbd5e1}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6}
+  .global-nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:8px 20px;border-bottom:1px solid var(--border);background:var(--surface2)}
+  .global-brand{display:flex;align-items:center;gap:10px}
+  .global-logo{width:120px;height:120px;object-fit:contain;display:block}
+  .global-year{font-size:10px;letter-spacing:.08em;color:var(--muted)}
+  .global-links{display:flex;align-items:center;justify-content:center;gap:10px}
+  .global-nav-link{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border:1px solid transparent;border-radius:999px;transition:all .2s}
+  .global-nav-link:hover{color:var(--text);border-color:var(--border)}
+  .global-nav-link.active{color:#000;background:var(--accent);border-color:var(--accent);font-weight:700}
+  .lang-switch{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px;background:var(--surface)}
+  .lang-btn{font-family:var(--font-body);font-size:10px;border:none;background:transparent;color:var(--muted);padding:6px 8px;cursor:pointer;letter-spacing:.08em}
+  .lang-btn.active,.lang-btn:hover{background:var(--accent);color:#000}
+  #google_translate_element{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none}
+  .nav{background:var(--surface2);border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto}
+  .nav-btn{font-family:var(--font-body);font-size:11px;padding:12px 18px;border:none;background:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;letter-spacing:.05em}
+  .nav-btn:hover{color:var(--text)}
+  .nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .container{max-width:1100px;margin:0 auto;padding:40px 32px}
+  .section{display:none}
+  .section.active{display:block}
+  .hero{border:1px solid var(--border);padding:40px;margin-bottom:32px;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(231,254,78,.08) 0%,transparent 70%)}
+  .hero-label{font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.1em;margin-bottom:12px}
+  .hero-title{font-family:var(--font-display);font-size:34px;font-weight:800;line-height:1.1;letter-spacing:.02em;margin-bottom:16px}
+  .hero-title span{color:var(--accent)}
+  .hero-desc{color:var(--muted);max-width:620px;line-height:1.75;font-size:14px}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:32px}
+  .stat-card{background:var(--surface);padding:24px}
+  .stat-num{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--accent);margin-bottom:4px}
+  .stat-label{font-size:11px;color:var(--muted);line-height:1.5}
+  .agency-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+  .agency-card{background:var(--surface);border:1px solid var(--border);padding:26px;transition:border-color .2s}
+  .agency-card:hover{border-color:var(--accent)}
+  .ac-tag{font-family:var(--font-body);font-size:9px;letter-spacing:.1em;padding:3px 8px;margin-bottom:14px;display:inline-block}
+  .tag-federal{background:rgba(231,254,78,.12);color:var(--accent)}
+  .tag-state{background:rgba(78,254,231,.12);color:var(--accent2)}
+  .tag-critical{background:rgba(254,78,122,.12);color:var(--accent3)}
+  .agency-name{font-family:var(--font-display);font-size:18px;font-weight:700;margin-bottom:5px}
+  .agency-full{font-size:11px;color:var(--muted);margin-bottom:14px;font-family:var(--font-body)}
+  .agency-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+  .agency-list{list-style:none}
+  .agency-list li{font-size:12px;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px}
+  .agency-list li::before{content:'→';color:var(--accent);flex-shrink:0}
+  .agency-list li:last-child{border-bottom:none}
+  .section-title{font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+  .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+  .section-sub{color:var(--muted);font-size:13px;margin-bottom:28px}
+  .info-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:16px}
+  .info-block.accent2{border-left-color:var(--accent2)}
+  .info-block.accent3{border-left-color:var(--accent3)}
+  .info-block-title{font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:8px}
+  .info-block p{font-size:13px;color:var(--muted);line-height:1.7}
+  .info-block ul{list-style:none;margin-top:10px}
+  .info-block ul li{font-size:12px;color:var(--muted2);padding:4px 0;display:flex;gap:8px}
+  .info-block ul li::before{content:'▸';color:var(--accent);flex-shrink:0}
+  .reg-table{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:12px}
+  .reg-table th{font-family:var(--font-body);font-size:10px;letter-spacing:.08em;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--surface2)}
+  .reg-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted)}
+  .reg-table tr:hover td{background:rgba(255,255,255,.02)}
+  .reg-table .td-name{color:var(--text);font-weight:500}
+  .pill{display:inline-block;font-size:9px;padding:2px 7px;font-family:var(--font-body);letter-spacing:.05em}
+  .pill-hard{background:rgba(254,78,122,.15);color:var(--accent3)}
+  .pill-med{background:rgba(231,254,78,.12);color:var(--accent)}
+  .pill-low{background:rgba(78,254,231,.1);color:var(--accent2)}
+  .flow{display:flex;flex-direction:column;gap:2px;margin-bottom:28px}
+  .flow-step{display:flex;align-items:flex-start;gap:0}
+  .flow-num{font-family:var(--font-display);font-size:11px;font-weight:800;color:#000;background:var(--accent);width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+  .flow-content{background:var(--surface);border:1px solid var(--border);border-left:none;padding:14px 20px;flex:1}
+  .flow-content-title{font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:4px}
+  .flow-content p{font-size:12px;color:var(--muted);line-height:1.6}
+  .flow-connector{width:28px;display:flex;justify-content:center;padding:2px 0;flex-shrink:0}
+  .flow-connector::after{content:'';width:1px;background:var(--accent);opacity:.4;height:100%;min-height:8px}
+  .warning{background:rgba(254,78,122,.06);border:1px solid rgba(254,78,122,.3);padding:16px 20px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start}
+  .warning-icon{color:var(--accent3);font-size:16px;flex-shrink:0}
+  .warning-text{font-size:12px;color:#e0a0a8;line-height:1.6}
+  .warning-text strong{color:var(--accent3)}
+  .timeline{margin-bottom:28px}
+  .tl-item{display:flex;gap:20px;margin-bottom:8px}
+  .tl-year{font-family:var(--font-body);font-size:11px;color:var(--accent);width:56px;flex-shrink:0;padding-top:14px;text-align:center;line-height:1.3}
+  .tl-content{background:var(--surface);border:1px solid var(--border);padding:14px 18px;flex:1;font-size:12px;color:var(--muted2);line-height:1.6}
+  .tl-content strong{color:var(--text);font-weight:500}
+  .matrix{margin-bottom:28px;overflow-x:auto}
+  .matrix-row{display:grid;grid-template-columns:180px 1fr 1fr 1fr;gap:1px;background:var(--border);margin-bottom:1px;min-width:600px}
+  .matrix-cell{background:var(--surface);padding:12px 14px;font-size:11px;color:var(--muted2)}
+  .matrix-header .matrix-cell{background:var(--surface2);font-family:var(--font-body);color:var(--muted);font-size:10px;letter-spacing:.05em}
+  .matrix-cell.row-title{color:var(--text);font-weight:500;font-size:12px}
+  .dot-high{color:var(--accent3)}
+  .dot-med{color:var(--accent)}
+  .dot-low{color:var(--accent2)}
+  .callout{border:1px dashed var(--accent);padding:20px 24px;margin-bottom:28px}
+  .callout-title{font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.1em;margin-bottom:8px}
+  .callout p{font-size:13px;color:var(--muted);line-height:1.7}
+  .callout strong{color:var(--accent)}
+  .state-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+  .state-card{background:var(--surface);border:1px solid var(--border);padding:20px;transition:border-color .2s}
+  .state-card:hover{border-color:var(--accent2)}
+  .state-name{font-family:var(--font-display);font-size:15px;font-weight:700;margin-bottom:8px;color:var(--accent2)}
+  .state-card p{font-size:11px;color:var(--muted2);line-height:1.6}
+  .state-card strong{color:var(--text)}
+  ::-webkit-scrollbar{width:4px;height:4px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--border)}
+</style>
+</head>
+<body>
+<nav class="global-nav">
+  <div class="global-brand">
+    <img class="global-logo" src="./tih-logo-white-CV3af6jQ.png" alt="Transatlantic Innovation Hub logo">
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link active" href="./us_fintech_regulation_research.html">US Regulation Research</a>
+  </div>
+  <div class="lang-switch" aria-label="Language selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">ES</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+  </div>
+</nav>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="show('overview',this)">00 OVERVIEW</button>
+  <button class="nav-btn" onclick="show('federal',this)">01 REGULADORES FED.</button>
+  <button class="nav-btn" onclick="show('state',this)">02 LICENCIAS ESTATALES</button>
+  <button class="nav-btn" onclick="show('lending',this)">03 LENDING</button>
+  <button class="nav-btn" onclick="show('baas',this)">04 BAAS &amp; PARTNERSHIPS</button>
+  <button class="nav-btn" onclick="show('aml',this)">05 AML / KYC / BSA</button>
+  <button class="nav-btn" onclick="show('trends',this)">06 TENDENCIAS 2025-26</button>
+</div>
+
+<!-- 00 OVERVIEW -->
+<div class="section active" id="s-overview">
+<div class="container">
+  <div class="hero">
+    <div class="hero-label">// REGULATORY LANDSCAPE · USA · FINTECH</div>
+    <div class="hero-title">El sistema regulatorio<br>más complejo del <span>mundo</span></div>
+    <div class="hero-desc">Estados Unidos no tiene un único regulador fintech. Opera con un sistema en capas donde agencias federales y reguladores de los 50 estados se superponen, a veces se contradicen, y cada uno aplica reglas distintas según el tipo de producto financiero. Entender esto es pre-requisito para operar, escalar o conseguir partnerships en USA.</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">8+</div><div class="stat-label">Agencias federales con jurisdicción sobre fintechs</div></div>
+    <div class="stat-card"><div class="stat-num">50</div><div class="stat-label">Estados con sus propios sistemas de licencias (más DC)</div></div>
+    <div class="stat-card"><div class="stat-num">49</div><div class="stat-label">Estados que requieren Money Transmitter License (todos excepto Montana)</div></div>
+    <div class="stat-card"><div class="stat-num">6–24m</div><div class="stat-label">Tiempo para obtener MTL en estados grandes como NY o CA</div></div>
+  </div>
+
+  <div class="section-title">El mapa conceptual</div>
+  <div class="section-sub">Cómo se organizan los niveles regulatorios en USA</div>
+
+  <div class="matrix">
+    <div class="matrix-row matrix-header">
+      <div class="matrix-cell">Nivel regulatorio</div>
+      <div class="matrix-cell">Qué cubre</div>
+      <div class="matrix-cell">Quién lo aplica</div>
+      <div class="matrix-cell">Impacto en fintech</div>
+    </div>
+    <div class="matrix-row">
+      <div class="matrix-cell row-title">Federal — Consumer</div>
+      <div class="matrix-cell">Consumer protection, disclosure, fair lending</div>
+      <div class="matrix-cell">CFPB, FTC</div>
+      <div class="matrix-cell"><span class="dot-high">● ALTO</span> — aplica a casi todo producto consumer</div>
+    </div>
+    <div class="matrix-row">
+      <div class="matrix-cell row-title">Federal — Bancario</div>
+      <div class="matrix-cell">Bancos con charter nacional, supervisión prudencial</div>
+      <div class="matrix-cell">OCC, FDIC, Federal Reserve</div>
+      <div class="matrix-cell"><span class="dot-med">● MEDIO</span> — indirecto vía bank partners</div>
+    </div>
+    <div class="matrix-row">
+      <div class="matrix-cell row-title">Federal — AML</div>
+      <div class="matrix-cell">Anti-lavado, KYC, reportes de transacciones</div>
+      <div class="matrix-cell">FinCEN, OFAC</div>
+      <div class="matrix-cell"><span class="dot-high">● ALTO</span> — obligatorio desde día 1 si mueves dinero</div>
+    </div>
+    <div class="matrix-row">
+      <div class="matrix-cell row-title">Federal — Mercados</div>
+      <div class="matrix-cell">Securities, derivatives, investments</div>
+      <div class="matrix-cell">SEC, CFTC, FINRA</div>
+      <div class="matrix-cell"><span class="dot-low">● BAJO-MED</span> — solo si tocas inversiones/securities</div>
+    </div>
+    <div class="matrix-row">
+      <div class="matrix-cell row-title">Estatal — Licencias</div>
+      <div class="matrix-cell">Money transmission, lending, payments por estado</div>
+      <div class="matrix-cell">50 Banking Departments</div>
+      <div class="matrix-cell"><span class="dot-high">● ALTO</span> — estado por estado, sin excepción</div>
+    </div>
+    <div class="matrix-row">
+      <div class="matrix-cell row-title">Estatal — Usury / APR</div>
+      <div class="matrix-cell">Límites de tasa de interés por estado</div>
+      <div class="matrix-cell">AG + Banking Dept.</div>
+      <div class="matrix-cell"><span class="dot-high">● ALTO</span> — puede hacer inviable el modelo de pricing</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">// INSIGHT CLAVE PARA FINTECHS EARLY-STAGE</div>
+    <p>La estrategia más común es <strong>evitar obtener licencias propias al inicio</strong> y operar a través de un <strong>banco partner (BaaS)</strong> que ya las tiene. Esto simplifica el go-to-market pero introduce dependencia del banco y sus propios estándares de compliance. A medida que el negocio escala, muchas fintechs migran hacia tener sus propias licencias estado por estado. En el modelo B2B (SME lending), la regulación es notablemente menos pesada que en consumer lending.</p>
+  </div>
+</div>
+</div>
+
+<!-- 01 FEDERAL -->
+<div class="section" id="s-federal">
+<div class="container">
+  <div class="section-title">Reguladores Federales</div>
+  <div class="section-sub">Las 8 agencias principales con jurisdicción sobre fintechs en USA</div>
+
+  <div class="agency-grid">
+    <div class="agency-card">
+      <span class="ac-tag tag-federal">CONSUMER PROTECTION</span>
+      <div class="agency-name">CFPB</div>
+      <div class="agency-full">Consumer Financial Protection Bureau</div>
+      <div class="agency-desc">Creado por la Dodd-Frank Act (2010) tras la crisis financiera. Es el regulador federal principal para cualquier producto o servicio financiero dirigido a consumidores. Tiene autoridad supervisora directa sobre non-banks que superen ciertos volúmenes. El más temido por fintechs de consumer lending.</div>
+      <ul class="agency-list">
+        <li>Supervisa fintechs no-bancarias de consumer lending, BNPL, y grandes wallets digitales</li>
+        <li>Enforcea: TILA (Truth in Lending), ECOA (Fair Lending), FCRA (Credit Reporting)</li>
+        <li>Puede hacer enforcement actions por UDAAP (unfair, deceptive, abusive acts)</li>
+        <li>En 2024: forzó a Apple Pay y PayPal a adoptar regulación bancaria estricta</li>
+        <li>Finalizó "Open Banking Rule" (Section 1033) para data sharing via APIs</li>
+        <li>Bajo Trump (2025): enforcement reducido — los estados están llenando el vacío</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-federal">NATIONAL BANKS</span>
+      <div class="agency-name">OCC</div>
+      <div class="agency-full">Office of the Comptroller of the Currency</div>
+      <div class="agency-desc">Regula bancos con charter nacional (federales). No supervisa fintechs directamente, pero es clave porque regula a los bancos que las fintechs usan como partners. También maneja charters especiales para fintechs.</div>
+      <ul class="agency-list">
+        <li>Regula: bancos nacionales, federal savings associations, national trust banks</li>
+        <li>Propuso "Special Purpose Fintech Charter" — controversial, frenado judicialmente</li>
+        <li>En 2025: aprobó 5 national trust bank charters para operaciones de digital assets</li>
+        <li>Bancos bajo OCC pueden "importar" tasas de interés entre estados (preemption)</li>
+        <li>Emite interpretive letters: en 2025 expandió permisos para custodiar crypto</li>
+        <li>Supervisa al banco partner cuando una fintech usa BaaS — impacta compliance indirectamente</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-critical">AML — CRÍTICO</span>
+      <div class="agency-name">FinCEN</div>
+      <div class="agency-full">Financial Crimes Enforcement Network · Treasury Dept.</div>
+      <div class="agency-desc">Administra el Bank Secrecy Act (BSA). Todo Money Services Business (MSB) — incluyendo fintechs de pagos, transfers, crypto — debe registrarse con FinCEN. Es el primer paso obligatorio antes de cualquier licencia estatal.</div>
+      <ul class="agency-list">
+        <li>Requiere registro como MSB (Form 107) — renovación cada 2 años</li>
+        <li>Impone: AML program, Suspicious Activity Reports (SARs), Currency Transaction Reports (CTRs)</li>
+        <li>Fintechs de pagos, remesas, crypto: SIEMPRE necesitan registro FinCEN</li>
+        <li>Violaciones de AML = multas existenciales + pérdida de cuentas bancarias</li>
+        <li>KYC (Know Your Customer) y CDD (Customer Due Diligence) son sus pilares operativos</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-federal">CONSUMER PROTECTION</span>
+      <div class="agency-name">FTC</div>
+      <div class="agency-full">Federal Trade Commission</div>
+      <div class="agency-desc">Broad consumer protection agency. Actúa contra fintechs con prácticas engañosas, datos mal manejados, y publicidad falsa. Especialmente activa en fintechs que el CFPB no supervisa directamente. Puede actuar aunque no seas SEC-registered.</div>
+      <ul class="agency-list">
+        <li>Supervisa lending practices para consumidores y small businesses (Division of Financial Practices)</li>
+        <li>Enforcea: FTC Act (unfair/deceptive), GLBA (data privacy), FACTA (credit info)</li>
+        <li>Activa en: data privacy, misleading marketing, junk fees, subscription traps</li>
+        <li>Coordina investigaciones con CFPB para enforcement conjunto</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-federal">DEPOSIT INSURANCE</span>
+      <div class="agency-name">FDIC</div>
+      <div class="agency-full">Federal Deposit Insurance Corporation</div>
+      <div class="agency-desc">Regula bancos con charter estatal que son miembros del sistema federal de depósitos. Importante porque muchos bank partners de fintechs son FDIC-supervised. El colapso de Synapse (2024) aumentó dramáticamente el escrutinio FDIC sobre BaaS.</div>
+      <ul class="agency-list">
+        <li>Supervisa bancos estado-chartered que no son Federal Reserve members</li>
+        <li>Post-colapso Synapse/Evolve Bank (2024): nuevas guías de supervisión de BaaS</li>
+        <li>Junto a OCC y Fed: emitió Joint Statement julio 2024 sobre riesgos bank-fintech</li>
+        <li>Exige que los bancos mantengan control real del compliance — no pueden delegarlo todo</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-federal">MONETARY POLICY</span>
+      <div class="agency-name">Federal Reserve</div>
+      <div class="agency-full">Board of Governors</div>
+      <div class="agency-desc">Regula bank holding companies y bancos con charter estatal que son Fed members. También opera FedNow (real-time payments, 2023-presente), que compite con redes privadas y abre oportunidades para fintechs.</div>
+      <ul class="agency-list">
+        <li>Regula: bank holding companies, state-chartered member banks, foreign banks en USA</li>
+        <li>FedNow: instant payments 24/7 — nueva infraestructura relevante para payment fintechs</li>
+        <li>Supervisión indirecta a fintechs via sus bank partners</li>
+        <li>Parte del Joint Statement 2024 sobre bank-fintech partnerships</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-federal">SECURITIES</span>
+      <div class="agency-name">SEC / FINRA</div>
+      <div class="agency-full">Securities &amp; Exchange Commission / Financial Industry Regulatory Authority</div>
+      <div class="agency-desc">Regula securities, broker-dealers, investment advisers, fondos. Relevante para fintechs en inversiones, crowdfunding, tokenización de activos, o que ofrecen productos que podrían clasificar como securities bajo el "Howey Test".</div>
+      <ul class="agency-list">
+        <li>Crowdfunding, robo-advisors, investment platforms: siempre requieren análisis SEC</li>
+        <li>Crypto tokens: si clasifican como "security" (Howey Test) → caen bajo SEC</li>
+        <li>FINRA supervisa broker-dealers en coordinación con SEC</li>
+        <li>Reg CF (crowdfunding), Reg D (private placements): utilizadas por fintechs de lending P2P</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-critical">SANCTIONS — CRÍTICO</span>
+      <div class="agency-name">OFAC</div>
+      <div class="agency-full">Office of Foreign Assets Control · Treasury Dept.</div>
+      <div class="agency-desc">Administra sanciones económicas de USA. Cualquier fintech que procese pagos internacionales o tenga clientes extranjeros DEBE screenear contra las listas OFAC. Violaciones pueden resultar en multas de decenas de millones y pérdida de acceso al sistema financiero.</div>
+      <ul class="agency-list">
+        <li>SDN List (Specially Designated Nationals): screening obligatorio en onboarding Y ongoing</li>
+        <li>Crítico para cualquier producto con componente internacional o cross-border</li>
+        <li>Requiere monitoring continuo — no solo al onboarding</li>
+        <li>Sin excepciones por tamaño de empresa: aplica a startups también</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-block accent2">
+    <div class="info-block-title">La interacción entre agencias — julio 2024: punto de inflexión</div>
+    <p>El joint statement de julio 2024 entre OCC, FDIC y Federal Reserve sobre bank-fintech partnerships marcó un hito: los tres reguladores alinearon expectativas sobre cómo los bancos deben supervisar a sus socios fintech. El mensaje fue claro: los bancos no pueden delegar su compliance BSA/AML a la fintech y "esperar lo mejor". Esto elevó el costo y complejidad de compliance para todas las fintechs que operan mediante bank partners — y llevó a varios bancos a abandonar el espacio BaaS.</p>
+  </div>
+</div>
+</div>
+
+<!-- 02 STATE -->
+<div class="section" id="s-state">
+<div class="container">
+  <div class="section-title">Licencias Estatales</div>
+  <div class="section-sub">El laberinto de los 50 estados — cada uno con sus propias reglas, sin licencia federal que lo cubra todo</div>
+
+  <div class="callout">
+    <div class="callout-title">// CONCEPTO CENTRAL: MONEY TRANSMITTER LICENSE (MTL)</div>
+    <p>Si tu negocio acepta fondos de una persona y los transmite a otra — eres un <strong>money transmitter</strong>. Incluye: payment processors, digital wallets, remittances, prepaid cards, y muchas fintechs de pagos. Necesitas MTL <strong>en cada estado donde operes</strong>. No existe licencia federal que cubra todo. Solo Montana no requiere MTL. Para lending, es diferente: se necesita una <strong>consumer lending license</strong> o <strong>commercial lender license</strong>, también estado por estado.</p>
+  </div>
+
+  <div class="section-title" style="font-size:16px">NMLS — El Sistema que Unifica (Parcialmente)</div>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:20px">Nationwide Multistate Licensing System — plataforma que unifica aplicaciones de licencias en la mayoría de estados. Simplifica pero no elimina el proceso individual.</p>
+
+  <div class="info-block">
+    <div class="info-block-title">¿Cómo funciona el NMLS?</div>
+    <ul>
+      <li>La mayoría de estados usan NMLS para recibir aplicaciones de MTL — Florida, New Jersey y Virgin Islands son excepción (aplicación directa)</li>
+      <li>Permite aplicar a múltiples estados en paralelo — recomendado para reducir tiempo total</li>
+      <li>MMLA (Multistate MSB Licensing Agreement): si aplicas en 5+ estados, un estado "lead" hace el review central y otros lo aceptan — menos redundancia, misma aplicación individual</li>
+      <li>30+ estados participan en alguna forma de coordinated review bajo MMLA (2025)</li>
+      <li>La regla clave: si operas en 10 estados, necesitas 10 licencias — no hay "umbrella license" federal</li>
+    </ul>
+  </div>
+
+  <div class="section-title" style="font-size:16px">Proceso paso a paso para obtener MTL</div>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><div class="flow-content-title">Determinar si necesitas MTL</div><p>Analiza si tu modelo implica "transmisión de dinero" en cada estado target. Los exemptions varían: merchant processors, agentes del payee, bancos y credit unions suelen estar exentos. Nunca asumir — consultar legal counsel antes de operar.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><div class="flow-content-title">Registrar como MSB con FinCEN (federal)</div><p>Primer paso FEDERAL obligatorio antes de cualquier licencia estatal. Form 107 vía FinCEN website. Renovación cada 2 años. Incluye implementar AML program completo y preparar reporting obligations continuos.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><div class="flow-content-title">Preparar documentación</div><p>Business plan, financial statements auditados (requeridos en la mayoría de estados), AML/KYC policies escritas, información detallada de key personnel, background checks, certificates of good standing, y prueba de net worth mínimo.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><div class="flow-content-title">Obtener Surety Bond (fianza de garantía)</div><p>La mayoría de estados requieren un surety bond para proteger a los consumidores. Montos: desde $10,000 (Wisconsin) hasta $1M+ (NY para empresas grandes). Costo anual: 1-3% del monto del bond. El monto crece con el volumen transaccionado.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-content"><div class="flow-content-title">Aplicar vía NMLS (o directamente según el estado)</div><p>Aplicar en múltiples estados en paralelo. Application fees: desde $500 hasta $5,000 por estado. Responder rápido a preguntas del regulador — los delays propios son la causa más común de timelines extendidos.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">6</div><div class="flow-content"><div class="flow-content-title">Background checks de key personnel</div><p>Todos los executives y board members: background checks financieros y penales. Enforcement history previo (consent orders, regulatory actions) de otros estados debe ser declarado y puede demorar el proceso.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">7</div><div class="flow-content"><div class="flow-content-title">Ongoing compliance post-aprobación</div><p>Renovación anual (Nov-Dic en la mayoría de estados). Reportes trimestrales/anuales de volúmenes. Auditorías periódicas del estado. Notificar cambios en ownership, management o locations. Mantener net worth mínimo requerido con financial statements anuales auditados.</p></div></div>
+  </div>
+
+  <div class="section-title" style="font-size:16px">Estados críticos — snapshot de requisitos</div>
+  <div class="state-grid">
+    <div class="state-card"><div class="state-name">🗽 New York (NYDFS)</div><p>El más riguroso de todos. Application fee: $3,000. Surety bond: desde <strong>$500K</strong>. Para crypto: BitLicense (proceso adicional). Timeline: <strong>12-24 meses</strong>. En 2025 contrató ex-empleados del CFPB para reforzar enforcement. No negociable si quieres operar en NYC.</p></div>
+    <div class="state-card"><div class="state-name">☀️ California (DFPI)</div><p>El mercado más grande del país. Timeline: <strong>6-12+ meses</strong> (post-COVID backlogs). Requiere net worth significativo. Muy activo en enforcement. Tiene "regulatory sandbox" para pilots de innovation. Licensing fee alta.</p></div>
+    <div class="state-card"><div class="state-name">⭐ Texas (TDOB)</div><p>Adoptó el modelo uniforme MTMA completo en Sept. 2023. Mercado enorme. Timeline: <strong>4-10 meses</strong>, puede extenderse si hay follow-up. Bonds desde $300K. Importante para cualquier expansion nacional.</p></div>
+    <div class="state-card"><div class="state-name">🌴 Florida (OFR)</div><p><strong>No usa NMLS</strong> — aplicación directa fuera del sistema. Participa en MMLA para coordinación multi-estado. Gran volumen de aplicaciones. Timeline: 3-8 meses. Relevante por ser el principal estado de la comunidad latinx en USA.</p></div>
+    <div class="state-card"><div class="state-name">🔵 Illinois</div><p>Muy activo en consumer protection desde que el CFPB redujo enforcement federal. Tiene su propio "Predatory Loan Prevention Act" con cap de 36% APR en consumer loans. Illinois DFI es un regulador activo y exigente.</p></div>
+    <div class="state-card"><div class="state-name">🏔️ Wyoming</div><p>El más amigable para crypto y fintechs. Creó el <strong>SPDI Charter</strong> (Special Purpose Depository Institution) — permite a fintechs operar como quasi-bancos. Timeline más rápido. Popular para startups que quieren una base regulatoria inicial.</p></div>
+  </div>
+
+  <table class="reg-table">
+    <thead><tr><th>Estado</th><th>Surety Bond Mín.</th><th>Timeline Aprox.</th><th>Vía NMLS</th><th>Dificultad</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">New York</td><td>$500K+</td><td>12–24 meses</td><td>✓</td><td><span class="pill pill-hard">MUY ALTA</span></td></tr>
+      <tr><td class="td-name">California</td><td>Variable</td><td>6–12+ meses</td><td>✓</td><td><span class="pill pill-hard">MUY ALTA</span></td></tr>
+      <tr><td class="td-name">Texas</td><td>$300K+</td><td>4–10 meses</td><td>✓</td><td><span class="pill pill-med">MEDIA-ALTA</span></td></tr>
+      <tr><td class="td-name">Florida</td><td>Variable</td><td>3–8 meses</td><td>✗ Directo</td><td><span class="pill pill-med">MEDIA</span></td></tr>
+      <tr><td class="td-name">Michigan</td><td>$500K–$1.5M</td><td>4–9 meses</td><td>✓</td><td><span class="pill pill-med">MEDIA-ALTA</span></td></tr>
+      <tr><td class="td-name">Illinois</td><td>Variable</td><td>3–7 meses</td><td>✓</td><td><span class="pill pill-med">MEDIA</span></td></tr>
+      <tr><td class="td-name">New Hampshire</td><td>$100K (flat)</td><td>2–4 meses</td><td>✓</td><td><span class="pill pill-low">BAJA</span></td></tr>
+      <tr><td class="td-name">Wisconsin</td><td>$10K + $5K/branch</td><td>2–4 meses</td><td>✓</td><td><span class="pill pill-low">BAJA</span></td></tr>
+      <tr><td class="td-name">Wyoming</td><td>Mínimo</td><td>1–3 meses</td><td>✓</td><td><span class="pill pill-low">BAJA</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <span class="warning-icon">⚠</span>
+    <div class="warning-text"><strong>Usury Laws — el riesgo silencioso:</strong> Cada estado tiene sus propios caps de APR para préstamos al consumidor. NY: ~25% APR. Illinois: 36% APR (Predatory Loan Prevention Act). Estos caps pueden hacer completamente inviable ciertos modelos de small-dollar lending. El "true lender" doctrine determina qué ley de usury aplica — y los estados están litigando agresivamente esto contra fintechs que usan bank partners para evadir sus usury caps locales.</div>
+  </div>
+</div>
+</div>
+
+<!-- 03 LENDING -->
+<div class="section" id="s-lending">
+<div class="container">
+  <div class="section-title">Lending Regulation</div>
+  <div class="section-sub">El segmento más regulado — con diferencia crítica entre consumer y commercial lending</div>
+
+  <div class="info-block accent3">
+    <div class="info-block-title">El "Patchwork" — la realidad de un fintech lender en USA</div>
+    <p>Un fintech lender puede estar sujeto simultáneamente a: CFPB (consumer protection), FTC (advertising/data), OCC/FDIC/Fed (via bank partner), FinCEN (AML), 50 state lending regulators (licencias), 50 attorneys general (enforcement), y leyes específicas de producto. No existe una "federal lending license" para non-banks. Cada estado es un mercado separado con sus propias reglas.</p>
+  </div>
+
+  <div class="section-title" style="font-size:16px">Leyes Federales Clave en Lending</div>
+  <table class="reg-table">
+    <thead><tr><th>Ley</th><th>Qué regula</th><th>Enforcer</th><th>¿Aplica a SME lending?</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">TILA / Regulation Z</td><td>Truth in Lending — disclosure de APR, términos, total costs al borrower</td><td>CFPB</td><td><span class="pill pill-low">GENERALMENTE NO</span> — consumer only</td></tr>
+      <tr><td class="td-name">ECOA / Regulation B</td><td>Equal Credit Opportunity — prohibe discriminación en decisiones de crédito</td><td>CFPB, DOJ</td><td><span class="pill pill-hard">SÍ</span> — aplica a business credit también</td></tr>
+      <tr><td class="td-name">FCRA / Regulation V</td><td>Fair Credit Reporting — uso de credit reports, adverse action notices</td><td>CFPB, FTC</td><td><span class="pill pill-med">PARCIAL</span> — si usas credit bureaus</td></tr>
+      <tr><td class="td-name">UDAAP</td><td>Unfair, Deceptive, Abusive Acts — diseño y marketing del producto</td><td>CFPB, FTC</td><td><span class="pill pill-med">PARCIAL</span> — más en consumer que commercial</td></tr>
+      <tr><td class="td-name">EFTA / Regulation E</td><td>Electronic Fund Transfers — pagos digitales, débitos automáticos</td><td>CFPB</td><td><span class="pill pill-low">GENERALMENTE NO</span></td></tr>
+      <tr><td class="td-name">GLBA</td><td>Gramm-Leach-Bliley — privacidad de datos financieros del consumidor</td><td>FTC, CFPB</td><td><span class="pill pill-med">SÍ</span> si recolectas financial data</td></tr>
+      <tr><td class="td-name">Section 1071 (Dodd-Frank)</td><td>Reporte de demographic data en small business loans — detectar discriminación</td><td>CFPB</td><td><span class="pill pill-hard">SÍ</span> — específicamente SME lending</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title" style="font-size:16px">Consumer Lending vs. Commercial/SME Lending</div>
+  <div class="agency-grid">
+    <div class="agency-card">
+      <span class="ac-tag tag-critical">CONSUMER LENDING — Alta regulación</span>
+      <div class="agency-name">Préstamos a individuos</div>
+      <div class="agency-desc">El segmento más regulado. Todas las leyes federales de consumer protection aplican full. Los estados tienen caps de APR y sus propias disclosure requirements.</div>
+      <ul class="agency-list">
+        <li>TILA, ECOA, FCRA, UDAAP — todos aplican</li>
+        <li>State usury laws: APR caps muy variables (NY 25%, Illinois 36%, etc.)</li>
+        <li>Adverse action notices requeridos al rechazar crédito</li>
+        <li>Complaint management y dispute resolution obligatorios</li>
+        <li>Fair lending testing y análisis de disparate impact (por AI bias)</li>
+        <li>CFPB supervision directa si superas ciertos volúmenes</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-state">SME / COMMERCIAL LENDING — Menor regulación</span>
+      <div class="agency-name">Préstamos a empresas</div>
+      <div class="agency-desc">Significativamente menos regulado a nivel federal. Las leyes de consumer protection generalmente NO aplican. El mercado de SME lending B2B tiene mucha más libertad para operar.</div>
+      <ul class="agency-list">
+        <li>TILA generalmente no aplica a business loans</li>
+        <li>Solo 9 estados requieren disclosure específico a commercial borrowers</li>
+        <li>Lenders comerciales requieren licencia en menos de la mitad de los estados</li>
+        <li>Usury laws más laxas o inexistentes para préstamos comerciales en muchos estados</li>
+        <li>ECOA sí aplica (no discriminación en business credit decisions)</li>
+        <li>Section 1071: nuevo requerimiento de data collection — en implementación</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-block accent2">
+    <div class="info-block-title">Section 1071 — La Regulación Emergente en SME Lending</div>
+    <p>El CFPB finalizó la regla Section 1071 de la Dodd-Frank Act: requiere que lenders recopilen y reporten datos demográficos de los solicitantes de small business loans (para detectar discriminación). Está siendo litigado activamente, pero representa la mayor expansión de regulación hacia el commercial lending en décadas. Implementación phased según volumen de originación. Fintechs de SME lending deben monitorearlo de cerca.</p>
+  </div>
+
+  <div class="info-block accent3">
+    <div class="info-block-title">El "True Lender" Problem — Riesgo crítico en modelos con bank partner</div>
+    <p>Cuando una fintech usa un banco para originar préstamos, los estados preguntan: ¿quién es el verdadero lender? Si el regulador determina que la fintech (no el banco) es el true lender — aplican las usury laws estatales (que pueden hacer inviable el modelo), la fintech necesita sus propias lending licenses en cada estado, y hay riesgo de multas retroactivas sobre todos los préstamos ya emitidos.</p>
+    <ul>
+      <li>Los estados analizan: ¿quién controla los términos del préstamo? ¿quién asume el riesgo de crédito?</li>
+      <li>Diseñar cuidadosamente la estructura para que el banco sea realmente el lender de record</li>
+      <li>Varios estados (NY, IL, CA) han sido agresivos en litigar esto contra fintechs</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- 04 BAAS -->
+<div class="section" id="s-baas">
+<div class="container">
+  <div class="section-title">BaaS &amp; Bank Partnerships</div>
+  <div class="section-sub">La ruta más rápida al mercado — con complejidades crecientes post-2024</div>
+
+  <div class="callout">
+    <div class="callout-title">// ¿QUÉ ES BANKING AS A SERVICE (BaaS)?</div>
+    <p>Un banco licenciado "alquila" su charter y licencias a una fintech, permitiéndole ofrecer productos financieros sin tener las propias. La fintech se enfoca en tech y customer experience; el banco en compliance e infraestructura regulatoria. El BaaS provider (ej: Stripe Treasury, Column Bank, Blue Ridge Bank, Evolve Bank) actúa como intermediario. <strong>Esto es cómo la mayoría de fintechs early-stage lanzan productos financieros en USA.</strong></p>
+  </div>
+
+  <div class="agency-grid">
+    <div class="agency-card">
+      <span class="ac-tag tag-state">VENTAJAS DEL MODELO</span>
+      <div class="agency-name">Por qué elegir BaaS</div>
+      <div class="agency-desc">La ruta más rápida y más económica al mercado para una fintech sin licencias propias.</div>
+      <ul class="agency-list">
+        <li>Evita (o simplifica dramáticamente) state licensing requirements</li>
+        <li>Permite escalar a múltiples estados rápidamente via federal preemption del banco</li>
+        <li>Acceso inmediato a infraestructura de pagos (ACH, wire, Visa/MC issuance)</li>
+        <li>El banco absorbe parte del compliance burden y lo administra</li>
+        <li>Menor inversión inicial: legal/regulatory vs. obtener licencias propias (~$500K-$2M)</li>
+        <li>Algunos BaaS providers tienen AML/KYC tools integradas (ej: Stripe Treasury)</li>
+      </ul>
+    </div>
+    <div class="agency-card">
+      <span class="ac-tag tag-critical">RIESGOS Y COSTOS REALES</span>
+      <div class="agency-name">El otro lado del BaaS</div>
+      <div class="agency-desc">El paisaje cambió radicalmente post-colapso Synapse (mayo 2024) y el Joint Statement de julio 2024.</div>
+      <ul class="agency-list">
+        <li>El banco impone sus propios standards de compliance — frecuentemente más exigentes que los regulatorios</li>
+        <li>Due diligence intenso antes de onboarding — puede tomar meses</li>
+        <li>Auditorías periódicas del banco a la fintech — con derecho a terminar el contrato</li>
+        <li>Reguladores exigen que el banco mantenga control real del compliance y producto</li>
+        <li>Varios bancos están saliendo del BaaS space — menos opciones disponibles</li>
+        <li>Márgenes comprimidos por fees del banco (interchange splits, program fees)</li>
+        <li>"True lender" risk si el estado no reconoce al banco como lender real</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size:16px">Los 4 modelos de partnership bancario</div>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">A</div><div class="flow-content"><div class="flow-content-title">Referral Model</div><p>La fintech refiere clientes al banco para productos regulados. La fintech no es el lender ni el money transmitter. Menor compliance burden, pero menor control del producto y revenue sharing limitado. Más común como primer step para probar el mercado.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">B</div><div class="flow-content"><div class="flow-content-title">Sponsor Bank / BaaS Model</div><p>El banco origina el préstamo o cuenta; la fintech hace marketing, underwriting y servicing. El banco mantiene el loan en su balance o lo vende. La fintech debe cumplir los standards del banco y pasar auditorías periódicas. Más control, más compliance. El modelo más común para fintechs de lending.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">C</div><div class="flow-content"><div class="flow-content-title">Marketplace / Aggregator Model</div><p>La fintech es una plataforma que conecta lenders con borrowers — no es lender. Revenue via fees de originación o servicing. Requiere análisis cuidadoso de si "arranging credit" dispara licensing requirements en ciertos estados. Usado por plataformas como LendingClub, Fundera, Nav.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">D</div><div class="flow-content"><div class="flow-content-title">Own License Model (Full License)</div><p>La fintech obtiene sus propias lending licenses y/o MTLs estado por estado, o directamente adquiere un banco. Máximo control y mejores economics a largo plazo. Máximo costo inicial ($2M-$10M+) y timeline (3-7 años). Ruta de fintechs maduras: SoFi adquirió Golden Pacific Bank, Varo obtuvo bank charter propio.</p></div></div>
+  </div>
+
+  <div class="section-title" style="font-size:16px">El Joint Statement de 2024 — Cambio de reglas</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2024<br>MAY</div>
+      <div class="tl-content"><strong>Colapso de Synapse Financial:</strong> El BaaS intermediary colapsó dejando más de $85M en fondos de clientes finales atrapados. Evolve Bank (el banco partner) quedó atrapado en el medio. Desencadenó revisión masiva del sector y salida de varios bancos del espacio BaaS.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2024<br>JUL</div>
+      <div class="tl-content"><strong>OCC + FDIC + Federal Reserve Joint Statement:</strong> Los tres reguladores alinean su postura sobre bank-fintech partnerships. Mensaje central: los bancos NO pueden delegar su compliance BSA/AML a la fintech. Deben mantener supervisión y control real del programa. Efecto inmediato: los bancos que permanecen en BaaS subieron dramáticamente sus estándares de due diligence.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-content"><strong>Mayor dificultad para conseguir bank partners:</strong> Los bancos que permanecen en BaaS imponen due diligence mucho más riguroso. Fintechs sin compliance programs sólidos están siendo rechazadas o desconectadas. El mercado se está consolidando en favor de fintechs con infraestructura de compliance probada.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025+</div>
+      <div class="tl-content"><strong>"BaaS 2.0":</strong> Emerge un modelo más maduro donde el banco tiene mayor oversight integrado en el producto de la fintech. Los BaaS providers más sofisticados (Column, Lead Bank, Thread Bank) ofrecen compliance-as-a-service como parte de su propuesta. Mayor costo, mayor certeza regulatoria.</div>
+    </div>
+  </div>
+
+  <div class="warning">
+    <span class="warning-icon">⚠</span>
+    <div class="warning-text"><strong>BSA/AML: el error más caro en BaaS.</strong> Los bancos tienen obligaciones BSA/AML independientes — no pueden delegarlas completamente a la fintech. Si la fintech tiene un AML program deficiente, el banco enfrenta enforcement actions de su propio regulador. Por eso, los bancos exigen hoy: AML programs bien documentados y testeados, auditorías periódicas, y derechos contractuales de revisar y auditar al partner. <strong>Preparar esto antes de tocar la puerta de un banco es no-negociable.</strong></div>
+  </div>
+</div>
+</div>
+
+<!-- 05 AML -->
+<div class="section" id="s-aml">
+<div class="container">
+  <div class="section-title">AML / KYC / BSA</div>
+  <div class="section-sub">El núcleo del compliance para cualquier fintech que mueve o intermedia dinero en USA</div>
+
+  <div class="info-block">
+    <div class="info-block-title">Bank Secrecy Act (BSA) — El framework base desde 1970</div>
+    <p>La BSA es la ley madre del anti-money laundering en USA. Todo Money Services Business (MSB) está sujeto a sus requerimientos desde el día 1. FinCEN la administra. Las violaciones pueden resultar en multas de millones de dólares, pérdida del acceso bancario, y en casos extremos, proceso penal para los directivos. No hay excepción por tamaño de empresa — aplica a startups también.</p>
+  </div>
+
+  <div class="section-title" style="font-size:16px">Los 5 Pilares del AML Program</div>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><div class="flow-content-title">Políticas y Procedimientos Escritos</div><p>Documentación detallada de cómo la empresa identifica y maneja riesgos de AML. Debe ser específica al modelo de negocio — no genérica. El regulador Y el bank partner lo revisarán. Incluye: risk assessment, transaction monitoring rules, red flags, escalation procedures.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><div class="flow-content-title">BSA/AML Compliance Officer Designado</div><p>Una persona específica responsable del AML program. Para fintechs pequeñas puede ser el CEO inicialmente, pero los bank partners exigen cada vez más un BSA/AML Officer dedicado con experiencia certificada (CAMS o equivalente). Nombrar a alguien sin la expertise necesaria es un red flag para reguladores.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><div class="flow-content-title">Training Continuo</div><p>Capacitación regular de todos los empleados en AML, reconocimiento de actividad sospechosa, y requerimientos de reporting. Debe ser documentado y repetido periódicamente. Diferente nivel de entrenamiento para el compliance officer vs. el resto del equipo.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><div class="flow-content-title">Auditoría Independiente</div><p>Revisión periódica del AML program por un tercero independiente. La frecuencia depende del risk profile del negocio. Los bank partners casi siempre requieren esto como condición para (y durante) la relación. El reporte de auditoría debe quedar archivado.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-content"><div class="flow-content-title">Customer Due Diligence (CDD) y Beneficial Ownership</div><p>Identificar y verificar a todos los clientes. Para personas físicas: KYC estándar (nombre, fecha de nacimiento, dirección, ID). Para empresas: KYB (Know Your Business) + identificación de todos los Beneficial Owners con 25%+ de ownership. La FinCEN CDD Rule lo exige para MSBs desde 2018.</p></div></div>
+  </div>
+
+  <div class="section-title" style="font-size:16px">Elementos críticos del KYC/KYB</div>
+  <table class="reg-table">
+    <thead><tr><th>Elemento</th><th>Requerimiento</th><th>Base Legal</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">CIP (Customer ID Program)</td><td>Verificar nombre, fecha de nacimiento, dirección, Tax ID de cada cliente al onboarding</td><td>BSA / USA PATRIOT Act</td></tr>
+      <tr><td class="td-name">KYB — Know Your Business</td><td>Para clientes-empresa: verificar business legal name, EIN, dirección, estructura corporate</td><td>FinCEN CDD Rule</td></tr>
+      <tr><td class="td-name">Beneficial Ownership</td><td>Para clientes-empresa: identificar TODAS las personas con 25%+ de ownership (UBOs)</td><td>FinCEN CDD Rule</td></tr>
+      <tr><td class="td-name">OFAC Screening</td><td>Screenear contra SDN list y listas de sanciones en onboarding Y ongoing (monitoring continuo)</td><td>OFAC / Executive Orders</td></tr>
+      <tr><td class="td-name">Enhanced Due Diligence (EDD)</td><td>Para high-risk: PEPs, high-risk geographies, cash-intensive businesses, negocios de pagos internacionales</td><td>BSA / FFIEC Guidelines</td></tr>
+      <tr><td class="td-name">SAR Filing</td><td>Suspicious Activity Report a FinCEN: dentro de 30 días de detectar actividad sospechosa. Records: 5 años mínimo</td><td>BSA</td></tr>
+      <tr><td class="td-name">CTR Filing</td><td>Currency Transaction Report para transacciones en efectivo superiores a $10,000</td><td>BSA</td></tr>
+      <tr><td class="td-name">Transaction Monitoring</td><td>Sistema de alertas automáticas para detectar patrones sospechosos — threshold alerts, velocity checks, pattern analysis</td><td>BSA / FFIEC</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-block accent2">
+    <div class="info-block-title">Corporate Transparency Act (CTA) — Nueva obligación desde 2024</div>
+    <p>A partir de 2024, la mayoría de empresas en USA deben reportar sus Beneficial Owners directamente al FinCEN (BOI Report — Beneficial Ownership Information). Está siendo litigado activamente, pero fintechs deben monitorearlo. Para fintechs que onboardean negocios como clientes (B2B), esto complementa sus propias obligaciones de CDD/KYB al verificar la estructura de sus clientes empresariales.</p>
+  </div>
+</div>
+</div>
+
+<!-- 06 TRENDS -->
+<div class="section" id="s-trends">
+<div class="container">
+  <div class="section-title">Tendencias 2025-2026</div>
+  <div class="section-sub">El panorama regulatorio está en movimiento — estas son las fuerzas más importantes hoy</div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">🔴 HOT</div>
+      <div class="tl-content"><strong>States filling the federal vacuum:</strong> Con el CFPB reducido bajo la administración Trump, los estados están actuando agresivamente para llenar el vacío. New York contrató ex-CFPB staffers en su DFS. California, Illinois, Massachusetts, Colorado están pasando leyes propias. Resultado: más fragmentación state-by-state, más compliance per estado, mayor rol de los Attorneys General.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">🔴 HOT</div>
+      <div class="tl-content"><strong>Open Banking / CFPB Section 1033:</strong> La CFPB finalizó su "Personal Financial Data Rights" rule. Obliga a bancos y fintechs grandes a dar a los consumidores acceso y portabilidad de sus datos financieros vía API segura. Crea oportunidades enormes (acceso a bank transaction data para underwriting) y nuevas obligaciones de privacidad para fintechs que reciben esa data.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">🔴 HOT</div>
+      <div class="tl-content"><strong>BaaS Consolidation post-Synapse:</strong> El mercado de bank partners se está consolidando. Los que permanecen son más exigentes. Fintechs sin compliance robusto están siendo desconectadas. Emergió "BaaS 2.0": mayor oversight bancario integrado, compliance-as-a-service, y selección mucho más rigurosa de partners fintech.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">🟡 MED</div>
+      <div class="tl-content"><strong>AI en underwriting — Regulatory scrutiny creciente:</strong> Reguladores (CFPB, EEOC, OCC) están mirando de cerca el uso de AI/ML en lending decisions. Preocupación central: disparate impact (discriminación indirecta). Fintechs deben poder explicar sus modelos de scoring. "Black box" underwriting es un riesgo regulatorio importante y creciente.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">🟡 MED</div>
+      <div class="tl-content"><strong>Crypto — mayor claridad regulatoria:</strong> OCC aprobó en 2025 actividades de digital assets para bancos nacionales. El GENIUS Act (julio 2025) regula stablecoins con reserve standards y governance. El ambiente es más favorable que en 2022-23, pero las reglas siguen en evolución. SEC vs. CFTC jurisdiction sobre crypto sigue sin resolverse completamente.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">🟡 MED</div>
+      <div class="tl-content"><strong>BNPL bajo la lupa:</strong> CFPB propuso (y avanzó) clasificar Buy Now Pay Later como credit bajo TILA, lo que crearía obligaciones de disclosure, dispute resolution, y credit reporting. También varios estados están regulando BNPL por su cuenta. Afecta a cualquier fintech con un producto de pagos en cuotas.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">🟡 MED</div>
+      <div class="tl-content"><strong>Data Privacy — patchwork estatal creciente:</strong> 20 estados tienen leyes comprensivas de data privacy (mayo 2025). California (CCPA/CPRA) sigue siendo el estándar de facto. Fintechs que recolectan y usan datos financieros deben mapear su exposición estado por estado. El estándar europeo GDPR influye indirectamente en las expectativas.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">🟢 EMERG</div>
+      <div class="tl-content"><strong>Regulatory Sandboxes:</strong> Varios estados (Utah, Arizona, Wyoming, Texas) tienen sandboxes que permiten operar con menos regulación temporalmente mientras se prueba un nuevo modelo. El CFPB y OCC también tienen mecanismos de no-action letters. Útil para fintechs en early-stage que quieren probar el mercado antes de invertir en licencias completas.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function updateActiveLanguage(lang) {
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+}
+
+function setLanguage(lang, btn) {
+  var combo = document.querySelector('.goog-te-combo');
+  if (!combo) {
+    return;
+  }
+  combo.value = lang;
+  combo.dispatchEvent(new Event('change'));
+  updateActiveLanguage(lang);
+}
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'es',
+    includedLanguages: 'es,en,it',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+
+function show(tab, btn) {
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('s-' + tab).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+<div id="google_translate_element"></div>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

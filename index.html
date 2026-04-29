@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fintech Latam Ecosystem Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: 222 47% 11%;
+      --secondary: 215 25% 27%;
+      --gold: 32 95% 44%;
+      --font-display: "Playfair Display", Georgia, serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+      --bg: hsl(var(--primary));
+      --surface: hsl(var(--primary));
+      --surface2: hsl(var(--secondary));
+      --border: hsl(var(--secondary));
+      --accent: hsl(var(--gold));
+      --accent2: #cbd5e1;
+      --green: #cbd5e1;
+      --yellow: hsl(var(--gold));
+      --orange: #fe9e4e;
+      --pink: #FE4E7A;
+      --text: #ffffff;
+      --text-muted: #e2e8f0;
+    }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-size: 14px; line-height: 1.6; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+
+    /* GLOBAL NAV */
+    .global-nav { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: 8px 20px; border-bottom: 1px solid var(--border); background: var(--surface2); flex-shrink: 0; }
+    .global-brand { display: flex; align-items: center; gap: 10px; }
+    .global-logo { width: 120px; height: 120px; object-fit: contain; display: block; }
+    .global-year { font-size: 10px; letter-spacing: .08em; color: var(--text-muted); }
+    .global-links { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .global-nav-link { color: var(--text-muted); text-decoration: none; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; padding: 6px 12px; border: 1px solid transparent; border-radius: 999px; transition: all .2s; }
+    .global-nav-link:hover { color: var(--text); border-color: var(--border); }
+    .global-nav-link.active { color: var(--bg); background: var(--accent); border-color: var(--accent); font-weight: 700; }
+    .lang-switch { display: flex; align-items: center; gap: 6px; border: 1px solid var(--border); padding: 3px; background: var(--surface); }
+    .lang-btn { font-family: var(--font-body); font-size: 10px; border: none; background: transparent; color: var(--text-muted); padding: 6px 8px; cursor: pointer; letter-spacing: .08em; }
+    .lang-btn.active, .lang-btn:hover { background: var(--accent); color: #000; }
+    #google_translate_element { position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none; }
+
+    /* FILTERS */
+    .filters { padding: 8px 28px; display: flex; gap: 7px; align-items: center; border-bottom: 1px solid var(--border); background: var(--surface); flex-wrap: wrap; flex-shrink: 0; }
+    .filter-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .8px; margin-right: 4px; }
+    .filter-btn { padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 12px; cursor: pointer; transition: all .2s; display: flex; align-items: center; gap: 6px; }
+    .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+    .filter-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .filter-spacer { flex: 1; }
+    .filter-stats { display: flex; align-items: center; gap: 8px; }
+    .filter-stat { border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; font-size: 10px; color: var(--text-muted); letter-spacing: .05em; text-transform: uppercase; }
+    .filter-stat strong { color: var(--accent); font-weight: 700; }
+
+    /* MAIN */
+    .main { display: flex; flex: 1; overflow: hidden; }
+
+    /* MAP */
+    #map-container { flex: 1; position: relative; overflow: hidden; }
+    #map-svg { width: 100%; height: 100%; }
+    .country { cursor: pointer; transition: filter .2s; stroke: #1a3a5c; stroke-width: .8; }
+    .country:hover { filter: brightness(1.4); stroke: var(--accent); stroke-width: 1.5; }
+    .country.active { stroke: var(--accent); stroke-width: 2; filter: brightness(1.3); }
+    .country.dimmed { opacity: .25; }
+    .bubble-label { font-size: 9px; fill: white; text-anchor: middle; dominant-baseline: middle; pointer-events: none; font-weight: 600; }
+    #map-container::before { content:''; position:absolute; inset:0; background-image: linear-gradient(rgba(203,213,225,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(203,213,225,.05) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; }
+
+    /* SIDEBAR */
+    .sidebar { width: 340px; background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0; }
+    .sidebar-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+    .sidebar-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
+    .sidebar-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+    .sidebar-content { flex: 1; overflow-y: auto; padding: 14px; }
+    .sidebar-content::-webkit-scrollbar { width: 4px; }
+    .sidebar-content::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* Overview */
+    .ranking-item { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 8px; margin-bottom: 6px; background: var(--surface2); border: 1px solid var(--border); }
+    .rank-num { font-size: 11px; color: var(--text-muted); width: 16px; text-align: center; font-weight: 600; }
+    .rank-flag { font-size: 18px; }
+    .rank-info { flex: 1; }
+    .rank-country { font-size: 12px; font-weight: 600; }
+    .rank-bar-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-top: 4px; overflow: hidden; }
+    .rank-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg,var(--accent),var(--accent2)); }
+    .rank-count { font-size: 13px; font-weight: 700; color: var(--accent); }
+    .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin: 14px 0 8px; font-weight: 600; }
+    .sector-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+    .sector-icon { font-size: 13px; width: 18px; text-align: center; }
+    .sector-name { font-size: 12px; flex: 1; }
+    .sector-bar-wrap { flex: 2; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .sector-bar { height: 100%; border-radius: 3px; }
+    .sector-count { font-size: 12px; font-weight: 600; color: var(--text-muted); width: 22px; text-align: right; }
+
+    /* Country panel */
+    .country-panel { display: none; }
+    .country-panel.visible { display: block; }
+    .country-flag { font-size: 28px; margin-bottom: 6px; }
+    .country-name { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .country-meta { display: flex; gap: 10px; margin-bottom: 14px; }
+    .meta-item { text-align: center; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; flex: 1; }
+    .meta-value { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--accent); }
+    .meta-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-top: 2px; }
+
+    /* Category tabs */
+    .cat-tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+    .cat-tab { padding: 4px 12px; border-radius: 14px; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 11px; cursor: pointer; transition: all .2s; }
+    .cat-tab.active { background: var(--surface2); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+    /* Company cards */
+    .company-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 7px; cursor: pointer; transition: all .2s; display: flex; align-items: center; gap: 10px; }
+    .company-card:hover { border-color: var(--accent); transform: translateX(2px); background: #152a4a; }
+    .company-logo { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; font-weight: 700; }
+    .company-info { flex: 1; min-width: 0; }
+    .company-name { font-size: 13px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 4px; }
+    .company-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .company-tag { font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; flex-shrink: 0; }
+    .unicorn-badge { font-size: 12px; }
+
+    /* Zoom */
+    .zoom-controls { position: absolute; top: 16px; right: 16px; display: flex; flex-direction: column; gap: 4px; }
+    .zoom-btn { width: 32px; height: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .zoom-btn:hover { background: var(--surface2); border-color: var(--accent); }
+
+    /* Legend */
+    .legend { position: absolute; bottom: 20px; left: 20px; background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; backdrop-filter: blur(8px); }
+    .legend-title { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 7px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 11px; margin-bottom: 4px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Tooltip */
+    .tooltip { position: fixed; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 13px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity .15s; z-index: 100; max-width: 200px; box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+    .tooltip.visible { opacity: 1; }
+    .tooltip-country { font-weight: 700; font-size: 13px; margin-bottom: 3px; }
+    .tooltip-count { color: var(--accent); font-weight: 600; }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .2s; backdrop-filter: blur(4px); }
+    .modal-overlay.visible { opacity: 1; pointer-events: all; }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 420px; max-width: 90vw; padding: 24px; position: relative; transform: translateY(12px); transition: transform .2s; box-shadow: 0 24px 60px rgba(0,0,0,.6); }
+    .modal-overlay.visible .modal { transform: translateY(0); }
+    .modal-close { position: absolute; top: 14px; right: 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: all .2s; }
+    .modal-close:hover { border-color: var(--accent); color: var(--text); }
+    .modal-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .modal-logo { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; }
+    .modal-title-wrap { flex: 1; }
+    .modal-name { font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.2; }
+    .modal-meta { display: flex; align-items: center; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+    .modal-tag { font-size: 11px; padding: 2px 9px; border-radius: 10px; font-weight: 600; }
+    .modal-country { font-size: 12px; color: var(--text-muted); }
+    .modal-desc { font-size: 13px; color: var(--text); line-height: 1.65; margin-bottom: 20px; }
+    .modal-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 11px; background: linear-gradient(90deg,var(--accent),var(--accent2)); border: none; border-radius: 10px; color: var(--bg); font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity .2s; text-decoration: none; }
+    .modal-btn:hover { opacity: .9; }
+    .modal-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+<nav class="global-nav">
+  <div class="global-brand">
+    <img class="global-logo" src="./tih-logo-white-CV3af6jQ.png" alt="TIH Logo" />
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link active" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation Research</a>
+  </div>
+  <div class="lang-switch" aria-label="Language selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">ES</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+  </div>
+</nav>
+
+<div class="filters">
+  <span class="filter-label">Sector:</span>
+  <button class="filter-btn active" data-sector="all">Todos</button>
+  <button class="filter-btn" data-sector="payments"><span class="filter-dot" style="background:#dba310"></span>Pagos</button>
+  <button class="filter-btn" data-sector="neobank"><span class="filter-dot" style="background:#cbd5e1"></span>Neobancos</button>
+  <button class="filter-btn" data-sector="lending"><span class="filter-dot" style="background:#b8c4d6"></span>Crédito</button>
+  <button class="filter-btn" data-sector="insurance"><span class="filter-dot" style="background:#ffd166"></span>Insurtech</button>
+  <button class="filter-btn" data-sector="investments"><span class="filter-dot" style="background:#fe9e4e"></span>Inversiones</button>
+  <button class="filter-btn" data-sector="crypto"><span class="filter-dot" style="background:#FE4E7A"></span>Crypto</button>
+  <button class="filter-btn" data-sector="b2b"><span class="filter-dot" style="background:#94a3b8"></span>B2B/Infra</button>
+  <span class="filter-spacer"></span>
+  <div class="filter-stats">
+    <span class="filter-stat">Empresas: <strong id="total-companies">0</strong></span>
+    <span class="filter-stat">Países: <strong id="total-countries">0</strong></span>
+    <span class="filter-stat">Unicornios: <strong id="unicorn-count">0</strong></span>
+  </div>
+</div>
+
+<div class="main">
+  <div id="map-container">
+    <svg id="map-svg"></svg>
+    <div class="zoom-controls">
+      <button class="zoom-btn" id="zoom-in">+</button>
+      <button class="zoom-btn" id="zoom-out">−</button>
+      <button class="zoom-btn" id="zoom-reset" style="font-size:12px">⊙</button>
+    </div>
+    <div class="legend">
+      <div class="legend-title">Densidad de empresas</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1f2937"></div> Sin datos</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#374151"></div> 1–5 empresas</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4b5563"></div> 6–15 empresas</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#6b7280"></div> 16–25 empresas</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9ca3af"></div> 25+ empresas</div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title" id="sidebar-title">Ecosystem Overview</div>
+      <div class="sidebar-sub" id="sidebar-sub">Seleccioná un país para explorar su ecosistema</div>
+    </div>
+    <div class="sidebar-content" id="sidebar-content">
+      <div id="overview-panel">
+        <div class="section-title">Top países por ecosistema</div>
+        <div id="ranking-list"></div>
+        <div class="section-title" style="margin-top:18px">Por sector</div>
+        <div id="sector-breakdown"></div>
+      </div>
+      <div class="country-panel" id="country-panel">
+        <div class="country-flag" id="cp-flag"></div>
+        <div class="country-name" id="cp-name"></div>
+        <div class="country-meta" id="cp-meta"></div>
+        <div class="cat-tabs" id="cp-tabs"></div>
+        <div id="cp-companies"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-country" id="tt-country"></div>
+  <div id="tt-info"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div class="modal-header">
+      <div class="modal-logo" id="m-logo"></div>
+      <div class="modal-title-wrap">
+        <div class="modal-name" id="m-name"></div>
+        <div class="modal-meta">
+          <span class="modal-tag" id="m-tag"></span>
+          <span class="modal-country" id="m-country"></span>
+        </div>
+      </div>
+    </div>
+    <hr class="modal-divider">
+    <div class="modal-desc" id="m-desc"></div>
+    <a class="modal-btn" id="m-btn" href="#" target="_blank" rel="noopener">
+      Visitar sitio web →
+    </a>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// SECTORS
+// ─────────────────────────────────────────────
+const SECTORS = {
+  payments:    { label:'Pagos',       color:'#dba310', icon:'💳' },
+  neobank:     { label:'Neobancos',   color:'#cbd5e1', icon:'🏦' },
+  lending:     { label:'Crédito',     color:'#b8c4d6', icon:'💰' },
+  insurance:   { label:'Insurtech',   color:'#ffd166', icon:'🛡️' },
+  investments: { label:'Inversiones', color:'#fe9e4e', icon:'📈' },
+  crypto:      { label:'Crypto',      color:'#FE4E7A', icon:'₿'  },
+  b2b:         { label:'B2B/Infra',   color:'#94a3b8', icon:'⚙️' },
+};
+
+// ─────────────────────────────────────────────
+// COMPANIES  (type: 'unicorn' | 'startup')
+// ─────────────────────────────────────────────
+const COMPANIES = {
+  BR: {
+    name:'Brasil', flag:'🇧🇷',
+    companies: [
+      { name:'Nubank',        type:'unicorn', sector:'neobank',     logo:'N',  url:'https://nubank.com',        desc:'El banco digital más grande del mundo fuera de Asia. Cotiza en NYSE (NU) con 110M+ usuarios y $77B+ de capitalización bursátil. Ingreso neto de $2.87B en 2025. Anunció entrada al mercado estadounidense.' },
+      { name:'Mercado Pago',  type:'unicorn', sector:'payments',    logo:'MP', url:'https://mercadopago.com',   desc:'Brazo financiero de MercadoLibre. 66M usuarios en Brasil, 7ª institución financiera del país. Procesa billones en pagos anuales. Parte de MercadoLibre (Nasdaq: MELI).' },
+      { name:'Stone',         type:'unicorn', sector:'payments',    logo:'ST', url:'https://stone.com.br',      desc:'Plataforma de pagos para PyMEs. Cotiza en Nasdaq (STNE) con R$9B+ en depósitos de PyMEs y 64% de crecimiento YoY en Pix. Enfocada en banca para comerciantes.' },
+      { name:'PicPay',        type:'unicorn', sector:'neobank',     logo:'PP', url:'https://picpay.com',        desc:'Neobank brasileño con 65.6M usuarios y $1.37B en ingresos. Presentó IPO en Nasdaq (PICS). Respaldado por J&F, es una historia de transformación notable.' },
+      { name:'Creditas',      type:'unicorn', sector:'lending',     logo:'C',  url:'https://creditas.com',      desc:'Crédito con garantía; valuación de $1.8B. Diversificado en crédito con nómina, automotriz y PyMEs. Inversores: Softbank, QED.' },
+      { name:'EBANX',         type:'unicorn', sector:'b2b',         logo:'EB', url:'https://ebanx.com',         desc:'Procesamiento de pagos para merchants globales en LatAm. Valuación $1B+. Clientes: Spotify, Airbnb, Uber.' },
+      { name:'Dock',          type:'unicorn', sector:'b2b',         logo:'DK', url:'https://dock.tech',         desc:'Infraestructura BaaS fintech; valuación $1.5B. Impulsa más de 100 fintechs en toda América Latina. Referente en Banking as a Service.' },
+      { name:'QI Tech',       type:'unicorn', sector:'b2b',         logo:'QI', url:'https://qitech.com.br',     desc:'Infraestructura de crédito B2B; valuación $1B. Extensión de Serie B de $63M en 2025. Tecnología de grado bancario para fintechs.' },
+      { name:'XP Inc.',       type:'unicorn', sector:'investments', logo:'XP', url:'https://xpi.com.br',        desc:'Gestión de riqueza digital (Nasdaq: XP). Democratizó las inversiones en Brasil. Ecosistema financiero completo, desde acciones hasta seguros.' },
+      { name:'Kanastra',      type:'startup', sector:'b2b',         logo:'KN', url:'https://kanastra.com.br',   desc:'Back-office de inversiones alternativas para fondos de crédito privado. Serie B ($30M, F-Prime). Juego de infraestructura replicable en el mercado de crédito privado de EE.UU.' },
+      { name:'Zippi',         type:'startup', sector:'lending',     logo:'ZP', url:'https://zippi.com.br',      desc:'Capital de trabajo para microempresarios vía PIX. Scoring de crédito alternativo usando datos operacionales. Modelo de datos alternativos aplicable globalmente.' },
+      { name:'NG.CASH',       type:'startup', sector:'neobank',     logo:'NG', url:'https://ng.cash',           desc:'Finanzas digitales para la Generación Z (tarjetas, seguros, herramientas AI). Serie B de $26.5M. Inversor a16z.' },
+      { name:'CloudWalk',     type:'startup', sector:'payments',    logo:'CW', url:'https://cloudwalk.io',      desc:'Pagos para comerciantes con AI + DeFi. Ya ingresando al mercado estadounidense directamente con infraestructura blockchain-native.' },
+      { name:'Conta Simples', type:'startup', sector:'b2b',         logo:'CS', url:'https://contasimples.com',  desc:'Gestión de gastos corporativos para emprendedores brasileños. Partnership con Visa. Modelo B2B SaaS fintech.' },
+      { name:'Pismo',         type:'startup', sector:'b2b',         logo:'PS', url:'https://pismo.io',          desc:'Infraestructura de core banking adquirida por Visa en 2023 por $1B. Prueba del atractivo de la infraestructura B2B de LatAm para compradores estratégicos de EE.UU.' },
+      { name:'PagSeguro',     type:'startup', sector:'payments',    logo:'PG', url:'https://pagseguro.uol.com.br', desc:'Ecosistema end-to-end de pagos para PyMEs con POS, billetera y servicios bancarios integrados.' },
+      { name:'Cielo',         type:'startup', sector:'payments',    logo:'CI', url:'https://www.cielo.com.br', desc:'Mayor adquirente de tarjetas en Brasil y actor clave de la infraestructura de pagos del país.' },
+      { name:'Rede',          type:'startup', sector:'payments',    logo:'RD', url:'https://www.userede.com.br', desc:'Red adquirente propiedad de Itaú para comercios en todo Brasil, con foco en aceptación y procesamiento.' },
+      { name:'Inter',         type:'startup', sector:'neobank',     logo:'IN', url:'https://www.bancointer.com.br', desc:'Banco digital con estrategia de marketplace y super-app para consumidores y PyMEs.' },
+      { name:'C6 Bank',       type:'startup', sector:'neobank',     logo:'C6', url:'https://www.c6bank.com.br', desc:'Banco digital full-stack respaldado por JPMorgan, con oferta integral de productos financieros.' },
+      { name:'Neon',          type:'startup', sector:'neobank',     logo:'NE', url:'https://neon.com.br', desc:'Neobanco enfocado en banca masiva para consumidores sub-bancarizados en Brasil.' },
+      { name:'Matera',        type:'startup', sector:'b2b',         logo:'MT', url:'https://matera.com', desc:'Proveedor de core banking e infraestructura PIX para bancos y fintechs.' },
+      { name:'Celcoin',       type:'startup', sector:'b2b',         logo:'CC', url:'https://www.celcoin.com.br', desc:'Infraestructura BaaS y pagos para fintechs y corporativos en Brasil.' },
+    ]
+  },
+  MX: {
+    name:'México', flag:'🇲🇽',
+    companies: [
+      { name:'Plata',          type:'unicorn', sector:'neobank',  logo:'PL', url:'https://plata.mx',       desc:'Neobank mexicano; valuación $3.1B con $250M Serie B (Q4 2025). Tarjeta de crédito basada en Mastercard. El mayor deal en español de LatAm jamás.' },
+      { name:'Klar',           type:'unicorn', sector:'neobank',  logo:'KL', url:'https://klar.mx',        desc:'El banco digital más grande de México. Valuación $800M, $170M Serie C (2025). 1M+ clientes.' },
+      { name:'Bitso',          type:'unicorn', sector:'crypto',   logo:'BI', url:'https://bitso.com',      desc:'El exchange de cripto líder en LatAm. Valuación $2.2B. Opera en México, Argentina y Brasil. Enfocado en remesas con stablecoins en el corredor EE.UU.↔México.' },
+      { name:'Konfío',         type:'unicorn', sector:'lending',  logo:'KF', url:'https://konfio.mx',      desc:'Crédito para PyMEs con underwriting usando datos bancarios. Serie D. Líder en crédito PyME en México.' },
+      { name:'Clip',           type:'unicorn', sector:'payments', logo:'CL', url:'https://clip.mx',        desc:'Terminal de pagos para PyMEs + BaaS. Valuación $2B+. Plataforma líder de pagos para comerciantes en México.' },
+      { name:'Stori',          type:'unicorn', sector:'neobank',  logo:'SI', url:'https://storicard.com',  desc:'Tarjeta de crédito para consumidores sin historial crediticio. Serie D. Enfocada en inclusión financiera del mercado masivo.' },
+      { name:'Kapital',        type:'unicorn', sector:'neobank',  logo:'KP', url:'https://kapital.mx',     desc:'Neobank para PyMEs. Valuación $1.3B, $100M Serie D (Q3 2025). Banca integrada para PyMEs mexicanas.' },
+      { name:'Pomelo',         type:'startup', sector:'b2b',      logo:'PO', url:'https://pomelo.la',      desc:'Infraestructura de emisión de tarjetas para fintechs de LatAm. 125 clientes en 6 mercados. Partnership con Mastercard. Innovador Global del WEF.' },
+      { name:'Tapi',           type:'startup', sector:'b2b',      logo:'TP', url:'https://tapi.com',       desc:'Infraestructura de API de pagos conectando fintechs a sistemas bancarios. Respaldado por a16z + Kaszek. Compatible con ACH para pagos transfronterizos.' },
+      { name:'Yave',           type:'startup', sector:'lending',  logo:'YV', url:'https://yave.mx',        desc:'Hipoteca digital para sub-bancarizados usando scoring de datos alternativos. Modelo de crédito para thin-file aplicable al mercado hipotecario de EE.UU.' },
+      { name:'Swap',           type:'startup', sector:'b2b',      logo:'SW', url:'https://swap.financial', desc:'Infraestructura de finanzas embebidas para plataformas. Modelo BaaS multi-país.' },
+      { name:'Arcus',          type:'startup', sector:'b2b',      logo:'AR', url:'https://arcusfi.com', desc:'Infraestructura de cash-in/cash-out y pago de facturas para instituciones financieras en LatAm.' },
+      { name:'Ozone API',      type:'startup', sector:'b2b',      logo:'OZ', url:'https://ozoneapi.com', desc:'Proveedor de infraestructura de open banking para entidades financieras y ecosistemas regulados.' },
+      { name:'STP',            type:'startup', sector:'b2b',      logo:'ST', url:'https://stp.mx', desc:'Proveedor de infraestructura de pagos SPEI para fintechs y casos de transferencia en tiempo real.' },
+      { name:'Kueski',         type:'startup', sector:'lending',  logo:'KU', url:'https://www.kueski.com', desc:'Plataforma de BNPL y crédito al consumo con enfoque digital y distribución masiva.' },
+      { name:'Albo',           type:'startup', sector:'neobank',  logo:'AL', url:'https://www.albo.mx', desc:'Neobanco dirigido a jóvenes profesionales con experiencia móvil-first.' },
+      { name:'AirTM',          type:'startup', sector:'crypto',   logo:'AT', url:'https://www.airtm.com', desc:'Billetera digital dolarizada para usuarios cross-border y cobros internacionales.' },
+      { name:'Stellar',        type:'startup', sector:'crypto',   logo:'SL', url:'https://stellar.org', desc:'Infraestructura blockchain orientada a pagos y transferencias internacionales de bajo costo.' },
+      { name:'Circle',         type:'startup', sector:'crypto',   logo:'CR', url:'https://www.circle.com', desc:'Emisor de USDC y proveedor de rails de stablecoins para pagos e infraestructura financiera.' },
+      { name:'Ripple',         type:'startup', sector:'crypto',   logo:'RI', url:'https://ripple.com', desc:'Red blockchain para pagos transfronterizos utilizada por instituciones financieras globales.' },
+    ]
+  },
+  CO: {
+    name:'Colombia', flag:'🇨🇴',
+    companies: [
+      { name:'Rappi',           type:'unicorn', sector:'payments', logo:'RP', url:'https://rappi.com',     desc:'Super-app + pagos embebidos. Valuación $5.25B, respaldada por SoftBank. Rappi Pay integra servicios financieros dentro del ecosistema de delivery.' },
+      { name:'Bold',            type:'unicorn', sector:'payments', logo:'BO', url:'https://bold.co',       desc:'Pagos para PyMEs + neobank. Serie D de $40M (Q4 2025). Líder en consolidación de pagos para comerciantes en Colombia.' },
+      { name:'Addi',            type:'unicorn', sector:'lending',  logo:'AD', url:'https://addi.com',      desc:'BNPL / crédito para retail y e-commerce. Ronda tardía de $186M. Líder panlatino en Buy Now Pay Later.' },
+      { name:'Nequi',           type:'unicorn', sector:'neobank',  logo:'NQ', url:'https://nequi.com',     desc:'Neobank de Bancolombia. 20M+ usuarios. La billetera digital más grande de Colombia.' },
+      { name:'Treinta',         type:'startup', sector:'b2b',      logo:'TR', url:'https://treinta.co',    desc:'App de contabilidad + pagos para micro-comerciantes. Modelo de gestión financiera para PyMEs hispanas en EE.UU. muy relevante.' },
+      { name:'Bankuish',        type:'startup', sector:'lending',  logo:'BK', url:'https://bankuish.com',  desc:'Servicios financieros para la economía gig. Crédito para conductores de Uber y repartidores. Directamente aplicable a los 60M+ trabajadores gig en EE.UU.' },
+      { name:'Habi',            type:'startup', sector:'lending',  logo:'HB', url:'https://habi.co',       desc:'PropTech + marketplace hipotecario. Serie C. Scoring de crédito alternativo en contexto hipotecario.' },
+      { name:'Movii',           type:'startup', sector:'payments', logo:'MV', url:'https://www.movii.com.co', desc:'Billetera digital enfocada en inclusión financiera y pagos para usuarios no bancarizados.' },
+      { name:'Tpaga',           type:'startup', sector:'payments', logo:'TP', url:'https://tpaga.co', desc:'Plataforma de pagos móviles diseñada para ampliar acceso financiero en poblaciones no bancarizadas.' },
+      { name:'Aflore',          type:'startup', sector:'lending',  logo:'AF', url:'https://www.aflore.co', desc:'Modelo de crédito social basado en redes comunitarias para distribución y originación.' },
+      { name:'Lulo Bank',       type:'startup', sector:'neobank',  logo:'LU', url:'https://www.lulobank.com', desc:'Banco digital orientado a ahorro e inclusión financiera en Colombia.' },
+    ]
+  },
+  AR: {
+    name:'Argentina', flag:'🇦🇷',
+    companies: [
+      { name:'MercadoLibre',  type:'unicorn', sector:'payments',    logo:'ML', url:'https://mercadolibre.com', desc:'Mayor e-commerce + Mercado Pago (Nasdaq: MELI). Capitalización bursátil $80B+. Mercado Pago es el mayor procesador de pagos de LatAm.' },
+      { name:'Ualá',          type:'unicorn', sector:'neobank',     logo:'UA', url:'https://uala.com.ar',      desc:'Neobank con valuación $2.75B. $366M recaudados en H1 2025. 8M usuarios en Argentina, México y Colombia. Inversores: Allianz X.' },
+      { name:'Nuvemshop',     type:'unicorn', sector:'b2b',         logo:'NS', url:'https://nuvemshop.com.br', desc:'SaaS de e-commerce (el Shopify de LatAm). Valuación $3.1B. Fundada en Argentina. Modelo B2B SaaS con expansión a EE.UU.' },
+      { name:'Pomelo',        type:'unicorn', sector:'b2b',         logo:'PO', url:'https://pomelo.la',        desc:'Infraestructura de emisión de tarjetas para fintechs. $103M recaudados. 125 clientes en 6 mercados de LatAm. Mastercard partnership. Innovador Global del WEF.' },
+      { name:'Ripio',         type:'unicorn', sector:'crypto',      logo:'RI', url:'https://ripio.com',        desc:'Plataforma líder de crypto/Web3 en Argentina. Expansión regional. Infraestructura DeFi.' },
+      { name:'Tapi',          type:'startup', sector:'b2b',         logo:'TP', url:'https://tapi.com',         desc:'Infraestructura de API de pagos conectando fintechs a sistemas bancarios. $22M Serie A. Respaldado por a16z + Kaszek.' },
+      { name:'Belo',          type:'startup', sector:'payments',    logo:'BL', url:'https://belo.app',         desc:'Billetera digital para freelancers y trabajadores remotos. Soporte para transferencias ACH. Sirve directamente a trabajadores de LatAm pagados desde EE.UU.' },
+      { name:'Remitee',       type:'startup', sector:'payments',    logo:'RM', url:'https://remitee.com',      desc:'Remesas internacionales usando rails de stablecoin. $20M Serie A. Corredor Argentina↔EE.UU.' },
+      { name:'Increase',      type:'startup', sector:'b2b',         logo:'IC', url:'https://increasecard.com', desc:'Agregación de pagos + reconciliación para empresas. Serie B. Infraestructura de pagos B2B.' },
+      { name:'Prex Argentina',type:'startup', sector:'payments',    logo:'PX', url:'https://www.prexcard.com.ar', desc:'Billetera digital con capacidades cross-border y foco en pagos regionales.' },
+      { name:'Wilobank',      type:'startup', sector:'neobank',     logo:'WI', url:'https://www.wilobank.com', desc:'Uno de los primeros bancos digitales de Argentina con propuesta 100% móvil.' },
+      { name:'Rebanking',     type:'startup', sector:'neobank',     logo:'RB', url:'https://rebanking.com', desc:'Plataforma de banca digital orientada al mercado masivo y experiencia simplificada.' },
+    ]
+  },
+  UY: {
+    name:'Uruguay', flag:'🇺🇾',
+    companies: [
+      { name:'dLocal',      type:'unicorn', sector:'b2b',      logo:'dL', url:'https://dlocal.com',     desc:'Procesamiento de pagos cross-border fundado en Uruguay (Nasdaq: DLO). Valuación $5B+. Opera en 40+ mercados emergentes. Prueba máxima de escala global desde LatAm.' },
+      { name:'Bankingly',   type:'startup', sector:'neobank',  logo:'BG', url:'https://bankingly.com',  desc:'Plataforma de banca digital para cooperativas de crédito y microfinanzas. Aplicable directamente al mercado de credit unions de EE.UU. (5.000+ credit unions).' },
+      { name:'Scanntech',   type:'startup', sector:'b2b',      logo:'SC', url:'https://scanntech.com',  desc:'Mayor plataforma de datos retail de PyMEs en LatAm. Opera en Uruguay, Perú y Argentina. Producto Procobro lanzado en 2026 como infraestructura de crédito.' },
+      { name:'Tryolabs',    type:'startup', sector:'b2b',      logo:'TL', url:'https://tryolabs.com',   desc:'Desarrollo de productos AI/ML para empresas globales. Vehículo de exportación del talento uruguayo en IA al mercado de EE.UU.' },
+      { name:'Unofi',       type:'startup', sector:'b2b',      logo:'UF', url:'https://unofi.com',      desc:'Plataforma de gestión financiera para PyMEs. Inclusión financiera para pequeños negocios.' },
+      { name:'Prex',        type:'startup', sector:'payments', logo:'PX', url:'https://www.prexcard.com', desc:'Billetera digital regional con uso fuerte en flujos cross-border en el Cono Sur.' },
+      { name:'Midinero',    type:'startup', sector:'payments', logo:'MD', url:'https://www.midinero.com.uy', desc:'Tarjetas prepagas y servicios financieros para usuarios no bancarizados en Uruguay.' },
+    ]
+  },
+  CL: {
+    name:'Chile', flag:'🇨🇱',
+    companies: [
+      { name:'Xepelin',     type:'unicorn', sector:'lending',     logo:'XE', url:'https://xepelin.com',   desc:'Financiamiento de facturas B2B. $145M+ equity recaudado. $300M en financiamiento respaldado por activos. 50.000+ empresas servidas en Chile y México.' },
+      { name:'Fintual',     type:'unicorn', sector:'investments', logo:'FT', url:'https://fintual.com',   desc:'Gestión de riqueza digital pan-LatAm (Chile, México, Colombia). Serie B. Plataforma de inversiones simple y regulada.' },
+      { name:'Global66',    type:'unicorn', sector:'payments',    logo:'G6', url:'https://global66.com',  desc:'Pagos + FX. $16.3M recaudados. 80+ países destino. Cuentas IBAN/routing para usuarios de LatAm. Sirve el corredor LatAm↔EE.UU.' },
+      { name:'Colektia',    type:'startup', sector:'b2b',         logo:'CK', url:'https://colektia.com',  desc:'Cobranza de deudas impulsada por AI. Opera en Chile, México, Perú y Colombia. Serie B ($9M, dic 2024). Rentable. Modelo aplicable al mercado de cobranzas de EE.UU.' },
+      { name:'Destácame',   type:'startup', sector:'lending',     logo:'DM', url:'https://destacame.cl',  desc:'Salud financiera + construcción de crédito para sub-bancarizados. Modelo de construcción de crédito para thin-file muy aplicable en EE.UU.' },
+      { name:'Khipu',       type:'startup', sector:'payments',    logo:'KH', url:'https://khipu.com',     desc:'Método de pago alternativo para e-commerce basado en transferencias bancarias. Modelo de rails de pago alternativo.' },
+      { name:'Kredito',     type:'startup', sector:'lending',     logo:'KR', url:'https://kredito.cl', desc:'Plataforma de crédito PyME basada en datos alternativos para evaluación y originación.' },
+      { name:'Tenpo',       type:'startup', sector:'neobank',     logo:'TE', url:'https://www.tenpo.cl', desc:'Billetera digital y neobanco respaldado por Credicorp con foco en adopción masiva.' },
+      { name:'Mach',        type:'startup', sector:'neobank',     logo:'MA', url:'https://www.somosmach.com', desc:'Billetera digital respaldada por BCI con fuerte penetración de mercado en Chile.' },
+    ]
+  },
+  PE: {
+    name:'Perú', flag:'🇵🇪',
+    companies: [
+      { name:'Yape',        type:'unicorn', sector:'payments',    logo:'YP', url:'https://yape.com.pe',   desc:'Billetera digital de BCP. 15M+ usuarios. App de pagos dominante en Perú. Neobank propiedad de banco; mayor app financiera del país.' },
+      { name:'Culqi',       type:'unicorn', sector:'b2b',         logo:'CQ', url:'https://culqi.com',     desc:'Mayor pasarela de pagos independiente de Perú. Partnership con Visa. Infraestructura de procesamiento de pagos para PyMEs.' },
+      { name:'Rextie',      type:'startup', sector:'payments',    logo:'RX', url:'https://rextie.com',    desc:'Plataforma de FX digital. Mayor casa de cambio online de Perú. Infraestructura FX para empresas.' },
+      { name:'Tyba',        type:'startup', sector:'investments', logo:'TB', url:'https://tyba.com.co',   desc:'Plataforma de inversión digital para inversores retail. Modelo de democratización de inversiones para el mercado hispano de EE.UU.' },
+      { name:'Apurata',     type:'startup', sector:'lending',     logo:'AP', url:'https://apurata.com',   desc:'Scoring de crédito alternativo para trabajadores informales. Modelo de datos de economía informal aplicable para poblaciones thin-file en EE.UU.' },
+      { name:'Niubiz',      type:'startup', sector:'payments',    logo:'NB', url:'https://www.niubiz.com.pe', desc:'Principal procesador y adquirente de pagos en Perú para comercios y empresas.' },
+      { name:'Izipay',      type:'startup', sector:'payments',    logo:'IZ', url:'https://www.izipay.pe', desc:'Proveedor de POS y soluciones de cobro para comercios en el mercado peruano.' },
+      { name:'Ligo',        type:'startup', sector:'neobank',     logo:'LI', url:'https://ligo.pe', desc:'Billetera digital y plataforma de tarjeta prepaga con enfoque mobile-first.' },
+    ]
+  },
+  BO: {
+    name:'Bolivia', flag:'🇧🇴',
+    companies: [
+      { name:'Tigo Money Bolivia', type:'startup', sector:'payments', logo:'TM', url:'https://tigomoney.com/bo', desc:'Billetera móvil y plataforma de pagos con fuerte distribución a través del canal telco.' },
+      { name:'Yape Bolivia',       type:'startup', sector:'neobank',  logo:'YP', url:'https://www.yape.com.bo', desc:'Billetera digital expandida desde Perú con foco en pagos P2P y QR.' },
+      { name:'Linkser',            type:'startup', sector:'b2b',      logo:'LK', url:'https://linkser.com.bo', desc:'Servicios de integración de pagos y banca para instituciones financieras locales.' },
+    ]
+  },
+  PY: {
+    name:'Paraguay', flag:'🇵🇾',
+    companies: [
+      { name:'Bancard',             type:'startup', sector:'payments', logo:'BC', url:'https://www.bancard.com.py', desc:'Procesador core de pagos y red de tarjetas para el mercado paraguayo.' },
+      { name:'Tigo Money Paraguay', type:'startup', sector:'payments', logo:'TM', url:'https://tigomoney.com/py', desc:'Plataforma de dinero móvil y pagos con cobertura nacional.' },
+      { name:'Bepsa',               type:'startup', sector:'b2b',      logo:'BP', url:'https://bepsa.com.py', desc:'Infraestructura de switch electrónico de pagos y red de cajeros automáticos.' },
+    ]
+  },
+  EC: {
+    name:'Ecuador', flag:'🇪🇨',
+    companies: [
+      { name:'Kushki Ecuador', type:'startup', sector:'payments', logo:'KU', url:'https://www.kushki.com/ec', desc:'Adquirencia local y procesamiento de pagos para comercios y empresas en Ecuador.' },
+      { name:'Paymentez',      type:'startup', sector:'payments', logo:'PM', url:'https://paymentez.com', desc:'Pasarela de pagos y plataforma de tokenización para e-commerce en LatAm.' },
+      { name:'Datafast',       type:'startup', sector:'b2b',      logo:'DF', url:'https://www.datafast.com.ec', desc:'Infraestructura de procesamiento de tarjetas y adquirencia para bancos y comercios.' },
+      { name:'Medianet',       type:'startup', sector:'b2b',      logo:'MN', url:'https://medianet.com.ec', desc:'Red de switching y procesamiento de pagos para el sistema financiero ecuatoriano.' },
+    ]
+  },
+  VE: {
+    name:'Venezuela', flag:'🇻🇪',
+    companies: []
+  },
+};
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+let activeSector = 'all';
+let activeCountry = null;
+let activeCategory = 'all'; // 'all' | 'unicorn' | 'startup'
+
+let totalCompanies = 0, unicornCount = 0;
+Object.values(COMPANIES).forEach(c => {
+  totalCompanies += c.companies.length;
+  unicornCount += c.companies.filter(x => x.type === 'unicorn').length;
+});
+document.getElementById('total-companies').textContent = totalCompanies;
+document.getElementById('total-countries').textContent = Object.keys(COMPANIES).length;
+document.getElementById('unicorn-count').textContent = unicornCount;
+
+// ─────────────────────────────────────────────
+// MAP SETUP
+// ─────────────────────────────────────────────
+const svg = d3.select('#map-svg');
+const container = document.getElementById('map-container');
+let width = container.clientWidth;
+let height = container.clientHeight;
+const g = svg.append('g');
+
+const projection = d3.geoNaturalEarth1()
+  .center([-60, -15])
+  .scale(Math.min(width, height) * 1.1)
+  .translate([width / 2 - 80, height / 2]);
+
+const path = d3.geoPath().projection(projection);
+
+const zoom = d3.zoom().scaleExtent([0.5, 8]).on('zoom', e => g.attr('transform', e.transform));
+svg.call(zoom);
+
+document.getElementById('zoom-in').addEventListener('click', () => svg.transition().duration(300).call(zoom.scaleBy, 1.5));
+document.getElementById('zoom-out').addEventListener('click', () => svg.transition().duration(300).call(zoom.scaleBy, 0.67));
+document.getElementById('zoom-reset').addEventListener('click', () => svg.transition().duration(400).call(zoom.transform, d3.zoomIdentity));
+
+function getCountryColor(code) {
+  const count = getFilteredCompanies(code).length;
+  if (count === 0)  return '#1f2937';
+  if (count <= 5)   return '#374151';
+  if (count <= 15)  return '#4b5563';
+  if (count <= 25)  return '#6b7280';
+  return '#9ca3af';
+}
+
+function getFilteredCompanies(code) {
+  const data = COMPANIES[code];
+  if (!data) return [];
+  let list = data.companies;
+  if (activeSector !== 'all') list = list.filter(c => c.sector === activeSector);
+  return list;
+}
+
+const numericToAlpha3 = {
+  32:'ARG',68:'BOL',76:'BRA',152:'CHL',170:'COL',188:'CRI',192:'CUB',214:'DOM',
+  218:'ECU',222:'SLV',320:'GTM',332:'HTI',340:'HND',388:'JAM',484:'MEX',558:'NIC',
+  591:'PAN',600:'PRY',604:'PER',740:'SUR',780:'TTO',858:'URY',862:'VEN',328:'GUY',84:'BLZ',
+};
+const isoMap = {
+  'BRA':'BR','MEX':'MX','COL':'CO','ARG':'AR','CHL':'CL','PER':'PE','URY':'UY',
+  'CRI':'CR','ECU':'EC','VEN':'VE','PAN':'PA','GTM':'GT','BOL':'BO','PRY':'PY',
+  'HND':'HN','NIC':'NI','SLV':'SV','DOM':'DO',
+};
+
+// Tooltip
+const tooltip = document.getElementById('tooltip');
+let countryPaths;
+
+fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+  .then(r => r.json())
+  .then(world => {
+    const countries = topojson.feature(world, world.objects.countries);
+
+    countryPaths = g.selectAll('.country')
+      .data(countries.features)
+      .join('path')
+      .attr('class', 'country')
+      .attr('d', path)
+      .attr('fill', d => {
+        const code = isoMap[numericToAlpha3[+d.id]];
+        return getCountryColor(code);
+      })
+      .on('mouseover', function(event, d) {
+        const code = isoMap[numericToAlpha3[+d.id]];
+        const data = COMPANIES[code];
+        if (!data) return;
+        const companies = getFilteredCompanies(code);
+        document.getElementById('tt-country').textContent = `${data.flag} ${data.name}`;
+        document.getElementById('tt-info').innerHTML =
+          `<span class="tooltip-count">${companies.length} empresas</span>` +
+          (data.companies.filter(c => c.type === 'unicorn').length > 0
+            ? ` · 🦄 ${data.companies.filter(c => c.type === 'unicorn').length}`
+            : '');
+        tooltip.classList.add('visible');
+      })
+      .on('mousemove', event => {
+        tooltip.style.left = (event.clientX + 14) + 'px';
+        tooltip.style.top  = (event.clientY - 40) + 'px';
+      })
+      .on('mouseout', () => tooltip.classList.remove('visible'))
+      .on('click', function(event, d) {
+        const code = isoMap[numericToAlpha3[+d.id]];
+        if (!COMPANIES[code]) return;
+        if (activeCountry === code) {
+          activeCountry = null;
+          showOverview();
+          countryPaths.classed('active', false).classed('dimmed', false);
+        } else {
+          activeCountry = code;
+          activeCategory = 'all';
+          showCountry(code);
+          countryPaths
+            .classed('dimmed', dd => {
+              const c = isoMap[numericToAlpha3[+dd.id]];
+              return c !== code && !!COMPANIES[c];
+            })
+            .classed('active', dd => isoMap[numericToAlpha3[+dd.id]] === code);
+        }
+      });
+
+    // Compute centroids
+    const centroids = {};
+    countries.features.forEach(f => {
+      const code = isoMap[numericToAlpha3[+f.id]];
+      if (COMPANIES[code]) {
+        const c = path.centroid(f);
+        if (!isNaN(c[0])) centroids[code] = c;
+      }
+    });
+
+    updateBubbles(centroids);
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSector = btn.dataset.sector;
+        countryPaths.attr('fill', d => {
+          const code = isoMap[numericToAlpha3[+d.id]];
+          return getCountryColor(code);
+        });
+        updateBubbles(centroids);
+        if (activeCountry) showCountry(activeCountry);
+        else showOverview();
+      });
+    });
+
+    showOverview();
+  });
+
+function updateBubbles(centroids) {
+  g.selectAll('.company-bubble').remove();
+  Object.entries(centroids).forEach(([code, [x, y]]) => {
+    const companies = getFilteredCompanies(code);
+    if (!companies.length) return;
+    const topSector = Object.entries(
+      companies.reduce((a, c) => { a[c.sector] = (a[c.sector] || 0) + 1; return a; }, {})
+    ).sort((a, b) => b[1] - a[1])[0][0];
+    const color = SECTORS[topSector]?.color || '#9ca3af';
+    const r = Math.min(4 + companies.length * 1.1, 22);
+
+    const bub = g.append('g').attr('class', 'company-bubble').attr('transform', `translate(${x},${y})`);
+    bub.append('circle').attr('r', r + 4).attr('fill', 'none').attr('stroke', color).attr('stroke-width', .8).attr('opacity', .3);
+    bub.append('circle').attr('r', r).attr('fill', color).attr('fill-opacity', .85).attr('stroke', 'white').attr('stroke-width', .5);
+    bub.append('text').attr('class', 'bubble-label').text(companies.length);
+  });
+}
+
+// ─────────────────────────────────────────────
+// SIDEBAR
+// ─────────────────────────────────────────────
+function showOverview() {
+  document.getElementById('overview-panel').style.display = 'block';
+  document.getElementById('country-panel').style.display = 'none';
+  document.getElementById('sidebar-title').textContent = 'Ecosystem Overview';
+  document.getElementById('sidebar-sub').textContent = 'Seleccioná un país para explorar su ecosistema';
+
+  const ranking = Object.entries(COMPANIES)
+    .map(([code, d]) => ({ code, name: d.name, flag: d.flag, count: getFilteredCompanies(code).length }))
+    .filter(x => x.count > 0)
+    .sort((a, b) => b.count - a.count);
+
+  const maxCount = ranking[0]?.count || 1;
+  document.getElementById('ranking-list').innerHTML = ranking.map((r, i) => `
+    <div class="ranking-item">
+      <span class="rank-num">${i + 1}</span>
+      <span class="rank-flag">${r.flag}</span>
+      <div class="rank-info">
+        <div class="rank-country">${r.name}</div>
+        <div class="rank-bar-wrap"><div class="rank-bar" style="width:${(r.count/maxCount*100).toFixed(0)}%"></div></div>
+      </div>
+      <span class="rank-count">${r.count}</span>
+    </div>
+  `).join('');
+
+  const sectorCounts = {};
+  Object.values(COMPANIES).forEach(d => {
+    d.companies.forEach(c => {
+      if (activeSector === 'all' || c.sector === activeSector)
+        sectorCounts[c.sector] = (sectorCounts[c.sector] || 0) + 1;
+    });
+  });
+  const maxS = Math.max(...Object.values(sectorCounts));
+  document.getElementById('sector-breakdown').innerHTML = Object.entries(sectorCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([sector, count]) => {
+      const s = SECTORS[sector];
+      return `<div class="sector-row">
+        <span class="sector-icon">${s.icon}</span>
+        <span class="sector-name">${s.label}</span>
+        <div class="sector-bar-wrap"><div class="sector-bar" style="width:${(count/maxS*100).toFixed(0)}%;background:${s.color}"></div></div>
+        <span class="sector-count">${count}</span>
+      </div>`;
+    }).join('');
+}
+
+function showCountry(code) {
+  const data = COMPANIES[code];
+  if (!data) return;
+
+  document.getElementById('overview-panel').style.display = 'none';
+  document.getElementById('country-panel').style.display = 'block';
+  document.getElementById('sidebar-title').textContent = data.name;
+
+  const allFiltered = getFilteredCompanies(code);
+  const unicorns = allFiltered.filter(c => c.type === 'unicorn');
+  const startups = allFiltered.filter(c => c.type === 'startup');
+  document.getElementById('sidebar-sub').textContent =
+    `${allFiltered.length} empresas · 🦄 ${unicorns.length} unicornios`;
+
+  document.getElementById('cp-flag').textContent = data.flag;
+  document.getElementById('cp-name').textContent = data.name;
+
+  const sectors = [...new Set(data.companies.map(c => c.sector))].length;
+  document.getElementById('cp-meta').innerHTML = `
+    <div class="meta-item"><div class="meta-value">${allFiltered.length}</div><div class="meta-label">Empresas</div></div>
+    <div class="meta-item"><div class="meta-value">${unicorns.length}</div><div class="meta-label">Unicornios</div></div>
+    <div class="meta-item"><div class="meta-value">${sectors}</div><div class="meta-label">Sectores</div></div>
+  `;
+
+  // Category tabs
+  document.getElementById('cp-tabs').innerHTML = `
+    <button class="cat-tab ${activeCategory==='all'?'active':''}" data-cat="all">Todas (${allFiltered.length})</button>
+    ${unicorns.length ? `<button class="cat-tab ${activeCategory==='unicorn'?'active':''}" data-cat="unicorn">🦄 Unicornios (${unicorns.length})</button>` : ''}
+    ${startups.length ? `<button class="cat-tab ${activeCategory==='startup'?'active':''}" data-cat="startup">🚀 Startups (${startups.length})</button>` : ''}
+  `;
+  document.querySelectorAll('.cat-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.cat;
+      renderCompanyList(code);
+      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  renderCompanyList(code);
+}
+
+function renderCompanyList(code) {
+  const data = COMPANIES[code];
+  let list = getFilteredCompanies(code);
+  if (activeCategory === 'unicorn') list = list.filter(c => c.type === 'unicorn');
+  if (activeCategory === 'startup') list = list.filter(c => c.type === 'startup');
+
+  document.getElementById('cp-companies').innerHTML = list.map(c => {
+    const s = SECTORS[c.sector];
+    return `
+      <div class="company-card" data-code="${code}" data-name="${c.name}">
+        <div class="company-logo" style="background:${s.color}22;color:${s.color}">${c.logo}</div>
+        <div class="company-info">
+          <div class="company-name">
+            ${c.name}
+            ${c.type === 'unicorn' ? '<span class="unicorn-badge">🦄</span>' : ''}
+          </div>
+          <div class="company-desc">${c.desc.substring(0, 60)}…</div>
+        </div>
+        <div class="company-tag" style="background:${s.color}22;color:${s.color}">${s.label}</div>
+      </div>
+    `;
+  }).join('');
+
+  // Attach click → modal
+  document.querySelectorAll('.company-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const cCode = card.dataset.code;
+      const cName = card.dataset.name;
+      const company = COMPANIES[cCode].companies.find(c => c.name === cName);
+      if (company) openModal(company, COMPANIES[cCode]);
+    });
+  });
+}
+
+// ─────────────────────────────────────────────
+// MODAL
+// ─────────────────────────────────────────────
+function openModal(company, countryData) {
+  const s = SECTORS[company.sector];
+  document.getElementById('m-logo').textContent = company.logo;
+  document.getElementById('m-logo').style.background = s.color + '22';
+  document.getElementById('m-logo').style.color = s.color;
+  document.getElementById('m-name').textContent = company.name + (company.type === 'unicorn' ? ' 🦄' : '');
+  document.getElementById('m-tag').textContent = s.label;
+  document.getElementById('m-tag').style.background = s.color + '22';
+  document.getElementById('m-tag').style.color = s.color;
+  document.getElementById('m-country').textContent = `${countryData.flag} ${countryData.name}`;
+  document.getElementById('m-desc').textContent = company.desc;
+  document.getElementById('m-btn').href = company.url;
+  document.getElementById('modal-overlay').classList.add('visible');
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('visible');
+}
+
+function updateActiveLanguage(lang) {
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+}
+
+function setLanguage(lang) {
+  const combo = document.querySelector('.goog-te-combo');
+  if (!combo) return;
+  combo.value = lang;
+  combo.dispatchEvent(new Event('change'));
+  updateActiveLanguage(lang);
+}
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'es',
+    includedLanguages: 'es,en,it',
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ─────────────────────────────────────────────
+// RESIZE
+// ─────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  width = container.clientWidth;
+  height = container.clientHeight;
+  projection.scale(Math.min(width, height) * 1.1).translate([width / 2 - 80, height / 2]);
+  if (countryPaths) countryPaths.attr('d', path);
+});
+</script>
+<div id="google_translate_element"></div>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
