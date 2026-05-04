@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Banking &amp; Financial Infrastructure — TIH</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@400;700;800&display=swap');
+:root{--primary:222 47% 11%;--secondary:215 25% 27%;--gold:32 95% 44%;--font-display:"Playfair Display",Georgia,serif;--font-body:"DM Sans",system-ui,sans-serif;--bg:hsl(var(--primary));--surface:hsl(var(--primary));--surface2:hsl(var(--secondary));--border:hsl(var(--secondary));--accent:hsl(var(--gold));--accent2:#4EFEE7;--accent3:#FE4E7A;--accent4:#B44EFE;--text:#ffffff;--muted:#e2e8f0;--muted2:#cbd5e1}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6}
+#google_translate_element{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none}
+.global-nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:8px 20px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.global-brand{display:flex;align-items:center;gap:10px}
+.global-logo{width:120px;height:120px;object-fit:contain;display:block}
+.global-year{font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.global-links{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.global-nav-link{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border:1px solid transparent;border-radius:999px;transition:all .2s}
+.global-nav-link:hover{color:var(--text);border-color:var(--border)}
+.global-nav-link.active{color:#000;background:var(--accent);border-color:var(--accent);font-weight:700}
+.lang-switch{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px;background:var(--surface)}
+.lang-btn{font-family:var(--font-body);font-size:10px;border:none;background:transparent;color:var(--muted);padding:6px 8px;cursor:pointer;letter-spacing:.08em}
+.lang-btn.active,.lang-btn:hover{background:var(--accent);color:#000}
+.nav{background:var(--surface2);border-bottom:1px solid var(--border);padding:0 32px;display:flex;gap:0;overflow-x:auto}
+.nav-btn{font-family:var(--font-body);font-size:11px;padding:12px 16px;border:none;background:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;letter-spacing:.05em}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.container{max-width:1100px;margin:0 auto;padding:40px 32px}
+.section{display:none}.section.active{display:block}
+.hero{border:1px solid var(--border);padding:40px;margin-bottom:32px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(231,254,78,.08) 0%,transparent 70%)}
+.hero-label{font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.1em;margin-bottom:12px}
+.hero-title{font-family:var(--font-display);font-size:34px;font-weight:800;line-height:1.1;letter-spacing:.02em;margin-bottom:16px}
+.hero-title span{color:var(--accent)}
+.hero-desc{color:var(--muted);max-width:640px;line-height:1.75;font-size:14px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:32px}
+.stat-card{background:var(--surface);padding:24px}
+.stat-num{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--accent);margin-bottom:4px}
+.stat-label{font-size:11px;color:var(--muted);line-height:1.5}
+.section-title{font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-title.sm{font-size:16px}
+.section-sub{color:var(--muted);font-size:13px;margin-bottom:28px}
+.info-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:16px}
+.info-block.a2{border-left-color:var(--accent2)}
+.info-block.a3{border-left-color:var(--accent3)}
+.info-block.a4{border-left-color:var(--accent4)}
+.info-block.ag{border-left-color:var(--muted)}
+.info-block-title{font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:8px}
+.info-block p{font-size:13px;color:var(--muted);line-height:1.7}
+.info-block strong{color:var(--accent)}
+.info-block ul{list-style:none;margin-top:10px}
+.info-block ul li{font-size:12px;color:var(--muted2);padding:4px 0;display:flex;gap:8px}
+.info-block ul li::before{content:'&#9656;';color:var(--accent);flex-shrink:0}
+.callout{border:1px dashed var(--accent);padding:20px 24px;margin-bottom:28px}
+.callout-title{font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.1em;margin-bottom:8px}
+.callout p{font-size:13px;color:var(--muted);line-height:1.7}
+.callout strong{color:var(--accent)}
+.callout.a2{border-color:var(--accent2)}
+.callout.a2 .callout-title{color:var(--accent2)}
+.callout.a2 strong{color:var(--accent2)}
+.warning{background:rgba(254,78,122,.06);border:1px solid rgba(254,78,122,.3);padding:16px 20px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start}
+.warning-icon{color:var(--accent3);font-size:16px;flex-shrink:0}
+.warning-text{font-size:12px;color:#e0a0a8;line-height:1.6}
+.warning-text strong{color:var(--accent3)}
+.reg-table{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:12px}
+.reg-table th{font-family:var(--font-body);font-size:10px;letter-spacing:.08em;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--surface2)}
+.reg-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted2)}
+.reg-table tr:hover td{background:rgba(255,255,255,.02)}
+.reg-table .td-name{color:var(--text);font-weight:500}
+.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.platform-card{background:var(--surface);border:1px solid var(--border);padding:24px;transition:border-color .2s;position:relative}
+.platform-card:hover{border-color:var(--accent)}
+.platform-card.top{border-color:var(--accent)}
+.platform-card.top::before{content:'RECOMENDADO';position:absolute;top:14px;right:14px;font-family:var(--font-body);font-size:9px;color:var(--accent);letter-spacing:.08em;background:rgba(231,254,78,.1);border:1px solid rgba(231,254,78,.3);padding:3px 8px}
+.platform-tag{font-family:var(--font-body);font-size:9px;letter-spacing:.1em;padding:3px 8px;margin-bottom:12px;display:inline-block}
+.pt-g{background:rgba(231,254,78,.12);color:var(--accent)}
+.pt-b{background:rgba(78,254,231,.12);color:var(--accent2)}
+.pt-r{background:rgba(254,78,122,.12);color:var(--accent3)}
+.pt-gr{background:rgba(255,255,255,.06);color:var(--muted)}
+.platform-name{font-family:var(--font-display);font-size:17px;font-weight:700;margin-bottom:4px}
+.platform-sub{font-size:11px;color:var(--muted);margin-bottom:12px;font-family:var(--font-body)}
+.platform-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.plist{list-style:none}
+.plist li{font-size:12px;color:var(--muted2);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start}
+.plist li.pro::before{content:'&#10003;';color:var(--accent2);flex-shrink:0}
+.plist li.con::before{content:'&#10007;';color:var(--accent3);flex-shrink:0}
+.plist li:not(.pro):not(.con)::before{content:'&#8594;';color:var(--accent);flex-shrink:0}
+.plist li:last-child{border-bottom:none}
+.flow{display:flex;flex-direction:column;gap:2px;margin-bottom:28px}
+.flow-step{display:flex;align-items:flex-start;gap:0}
+.flow-num{font-family:var(--font-display);font-size:11px;font-weight:800;color:#000;background:var(--accent);width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.flow-content{background:var(--surface);border:1px solid var(--border);border-left:none;padding:14px 20px;flex:1}
+.flow-content-title{font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:4px}
+.flow-content p{font-size:12px;color:var(--muted);line-height:1.6}
+.flow-connector{width:28px;display:flex;justify-content:center;padding:2px 0;flex-shrink:0}
+.flow-connector::after{content:'';width:1px;background:var(--accent);opacity:.4;height:100%;min-height:8px}
+.matrix{margin-bottom:28px;overflow-x:auto}
+.matrix-row{display:grid;gap:1px;background:var(--border);margin-bottom:1px}
+.matrix-cell{background:var(--surface);padding:12px 14px;font-size:11px;color:var(--muted2)}
+.matrix-header .matrix-cell{background:var(--surface2);font-family:var(--font-body);color:var(--muted);font-size:10px;letter-spacing:.05em}
+.matrix-cell.rt{color:var(--text);font-weight:500;font-size:12px}
+.dot-h{color:var(--accent3)}
+.dot-m{color:var(--accent)}
+.dot-l{color:var(--accent2)}
+.pill{display:inline-block;font-size:9px;padding:2px 7px;font-family:var(--font-body);letter-spacing:.05em}
+.p-h{background:rgba(254,78,122,.15);color:var(--accent3)}
+.p-m{background:rgba(231,254,78,.12);color:var(--accent)}
+.p-l{background:rgba(78,254,231,.1);color:var(--accent2)}
+.checklist-wrap{background:var(--surface);border:1px solid var(--border);margin-bottom:28px}
+.checklist-head{background:var(--surface2);padding:10px 18px;font-family:var(--font-body);font-size:10px;letter-spacing:.08em;color:var(--muted);display:grid;grid-template-columns:1fr 160px 60px 120px;gap:12px;border-bottom:1px solid var(--border)}
+.checklist-row{padding:11px 18px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 160px 60px 120px;gap:12px;align-items:start;font-size:12px;color:var(--muted2)}
+.checklist-row:last-child{border-bottom:none}
+.checklist-row .ci{color:var(--text)}
+.cp{display:inline-block;font-size:9px;padding:2px 7px;font-family:var(--font-body);letter-spacing:.03em}
+.cp-d{background:rgba(254,78,122,.15);color:var(--accent3)}
+.cp-s{background:rgba(231,254,78,.12);color:var(--accent)}
+.cp-m{background:rgba(78,254,231,.1);color:var(--accent2)}
+.cp-p{background:rgba(180,78,254,.12);color:var(--accent4)}
+.resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.resource-card{background:var(--surface);border:1px solid var(--border);padding:16px;transition:border-color .2s}
+.resource-card:hover{border-color:var(--accent2)}
+.resource-name{font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:4px}
+.resource-url{font-size:10px;color:var(--accent2);margin-bottom:8px;font-family:var(--font-body)}
+.resource-desc{font-size:11px;color:var(--muted2);line-height:1.5}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border)}
+@media(max-width:900px){
+  body{font-size:13px}
+  .global-nav{grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:8px 12px;padding:8px 12px}
+  .global-brand{grid-column:1;grid-row:1;gap:8px}
+  .global-logo{width:60px;height:60px}
+  .lang-switch{grid-column:2;grid-row:1}
+  .global-links{grid-column:1/-1;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:6px}
+  .global-nav-link{font-size:10px;padding:5px 10px}
+  .nav{padding:0 12px}
+  .nav-btn{padding:10px 12px;font-size:10px;letter-spacing:.03em}
+  .container{padding:24px 16px}
+  .hero{padding:24px 20px;margin-bottom:24px}
+  .hero-title{font-size:24px}
+  .hero-desc{font-size:13px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);margin-bottom:24px}
+  .stat-card{padding:18px 16px}
+  .stat-num{font-size:22px}
+  .section-title{font-size:18px}
+  .section-title.sm{font-size:14px}
+  .section-sub{font-size:12px;margin-bottom:20px}
+  .platform-grid{grid-template-columns:1fr;gap:12px}
+  .platform-card{padding:20px}
+  .reg-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  .reg-table th,.reg-table td{padding:8px 10px;font-size:11px}
+  .info-block{padding:16px 18px}
+  .flow-content{padding:12px 16px}
+  .flow-content p{font-size:11px}
+  .callout{padding:16px 18px}
+  .callout p{font-size:12px}
+  .warning{padding:14px 16px}
+  .warning-text{font-size:11px}
+  .resource-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .checklist-head,.checklist-row{grid-template-columns:1fr 120px}
+  .checklist-head span:nth-child(n+3),.checklist-row span:nth-child(n+3){display:none}
+}
+@media(max-width:480px){
+  .global-logo{width:48px;height:48px}
+  .global-year{display:none}
+  .global-nav-link{font-size:9px;padding:4px 8px;letter-spacing:.04em}
+  .lang-btn{font-size:9px;padding:5px 6px}
+  .nav{padding:0 8px}
+  .nav-btn{padding:9px 10px;font-size:9px}
+  .container{padding:18px 12px}
+  .hero{padding:20px 16px}
+  .hero-title{font-size:20px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .stat-num{font-size:20px}
+  .stat-card{padding:16px 12px}
+  .section-title{font-size:16px}
+  .resource-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="global-nav">
+  <div class="global-brand">
+    <img class="global-logo" src="./tih-logo-white-CV3af6jQ.png" alt="Transatlantic Innovation Hub logo">
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link active" href="./us_banking_infrastructure.html">US Banking</a>
+  </div>
+  <div class="lang-switch" aria-label="Language selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">ES</button>
+    <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+  </div>
+</nav>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="show('overview',this)">00 OVERVIEW</button>
+  <button class="nav-btn" onclick="show('accounts',this)">01 CUENTAS BANCARIAS</button>
+  <button class="nav-btn" onclick="show('rails',this)">02 PAYMENT RAILS</button>
+  <button class="nav-btn" onclick="show('stripe',this)">03 STRIPE &amp; PROCESADORES</button>
+  <button class="nav-btn" onclick="show('baas',this)">04 BaaS</button>
+  <button class="nav-btn" onclick="show('ein',this)">05 EIN &amp; IMPUESTOS</button>
+  <button class="nav-btn" onclick="show('treasury',this)">06 TESORER&#205;A</button>
+  <button class="nav-btn" onclick="show('fintech',this)">07 INFRA FINTECH</button>
+</div>
+
+<!-- 00 OVERVIEW -->
+<div class="section active" id="s-overview"><div class="container">
+  <div class="hero">
+    <div class="hero-label">// BANKING &amp; FINANCIAL INFRASTRUCTURE &middot; USA &middot; M&#211;DULO 3 DE 9</div>
+    <div class="hero-title">Antes de mover un solo d&#243;lar,<br>necesit&#225;s <span>infraestructura</span></div>
+    <div class="hero-desc">Antes de contratar, pagar proveedores, recibir revenue o procesar un d&#243;lar americano &#8212; necesit&#225;s una infraestructura financiera que funcione. Este m&#243;dulo te da el panorama completo: desde abrir tu primera cuenta US hasta construir el stack de tesorer&#237;a multi-moneda que te permite operar entre Uruguay, Argentina, Per&#250; y Nueva York de forma simult&#225;nea.</div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">24&#8211;48h</div><div class="stat-label">Para abrir Mercury como founder extranjero &#8212; sin SSN, sin visita f&#237;sica a EE.UU.</div></div>
+    <div class="stat-card"><div class="stat-num">80%+</div><div class="stat-label">De los pagos B2B en EE.UU. corren sobre ACH &#8212; el rail que todo FinTech debe dominar</div></div>
+    <div class="stat-card"><div class="stat-num">$96M+</div><div class="stat-label">En fondos de clientes sin reconciliar cuando Synapse colaps&#243; en 2024 &#8212; due diligence es cr&#237;tico</div></div>
+    <div class="stat-card"><div class="stat-num">6 decisiones</div><div class="stat-label">Core que todo founder FinTech en transici&#243;n al mercado US debe tomar, en orden</div></div>
+  </div>
+  <div class="section-title">Las 6 Decisiones Core</div>
+  <div class="section-sub">Las enfrentar&#225;s en este orden &#8212; resolverlas bien desde el principio evita migraciones costosas</div>
+  <div class="matrix">
+    <div class="matrix-row matrix-header" style="grid-template-columns:180px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell">Decisi&#243;n</div><div class="matrix-cell">Cu&#225;ndo</div><div class="matrix-cell">Herramienta default</div><div class="matrix-cell">Impacto si lo ignor&#225;s</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:180px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">3.1 Cuenta bancaria US</div><div class="matrix-cell">Semana 1 post-EIN</div><div class="matrix-cell"><span class="dot-l">&#9679;</span> Mercury</div><div class="matrix-cell">No pod&#233;s recibir pagos, pagar payroll ni operar</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:180px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">3.2 Rail de pagos</div><div class="matrix-cell">Antes del 1er cobro</div><div class="matrix-cell"><span class="dot-m">&#9679;</span> ACH para B2B / RTP para instant</div><div class="matrix-cell">Cash conversion cycle mal dise&#241;ado; fricciones con clientes</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:180px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">3.3 Procesador de pagos</div><div class="matrix-cell">Antes de 1a venta US</div><div class="matrix-cell"><span class="dot-l">&#9679;</span> Stripe (sub-$1M/mes)</div><div class="matrix-cell">Fees innecesarios a escala o cobertura LatAm incompleta</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:180px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">3.4 BaaS (si aplica)</div><div class="matrix-cell">Mes 1&#8211;2</div><div class="matrix-cell"><span class="dot-l">&#9679;</span> Unit o Stripe Treasury</div><div class="matrix-cell">Operar sin bank charter sin modelo BaaS puede ser ilegal</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:180px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">3.5 EIN</div><div class="matrix-cell">D&#237;a 1 post-incorporaci&#243;n</div><div class="matrix-cell"><span class="dot-l">&#9679;</span> Stripe Atlas o IRS directo</div><div class="matrix-cell">Sin EIN no abr&#237;s banco, no acept&#225;s pagos, no contrat&#225;s</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:180px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">3.6 Tesorer&#237;a multi-moneda</div><div class="matrix-cell">Antes del 1er payroll LatAm</div><div class="matrix-cell"><span class="dot-l">&#9679;</span> Mercury + Wise + Deel</div><div class="matrix-cell">P&#233;rdidas FX del 3&#8211;5% por transferencia; riesgo BCRA</div>
+    </div>
+  </div>
+  <div class="callout">
+    <div class="callout-title">// PRODUCIDO POR TIH &#215; YLAI FELLOWSHIP | GAST&#211;N DOTTA, FINTECH FELLOW | MAYO 2026</div>
+    <p>M&#243;dulo 3 de 9 del <strong>US Market Entry Framework para FinTechs</strong>. Este m&#243;dulo cubre la infraestructura financiera operativa. Transatlantic Innovation Hub | 417 Fifth Avenue, Midtown Manhattan, New York City.</p>
+  </div>
+</div></div>
+
+<!-- 01 CUENTAS -->
+<div class="section" id="s-accounts"><div class="container">
+  <div class="section-title">Cuentas Bancarias US para Founders Extranjeros</div>
+  <div class="section-sub">Los bancos tradicionales son una pared para un founder de LatAm. Las plataformas digitales resolvieron el problema &#8212; pero no son iguales entre s&#237;</div>
+
+  <div class="info-block a3">
+    <div class="info-block-title">El problema con la banca tradicional</div>
+    <p>JPMorgan, Bank of America, Wells Fargo &#8212; requieren visita f&#237;sica, SSN, domicilio residencial US e historial crediticio establecido. Para un founder de Uruguay, Argentina o Per&#250; que incorpora desde afuera, esto es un callej&#243;n sin salida sin visa US y presencia f&#237;sica.</p>
+  </div>
+
+  <div class="section-title sm">Lo que necesit&#225;s, sin importar la plataforma</div>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><div class="flow-content-title">Delaware Certificate of Incorporation (o LLC Articles of Organization)</div><p>El documento que acredita la existencia legal de tu empresa en EE.UU.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><div class="flow-content-title">EIN (Employer Identification Number)</div><p>El tax ID federal de tu empresa. Sin EIN, la mayor&#237;a de las plataformas no te aprueba. Ver Secci&#243;n 05 para c&#243;mo obtenerlo.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><div class="flow-content-title">Direcci&#243;n postal US real &#8212; no PO Box</div><p>La direcci&#243;n de tu registered agent funciona. Las casillas de correo NO. La direcci&#243;n de 1209 Orange Street en Wilmington puede ser marcada como sospechosa porque miles de LLCs la comparten. Us&#225; la direcci&#243;n TIH en 417 Fifth Avenue, o un virtual mailbox premium (Stable, iPostal1). Presupuest&#225; $50&#8211;$150/mes.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><div class="flow-content-title">Pasaporte de todos los beneficial owners con >25% de ownership</div><p>Requerimiento KYB (Know Your Business) est&#225;ndar. Documentos de identidad vigentes.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-content"><div class="flow-content-title">Descripci&#243;n del negocio y volumen transaccional esperado</div><p>Qu&#233; hace tu empresa, fuentes de revenue, y volumen mensual proyectado. Una descripci&#243;n clara y documentaci&#243;n de revenue temprana mejora significativamente las odds de aprobaci&#243;n en Mercury en 2025.</p></div></div>
+  </div>
+
+  <div class="section-title sm">Comparaci&#243;n de Plataformas 2026</div>
+
+  <div class="platform-grid">
+    <div class="platform-card top">
+      <span class="platform-tag pt-g">FOREIGN-FOUNDER FRIENDLY &#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <div class="platform-name">Mercury</div>
+      <div class="platform-sub">Default para founders extranjeros &#8212; 24&#8211;48h, sin SSN, gratis</div>
+      <div class="platform-desc">El est&#225;ndar del ecosistema startup. Sin SSN requerido, gratis, abre en 24&#8211;48h, e integra directamente con Stripe Atlas. Dashboard excelente, acceso en equipo simple, wires dom&#233;sticos e internacionales en USD gratuitos. El pipeline: Stripe Atlas &#8594; EIN &#8594; Mercury. Infraestructura financiera US completa sin pisar EE.UU.</div>
+      <ul class="plist">
+        <li class="pro">Sin SSN &#8212; acepta founders no-residentes</li>
+        <li class="pro">FDIC hasta $5M (sweep con Choice Financial + Column N.A.)</li>
+        <li class="pro">Integraci&#243;n directa con Stripe Atlas</li>
+        <li class="pro">Mercury Treasury: 4&#8211;5% APY en cash inactivo (T-Bills)</li>
+        <li class="pro">Wires internacionales USD gratuitos</li>
+        <li class="con">2025: mayor rigor con no-residentes (2&#8211;4 semanas de review posible)</li>
+        <li class="con">Restricciones por pa&#237;s: no acepta founders basados en Ucrania o Nigeria</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-b">POST-FUNDRAISE &#9733;&#9733;&#9733;&#9790;&#9790;</span>
+      <div class="platform-name">Brex</div>
+      <div class="platform-sub">Tarjeta corporativa + banca integrada &#8212; para startups financiadas</div>
+      <div class="platform-desc">La elecci&#243;n correcta una vez que levantaste capital. La tarjeta corporativa ofrece l&#237;mites 20&#8211;30x mayores porque Brex underwrites por posici&#243;n de caja &#8212; no historial crediticio personal. Cr&#237;tico para founders sin cr&#233;dito US.</div>
+      <ul class="plist">
+        <li class="pro">Sin garant&#237;a personal &#8212; founders sin cr&#233;dito US califican</li>
+        <li class="pro">Soporte para 40+ monedas en tarjetas corporativas</li>
+        <li class="pro">FDIC coverage hasta $6M &#8212; el m&#225;s alto del mercado</li>
+        <li class="con">Onboarding m&#225;s complejo que Mercury</li>
+        <li class="con">Mejor timing: despu&#233;s del primer round ($500K+ levantado)</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-r">BLOQUEA LATAM &#9733;&#9733;&#9790;&#9790;&#9790;</span>
+      <div class="platform-name">Relay</div>
+      <div class="platform-sub">Multi-cuenta para SMBs US &#8212; requiere SSN (bloquea founders LatAm)</div>
+      <div class="platform-desc">Banca multi-cuenta excelente para SMBs US establecidos (hasta 20 cuentas corrientes + 50 de ahorro). Problema cr&#237;tico: requiere SSN, bloqueando a la mayor&#237;a de los founders de LatAm. FDIC coverage hasta $3M v&#237;a Thread Bank.</div>
+      <ul class="plist">
+        <li class="pro">Hasta 20 cuentas corrientes para gesti&#243;n de cash</li>
+        <li class="con">Requiere SSN &#8212; bloquea founders de LatAm</li>
+        <li class="con">No recomendado para founders no-residentes</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-b">POST-SEED &#9733;&#9733;&#9733;&#9790;&#9790;</span>
+      <div class="platform-name">Rho</div>
+      <div class="platform-sub">Alternativa a Mercury post-seed &#8212; sin fees, wires gratuitos, mejor soporte</div>
+      <div class="platform-desc">Banca sin fees + gesti&#243;n de gastos. EIN suficiente (no requiere SSN). Wires gratuitos, automatizaci&#243;n de cuentas por pagar. Buena alternativa post-seed para quienes priorizan atenci&#243;n al cliente. FDIC hasta $3M v&#237;a Webster Bank.</div>
+      <ul class="plist">
+        <li class="pro">Sin SSN &#8212; EIN es suficiente</li>
+        <li class="pro">Wires dom&#233;sticos e internacionales gratuitos</li>
+        <li class="pro">Mejor soporte que Mercury para startups financiadas</li>
+        <li class="con">Menos ideal para etapas pre-seed o pre-revenue</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-g">PRE-EIN BRIDGE &#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <div class="platform-name">Adro</div>
+      <div class="platform-sub">Si todav&#237;a no ten&#233;s EIN &#8212; abr&#237; con solo pasaporte</div>
+      <div class="platform-desc">Si est&#225;s esperando tu EIN (4&#8211;6 semanas v&#237;a correo para no-residentes) y necesit&#225;s una cuenta US inmediatamente, Adro es la &#250;nica plataforma construida para este escenario. Abrila con pasaporte y documentos de la empresa &#8212; sin EIN, sin SSN, sin direcci&#243;n US.</div>
+      <ul class="plist">
+        <li class="pro">Sin EIN, sin SSN, sin presencia US requerida</li>
+        <li class="pro">Ideal como bridge mientras Mercury procesa tu aplicaci&#243;n</li>
+        <li class="con">FDIC est&#225;ndar $250K (sin sweep extendida)</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-b">MULTI-CURRENCY COMPLEMENT &#9733;&#9733;&#9733;&#9733;&#9790;</span>
+      <div class="platform-name">Wise Business</div>
+      <div class="platform-sub">Cuentas multi-moneda para LatAm &#8212; complemento, no reemplazo</div>
+      <div class="platform-desc">Cuentas multi-moneda en 70+ monedas con FX a tasa mid-market y fee del 0.5&#8211;1%. No es un banco (no FDIC-insured). La mejor opci&#243;n para pagos a contractors de LatAm, recibir en EUR/GBP, y operar FX sin markups ocultos.</div>
+      <ul class="plist">
+        <li class="pro">FX a tasa mid-market &#8212; 2&#8211;4x m&#225;s barato que wire bancario tradicional</li>
+        <li class="pro">Cuentas en 70+ monedas: UYU, ARS, PEN, MXN, EUR, etc.</li>
+        <li class="con">No es banco &#8212; no FDIC insured</li>
+        <li class="con">Complemento, no reemplazo de Mercury</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout a2">
+    <div class="callout-title">&#9733; EL STACK EST&#193;NDAR PARA FOUNDERS LATAM</div>
+    <p><strong>Stripe Atlas</strong> (incorporaci&#243;n + EIN) &#8594; <strong>Mercury</strong> (cuenta US primaria) &#8594; <strong>Wise Business</strong> (multi-moneda + pagos LatAm) &#8594; <strong>Brex</strong> (cuando levant&#225;s un round). Este pipeline te deja completamente operativo en 2&#8211;4 semanas sin pisar Estados Unidos.</p>
+  </div>
+
+  <div class="warning">
+    <span class="warning-icon">&#9888;</span>
+    <div class="warning-text"><strong>La Trampa de la Direcci&#243;n:</strong> La direcci&#243;n de tu registered agent (1209 Orange Street, Wilmington, Delaware &#8212; compartida por miles de LLCs) puede ser marcada como sospechosa por las plataformas bancarias. Us&#225; la direcci&#243;n TIH en 417 Fifth Avenue, o un virtual mailbox premium. Presupuest&#225; $50&#8211;$150/mes para una direcci&#243;n NYC cre&#237;ble.</div>
+  </div>
+</div></div>
+
+<!-- 02 PAYMENT RAILS -->
+<div class="section" id="s-rails"><div class="container">
+  <div class="section-title">US Payment Rails</div>
+  <div class="section-sub">EE.UU. tiene m&#225;s rails de pago que casi cualquier otro pa&#237;s &#8212; cada uno con uso, velocidad, costo y perfil de riesgo distintos</div>
+
+  <table class="reg-table">
+    <thead><tr><th>Rail</th><th>Velocidad</th><th>Costo</th><th>Mejor Para</th><th>L&#237;mite</th><th>24/7</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">ACH (Standard)</td><td>1&#8211;3 d&#237;as h&#225;biles</td><td>$0.20&#8211;$1.50</td><td>Payroll, billing recurrente, B2B subscriptions</td><td>Sin l&#237;mite fijo</td><td>No</td></tr>
+      <tr><td class="td-name">Same-Day ACH</td><td>Mismo d&#237;a h&#225;bil</td><td>$0.50&#8211;$2.00</td><td>B2B urgente, payroll time-sensitive</td><td>$1,000,000</td><td>No</td></tr>
+      <tr><td class="td-name">Wire (Dom&#233;stico)</td><td>Mismo d&#237;a (antes 5pm ET)</td><td>$15&#8211;35 env&#237;o / $10&#8211;20 recepci&#243;n</td><td>B2B grande, real estate, capital de inversores</td><td>Sin l&#237;mite</td><td>No</td></tr>
+      <tr><td class="td-name">RTP (Real-Time)</td><td><span class="dot-l">&#9679;</span> Segundos</td><td>$0.01&#8211;$0.50</td><td>Desembolsos a consumidores, settlement instant&#225;neo</td><td>$1,000,000</td><td><span class="dot-l">&#10003;</span></td></tr>
+      <tr><td class="td-name">FedNow</td><td><span class="dot-l">&#9679;</span> Segundos</td><td>$0.01&#8211;$0.045</td><td>Bank-to-bank instant&#225;neo &#8212; red operada por la Fed</td><td>$500,000</td><td><span class="dot-l">&#10003;</span></td></tr>
+      <tr><td class="td-name">Push-to-Card</td><td>Minutos</td><td>$0.25&#8211;$2.00</td><td>Pagos a gig workers, disbursements a tarjeta d&#233;bito</td><td>Var&#237;a por red</td><td><span class="dot-l">&#10003;</span></td></tr>
+      <tr><td class="td-name">SWIFT (Intl Wire)</td><td>1&#8211;5 d&#237;as h&#225;biles</td><td>$25&#8211;50 + markup FX</td><td>Pagos B2B cross-border (LatAm&#8596;US)</td><td>Sin l&#237;mite</td><td>No</td></tr>
+      <tr><td class="td-name">Stablecoin (USDC)</td><td><span class="dot-l">&#9679;</span> Minutos</td><td>&lt;$1 flat</td><td>Cross-border, contractors LatAm, tesor&#237;a</td><td>Sin l&#237;mite</td><td><span class="dot-l">&#10003;</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Los 4 Rails que Todo FinTech B2B US Debe Dominar</div>
+
+  <div class="info-block">
+    <div class="info-block-title">ACH es el workhorse &#8212; 80%+ de los pagos B2B US corren aqu&#237;</div>
+    <p>Bajo costo, alta confiabilidad, pero 1&#8211;3 d&#237;as de settlement. No negociable para payroll y billing recurrente. <strong>Siempre verific&#225; ownership de cuenta bancaria via Plaid</strong> antes de iniciar d&#233;bitos ACH desde nuevos clientes &#8212; un return rate por sobre 0.5% suspende tu acceso ACH.</p>
+  </div>
+  <div class="info-block a2">
+    <div class="info-block-title">RTP es el futuro presente &#8212; instant&#225;neo, 24/7, irrevocable</div>
+    <p>La red de Real-Time Payments de The Clearing House est&#225; activa en 300+ bancos US. Si tu producto requiere settlement instant&#225;neo (pagos de seguros, pagos a contractors, disbursements de marketplace), verific&#225; si tu banco y el de tus clientes soportan RTP.</p>
+  </div>
+  <div class="info-block a4">
+    <div class="info-block-title">FedNow vs RTP &#8212; compiten, no se reemplazan</div>
+    <p>FedNow es operado por la Federal Reserve; RTP es privado (The Clearing House). La mayor&#237;a de los bancos grandes soporta al menos uno en 2026. Moov y Unit abstraen sobre ambos rails.</p>
+  </div>
+  <div class="info-block a3">
+    <div class="info-block-title">Stablecoins son infraestructura ahora &#8212; post-GENIUS Act (2025)</div>
+    <p>Post-GENIUS Act (US, 2025), USDC se usa cada vez m&#225;s para settlement B2B cross-border. Stripe adquiri&#243; Bridge espec&#237;ficamente para esto. Para pagos intercompany LatAm&#8596;US, las stablecoins son frecuentemente m&#225;s baratas y r&#225;pidas que los SWIFT wires.</p>
+  </div>
+
+  <div class="warning">
+    <span class="warning-icon">&#9888;</span>
+    <div class="warning-text"><strong>ACH Return Rate &#8212; El Rail que Te Pueden Quitar:</strong> ACH permite disputar cargos hasta 60 d&#237;as por transacciones no autorizadas. Un return rate superior al <strong>0.5%</strong> causar&#225; que tu banco o procesador suspenda el acceso ACH. Siempre us&#225; Plaid u otra herramienta de verificaci&#243;n antes de iniciar d&#233;bitos ACH de nuevos clientes.</div>
+  </div>
+</div></div>
+
+<!-- 03 STRIPE -->
+<div class="section" id="s-stripe"><div class="container">
+  <div class="section-title">Stripe y Cu&#225;ndo No Es Suficiente</div>
+  <div class="section-sub">Stripe es el default correcto para startups &#8212; hasta que no lo es. Conocer los triggers de salida previene migraciones caras a escala</div>
+
+  <div class="info-block a2">
+    <div class="info-block-title">Cu&#225;ndo Stripe es la Elecci&#243;n Correcta</div>
+    <ul>
+      <li>Acept&#225;s pagos con tarjeta, transferencias ACH o SEPA de clientes US o europeos</li>
+      <li>Necesit&#225;s setup r&#225;pido sin m&#237;nimos de volumen ni negociaci&#243;n</li>
+      <li>Quer&#233;s documentaci&#243;n de developer best-in-class, webhook support y dashboard real-time</li>
+      <li>Construyendo un marketplace o plataforma (Stripe Connect maneja flujos de fondos complejos)</li>
+      <li>Quer&#233;s protecci&#243;n de fraude sin construirla: Stripe Radar usa reglas ML cross-merchant</li>
+      <li>Est&#225;s en early stage: el 2.9% + $0.30 por transacci&#243;n es competitivo bajo $100K/mes</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">Cu&#225;ndo Moverse M&#225;s All&#225; de Stripe</div>
+
+  <table class="reg-table">
+    <thead><tr><th>Trigger</th><th>Alternativa a Considerar</th><th>Por Qu&#233;</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">Volumen &gt;$1M/mes</td><td>Adyen o Checkout.com</td><td>Negoci&#225; pricing interchange-plus; la tarifa flat de Stripe se vuelve materialmente cara</td></tr>
+      <tr><td class="td-name">Marketplace payments complejos a escala</td><td>Adyen Marketplace o Mangopay</td><td>Reglas de fund flow y timing de settlement m&#225;s flexibles a alto volumen</td></tr>
+      <tr><td class="td-name">M&#233;todos de pago locales LatAm (PIX, SPEI, PSE, Mercado Pago)</td><td>dLocal, EBANX o Kushki</td><td>La cobertura LatAm de Stripe mejora pero sigue incompleta para m&#233;todos locales</td></tr>
+      <tr><td class="td-name">B2B invoicing + reconocimiento de revenue (ASC 606)</td><td>Stripe + Chargebee o Paddle</td><td>Agreg&#225; capa de billing, dunning y reconocimiento de revenue sobre Stripe</td></tr>
+      <tr><td class="td-name">Retail f&#237;sico o POS</td><td>Braintree o Square</td><td>Stripe Terminal existe pero es menos maduro que el ecosistema POS de Square</td></tr>
+      <tr><td class="td-name">Settlement B2B cross-border a escala</td><td>Stripe + Bridge (stablecoins)</td><td>Bridge (adquirida por Stripe en 2025) habilita settlement en stablecoins para B2B global</td></tr>
+      <tr><td class="td-name">Card issuing (emitir tarjetas a tus clientes)</td><td>Marqeta o Lithic</td><td>Stripe Issuing existe pero Marqeta/Lithic ofrecen mayor customizaci&#243;n para programas fintech</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout a2">
+    <div class="callout-title">&#8594; ARQUITECTURA DE PAGOS PARA FOUNDERS LATAM</div>
+    <p>Si tu producto atiende clientes US pero tambi&#233;n proces&#225;s pagos en Uruguay, Argentina o Per&#250; &#8212; dise&#241;&#225; tu arquitectura de pagos para ambos desde el d&#237;a uno. Us&#225; <strong>Stripe para aceptaci&#243;n de tarjeta/ACH en US</strong> y sum&#225; <strong>dLocal o EBANX para m&#233;todos locales LatAm</strong>.</p>
+  </div>
+</div></div>
+
+<!-- 04 BAAS -->
+<div class="section" id="s-baas"><div class="container">
+  <div class="section-title">Banking-as-a-Service (BaaS)</div>
+  <div class="section-sub">Construir productos financieros sin licencia bancaria propia &#8212; la ruta m&#225;s r&#225;pida y eficiente en capital para FinTechs LatAm en US</div>
+
+  <div class="callout">
+    <div class="callout-title">// &#191;QU&#201; ES BANKING AS A SERVICE?</div>
+    <p>BaaS permite a FinTechs ofrecer productos financieros &#8212; cuentas bancarias, tarjetas, ACH, wire, lending &#8212; operando dentro del charter de un banco licenciado v&#237;a APIs, sin obtener su propio bank license. As&#237; operan Chime, Current, Dave y la mayor&#237;a de los neobancos US. Para FinTechs LatAm construyendo productos financieros embebidos para el mercado US, <strong>BaaS es el camino m&#225;s r&#225;pido y m&#225;s eficiente en capital para hacer el launch</strong>.</p>
+  </div>
+
+  <div class="section-title sm">C&#243;mo Funciona BaaS &#8212; La Estructura</div>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><div class="flow-content-title">Tu FinTech construye el producto</div><p>Neobank, embedded wallet, programa de tarjeta, cr&#233;dito para PyMEs. El producto, la UX y la marca son 100% tuyos.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><div class="flow-content-title">Integr&#225;s con un BaaS provider v&#237;a APIs</div><p>Unit, Column, Treasury Prime o Synctera. El proveedor BaaS act&#250;a como intermediario t&#233;cnico y de compliance entre tu empresa y el banco partner.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><div class="flow-content-title">El BaaS provider conecta con un banco partner licenciado</div><p>El banco tiene la licencia, el FDIC insurance y el acceso a la Fed. Tus clientes tienen protecci&#243;n de dep&#243;sito est&#225;ndar.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><div class="flow-content-title">Los fondos de tus clientes est&#225;n en el banco partner</div><p>Las cuentas FDIC-insured est&#225;n en el banco partner &#8212; no en tu empresa.</p></div></div>
+    <div class="flow-step"><div class="flow-connector"></div><div style="flex:1"></div></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-content"><div class="flow-content-title">Vos sos due&#241;o de la UX, el producto y el compliance BSA/AML</div><p>Las obligaciones BSA/AML para tus clientes son tuyas. El banco no puede delegar su compliance &#8212; y tampoco vos pod&#233;s delegarlo completamente.</p></div></div>
+  </div>
+
+  <div class="section-title sm">Comparaci&#243;n de BaaS Providers &#8212; 2026</div>
+  <div class="platform-grid">
+    <div class="platform-card top">
+      <span class="platform-tag pt-g">API-FIRST &middot; $1.2B VALUACI&#211;N</span>
+      <div class="platform-name">Unit</div>
+      <div class="platform-sub">BaaS APIs para embedded banking &#8212; el m&#225;s usado por neobanks</div>
+      <div class="platform-desc">Middleware BaaS API-first. Cuentas, tarjetas, ACH, wire. Conectado a Plaid. Fuerte experiencia de developer. El default para neobancos y builders de finanzas embebidas en early-to-mid stage.</div>
+      <ul class="plist">
+        <li class="pro">Developer experience best-in-class con Plaid integration nativa</li>
+        <li class="pro">Cuentas, tarjetas, ACH, wire en un stack</li>
+        <li class="con">~$500/mes base antes de usage fees</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-b">COLUMN ES EL BANCO &#8212; DIRECTO</span>
+      <div class="platform-name">Column</div>
+      <div class="platform-sub">Sin middleware &#8212; acceso directo a la Fed, menor latencia</div>
+      <div class="platform-desc">Column es el banco propiamente dicho &#8212; sin intermediario. Acceso directo a la Federal Reserve, latencia m&#225;s baja, mejor pricing a escala. El m&#225;s dif&#237;cil de acceder. Para FinTechs de alto volumen.</div>
+      <ul class="plist">
+        <li class="pro">Acceso directo a Fed &#8212; sin middleware</li>
+        <li class="pro">Menor latencia de cualquier opci&#243;n BaaS</li>
+        <li class="con">El m&#225;s dif&#237;cil de acceder &#8212; no para early stage</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-b">MULTI-BANCO &middot; REDUNDANCIA</span>
+      <div class="platform-name">Treasury Prime</div>
+      <div class="platform-sub">Red de m&#250;ltiples bancos &#8212; redundancia si un banco falla</div>
+      <div class="platform-desc">BaaS con m&#250;ltiples relaciones bancarias. Si un banco falla o sale del BaaS space (como pas&#243; en 2024&#8211;25), ten&#233;s redundancia. Buenas herramientas de compliance integradas. Ideal para FinTechs de mid-market.</div>
+      <ul class="plist">
+        <li class="pro">Redundancia de banco partner &#8212; protecci&#243;n ante colapso tipo Synapse</li>
+        <li class="con">M&#225;s complejo que Unit para early stage</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-g">COMPLIANCE-FORWARD</span>
+      <div class="platform-name">Synctera</div>
+      <div class="platform-sub">BaaS con foco en compliance &#8212; community bank partnerships</div>
+      <div class="platform-desc">BaaS compliance-forward con partnerships con community banks. La mejor opci&#243;n para productos fintech regulados o en zona gris. Si tu producto tiene un perfil de riesgo complejo (crypto, lending alternativo, cross-border), Synctera tiene la expertise.</div>
+      <ul class="plist">
+        <li class="pro">Mejor para productos regulados o grey-area</li>
+        <li class="con">Menos orientado a developer experience que Unit</li>
+      </ul>
+    </div>
+    <div class="platform-card" style="grid-column:1/-1">
+      <span class="platform-tag pt-gr">STRIPE-NATIVE</span>
+      <div class="platform-name">Stripe Treasury</div>
+      <div class="platform-sub">Finanzas embebidas dentro del ecosistema Stripe &#8212; el m&#225;s r&#225;pido si ya us&#225;s Stripe</div>
+      <div class="platform-desc">Si ya est&#225;s deeply integrado en Stripe Payments + Connect, Stripe Treasury es la ruta de menor fricci&#243;n para agregar banking embebido. Ideal para plataformas que quieren agregar wallets o cuentas FDIC-insured sin salir del ecosistema Stripe.</div>
+      <ul class="plist">
+        <li class="pro">Setup m&#225;s r&#225;pido si ya us&#225;s Stripe Payments + Connect</li>
+        <li class="con">Menos flexible que Unit para productos financieros standalone</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title sm">&#191;Cu&#225;ndo Usar BaaS vs Cu&#225;ndo Saltearlo?</div>
+  <table class="reg-table">
+    <thead><tr><th>Escenario</th><th>&#191;Us&#225;s BaaS?</th><th>Por Qu&#233;</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">Constru&#237;s un neobank o embedded wallet</td><td><span class="pill p-l">S&#205; &#8212; esencial</span></td><td>Necesit&#225;s cuentas FDIC-insured sin solicitar bank charter propio</td></tr>
+      <tr><td class="td-name">Emit&#237;s tarjetas a tus usuarios finales</td><td><span class="pill p-l">S&#205; &#8212; con card issuing</span></td><td>Los programas de tarjetas requieren un banco sponsor sin excepci&#243;n</td></tr>
+      <tr><td class="td-name">Ofrecés crédito o préstamos a consumidores US</td><td><span class="pill p-m">S&#205; &#8212; banco partner</span></td><td>Lending a consumidores US requiere licencias estatales o partnership bancario</td></tr>
+      <tr><td class="td-name">Software B2B que nunca toca fondos de consumidores</td><td><span class="pill p-h">NO</span></td><td>Tus clientes banco manejan la actividad regulada &#8212; vos sos solo la capa de software</td></tr>
+      <tr><td class="td-name">Proce s&#225;s pagos en nombre de clientes (marketplace)</td><td><span class="pill p-m">DEPENDE</span></td><td>Si retenés fondos en tr&#225;nsito por m&#225;s de segundos, posiblemente necesit&#225;s banco sponsor</td></tr>
+      <tr><td class="td-name">Producto de infraestructura/API vendiendo a bancos</td><td><span class="pill p-h">NO</span></td><td>Sos el vendor &#8212; el banco es la entidad regulada</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <span class="warning-icon">&#9888;</span>
+    <div class="warning-text"><strong>La Crisis BaaS 2024&#8211;2025 &#8212; Due Diligence Cr&#237;tica:</strong> Synapse Financial colaps&#243; dejando $96M+ en fondos de clientes sin reconciliar. Blue Ridge Bank y Evolve Bank recibieron consent orders de OCC/FDIC. Antes de firmar con cualquier BaaS provider, pregunt&#225;: <strong>'&#191;Qu&#233; banco tiene los dep&#243;sitos de mis clientes? &#191;Est&#225;n bajo alguna enforcement action? &#191;Cu&#225;l es su CAMEL rating en el FDIC call report?'</strong></div>
+  </div>
+
+  <div class="section-title sm">Card Issuing &#8212; La Capa Adicional</div>
+  <div class="platform-grid">
+    <div class="platform-card">
+      <span class="platform-tag pt-g">ENTERPRISE SCALE</span>
+      <div class="platform-name">Marqeta</div>
+      <div class="platform-sub">Powers Square, DoorDash, Uber Eats &#8212; la m&#225;s madura</div>
+      <div class="platform-desc">La plataforma de card issuing m&#225;s madura y feature-rich. $0.10&#8211;$0.30/tarjeta/mes + economics de interchange. Mejor para programas a escala.</div>
+      <ul class="plist">
+        <li class="pro">M&#225;s madura y feature-rich del mercado</li>
+        <li class="con">M&#237;nimos de volumen para mejores condiciones</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <span class="platform-tag pt-b">DEVELOPER-FIRST &middot; EARLY STAGE</span>
+      <div class="platform-name">Lithic</div>
+      <div class="platform-sub">Sin m&#237;nimos &#8212; ideal para programas early stage y prototipos</div>
+      <div class="platform-desc">Developer-first, sin m&#237;nimos de volumen, time-to-first-card m&#225;s r&#225;pido. Preferido para programas early stage y prototipos. Pricing m&#225;s flexible a bajo volumen.</div>
+      <ul class="plist">
+        <li class="pro">Sin m&#237;nimos &#8212; ideal para validaci&#243;n</li>
+        <li class="con">Menor madurez que Marqeta a escala enterprise</li>
+      </ul>
+    </div>
+  </div>
+</div></div>
+
+<!-- 05 EIN -->
+<div class="section" id="s-ein"><div class="container">
+  <div class="section-title">EIN y Configuraci&#243;n Fiscal US</div>
+  <div class="section-sub">El EIN es el interruptor operacional on/off de tu entidad US &#8212; sin &#233;l no abr&#237;s banco, no acept&#225;s pagos, no contrat&#225;s</div>
+
+  <div class="info-block a2">
+    <div class="info-block-title">&#191;Qu&#233; es el EIN?</div>
+    <p>El EIN (Employer Identification Number) es el tax ID federal de tu empresa &#8212; equivalente al RUT uruguayo, el CUIT argentino o el RUC peruano para prop&#243;sitos federales US. Lo emite el IRS. Necesit&#225;s EIN para abrir cuenta bancaria, contratar empleados, pagar impuestos y procesar la mayor&#237;a de las transacciones financieras US.</p>
+  </div>
+
+  <div class="section-title sm">C&#243;mo Obtener tu EIN &#8212; Por M&#233;todo y Timeline</div>
+  <table class="reg-table">
+    <thead><tr><th>M&#233;todo</th><th>Qui&#233;n Puede Usarlo</th><th>Timeline</th><th>Costo</th><th>Mejor Para</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">IRS Online (EIN Assistant)</td><td>Founders con SSN o ITIN US</td><td><span class="pill p-l">Mismo d&#237;a</span></td><td>Gratis</td><td>El m&#225;s r&#225;pido &#8212; requiere SSN/ITIN del authorized person</td></tr>
+      <tr><td class="td-name">IRS International Phone Line</td><td>Founders extranjeros sin SSN</td><td><span class="pill p-l">Mismo d&#237;a (por llamada)</span></td><td>Gratis</td><td>Confiable pero requiere preparaci&#243;n. +1-267-941-1099. En horario h&#225;bil US Eastern.</td></tr>
+      <tr><td class="td-name">IRS Fax (Form SS-4)</td><td>Founders extranjeros sin SSN</td><td><span class="pill p-h">4&#8211;6 semanas</span></td><td>Gratis</td><td>&#218;ltimo recurso &#8212; evitarlo por el tiempo de espera</td></tr>
+      <tr><td class="td-name">V&#237;a Stripe Atlas</td><td>Founders usando Atlas</td><td><span class="pill p-m">1&#8211;3 semanas</span></td><td>Incluido en los $500 de Atlas</td><td>M&#225;s f&#225;cil all-in-one &#8212; recomendado para la mayor&#237;a de founders LatAm</td></tr>
+      <tr><td class="td-name">V&#237;a Abogado US</td><td>Cualquier founder</td><td><span class="pill p-m">1&#8211;4 semanas</span></td><td>$200&#8211;$500</td><td>Confiable &#8212; el abogado act&#250;a como authorized representative</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-block">
+    <div class="info-block-title">Qu&#233; Requiere Tu EIN &#8212; No Empiec&#233;s Operaciones Sin &#201;l</div>
+    <ul>
+      <li>Mercury, Brex, Relay, Rho &#8212; aplicaciones de cuentas bancarias</li>
+      <li>Stripe &#8212; para procesamiento de pagos US</li>
+      <li>Setup de payroll US v&#237;a Rippling, Gusto o Deel</li>
+      <li>IRS Form W-9 &#8212; requerido por cualquier empresa US que te pague $600+/a&#241;o</li>
+      <li>Delaware annual franchise tax filing (vence 1 de marzo cada a&#241;o)</li>
+      <li>Federal corporate income tax return (Form 1120 para C-Corps)</li>
+      <li>FBAR filing (FinCEN Form 114) si ten&#233;s cuentas extranjeras por encima de $10,000</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">Registros Impositivos Estatales &#8212; El Paso Frecuentemente Omitido</div>
+  <div class="matrix">
+    <div class="matrix-row matrix-header" style="grid-template-columns:200px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell">Obligaci&#243;n</div><div class="matrix-cell">Cu&#225;ndo Aplica</div><div class="matrix-cell">Herramienta</div><div class="matrix-cell">Detalle</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:200px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">State Payroll Tax</div><div class="matrix-cell">Primer empleado W-2 en ese estado</div><div class="matrix-cell">PEO: Rippling, Gusto, Deel (autom&#225;tico)</div><div class="matrix-cell">Los PEOs lo manejan autom&#225;ticamente. Ver M&#243;dulo 6.</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:200px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">Sales Tax (SaaS)</div><div class="matrix-cell">Ventas significativas a residentes del estado</div><div class="matrix-cell">Avalara o TaxJar</div><div class="matrix-cell">SaaS es taxable en NY, TX, WA y 20+ estados. El nexo econ&#243;mico aplica sin presencia f&#237;sica.</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:200px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">NYC Business Income Tax</div><div class="matrix-cell">Empleados u operaciones en NYC</div><div class="matrix-cell">NYC Dept. of Finance</div><div class="matrix-cell">Separado del NY State tax. Registrar con NYC Department of Finance.</div>
+    </div>
+    <div class="matrix-row" style="grid-template-columns:200px 1fr 1fr 1fr;min-width:600px">
+      <div class="matrix-cell rt">Delaware Gross Receipts Tax</div><div class="matrix-cell">Revenue generado en Delaware</div><div class="matrix-cell">Delaware Division of Revenue</div><div class="matrix-cell">Separado del franchise tax. M&#237;nimo para la mayor&#237;a de startups (&lt;$100/a&#241;o).</div>
+    </div>
+  </div>
+
+  <div class="callout a2">
+    <div class="callout-title">&#9733; PLANNING DEL TIMELINE DE EIN</div>
+    <p>Si us&#225;s Stripe Atlas, tu EIN llega 1&#8211;3 semanas despu&#233;s de la incorporaci&#243;n &#8212; suficientemente r&#225;pido para abrir Mercury inmediatamente. Si vas por el fax del IRS, presupuest&#225; 4&#8211;6 semanas. <strong>El pipeline &#243;ptimo: Stripe Atlas &#8594; EIN &#8594; Mercury &#8594; Stripe &#8594; Wise Business. Todo sin pisar EE.UU.</strong></p>
+  </div>
+</div></div>
+
+<!-- 06 TREASURY -->
+<div class="section" id="s-treasury"><div class="container">
+  <div class="section-title">Tesorer&#237;a Multi-Moneda para Founders LatAm</div>
+  <div class="section-sub">Operar con costos en UYU/ARS/PEN/COP y revenue en USD crea complejidad de tesorer&#237;a que la mayor&#237;a de los consejos de startups ignora</div>
+
+  <div class="info-block a3">
+    <div class="info-block-title">El Problema Real</div>
+    <p>La recomendaci&#243;n convencional &#8212; 'simplemente wire&#225; todo a tu cuenta US' &#8212; genera p&#233;rdidas FX del <strong>3&#8211;5% por transferencia</strong>, crea potencial exposici&#243;n al cumplimiento del BCRA, y no toma en cuenta los timing mismatches de las operaciones cross-border.</p>
+  </div>
+
+  <div class="section-title sm">El Framework de Tesorer&#237;a de 3 Capas</div>
+  <table class="reg-table">
+    <thead><tr><th>Capa</th><th>Prop&#243;sito</th><th>Herramienta</th><th>Costo Mensual</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">US Operations</td><td>Cuenta corriente en USD; payroll US; revenue US; fondos de inversores</td><td>Mercury (primario) + Brex (tarjetas cuando levant&#225;s)</td><td>Gratis / ~$0</td></tr>
+      <tr><td class="td-name">Multi-Currency FX</td><td>Conversi&#243;n de monedas; cuentas EUR/GBP/MXN; transferencias internacionales</td><td>Wise Business o Revolut Business</td><td>Cuenta gratis; 0.3&#8211;1% por conversi&#243;n</td></tr>
+      <tr><td class="td-name">LatAm Payroll</td><td>Pagar equipo en moneda local UYU/ARS/PEN/COP</td><td>Deel o Remote</td><td>$49&#8211;$299/contractor o $299&#8211;$599/empleado</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Pagando a Tu Equipo LatAm &#8212; La Forma M&#225;s Barata y Compliant</div>
+  <div class="info-block a2">
+    <div class="info-block-title">Wise &#8212; Recomendado para Contractors</div>
+    <p>Envi&#225; USD desde Mercury a Wise Business &#8594; Wise convierte a tasa mid-market (0.5&#8211;1% fee, sin markup oculto) &#8594; el destinatario recibe UYU/ARS/PEN en su cuenta bancaria local. <strong>2&#8211;4x m&#225;s barato que un wire internacional desde un banco tradicional.</strong></p>
+  </div>
+  <div class="info-block a2">
+    <div class="info-block-title">Deel &#8212; Recomendado para Empleados y Contractors Recurrentes</div>
+    <p>Maneja contratos, compliance de payroll local, presentaciones impositivas, conversi&#243;n de moneda local y pago en 150+ pa&#237;ses. $49/mes por contractor. Si ten&#233;s empleados full-time en LatAm que necesitan contratos formales y aportes a seguridad social, Deel lo gestiona todo.</p>
+  </div>
+
+  <div class="warning">
+    <span class="warning-icon">&#9888;</span>
+    <div class="warning-text"><strong>Nunca wirees directamente de Mercury a un banco LatAm:</strong> Un wire internacional cuesta $25&#8211;$50 por transacci&#243;n m&#225;s un markup FX del 1.5&#8211;3%. En un salario mensual de $5,000, esto desperdicia <strong>$100&#8211;$200 por mes por miembro del equipo</strong>. En un equipo de 5 personas en LatAm, son $500&#8211;$1,000 por mes tirados al tacho.</div>
+  </div>
+
+  <div class="section-title sm">Transfer Pricing &#8212; La Regla Intercompany que el IRS Hace Cumplir</div>
+  <div class="info-block a4">
+    <div class="info-block-title">Qu&#233; es y por qu&#233; importa</div>
+    <p>Cuando tu C-Corp US le paga a tu entidad LatAm por servicios (desarrollo de software, operaciones, customer support), el IRS requiere pricing 'arm's length' &#8212; lo que partes no relacionadas en el mismo mercado se cobrar&#237;an entre s&#237;. Esto <strong>no es opcional</strong>. Documentar todo acuerdo intercompany desde el primer d&#243;lar. Por encima de $1M/a&#241;o en transacciones intercompany, comision&#225; un estudio formal de transfer pricing ($10K&#8211;$30K de un CPA especializado).</p>
+  </div>
+
+  <div class="section-title sm">Consideraciones FX Espec&#237;ficas para Argentina (2026)</div>
+  <div class="info-block">
+    <div class="info-block-title">Stack para Argentina &#8212; Regulaci&#243;n BCRA y Alternativas</div>
+    <ul>
+      <li><strong>Cuentas USD en bancos argentinos:</strong> Los miembros del equipo que pueden operar en USD evitan completamente el riesgo de devaluaci&#243;n del ARS.</li>
+      <li><strong>USDT/USDC stablecoins:</strong> Ampliamente usados en Argentina para hedging de inflaci&#243;n y FX. Aceptados para pagos B2B. Las regulaciones BCRA cambian frecuentemente &#8212; confirm&#225; con CPA argentino trimestralmente.</li>
+      <li><strong>Autorizaci&#243;n BCRA:</strong> Pagos intercompany por encima de $10,000 entre US C-Corp y SRL argentina pueden requerir autorizaci&#243;n BCRA dependiendo de la estructura de pago.</li>
+    </ul>
+  </div>
+</div></div>
+
+<!-- 07 FINTECH INFRA -->
+<div class="section" id="s-fintech"><div class="container">
+  <div class="section-title">Infraestructura de Pagos para Productos FinTech</div>
+  <div class="section-sub">Si construís un producto FinTech &#8212; no solo una startup que necesita banca &#8212; necesit&#225;s el stack de infraestructura que potencia los servicios financieros de tu producto</div>
+
+  <table class="reg-table">
+    <thead><tr><th>Capa</th><th>Qu&#233; Hace</th><th>Herramientas Clave</th><th>Cu&#225;ndo Es Requerida</th></tr></thead>
+    <tbody>
+      <tr><td class="td-name">Payment rails</td><td>Mover dinero (ACH, RTP, wire) en nombre de usuarios/clientes</td><td>Moov, Modern Treasury, Unit</td><td>Cualquier producto que mueve dinero en nombre de clientes</td></tr>
+      <tr><td class="td-name">Financial data / Open Banking</td><td>Conectar a cuentas bancarias; verificar ingresos y empleo</td><td>Plaid, MX, Finicity (Mastercard)</td><td>Credit scoring, account linking, datos alternativos</td></tr>
+      <tr><td class="td-name">Identity / KYC-KYB</td><td>Verificar identidad de clientes; prevenir fraude en onboarding</td><td>Alloy, Persona, Sardine, Socure</td><td>Requerido para cualquier producto financiero US con onboarding de clientes</td></tr>
+      <tr><td class="td-name">Card issuing</td><td>Emitir tarjetas d&#233;bito, cr&#233;dito o prepago a tus usuarios</td><td>Marqeta, Lithic, Stripe Issuing</td><td>Neobank, tarjeta corporativa, o productos de tarjeta prepaga</td></tr>
+      <tr><td class="td-name">Ledger management</td><td>Trackear movimiento de dinero y balances internos con precisi&#243;n</td><td>Modern Treasury, Moov, o custom</td><td>Cualquier producto reteniendo o moviendo fondos a escala (&gt;$1M/mes)</td></tr>
+      <tr><td class="td-name">Fraud + AML monitoring</td><td>Monitoring de transacciones en tiempo real; SAR filing</td><td>Sardine, Unit21, Hummingbird</td><td>Requerido para cualquier producto financiero regulado</td></tr>
+      <tr><td class="td-name">Payroll data</td><td>Verificaci&#243;n de ingresos y empleo para underwriting de cr&#233;dito</td><td>Pinwheel, Atomic, Argyle</td><td>Productos de lending que usan payroll como fuente de datos alternativa</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout a2">
+    <div class="callout-title">&#8594; MODELO CREDITICIO LATAM &#8594; MERCADO US</div>
+    <p>Si tu producto LatAm usa datos alternativos para credit scoring, el stack equivalente en US es: <strong>Plaid</strong> (datos de cuenta + transacciones) + <strong>Pinwheel</strong> (verificaci&#243;n de payroll/ingresos) + <strong>Experian o TransUnion API</strong> (bureau tradicional como baseline) + <strong>tu modelo propio encima</strong>. Este stack te permite underwrite a los 45M+ consumidores credit-invisible en US usando el mismo enfoque data-driven que perfeccionaste en LatAm &#8212; con fuentes de datos US-compliant.</p>
+  </div>
+
+  <div class="section-title sm">Action Checklist &#8212; M&#243;dulo 3</div>
+  <div class="checklist-wrap">
+    <div class="checklist-head"><span>Acci&#243;n</span><span>Prioridad</span><span>Estado</span><span>Owner</span></div>
+    <div class="checklist-row"><span class="ci">Solicitar EIN v&#237;a Stripe Atlas o IRS International line (+1-267-941-1099)</span><span><span class="cp cp-d">D&#205;A 1</span></span><span>&#9744;</span><span>Founder</span></div>
+    <div class="checklist-row"><span class="ci">Abrir cuenta Mercury inmediatamente despu&#233;s de recibir el EIN</span><span><span class="cp cp-d">D&#205;A 1&#8211;3</span></span><span>&#9744;</span><span>Founder</span></div>
+    <div class="checklist-row"><span class="ci">Abrir Wise Business para operaciones multi-moneda + pagos LatAm</span><span><span class="cp cp-s">SEMANA 1</span></span><span>&#9744;</span><span>Founder / CFO</span></div>
+    <div class="checklist-row"><span class="ci">Conectar Stripe para aceptaci&#243;n de pagos US</span><span><span class="cp cp-s">SEMANA 1</span></span><span>&#9744;</span><span>CTO</span></div>
+    <div class="checklist-row"><span class="ci">Configurar Deel o Remote para payroll del equipo LatAm</span><span><span class="cp cp-s">ANTES DEL PRIMER PAYROLL</span></span><span>&#9744;</span><span>HR / Founder</span></div>
+    <div class="checklist-row"><span class="ci">Documentar pol&#237;tica de transfer pricing (acuerdos intercompany)</span><span><span class="cp cp-m">MES 1</span></span><span>&#9744;</span><span>CPA + Founder</span></div>
+    <div class="checklist-row"><span class="ci">Determinar si BaaS es necesario para la arquitectura del producto</span><span><span class="cp cp-m">MES 1</span></span><span>&#9744;</span><span>CTO + Founder</span></div>
+    <div class="checklist-row"><span class="ci">Evaluar BaaS provider si construís producto financiero embebido</span><span><span class="cp cp-m">MES 1&#8211;2</span></span><span>&#9744;</span><span>CTO</span></div>
+    <div class="checklist-row"><span class="ci">Identificar qu&#233; payment rails usan tus clientes US (ACH? RTP? Wire?)</span><span><span class="cp cp-m">MES 1&#8211;2</span></span><span>&#9744;</span><span>Product + BD</span></div>
+    <div class="checklist-row"><span class="ci">Evaluar obligaciones de sales tax US (Avalara o TaxJar si sos SaaS)</span><span><span class="cp cp-p">ANTES DEL PRIMER INVOICE US</span></span><span>&#9744;</span><span>CFO + CPA</span></div>
+    <div class="checklist-row"><span class="ci">Registrarse para payroll taxes estatales en estados donde contrat&#225;s</span><span><span class="cp cp-p">ANTES DEL PRIMER W-2</span></span><span>&#9744;</span><span>HR / PEO</span></div>
+    <div class="checklist-row"><span class="ci">Integrar Plaid o Alloy para KYC si tu producto lo requiere</span><span><span class="cp cp-p">PRE-LAUNCH</span></span><span>&#9744;</span><span>CTO</span></div>
+    <div class="checklist-row"><span class="ci">Hacer upgrade a Brex corporate card despu&#233;s del primer funding round</span><span><span class="cp cp-p">POST-FUNDRAISE</span></span><span>&#9744;</span><span>CFO</span></div>
+    <div class="checklist-row"><span class="ci">Evaluar rails de stablecoin para pagos intercompany LatAm</span><span><span class="cp cp-m">CUANDO FX SE VUELVE MATERIAL</span></span><span>&#9744;</span><span>CFO</span></div>
+    <div class="checklist-row"><span class="ci">Contratar E&amp;O + Cyber insurance antes de manejar datos financieros de clientes</span><span><span class="cp cp-p">ANTES DEL PRIMER CLIENTE</span></span><span>&#9744;</span><span>Founder</span></div>
+  </div>
+
+  <div class="section-title sm">Recursos Clave</div>
+  <div class="resource-grid">
+    <div class="resource-card"><div class="resource-name">Mercury</div><div class="resource-url">mercury.com</div><div class="resource-desc">Mejor primer banco US para founders extranjeros; integraci&#243;n con Stripe Atlas</div></div>
+    <div class="resource-card"><div class="resource-name">Adro</div><div class="resource-url">adro.co</div><div class="resource-desc">Si necesit&#225;s una cuenta US antes de que llegue tu EIN</div></div>
+    <div class="resource-card"><div class="resource-name">Wise Business</div><div class="resource-url">wise.com/us/business</div><div class="resource-desc">Cuentas multi-moneda y transferencias low-cost a LatAm</div></div>
+    <div class="resource-card"><div class="resource-name">Brex</div><div class="resource-url">brex.com</div><div class="resource-desc">Tarjetas corporativas + banca para startups financiadas; 40+ monedas</div></div>
+    <div class="resource-card"><div class="resource-name">Stripe</div><div class="resource-url">stripe.com</div><div class="resource-desc">Procesamiento de pagos US por default</div></div>
+    <div class="resource-card"><div class="resource-name">dLocal</div><div class="resource-url">dlocal.com</div><div class="resource-desc">M&#233;todos de pago locales LatAm (PIX, SPEI, Mercado Pago)</div></div>
+    <div class="resource-card"><div class="resource-name">Unit (BaaS)</div><div class="resource-url">unit.co</div><div class="resource-desc">BaaS APIs para embedded banking y programas de tarjeta</div></div>
+    <div class="resource-card"><div class="resource-name">Marqeta</div><div class="resource-url">marqeta.com</div><div class="resource-desc">Infraestructura de card issuance a escala</div></div>
+    <div class="resource-card"><div class="resource-name">Deel</div><div class="resource-url">letsdeel.com</div><div class="resource-desc">Payroll LatAm y gesti&#243;n de contractors globales</div></div>
+    <div class="resource-card"><div class="resource-name">IRS International EIN</div><div class="resource-url">+1-267-941-1099</div><div class="resource-desc">Gratis &#8212; llamar en horario h&#225;bil US Eastern</div></div>
+    <div class="resource-card"><div class="resource-name">Plaid</div><div class="resource-url">plaid.com</div><div class="resource-desc">Conectividad de datos financieros; verificaci&#243;n de cuenta bancaria e ingresos</div></div>
+    <div class="resource-card"><div class="resource-name">Moov</div><div class="resource-url">moov.io</div><div class="resource-desc">Infraestructura open-source de ACH, RTP, wire para builders FinTech</div></div>
+    <div class="resource-card"><div class="resource-name">Modern Treasury</div><div class="resource-url">moderntreasury.com</div><div class="resource-desc">Payment ops y ledger management</div></div>
+    <div class="resource-card"><div class="resource-name">Avalara</div><div class="resource-url">avalara.com</div><div class="resource-desc">Automatizaci&#243;n de sales tax US para empresas SaaS</div></div>
+    <div class="resource-card"><div class="resource-name">FedNow</div><div class="resource-url">frbservices.org/fednow</div><div class="resource-desc">Lista de participantes FedNow &#8212; verificar si tu banco est&#225; incluido</div></div>
+  </div>
+
+  <div class="info-block ag" style="margin-top:8px">
+    <div class="info-block-title" style="color:var(--muted)">US Market Entry Framework &#8212; FinTech Edition | M&#243;dulo 3 de 9</div>
+    <p>TIH &#215; YLAI Fellowship &middot; Gast&#243;n Dotta, FinTech Fellow &middot; Mayo 2026 &middot; Este documento es solo para fines informativos y no constituye asesoramiento legal, impositivo o financiero. Consult&#225; profesionales US calificados para tu situaci&#243;n espec&#237;fica.</p>
+  </div>
+</div></div>
+
+<script>
+function updateActiveLanguage(lang) {
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+}
+function setLanguage(lang) {
+  var combo = document.querySelector('.goog-te-combo');
+  if (combo) { combo.value = lang; combo.dispatchEvent(new Event('change')); }
+  updateActiveLanguage(lang);
+}
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'es', includedLanguages: 'es,en,it', autoDisplay: false
+  }, 'google_translate_element');
+}
+function show(tab, btn) {
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('s-' + tab).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+<div id="google_translate_element"></div>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

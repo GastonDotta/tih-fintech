@@ -157,6 +157,76 @@
     .modal-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 11px; background: linear-gradient(90deg,var(--accent),var(--accent2)); border: none; border-radius: 10px; color: var(--bg); font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity .2s; text-decoration: none; }
     .modal-btn:hover { opacity: .9; }
     .modal-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 16px; }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE (tablet & mobile)
+       ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      body { height: auto; min-height: 100vh; overflow: auto; font-size: 13px; }
+
+      /* NAV: brand + lang on top row, links wrap on second row */
+      .global-nav { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 8px 12px; padding: 8px 12px; }
+      .global-brand { grid-column: 1; grid-row: 1; gap: 8px; }
+      .global-logo { width: 60px; height: 60px; }
+      .lang-switch { grid-column: 2; grid-row: 1; }
+      .global-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; flex-wrap: wrap; gap: 6px; }
+      .global-nav-link { font-size: 10px; padding: 5px 10px; }
+
+      /* FILTERS: horizontal scroll for sectors, stats wrap below */
+      .filters { padding: 8px 12px; gap: 6px; flex-wrap: wrap; }
+      .filter-label { display: none; }
+      .filter-btn { font-size: 11px; padding: 4px 10px; }
+      .filter-spacer { display: none; }
+      .filter-stats { width: 100%; flex-wrap: wrap; gap: 6px; }
+      .filter-stat { font-size: 9px; padding: 2px 8px; }
+
+      /* MAIN: stack vertically — map on top, sidebar below */
+      .main { flex-direction: column; overflow: visible; flex: none; }
+      #map-container { height: 55vh; min-height: 360px; flex: none; width: 100%; }
+      .sidebar { width: 100%; flex: none; border-left: none; border-top: 1px solid var(--border); overflow: visible; }
+      .sidebar-content { overflow-y: visible; flex: none; padding: 14px; }
+
+      /* Map controls compacted */
+      .zoom-controls { top: 10px; right: 10px; }
+      .zoom-btn { width: 28px; height: 28px; font-size: 16px; }
+      .legend { bottom: 10px; left: 10px; padding: 7px 10px; }
+      .legend-title { font-size: 9px; margin-bottom: 5px; }
+      .legend-item { font-size: 10px; margin-bottom: 3px; }
+      .legend-dot { width: 8px; height: 8px; }
+
+      /* MODAL full-bleed feel on mobile */
+      .modal { width: 100%; max-width: calc(100vw - 24px); padding: 18px; }
+      .modal-name { font-size: 19px; }
+    }
+
+    @media (max-width: 480px) {
+      .global-logo { width: 48px; height: 48px; }
+      .global-year { display: none; }
+      .global-nav-link { font-size: 9px; padding: 4px 8px; letter-spacing: .04em; }
+      .lang-btn { font-size: 9px; padding: 5px 6px; }
+
+      .filter-btn { font-size: 10px; padding: 3px 9px; gap: 4px; }
+      .filter-dot { width: 6px; height: 6px; }
+
+      #map-container { height: 50vh; min-height: 300px; }
+      .legend { padding: 6px 9px; }
+      .legend-item { font-size: 9px; }
+
+      .sidebar-title { font-size: 14px; }
+      .sidebar-sub { font-size: 10px; }
+      .country-name { font-size: 18px; }
+      .country-meta { gap: 6px; }
+      .meta-item { padding: 6px 8px; }
+      .meta-value { font-size: 15px; }
+
+      .company-card { padding: 9px 10px; gap: 8px; }
+      .company-name { font-size: 12px; }
+      .company-desc { font-size: 10px; }
+
+      .modal { padding: 14px; border-radius: 12px; }
+      .modal-name { font-size: 17px; }
+      .modal-desc { font-size: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -167,7 +237,9 @@
   </div>
   <div class="global-links">
     <a class="global-nav-link active" href="./index.html">LatAm Ecosystem</a>
-    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation Research</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link" href="./us_banking_infrastructure.html">US Banking</a>
   </div>
   <div class="lang-switch" aria-label="Language selector">
     <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">ES</button>

@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US Startup Build & Formation — TIH</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@400;700;800&display=swap');
+:root{--primary:222 47% 11%;--secondary:215 25% 27%;--gold:32 95% 44%;--font-display:"Playfair Display",Georgia,serif;--font-body:"DM Sans",system-ui,sans-serif;--bg:hsl(var(--primary));--surface:hsl(var(--primary));--surface2:hsl(var(--secondary));--border:hsl(var(--secondary));--accent:hsl(var(--gold));--accent2:#4EFEE7;--accent3:#FE4E7A;--accent4:#B44EFE;--text:#ffffff;--muted:#e2e8f0;--muted2:#cbd5e1}
+  #google_translate_element{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.6}
+.global-nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:8px 20px;border-bottom:1px solid var(--border);background:var(--surface2)}
+.global-brand{display:flex;align-items:center;gap:10px}
+.global-logo{width:120px;height:120px;object-fit:contain;display:block}
+.global-year{font-size:10px;letter-spacing:.08em;color:var(--muted)}
+.global-links{display:flex;align-items:center;justify-content:center;gap:10px}
+.global-nav-link{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border:1px solid transparent;border-radius:999px;transition:all .2s}
+.global-nav-link:hover{color:var(--text);border-color:var(--border)}
+.global-nav-link.active{color:#000;background:var(--accent);border-color:var(--accent);font-weight:700}
+.lang-switch{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px;background:var(--surface)}
+.lang-btn{font-family:var(--font-body);font-size:10px;border:none;background:transparent;color:var(--muted);padding:6px 8px;cursor:pointer;letter-spacing:.08em}
+.lang-btn.active,.lang-btn:hover{background:var(--accent);color:#000}
+.nav{background:var(--surface2);border-bottom:1px solid var(--border);padding:0 32px;display:flex;overflow-x:auto}
+.nav-btn{font-family:var(--font-body);font-size:11px;padding:12px 16px;border:none;background:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;letter-spacing:.05em}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.container{max-width:1100px;margin:0 auto;padding:40px 32px}
+.section{display:none}.section.active{display:block}
+/* HERO */
+.hero{border:1px solid var(--border);padding:40px;margin-bottom:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--surface) 60%,rgba(231,254,78,.03))}
+.hero-label{font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.1em;margin-bottom:12px}
+.hero-title{font-family:var(--font-display);font-size:34px;font-weight:800;line-height:1.1;margin-bottom:16px}
+.hero-title span{color:var(--accent)}
+.hero-desc{color:var(--muted);max-width:640px;line-height:1.75;font-size:14px}
+.hero-badge{position:absolute;top:32px;right:32px;font-family:var(--font-body);font-size:9px;color:var(--muted);border:1px solid var(--border);padding:6px 12px;letter-spacing:.08em}
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:32px}
+.stat-card{background:var(--surface);padding:22px}
+.stat-num{font-family:var(--font-display);font-size:26px;font-weight:800;color:var(--accent);margin-bottom:4px}
+.stat-label{font-size:11px;color:var(--muted);line-height:1.5}
+/* SECTION HEADERS */
+.stitle{font-family:var(--font-display);font-size:22px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.stitle::after{content:'';flex:1;height:1px;background:var(--border)}
+.stitle.sm{font-size:16px}
+.ssub{color:var(--muted);font-size:13px;margin-bottom:28px}
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+.card-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px}
+.card{background:var(--surface);border:1px solid var(--border);padding:24px;transition:border-color .2s;position:relative}
+.card:hover{border-color:var(--accent)}
+.card.highlight{border-color:var(--accent);background:rgba(231,254,78,.03)}
+.card.highlight::before{content:'★';position:absolute;top:16px;right:16px;color:var(--accent);font-size:12px}
+.card-tag{font-family:var(--font-body);font-size:9px;letter-spacing:.1em;padding:3px 8px;margin-bottom:12px;display:inline-block}
+.ct-green{background:rgba(231,254,78,.12);color:var(--accent)}
+.ct-blue{background:rgba(78,254,231,.12);color:var(--accent2)}
+.ct-red{background:rgba(254,78,122,.12);color:var(--accent3)}
+.ct-purple{background:rgba(180,78,254,.12);color:var(--accent4)}
+.ct-gray{background:rgba(255,255,255,.06);color:var(--muted)}
+.card-name{font-family:var(--font-display);font-size:17px;font-weight:700;margin-bottom:4px}
+.card-sub{font-size:11px;color:var(--muted);margin-bottom:12px;font-family:var(--font-body)}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.clist{list-style:none}
+.clist li{font-size:12px;color:var(--muted);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start}
+.clist li::before{content:'→';color:var(--accent);flex-shrink:0;margin-top:1px}
+.clist li:last-child{border-bottom:none}
+.clist li.pro::before{content:'✓';color:var(--accent2)}
+.clist li.con::before{content:'✗';color:var(--accent3)}
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:2px;margin-bottom:28px}
+.fstep{display:flex}
+.fnum{font-family:var(--font-display);font-size:11px;font-weight:800;color:#000;background:var(--accent);width:28px;height:28px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.fcontent{background:var(--surface);border:1px solid var(--border);border-left:none;padding:14px 20px;flex:1}
+.fcontent-t{font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:4px}
+.fcontent p{font-size:12px;color:var(--muted);line-height:1.6}
+.fconn{width:28px;display:flex;justify-content:center;padding:2px 0;flex-shrink:0}
+.fconn::after{content:'';width:1px;background:var(--accent);opacity:.4;height:100%;min-height:8px}
+/* INFO BLOCKS */
+.iblock{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:20px 24px;margin-bottom:16px}
+.iblock.a2{border-left-color:var(--accent2)}
+.iblock.a3{border-left-color:var(--accent3)}
+.iblock.a4{border-left-color:var(--accent4)}
+.iblock-t{font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:8px}
+.iblock p{font-size:13px;color:var(--muted);line-height:1.7}
+.iblock strong{color:var(--accent)}
+.iblock ul{list-style:none;margin-top:10px}
+.iblock ul li{font-size:12px;color:var(--muted2);padding:4px 0;display:flex;gap:8px}
+.iblock ul li::before{content:'▸';color:var(--accent);flex-shrink:0}
+/* CALLOUT */
+.callout{border:1px dashed var(--accent);padding:20px 24px;margin-bottom:28px}
+.callout-t{font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.1em;margin-bottom:8px}
+.callout p{font-size:13px;color:var(--muted);line-height:1.7}
+.callout strong{color:var(--accent)}
+/* WARNING */
+.warn{background:rgba(254,78,122,.06);border:1px solid rgba(254,78,122,.3);padding:16px 20px;margin-bottom:20px;display:flex;gap:12px}
+.warn-icon{color:var(--accent3);font-size:16px;flex-shrink:0}
+.warn-t{font-size:12px;color:#e0a0a8;line-height:1.6}
+.warn-t strong{color:var(--accent3)}
+/* TABLE */
+.rtable{width:100%;border-collapse:collapse;margin-bottom:28px;font-size:12px}
+.rtable th{font-family:var(--font-body);font-size:10px;letter-spacing:.08em;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--surface2)}
+.rtable td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted2)}
+.rtable tr:hover td{background:rgba(255,255,255,.02)}
+.rtable .tn{color:var(--text);font-weight:500}
+/* PILL */
+.pill{display:inline-block;font-size:9px;padding:2px 8px;font-family:var(--font-body);letter-spacing:.05em}
+.p-g{background:rgba(231,254,78,.12);color:var(--accent)}
+.p-r{background:rgba(254,78,122,.15);color:var(--accent3)}
+.p-b{background:rgba(78,254,231,.1);color:var(--accent2)}
+.p-p{background:rgba(180,78,254,.12);color:var(--accent4)}
+/* COMPARISON TABLE */
+.comp{display:grid;gap:1px;background:var(--border);margin-bottom:28px}
+.comp-row{display:grid;grid-template-columns:160px 1fr 1fr 1fr 1fr;gap:1px;background:var(--border)}
+.comp-cell{background:var(--surface);padding:12px 14px;font-size:11px;color:var(--muted2)}
+.comp-head .comp-cell{background:var(--surface2);font-family:var(--font-body);color:var(--muted);font-size:10px;letter-spacing:.05em}
+.comp-cell.rl{color:var(--text);font-weight:500;font-size:12px}
+.comp-cell.center{text-align:center}
+/* BANK CARD */
+.bank-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.bank-card{background:var(--surface);border:1px solid var(--border);padding:20px;transition:border-color .2s}
+.bank-card:hover{border-color:var(--accent2)}
+.bank-card.top{border-color:var(--accent)}
+.bank-name{font-family:var(--font-display);font-size:16px;font-weight:800;margin-bottom:4px}
+.bank-type{font-family:var(--font-body);font-size:9px;color:var(--muted);margin-bottom:10px;letter-spacing:.08em}
+.bank-desc{font-size:12px;color:var(--muted2);line-height:1.6;margin-bottom:10px}
+.bank-pros{list-style:none;font-size:11px}
+.bank-pros li{color:var(--muted);padding:3px 0;display:flex;gap:6px}
+.bank-pros li.p::before{content:'✓';color:var(--accent2);flex-shrink:0}
+.bank-pros li.c::before{content:'✗';color:var(--accent3);flex-shrink:0}
+/* TOOL GRID */
+.tool-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.tool-card{background:var(--surface);border:1px solid var(--border);padding:16px}
+.tool-cat{font-family:var(--font-body);font-size:9px;color:var(--muted);letter-spacing:.08em;margin-bottom:6px}
+.tool-name{font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:4px}
+.tool-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.tool-price{font-family:var(--font-body);font-size:10px;color:var(--accent);margin-top:8px}
+/* COST TABLE */
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.cost-row:last-child{border-bottom:none}
+.cost-label{font-size:12px;color:var(--muted2)}
+.cost-label span{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+.cost-amt{font-family:var(--font-body);font-size:13px;color:var(--accent);font-weight:500}
+.cost-note{font-size:10px;color:var(--muted)}
+.cost-section{background:var(--surface);border:1px solid var(--border);padding:20px 24px;margin-bottom:16px}
+.cost-section-title{font-family:var(--font-display);font-size:13px;font-weight:700;margin-bottom:14px;color:var(--text)}
+/* CAP TABLE */
+.captable{background:var(--surface);border:1px solid var(--border);padding:24px;margin-bottom:20px}
+.cap-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.cap-bar-wrap{flex:1;height:8px;background:var(--surface2);border:1px solid var(--border)}
+.cap-bar{height:100%}
+.cap-label{font-size:11px;color:var(--muted2);width:160px;flex-shrink:0}
+.cap-pct{font-family:var(--font-body);font-size:11px;color:var(--accent);width:40px;text-align:right;flex-shrink:0}
+/* TIMELINE */
+.tline{margin-bottom:28px}
+.tli{display:flex;gap:20px;margin-bottom:8px}
+.tlyear{font-family:var(--font-body);font-size:10px;color:var(--accent);width:60px;flex-shrink:0;padding-top:14px;text-align:center;line-height:1.3}
+.tlc{background:var(--surface);border:1px solid var(--border);padding:14px 18px;flex:1;font-size:12px;color:var(--muted2);line-height:1.6}
+.tlc strong{color:var(--text);font-weight:500}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border)}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE (tablet & mobile)
+   ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  body { font-size: 13px; }
+
+  /* GLOBAL NAV: brand + lang on top, links wrap below */
+  .global-nav { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 8px 12px; padding: 8px 12px; }
+  .global-brand { grid-column: 1; grid-row: 1; gap: 8px; }
+  .global-logo { width: 60px; height: 60px; }
+  .lang-switch { grid-column: 2; grid-row: 1; }
+  .global-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; flex-wrap: wrap; gap: 6px; }
+  .global-nav-link { font-size: 10px; padding: 5px 10px; }
+
+  /* TAB NAV: tighter, already scrolls horizontally */
+  .nav { padding: 0 12px; }
+  .nav-btn { padding: 10px 12px; font-size: 10px; letter-spacing: .03em; }
+
+  /* CONTAINER + HERO */
+  .container { padding: 24px 16px; }
+  .hero { padding: 24px 20px; margin-bottom: 24px; }
+  .hero-title { font-size: 24px; }
+  .hero-desc { font-size: 13px; line-height: 1.65; }
+  .hero-badge { position: static; display: inline-block; margin-bottom: 10px; top: auto; right: auto; }
+
+  /* STAT GRID: 4 → 2 columns */
+  .stat-grid { grid-template-columns: repeat(2, 1fr); margin-bottom: 24px; }
+  .stat-card { padding: 18px 16px; }
+  .stat-num { font-size: 22px; }
+  .stat-label { font-size: 10px; }
+
+  /* SECTION HEADERS */
+  .stitle { font-size: 18px; }
+  .stitle.sm { font-size: 14px; }
+  .ssub { font-size: 12px; margin-bottom: 20px; }
+
+  /* CARD GRIDS: collapse to 1 column */
+  .card-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+  .card-grid-3 { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+  .card { padding: 20px; }
+  .card-name { font-size: 16px; }
+  .card-desc { font-size: 12px; }
+
+  /* FLOW */
+  .fcontent { padding: 12px 16px; }
+  .fcontent-t { font-size: 12px; }
+  .fcontent p { font-size: 11px; }
+
+  /* INFO BLOCKS / CALLOUT / WARN */
+  .iblock { padding: 16px 18px; }
+  .iblock-t { font-size: 13px; }
+  .iblock p { font-size: 12px; }
+  .callout { padding: 16px 18px; }
+  .callout p { font-size: 12px; }
+  .warn { padding: 14px 16px; }
+  .warn-t { font-size: 11px; }
+
+  /* TABLES horizontal scroll */
+  .rtable { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; white-space: nowrap; }
+  .rtable th, .rtable td { padding: 8px 10px; font-size: 11px; }
+
+  /* COMPARISON: scroll horizontally */
+  .comp { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .comp-row { min-width: 600px; grid-template-columns: 140px repeat(4, 1fr); }
+  .comp-cell { padding: 10px 10px; font-size: 10px; }
+
+  /* BANK GRID 3 → 1 */
+  .bank-grid { grid-template-columns: 1fr; gap: 10px; }
+  .bank-card { padding: 16px; }
+
+  /* TOOL GRID 4 → 2 */
+  .tool-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .tool-card { padding: 14px; }
+
+  /* COSTS */
+  .cost-section { padding: 16px 18px; }
+  .cost-section-title { font-size: 12px; }
+  .cost-label { font-size: 11px; }
+  .cost-amt { font-size: 12px; }
+
+  /* CAP TABLE */
+  .captable { padding: 18px; }
+  .cap-label { width: 110px; font-size: 10px; }
+  .cap-pct { font-size: 10px; width: 36px; }
+
+  /* TIMELINE */
+  .tli { gap: 12px; }
+  .tlyear { width: 50px; padding-top: 12px; font-size: 10px; }
+  .tlc { padding: 12px 14px; font-size: 11px; }
+}
+
+@media (max-width: 480px) {
+  .global-logo { width: 48px; height: 48px; }
+  .global-year { display: none; }
+  .global-nav-link { font-size: 9px; padding: 4px 8px; letter-spacing: .04em; }
+  .lang-btn { font-size: 9px; padding: 5px 6px; }
+
+  .nav { padding: 0 8px; }
+  .nav-btn { padding: 9px 10px; font-size: 9px; }
+
+  .container { padding: 18px 12px; }
+  .hero { padding: 20px 16px; }
+  .hero-title { font-size: 20px; }
+  .hero-desc { font-size: 12px; }
+
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat-num { font-size: 20px; }
+  .stat-card { padding: 16px 12px; }
+
+  .stitle { font-size: 16px; }
+  .card { padding: 16px; }
+  .card-name { font-size: 15px; }
+
+  .tool-grid { grid-template-columns: 1fr; }
+  .comp-cell { padding: 8px 8px; font-size: 9.5px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="global-nav">
+  <div class="global-brand">
+    <img class="global-logo" src="./tih-logo-white-CV3af6jQ.png" alt="Transatlantic Innovation Hub logo">
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link active" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link" href="./us_banking_infrastructure.html">US Banking</a>
+  </div>
+  <div class="lang-switch" aria-label="Language selector">
+    <button class="lang-btn active" data-lang="es" onclick="setLang('es',this)">ES</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en',this)">EN</button>
+    <button class="lang-btn" data-lang="it" onclick="setLang('it',this)">IT</button>
+  </div>
+</nav>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="show('ov',this)" data-i18n="n0">00 OVERVIEW</button>
+  <button class="nav-btn" onclick="show('entity',this)" data-i18n="n1">01 ENTITY STRUCTURES</button>
+  <button class="nav-btn" onclick="show('formation',this)" data-i18n="n2">02 FORMATION STEPS</button>
+  <button class="nav-btn" onclick="show('banking',this)" data-i18n="n3">03 BANKING OPTIONS</button>
+  <button class="nav-btn" onclick="show('equity',this)" data-i18n="n4">04 EQUITY & CAP TABLE</button>
+  <button class="nav-btn" onclick="show('stack',this)" data-i18n="n5">05 OPERATIONAL STACK</button>
+  <button class="nav-btn" onclick="show('costs',this)" data-i18n="n6">06 COSTS & TIMELINE</button>
+</div>
+
+<!-- ========== 00 OVERVIEW ========== -->
+<div class="section active" id="s-ov"><div class="container">
+  <div class="hero">
+    <div class="hero-badge" data-i18n="ov_badge">EARLY-STAGE · US MARKET</div>
+    <div class="hero-label" data-i18n="ov_lbl">// STARTUP FORMATION · USA · FROM ZERO</div>
+    <div class="hero-title" data-i18n="ov_title">Building your US company<br>the <span>right way</span> from day one</div>
+    <div class="hero-desc" data-i18n="ov_desc">Before writing a single line of code or pitching a single investor, you need a legal entity. In the US, the choice of entity, state of incorporation, banking setup, and equity structure can make or break your fundraising, your taxes, and your ability to scale. This guide covers the essential infrastructure every serious startup needs from day one.</div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">&lt;1wk</div><div class="stat-label" data-i18n="ov_s1">To form a Delaware C-Corp online with services like Stripe Atlas or Clerky</div></div>
+    <div class="stat-card"><div class="stat-num">~$500</div><div class="stat-label" data-i18n="ov_s2">Typical total cost to incorporate in Delaware (filing fees + registered agent)</div></div>
+    <div class="stat-card"><div class="stat-num">Delaware</div><div class="stat-label" data-i18n="ov_s3">State where 68%+ of US-listed public companies are incorporated — the default for VC-backed startups</div></div>
+    <div class="stat-card"><div class="stat-num">C-Corp</div><div class="stat-label" data-i18n="ov_s4">The only entity structure that VCs, YC, and institutional investors will fund — full stop</div></div>
+  </div>
+  <div class="stitle" data-i18n="ov_mt">The Formation Stack</div>
+  <div class="ssub" data-i18n="ov_ms">What you need to set up, in order, before you can operate</div>
+  <div class="tline">
+    <div class="tli"><div class="tlyear" data-i18n="ov_wk1">WEEK 1</div><div class="tlc"><strong data-i18n="ov_w1t">Choose entity + state → Incorporate</strong> <span data-i18n="ov_w1b">Delaware C-Corp is the default. File Certificate of Incorporation with Delaware Division of Corporations. Takes 24-48h standard, 1h expedited. Cost: ~$89 state fee + registered agent.</span></div></div>
+    <div class="tli"><div class="tlyear" data-i18n="ov_wk2">WEEK 1–2</div><div class="tlc"><strong data-i18n="ov_w2t">Get your EIN (Employer Identification Number)</strong> <span data-i18n="ov_w2b">The IRS issues this — it's your company's tax ID, equivalent to an SSN for the business. Required to open a bank account. Free via IRS.gov (online if you have a US SSN, or via Form SS-4 by fax for foreign founders).</span></div></div>
+    <div class="tli"><div class="tlyear" data-i18n="ov_wk2b">WEEK 2</div><div class="tlc"><strong data-i18n="ov_w3t">Open a business bank account</strong> <span data-i18n="ov_w3b">Mercury is the standard choice for startups in 2025. Requires: Certificate of Incorporation + EIN + ID of all founders. 100% online. Fully functional in 1-2 days after approval.</span></div></div>
+    <div class="tli"><div class="tlyear" data-i18n="ov_wk3">WEEK 2–3</div><div class="tlc"><strong data-i18n="ov_w4t">Issue founder shares + vesting agreements</strong> <span data-i18n="ov_w4b">Issue shares to founders at a very low price (e.g. $0.0001/share). File 83(b) election with the IRS within 30 days — this is critical for tax optimization. Set up vesting schedules (typically 4 years, 1-year cliff).</span></div></div>
+    <div class="tli"><div class="tlyear" data-i18n="ov_wk4">WEEK 3–4</div><div class="tlc"><strong data-i18n="ov_w5t">Register in your operating state (Foreign Qualification)</strong> <span data-i18n="ov_w5b">If incorporated in Delaware but operating in California, New York, etc., you must "foreign qualify" in that state. This means registering with the Secretary of State and paying that state's fees and taxes.</span></div></div>
+    <div class="tli"><div class="tlyear" data-i18n="ov_wk5">MONTH 2</div><div class="tlc"><strong data-i18n="ov_w6t">Set up operational stack</strong> <span data-i18n="ov_w6b">Accounting (QuickBooks / Bench), payroll (Gusto), legal (Clerky or Orrick), cap table management (Carta or LTSE Equity), and your first contracts (advisor agreements, NDAs, employment).</span></div></div>
+  </div>
+  <div class="callout"><div class="callout-t" data-i18n="ov_ct">// THE MOST COMMON MISTAKE</div><p data-i18n="ov_cb">Many founders — especially those coming from outside the US — <strong>delay incorporation</strong> while building the product. This is a trap. Every day you operate without a legal entity, you accumulate personal liability. Every investor conversation you have before incorporating is wasted if you end up with the wrong structure. <strong>Incorporate first, build second.</strong> It takes less than a week and costs under $500.</p></div>
+</div></div>
+
+<!-- ========== 01 ENTITY ========== -->
+<div class="section" id="s-entity"><div class="container">
+  <div class="stitle" data-i18n="en_t">Entity Structures</div>
+  <div class="ssub" data-i18n="en_s">The 4 main options — and why one dominates for VC-backed startups</div>
+
+  <div class="iblock a2">
+    <div class="iblock-t" data-i18n="en_warn_t">TL;DR — If you want to raise VC money: Delaware C-Corp, period.</div>
+    <p data-i18n="en_warn_b">VCs, accelerators (including YC), and institutional angels are structured to invest in C-Corps. They have legal, tax, and fiduciary reasons not to invest in LLCs or S-Corps. If you ever want to raise from institutional investors or go public, the Delaware C-Corp is the only viable path. Every other structure has a conversion cost you'll pay later.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="card highlight">
+      <span class="card-tag ct-green" data-i18n="en_corp_tag">VC-BACKED STANDARD · RECOMMENDED</span>
+      <div class="card-name">Delaware C-Corp</div>
+      <div class="card-sub" data-i18n="en_corp_sub">Corporation · Most common startup entity</div>
+      <div class="card-desc" data-i18n="en_corp_desc">The default for any startup planning to raise institutional funding. Delaware's Court of Chancery has centuries of corporate case law, creating predictability for investors. Allows unlimited classes of shares (common, preferred), ISOs for employees, and is fully compatible with VC term sheets.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="en_corp_1">VCs, YC, angels — will invest. No exceptions or negotiations needed</li>
+        <li class="pro" data-i18n="en_corp_2">Unlimited share classes: common for founders, preferred for investors</li>
+        <li class="pro" data-i18n="en_corp_3">ISO stock options for employees (massive tax advantage for team)</li>
+        <li class="pro" data-i18n="en_corp_4">Delaware Court of Chancery: predictable, founder-friendly case law</li>
+        <li class="pro" data-i18n="en_corp_5">QSBS (Section 1202): up to $10M tax-free capital gains for early investors</li>
+        <li class="con" data-i18n="en_corp_6">Double taxation: corp pays tax, then shareholders pay tax on dividends</li>
+        <li class="con" data-i18n="en_corp_7">More expensive to maintain: annual report fees, registered agent, Delaware franchise tax</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-blue" data-i18n="en_llc_tag">GOOD FOR SMALL BIZ · NOT FOR VC</span>
+      <div class="card-name">LLC</div>
+      <div class="card-sub" data-i18n="en_llc_sub">Limited Liability Company · Flexible but VC-incompatible</div>
+      <div class="card-desc" data-i18n="en_llc_desc">Excellent for small businesses, real estate, and lifestyle companies. Extremely flexible structure with pass-through taxation (profits go directly to members). But venture investors can't easily hold LLC units due to their own fund structures and tax reasons.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="en_llc_1">Pass-through taxation: no double taxation, profits taxed at member level</li>
+        <li class="pro" data-i18n="en_llc_2">Very flexible operating agreement — can customize economics freely</li>
+        <li class="pro" data-i18n="en_llc_3">Less compliance burden than a C-Corp</li>
+        <li class="pro" data-i18n="en_llc_4">Great for consulting, real estate, small teams, family businesses</li>
+        <li class="con" data-i18n="en_llc_5">VCs (especially funds) structurally cannot invest — UBTI tax issue</li>
+        <li class="con" data-i18n="en_llc_6">No ISO stock options — can't offer the same equity incentives to employees</li>
+        <li class="con" data-i18n="en_llc_7">Converting to C-Corp later is costly, complex, and triggers tax events</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-gray" data-i18n="en_scorp_tag">SMALL BIZ · MAX 100 SHAREHOLDERS</span>
+      <div class="card-name">S-Corp</div>
+      <div class="card-sub" data-i18n="en_scorp_sub">S Corporation · Pass-through with restrictions</div>
+      <div class="card-desc" data-i18n="en_scorp_desc">A C-Corp that elects special tax treatment. Has pass-through taxation like an LLC, but is a corporation. Severely limited: max 100 shareholders, only one class of stock, no foreign shareholders. Completely incompatible with VC funding.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="en_scorp_1">Pass-through taxation — avoids corporate double tax</li>
+        <li class="pro" data-i18n="en_scorp_2">Self-employment tax savings for owner-operators</li>
+        <li class="con" data-i18n="en_scorp_3">Max 100 shareholders — kills any VC round immediately</li>
+        <li class="con" data-i18n="en_scorp_4">Only one class of stock — cannot create preferred shares for investors</li>
+        <li class="con" data-i18n="en_scorp_5">No foreign shareholders — blocks international co-founders or investors</li>
+        <li class="con" data-i18n="en_scorp_6">Almost never used for startups planning to scale</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-purple" data-i18n="en_bene_tag">MISSION-DRIVEN · IMPACT COMPANIES</span>
+      <div class="card-name">Benefit Corporation (PBC)</div>
+      <div class="card-sub" data-i18n="en_bene_sub">Public Benefit Corporation · Purpose + profit</div>
+      <div class="card-desc" data-i18n="en_bene_desc">A C-Corp that legally commits to a public benefit purpose alongside profit. Directors are shielded from shareholder pressure to maximize profits at the expense of mission. Increasingly popular with impact-focused startups. Delaware allows this structure.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="en_bene_1">Legal protection for mission-driven decisions that sacrifice profit</li>
+        <li class="pro" data-i18n="en_bene_2">Compatible with VC funding — still a C-Corp structure underneath</li>
+        <li class="pro" data-i18n="en_bene_3">Strong for B2B sales to ESG-conscious enterprise clients</li>
+        <li class="con" data-i18n="en_bene_4">Some traditional VCs may push back on mission constraints</li>
+        <li class="con" data-i18n="en_bene_5">Annual benefit reporting requirements</li>
+        <li class="con" data-i18n="en_bene_6">Not necessary for most startups — rarely a meaningful differentiator early on</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle sm" data-i18n="en_state_t">Delaware vs. Other States — Where to Incorporate</div>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:20px" data-i18n="en_state_s">Incorporation state ≠ operating state. You can incorporate in Delaware and operate anywhere.</p>
+
+  <div class="comp">
+    <div class="comp-row comp-head">
+      <div class="comp-cell" data-i18n="en_c0">Factor</div>
+      <div class="comp-cell center">Delaware</div>
+      <div class="comp-cell center">Wyoming</div>
+      <div class="comp-cell center">Nevada</div>
+      <div class="comp-cell center" data-i18n="en_c_home">Your home state</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell rl" data-i18n="en_f1">VC acceptance</div>
+      <div class="comp-cell center"><span class="pill p-g">STANDARD</span></div>
+      <div class="comp-cell center"><span class="pill p-b">SOME</span></div>
+      <div class="comp-cell center"><span class="pill p-r">RARE</span></div>
+      <div class="comp-cell center"><span class="pill p-r">RARE</span></div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell rl" data-i18n="en_f2">Case law quality</div>
+      <div class="comp-cell center"><span class="pill p-g">BEST IN US</span></div>
+      <div class="comp-cell center"><span class="pill p-b">GOOD</span></div>
+      <div class="comp-cell center"><span class="pill p-b">GOOD</span></div>
+      <div class="comp-cell center"><span class="pill p-r">VARIES</span></div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell rl" data-i18n="en_f3">Annual cost</div>
+      <div class="comp-cell center">~$300–$900</div>
+      <div class="comp-cell center">~$60</div>
+      <div class="comp-cell center">~$350</div>
+      <div class="comp-cell center" data-i18n="en_varies">Varies</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell rl" data-i18n="en_f4">Foreign qualification needed?</div>
+      <div class="comp-cell center" data-i18n="en_if_op">If operating elsewhere</div>
+      <div class="comp-cell center" data-i18n="en_if_op2">If operating elsewhere</div>
+      <div class="comp-cell center" data-i18n="en_if_op3">If operating elsewhere</div>
+      <div class="comp-cell center"><span class="pill p-g">NO</span></div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell rl" data-i18n="en_f5">Best for</div>
+      <div class="comp-cell center" data-i18n="en_best_del">VC-backed, any startup</div>
+      <div class="comp-cell center" data-i18n="en_best_wy">Crypto/fintech, privacy</div>
+      <div class="comp-cell center" data-i18n="en_best_nv">Privacy, asset protection</div>
+      <div class="comp-cell center" data-i18n="en_best_home">Solo ops, no VC plans</div>
+    </div>
+  </div>
+
+  <div class="warn"><span class="warn-icon">⚠</span><div class="warn-t"><strong data-i18n="en_wtax_t">Delaware Franchise Tax trap:</strong> <span data-i18n="en_wtax_b">Delaware charges franchise tax calculated two ways: "Authorized Shares" method (can be $50K+ for startups with lots of authorized shares) or "Assumed Par Value Capital" method (usually under $400 for early startups). Always calculate using BOTH methods and pay the lower one. Most formation services get this wrong. Your lawyer or accountant should know this.</span></div></div>
+</div></div>
+
+<!-- ========== 02 FORMATION ========== -->
+<div class="section" id="s-formation"><div class="container">
+  <div class="stitle" data-i18n="fm_t">Formation Steps in Detail</div>
+  <div class="ssub" data-i18n="fm_s">Every step to go from idea to fully operational company — with costs and timelines</div>
+
+  <div class="stitle sm" data-i18n="fm_opt_t">Option A: DIY with Formation Services (Fastest)</div>
+  <div class="card-grid-3" style="margin-bottom:28px">
+    <div class="card highlight">
+      <span class="card-tag ct-green">STRIPE ATLAS</span>
+      <div class="card-name">Atlas</div>
+      <div class="card-sub">stripe.com/atlas · $500 one-time</div>
+      <div class="card-desc" data-i18n="fm_atlas_desc">Stripe's formation service. Incorporates a Delaware C-Corp, gets your EIN, opens a Mercury bank account, and issues founder shares — all in one flow. The most popular option for non-US founders. Includes basic templates for founder agreements.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="fm_atlas_1">All-in-one: corp + EIN + bank account in 1 week</li>
+        <li class="pro" data-i18n="fm_atlas_2">Built for international founders — no US SSN required</li>
+        <li class="pro" data-i18n="fm_atlas_3">Direct Mercury bank account integration</li>
+        <li class="con" data-i18n="fm_atlas_4">Basic legal templates — not suitable for complex cap tables</li>
+        <li class="con" data-i18n="fm_atlas_5">Stripe ecosystem lock-in for some services</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-blue">CLERKY</span>
+      <div class="card-name">Clerky</div>
+      <div class="card-sub">clerky.com · $399–$699</div>
+      <div class="card-desc" data-i18n="fm_clerky_desc">Lawyer-designed platform used by YC-backed companies. Handles incorporation + all the YC-standard legal documents: founder agreements, equity, IP assignment, NDAs. Highly recommended if you plan to apply to YC or similar accelerators.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="fm_clerky_1">YC-standard documents — reduces friction with accelerators</li>
+        <li class="pro" data-i18n="fm_clerky_2">Includes: IP assignment, confidentiality, vesting agreements</li>
+        <li class="pro" data-i18n="fm_clerky_3">Lawyer-reviewed — higher quality than generic services</li>
+        <li class="con" data-i18n="fm_clerky_4">Slightly more complex flow than Atlas</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-gray">INCORPORATE.COM / LEGALZOOM</span>
+      <div class="card-name">Others</div>
+      <div class="card-sub">Various · $150–$300</div>
+      <div class="card-desc" data-i18n="fm_others_desc">Cheaper services that handle basic incorporation but provide minimal legal support. Acceptable for solo founders who understand what they're doing, but risky for co-founder situations or anyone planning to fundraise.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="fm_others_1">Cheapest option for basic incorporation</li>
+        <li class="con" data-i18n="fm_others_2">No legal guidance — you're on your own</li>
+        <li class="con" data-i18n="fm_others_3">Generic documents not tailored for startups</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle sm" data-i18n="fm_key_t">Critical Legal Documents You Need at Formation</div>
+  <div class="flow">
+    <div class="fstep"><div class="fnum">1</div><div class="fcontent"><div class="fcontent-t" data-i18n="fm_d1t">Certificate of Incorporation</div><p data-i18n="fm_d1b">Filed with Delaware Division of Corporations. Establishes the company, authorized share count, and par value. Keep authorized shares at 10,000,000 common to avoid high franchise tax. Public document — anyone can see it.</p></div></div>
+    <div class="fstep"><div class="fconn"></div><div style="flex:1"></div></div>
+    <div class="fstep"><div class="fnum">2</div><div class="fcontent"><div class="fcontent-t" data-i18n="fm_d2t">Bylaws</div><p data-i18n="fm_d2b">Internal governance rules: how board meetings work, quorum requirements, voting procedures. Not public. Standard YC-style bylaws are fine for early stage — don't over-engineer this.</p></div></div>
+    <div class="fstep"><div class="fconn"></div><div style="flex:1"></div></div>
+    <div class="fstep"><div class="fnum">3</div><div class="fcontent"><div class="fcontent-t" data-i18n="fm_d3t">Founder Stock Purchase Agreement + IP Assignment</div><p data-i18n="fm_d3b">Issues shares to founders at a very low price. Critically, includes an IP Assignment clause transferring all pre-existing IP to the company. Without this, investors will ask: "does the company actually own its own tech?" File the 83(b) election within 30 days.</p></div></div>
+    <div class="fstep"><div class="fconn"></div><div style="flex:1"></div></div>
+    <div class="fstep"><div class="fnum">4</div><div class="fcontent"><div class="fcontent-t" data-i18n="fm_d4t">Vesting Agreement</div><p data-i18n="fm_d4b">Standard: 4-year vesting with 1-year cliff. Means co-founders earn their shares over time — if someone leaves early, they don't walk away with a large equity stake. Industry-standard and required by most VCs before closing a round.</p></div></div>
+    <div class="fstep"><div class="fconn"></div><div style="flex:1"></div></div>
+    <div class="fstep"><div class="fnum">5</div><div class="fcontent"><div class="fcontent-t" data-i18n="fm_d5t">83(b) Election — DO NOT MISS THIS</div><p data-i18n="fm_d5b">Filed with the IRS within 30 calendar days of stock issuance. Elects to pay income tax on the shares at their current (very low) value rather than at vesting (potentially much higher value). Missing this deadline = potentially massive tax bill when shares vest. No extensions. No exceptions.</p></div></div>
+    <div class="fstep"><div class="fconn"></div><div style="flex:1"></div></div>
+    <div class="fstep"><div class="fnum">6</div><div class="fcontent"><div class="fcontent-t" data-i18n="fm_d6t">Employee/Contractor PIIA Agreement</div><p data-i18n="fm_d6b">Proprietary Information and Inventions Agreement. Every employee and contractor must sign this. Ensures the company owns anything they build while working for you. Without PIIAs from all contributors, your IP ownership is legally questionable — a deal-killer in due diligence.</p></div></div>
+  </div>
+
+  <div class="iblock a3">
+    <div class="iblock-t" data-i18n="fm_83b_t">🚨 The 83(b) Election — The Single Most Time-Sensitive Action in Formation</div>
+    <p data-i18n="fm_83b_b">You have exactly <strong>30 calendar days</strong> from the date shares are issued to file Form 83(b) with the IRS. Send it via certified mail, keep the postal receipt, and get a signed copy back from the IRS. Many formation services (including Stripe Atlas) will help you prepare it, but YOU are responsible for mailing it in time. This is the most commonly missed and most expensive mistake in startup formation.</p>
+  </div>
+</div></div>
+
+<!-- ========== 03 BANKING ========== -->
+<div class="section" id="s-banking"><div class="container">
+  <div class="stitle" data-i18n="bk_t">Banking Options</div>
+  <div class="ssub" data-i18n="bk_s">The startup banking landscape has changed dramatically — here's the current state in 2025-26</div>
+
+  <div class="iblock a3">
+    <div class="iblock-t" data-i18n="bk_svb_t">Post-SVB landscape (March 2023 collapse)</div>
+    <p data-i18n="bk_svb_b">Silicon Valley Bank's collapse in March 2023 was a wake-up call: <strong>concentration risk is real</strong>. Most sophisticated startups now maintain accounts at 2+ banks, keep operating expenses at one and reserves at another, and stay under the $250K FDIC insurance limit per institution. The old "just use SVB" advice no longer applies. Mercury has emerged as the new default for early-stage startups.</p>
+  </div>
+
+  <div class="stitle sm" data-i18n="bk_neo_t">Neobanks & Fintech-First (Recommended for Early Stage)</div>
+  <div class="bank-grid">
+    <div class="bank-card top">
+      <div class="bank-name">Mercury</div>
+      <div class="bank-type">NEOBANK · PARTNER BANKS: CHOICE + EVOLVE</div>
+      <div class="bank-desc" data-i18n="bk_mercury_desc">The de-facto standard for startups in 2025. Excellent UI, fast onboarding, free for most startups. Supports both US and non-US founders. Has Treasury product for yield on idle cash.</div>
+      <ul class="bank-pros">
+        <li class="p" data-i18n="bk_m1">100% online onboarding — no branch visit</li>
+        <li class="p" data-i18n="bk_m2">Free checking + savings, wire transfers</li>
+        <li class="p" data-i18n="bk_m3">International founders accepted (most countries)</li>
+        <li class="p" data-i18n="bk_m4">Mercury Treasury: 4-5% APY on idle cash (T-Bills)</li>
+        <li class="p" data-i18n="bk_m5">Excellent API and integrations (QuickBooks, Stripe, etc.)</li>
+        <li class="p" data-i18n="bk_m6">Virtual + physical debit cards, immediate</li>
+        <li class="c" data-i18n="bk_m7">Not a bank itself — deposits at partner banks (FDIC via them)</li>
+        <li class="c" data-i18n="bk_m8">Some high-risk sectors rejected (cannabis, crypto exchanges, adult)</li>
+      </ul>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">Brex</div>
+      <div class="bank-type">NEOBANK + CORPORATE CARD · STARTUP-FOCUSED</div>
+      <div class="bank-desc" data-i18n="bk_brex_desc">Strong combination of banking + corporate card. Famous for giving credit to startups without personal guarantees. Brex Card has best-in-class rewards for software/travel. Better fit for companies with VC funding already raised.</div>
+      <ul class="bank-pros">
+        <li class="p" data-i18n="bk_b1">Corporate card with no personal guarantee needed</li>
+        <li class="p" data-i18n="bk_b2">High credit limits based on bank balance, not credit score</li>
+        <li class="p" data-i18n="bk_b3">Great rewards: 7x on rideshare, 3x on travel, software</li>
+        <li class="p" data-i18n="bk_b4">Strong expense management and ERP integrations</li>
+        <li class="c" data-i18n="bk_b5">Dropped many small startups in 2022 — focus on funded companies</li>
+        <li class="c" data-i18n="bk_b6">More complex onboarding than Mercury</li>
+      </ul>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">Relay</div>
+      <div class="bank-type">NEOBANK · SMB-FOCUSED</div>
+      <div class="bank-desc" data-i18n="bk_relay_desc">Excellent for small teams and bootstrapped startups. Multiple sub-accounts for budget management, strong bookkeeper access features. Good alternative or complement to Mercury.</div>
+      <ul class="bank-pros">
+        <li class="p" data-i18n="bk_r1">Up to 20 checking accounts + 50 savings accounts</li>
+        <li class="p" data-i18n="bk_r2">Great bookkeeper/accountant access and permissions</li>
+        <li class="p" data-i18n="bk_r3">Physical and virtual debit cards per account</li>
+        <li class="c" data-i18n="bk_r4">Less startup-native than Mercury — more SMB-focused</li>
+        <li class="c" data-i18n="bk_r5">Fewer integrations with startup tools</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle sm" data-i18n="bk_trad_t">Traditional Banks (When You Need Them)</div>
+  <div class="bank-grid">
+    <div class="bank-card">
+      <div class="bank-name">JPMorgan Chase</div>
+      <div class="bank-type">TRADITIONAL BANK · STARTUP BANKING</div>
+      <div class="bank-desc" data-i18n="bk_chase_desc">The traditional bank most used by startups for secondary accounts. Good for: receiving large wire transfers, international banking, when your enterprise clients require a "real" bank. Startup Banking team can be helpful post-Series A.</div>
+      <ul class="bank-pros">
+        <li class="p" data-i18n="bk_ch1">Most stable — FDIC insured, too big to fail</li>
+        <li class="p" data-i18n="bk_ch2">International presence — useful for cross-border operations</li>
+        <li class="p" data-i18n="bk_ch3">Enterprise clients and investors trust it</li>
+        <li class="c" data-i18n="bk_ch4">Slow onboarding — requires in-person visit in many cases</li>
+        <li class="c" data-i18n="bk_ch5">Fees on everything — not startup-friendly pricing</li>
+        <li class="c" data-i18n="bk_ch6">Bureaucratic — slow to adapt to startup needs</li>
+      </ul>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">First Republic (gone) → competitors</div>
+      <div class="bank-type">TRADITIONAL · POST-2023 ALTERNATIVES</div>
+      <div class="bank-desc" data-i18n="bk_fr_desc">First Republic Bank (acquired by JPMorgan in 2023) was the other classic startup bank alongside SVB. Its demise left a gap filled by SVB's HSBC acquisition, Silicon Valley Bridge Bank, and traditional banks trying to win startup clients.</div>
+      <ul class="bank-pros">
+        <li class="p" data-i18n="bk_fr1">HSBC Innovation Banking fills some of the SVB gap</li>
+        <li class="p" data-i18n="bk_fr2">First Citizens Bank acquired SVB's loan portfolio — active in venture lending</li>
+        <li class="c" data-i18n="bk_fr3">None are as startup-native as SVB or First Republic were</li>
+      </ul>
+    </div>
+    <div class="bank-card">
+      <div class="bank-name">Silicon Valley Bank (reborn)</div>
+      <div class="bank-type">ACQUIRED BY FIRST CITIZENS BANK · 2023</div>
+      <div class="bank-desc" data-i18n="bk_svb2_desc">SVB still exists under First Citizens Bank ownership. Maintains its startup and VC focus, venture debt products, and international banking. Still a credible option for Series A+ companies needing venture debt or international operations.</div>
+      <ul class="bank-pros">
+        <li class="p" data-i18n="bk_svb1">Best venture debt / credit lines for funded startups</li>
+        <li class="p" data-i18n="bk_svb2p">Deep VC network relationships intact</li>
+        <li class="c" data-i18n="bk_svb3">Trust damaged post-collapse — most startups avoid as primary bank</li>
+        <li class="c" data-i18n="bk_svb4">Not recommended as sole banking relationship</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle sm" data-i18n="bk_strat_t">Recommended Banking Strategy</div>
+  <div class="iblock">
+    <div class="iblock-t" data-i18n="bk_strat_rec">The 2-Bank Rule: Mercury + one traditional bank</div>
+    <ul>
+      <li data-i18n="bk_st1"><strong>Mercury (primary):</strong> Day-to-day operations, payroll, vendor payments, cards. Keep 3–6 months of runway here.</li>
+      <li data-i18n="bk_st2"><strong>JPMorgan Chase or similar (secondary):</strong> Emergency reserve, large wires, enterprise client expectations. Keep 6–12 months of runway here.</li>
+      <li data-i18n="bk_st3"><strong>Mercury Treasury:</strong> Excess cash above operating needs → T-Bills via Mercury for 4-5% yield.</li>
+      <li data-i18n="bk_st4"><strong>FDIC limit:</strong> Keep under $250K per account per bank. Above that, you're uninsured. Use Mercury's sweep accounts or split across institutions.</li>
+    </ul>
+  </div>
+
+  <div class="iblock a2">
+    <div class="iblock-t" data-i18n="bk_intl_t">Note for Foreign Founders (Non-US)</div>
+    <p data-i18n="bk_intl_b">Opening a US bank account as a foreign founder is possible but requires planning. <strong>Mercury and Brex</strong> are the most international-founder-friendly. You'll need: Certificate of Incorporation, EIN (even without a US SSN), valid passport, and proof of company address. Stripe Atlas bundles the Mercury account opening into the formation flow — the most frictionless path for non-US founders. Some countries are restricted — check Mercury's acceptance list before starting.</p>
+  </div>
+</div></div>
+
+<!-- ========== 04 EQUITY ========== -->
+<div class="section" id="s-equity"><div class="container">
+  <div class="stitle" data-i18n="eq_t">Equity & Cap Table</div>
+  <div class="ssub" data-i18n="eq_s">How ownership is structured — the foundation of every investor conversation</div>
+
+  <div class="iblock a2">
+    <div class="iblock-t" data-i18n="eq_intro_t">What is a Cap Table?</div>
+    <p data-i18n="eq_intro_b">The cap table (capitalization table) is the definitive record of who owns what percentage of the company, and what type of shares they hold. It starts simple (founders only) and grows complex with each funding round. Every investor will want to see it before writing a check. Get it right from day one — retrofitting a messy cap table is expensive and embarrassing.</p>
+  </div>
+
+  <div class="stitle sm" data-i18n="eq_typical_t">Typical Cap Table Evolution</div>
+
+  <div class="captable">
+    <p style="font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.08em;margin-bottom:16px" data-i18n="eq_phase0">// PHASE 0: AT INCORPORATION (Pre-everything)</p>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_founders">Founders (2)</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:100%;background:var(--accent)"></div></div><div class="cap-pct">100%</div></div>
+  </div>
+
+  <div class="captable">
+    <p style="font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.08em;margin-bottom:16px" data-i18n="eq_phase1">// PHASE 1: AFTER OPTION POOL CREATION (Pre-seed)</p>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_founders2">Founders</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:80%;background:var(--accent)"></div></div><div class="cap-pct">80%</div></div>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_pool">Option Pool (ESOP)</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:20%;background:rgba(231,254,78,.35)"></div></div><div class="cap-pct">20%</div></div>
+  </div>
+
+  <div class="captable">
+    <p style="font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.08em;margin-bottom:16px" data-i18n="eq_phase2">// PHASE 2: AFTER PRE-SEED / ANGELS (SAFEs or equity)</p>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_founders3">Founders</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:68%;background:var(--accent)"></div></div><div class="cap-pct">68%</div></div>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_pool2">Option Pool</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:17%;background:rgba(231,254,78,.35)"></div></div><div class="cap-pct">17%</div></div>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_angels">Angels / Pre-seed</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:15%;background:var(--accent2)"></div></div><div class="cap-pct">15%</div></div>
+  </div>
+
+  <div class="captable">
+    <p style="font-family:var(--font-body);font-size:10px;color:var(--accent);letter-spacing:.08em;margin-bottom:16px" data-i18n="eq_phase3">// PHASE 3: AFTER SEED ROUND (Priced equity)</p>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_founders4">Founders</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:55%;background:var(--accent)"></div></div><div class="cap-pct">55%</div></div>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_pool3">Option Pool</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:15%;background:rgba(231,254,78,.35)"></div></div><div class="cap-pct">15%</div></div>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_angels2">Angels / Pre-seed (converted)</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:10%;background:rgba(78,254,231,.4)"></div></div><div class="cap-pct">10%</div></div>
+    <div class="cap-row"><div class="cap-label" data-i18n="eq_seed_vc">Seed VCs (new)</div><div class="cap-bar-wrap"><div class="cap-bar" style="width:20%;background:var(--accent3)"></div></div><div class="cap-pct">20%</div></div>
+  </div>
+
+  <div class="stitle sm" data-i18n="eq_instruments_t">Key Funding Instruments</div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <span class="card-tag ct-green">MOST COMMON PRE-SEED / SEED</span>
+      <div class="card-name">SAFE</div>
+      <div class="card-sub" data-i18n="eq_safe_sub">Simple Agreement for Future Equity · Y Combinator standard</div>
+      <div class="card-desc" data-i18n="eq_safe_desc">Created by YC in 2013 and now the dominant early-stage instrument. Not a loan — no interest, no maturity date. Converts to equity at the next priced round. Simple, fast, cheap to close (&lt;$2K in legal fees). Two key parameters: valuation cap and discount.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="eq_safe_1">No interest accrual — not debt, doesn't need repayment</li>
+        <li class="pro" data-i18n="eq_safe_2">Closes in days, not weeks — minimal legal friction</li>
+        <li class="pro" data-i18n="eq_safe_3">Valuation cap: investor converts at the lower of cap or round price</li>
+        <li class="pro" data-i18n="eq_safe_4">Discount: typically 10-20% discount to next round price</li>
+        <li class="pro" data-i18n="eq_safe_5">YC post-money SAFE (2018) is now the standard — dilution is cleaner</li>
+        <li class="con" data-i18n="eq_safe_6">Dilution is deferred — founders don't know exact % until conversion</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-blue">ALTERNATIVE / OLDER STANDARD</span>
+      <div class="card-name">Convertible Note</div>
+      <div class="card-sub" data-i18n="eq_cn_sub">Debt instrument that converts to equity</div>
+      <div class="card-desc" data-i18n="eq_cn_desc">A loan that converts to equity at the next round. Has interest rate (typically 4-8% per year), maturity date (typically 18-24 months), and a conversion cap/discount. More complex than a SAFE. Was the standard before SAFEs — still used by some angels and in some geographies.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="eq_cn_1">Some investors prefer the debt structure — more familiar</li>
+        <li class="pro" data-i18n="eq_cn_2">Accrued interest increases investor return slightly</li>
+        <li class="con" data-i18n="eq_cn_3">Has a maturity date — if no priced round, must repay or renegotiate</li>
+        <li class="con" data-i18n="eq_cn_4">Interest accrual = more dilution at conversion</li>
+        <li class="con" data-i18n="eq_cn_5">More complex and expensive to document than SAFE</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-green">SEED / SERIES A+</span>
+      <div class="card-name">Priced Round</div>
+      <div class="card-sub" data-i18n="eq_pr_sub">Series Seed, Series A — actual equity at set valuation</div>
+      <div class="card-desc" data-i18n="eq_pr_desc">A "proper" venture round with a term sheet, a set pre-money valuation, and the issuance of Preferred Stock to investors. Takes 6-12 weeks and $20-50K in legal fees. Brings board seats, protective provisions, and complex governance. Required for rounds above ~$2-3M from institutional VCs.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="eq_pr_1">Clear valuation and cap table — everyone knows their %</li>
+        <li class="pro" data-i18n="eq_pr_2">Preferred stock: liquidation preferences, anti-dilution protection</li>
+        <li class="pro" data-i18n="eq_pr_3">Formal board structure — more governance and credibility</li>
+        <li class="con" data-i18n="eq_pr_4">Expensive: $20-50K+ in legal fees</li>
+        <li class="con" data-i18n="eq_pr_5">Slow: 6-12 weeks to close vs. days for a SAFE</li>
+        <li class="con" data-i18n="eq_pr_6">Complex terms: pro-rata rights, information rights, board composition</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-purple">EMPLOYEE INCENTIVES</span>
+      <div class="card-name">Stock Options (ISO / NSO)</div>
+      <div class="card-sub" data-i18n="eq_opt_sub">The standard employee equity incentive in the US</div>
+      <div class="card-desc" data-i18n="eq_opt_desc">Options give employees the right to buy shares at a set price (strike price = 409A fair market value). ISOs (for employees) have favorable tax treatment. NSOs (for contractors, advisors) are more flexible. Both vest over 4 years typically.</div>
+      <ul class="clist">
+        <li class="pro" data-i18n="eq_opt_1">ISOs: taxed at capital gains rate (not income) if held correctly</li>
+        <li class="pro" data-i18n="eq_opt_2">Attracts top talent who accept lower salary for upside</li>
+        <li class="con" data-i18n="eq_opt_3">Requires a 409A valuation (~$1,500-$3,000) to set legal strike price</li>
+        <li class="con" data-i18n="eq_opt_4">Exercise window: typically 90 days post-termination (can extend)</li>
+        <li class="con" data-i18n="eq_opt_5">Complex AMT implications for ISOs — employees need tax advice</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stitle sm" data-i18n="eq_cap_tools_t">Cap Table Management Tools</div>
+  <div class="card-grid-3">
+    <div class="card highlight">
+      <span class="card-tag ct-green">INDUSTRY STANDARD</span>
+      <div class="card-name">Carta</div>
+      <div class="card-sub">carta.com · Free for early stage</div>
+      <div class="card-desc" data-i18n="eq_carta_desc">The dominant cap table management platform. Handles equity issuance, 409A valuations, waterfall analysis, employee option grants, and investor reporting. Required by most Series A VCs. Free for simple cap tables, paid for larger companies.</div>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-blue">VC-BACKED ALTERNATIVE</span>
+      <div class="card-name">LTSE Equity (Pulley)</div>
+      <div class="card-sub">pulley.com · Free for early stage</div>
+      <div class="card-desc" data-i18n="eq_pulley_desc">Growing competitor to Carta with better UX and lower pricing. Increasingly accepted by VCs. Good choice if you want to avoid Carta's data practices (they've been criticized for using cap table data to approach customers).</div>
+    </div>
+    <div class="card">
+      <span class="card-tag ct-gray">BOOTSTRAPPED / SIMPLE</span>
+      <div class="card-name">Spreadsheet</div>
+      <div class="card-sub" data-i18n="eq_sheet_sub">Founders only · Pre-seed</div>
+      <div class="card-desc" data-i18n="eq_sheet_desc">A Google Sheet is fine when you have 2 founders and no investors. The moment you have any outside investors or issue options, move to Carta or Pulley. Don't manage a complex cap table in Excel — the errors are costly and embarrassing in due diligence.</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ========== 05 STACK ========== -->
+<div class="section" id="s-stack"><div class="container">
+  <div class="stitle" data-i18n="st_t">Operational Stack</div>
+  <div class="ssub" data-i18n="st_s">The software and services that run a modern US startup — tools investors expect to see</div>
+
+  <div class="tool-grid">
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_accounting">ACCOUNTING</div><div class="tool-name">QuickBooks Online</div><div class="tool-desc" data-i18n="td_qb">The standard for startup accounting. Most accountants know it. Integrates with Mercury, Stripe, and payroll.</div><div class="tool-price">~$35/mo</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_accounting2">ACCOUNTING (MANAGED)</div><div class="tool-name">Bench / Pilot</div><div class="tool-desc" data-i18n="td_bench">Full-service bookkeeping. Bench handles small startups, Pilot specializes in VC-backed companies. More expensive but hands-off.</div><div class="tool-price">$299–$699/mo</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_payroll">PAYROLL</div><div class="tool-name">Gusto</div><div class="tool-desc" data-i18n="td_gusto">The standard payroll platform for startups. Handles US payroll, benefits, W-2s, 1099s. Also supports international contractors.</div><div class="tool-price">$40 + $6/person/mo</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_payroll2">PAYROLL (GLOBAL)</div><div class="tool-name">Deel / Rippling</div><div class="tool-desc" data-i18n="td_deel">For international teams. Deel handles global contractors + EOR (Employer of Record) in 100+ countries. Rippling is full HR stack.</div><div class="tool-price">$49+/contractor/mo</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_payments">PAYMENTS</div><div class="tool-name">Stripe</div><div class="tool-desc" data-i18n="td_stripe">The default payment processor. Best developer experience, global coverage, embedded finance options via Stripe Treasury and Stripe Capital.</div><div class="tool-price">2.9% + $0.30/tx</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_legal">LEGAL</div><div class="tool-name">Clerky / Orrick</div><div class="tool-desc" data-i18n="td_legal">Clerky for self-serve legal docs. Orrick for full startup legal — they have a startup-friendly program. Cooley and Wilson Sonsini are other top startup law firms.</div><div class="tool-price">$399 formation / ~$300/hr</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_captable">CAP TABLE</div><div class="tool-name">Carta</div><div class="tool-desc" data-i18n="td_carta">Cap table management, 409A valuations, option grants. The standard VCs check. Free for simple cap tables under 25 stakeholders.</div><div class="tool-price">Free → $2,400+/yr</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_tax">TAX / COMPLIANCE</div><div class="tool-name">Stripe Atlas / Doola</div><div class="tool-desc" data-i18n="td_tax">For foreign founders: Doola handles formation + registered agent + annual compliance. Stripe Atlas handles the banking side. Both reduce the complexity of US tax filing from abroad.</div><div class="tool-price">~$1,999/yr</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_erp">SPEND MANAGEMENT</div><div class="tool-name">Brex / Ramp</div><div class="tool-desc" data-i18n="td_brex">Corporate cards + expense management. Brex for funded startups, Ramp for cost-control focus. Both integrate with QuickBooks and replace manual expense reports.</div><div class="tool-price">Free → usage-based</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_crm">CRM</div><div class="tool-name">HubSpot / Salesforce</div><div class="tool-desc" data-i18n="td_crm">HubSpot free tier is excellent for early startups. Move to Salesforce post-Series A when enterprise sales complexity grows. Both have startup programs.</div><div class="tool-price">Free → $45+/mo</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_contracts">CONTRACTS</div><div class="tool-name">DocuSign / PandaDoc</div><div class="tool-desc" data-i18n="td_contracts">E-signature for all agreements. DocuSign is the enterprise standard. PandaDoc is cheaper with better proposal features. Both are legally binding in the US.</div><div class="tool-price">$10–$40/mo</div></div>
+    <div class="tool-card"><div class="tool-cat" data-i18n="tc_insurance">INSURANCE</div><div class="tool-name">Vouch</div><div class="tool-desc" data-i18n="td_insurance">Startup-focused business insurance. Required before most enterprise contracts. Covers: D&O, E&O, cyber, general liability. Get this before your first enterprise sale — they'll ask for it.</div><div class="tool-price">~$1,500–$5,000/yr</div></div>
+  </div>
+
+  <div class="iblock a2">
+    <div class="iblock-t" data-i18n="st_tip_t">Startup Programs — Get $50K-$500K in Credits</div>
+    <p data-i18n="st_tip_b">Most of the tools above offer significant <strong>startup credits</strong> through programs like AWS Activate, Google for Startups, Stripe Atlas, Y Combinator Deal, and Brex Startup. Getting into any accelerator — or just applying to Stripe Atlas — unlocks $50K-$500K in free cloud credits, SaaS discounts, and banking perks. Always ask before paying for anything: "Do you have a startup program?"</p>
+  </div>
+</div></div>
+
+<!-- ========== 06 COSTS ========== -->
+<div class="section" id="s-costs"><div class="container">
+  <div class="stitle" data-i18n="co_t">Costs & Timeline</div>
+  <div class="ssub" data-i18n="co_s">What it actually costs to form and run a US startup in year one</div>
+
+  <div class="stitle sm" data-i18n="co_form_t">Formation Costs (One-Time)</div>
+  <div class="cost-section">
+    <div class="cost-section-title" data-i18n="co_min_t">Minimum Viable Formation (~$800–$1,500)</div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_del">Delaware filing fee<span data-i18n="co_del_sub">Certificate of Incorporation, standard processing</span></div><div><div class="cost-amt">$89</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_agent">Registered agent (year 1)<span data-i18n="co_agent_sub">Required for all DE corporations — CT Corp, Northwest Registered Agent, etc.</span></div><div><div class="cost-amt">$50–$200/yr</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_atlas">Formation service (e.g., Stripe Atlas)<span data-i18n="co_atlas_sub">Includes: incorporation + EIN + bank account + founder docs</span></div><div><div class="cost-amt">$500</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_ein">EIN application<span data-i18n="co_ein_sub">Free via IRS. Instant with US SSN, 4-8 weeks via fax for foreign founders</span></div><div><div class="cost-amt">FREE</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_83b">83(b) election filing<span data-i18n="co_83b_sub">You prepare it, you mail it. USPS certified mail + postal receipt</span></div><div><div class="cost-amt">~$5</div></div></div>
+  </div>
+
+  <div class="cost-section">
+    <div class="cost-section-title" data-i18n="co_full_t">Full Formation with Legal (~$3,000–$8,000)</div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_law">Startup law firm engagement<span data-i18n="co_law_sub">Cooley, Orrick, Wilson Sonsini have startup programs. Clerky is self-service alternative.</span></div><div><div class="cost-amt">$2,000–$5,000</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_foq">Foreign qualification (operating state)<span data-i18n="co_foq_sub">If incorporated in DE but operating in CA, NY, TX — register there too</span></div><div><div class="cost-amt">$100–$500/state</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_409a">First 409A valuation<span data-i18n="co_409a_sub">Required before issuing any stock options. Firms: Carta, Capshare, Preferred Return</span></div><div><div class="cost-amt">$1,500–$3,000</div></div></div>
+  </div>
+
+  <div class="stitle sm" data-i18n="co_annual_t">Annual Ongoing Costs (Year 1)</div>
+  <div class="cost-section">
+    <div class="cost-section-title" data-i18n="co_annual_sub">What you'll pay every year just to exist legally</div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_de_tax">Delaware franchise tax<span data-i18n="co_de_tax_sub">Minimum $50/yr. Can be $300-500 using Assumed Par Value method. Don't use the default method.</span></div><div><div class="cost-amt">$50–$500/yr</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_de_report">Delaware annual report<span data-i18n="co_de_report_sub">Filed by March 1 each year via Delaware Division of Corporations website</span></div><div><div class="cost-amt">$50/yr</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_reg_agent">Registered agent (ongoing)<span data-i18n="co_reg_agent_sub">CT Corp is the enterprise standard. Northwest Registered Agent is cheaper.</span></div><div><div class="cost-amt">$50–$300/yr</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_state_tax">State income/franchise tax (operating state)<span data-i18n="co_state_tax_sub">CA has minimum $800/yr franchise tax. NY, TX, FL vary.</span></div><div><div class="cost-amt">$0–$800+/yr</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_accounting">Bookkeeping + accounting<span data-i18n="co_accounting_sub">QuickBooks + your own time, or managed service via Bench/Pilot</span></div><div><div class="cost-amt">$500–$8,000/yr</div></div></div>
+    <div class="cost-row"><div class="cost-label" data-i18n="co_tax_return">Federal + state tax returns<span data-i18n="co_tax_return_sub">Even if you have $0 revenue, you must file. CPA or startup-focused firm (e.g., Kruze Consulting)</span></div><div><div class="cost-amt">$1,500–$5,000/yr</div></div></div>
+  </div>
+
+  <div class="stitle sm" data-i18n="co_timeline_t">Realistic Formation Timeline</div>
+  <div class="tline">
+    <div class="tli"><div class="tlyear">DAY 1–2</div><div class="tlc"><strong data-i18n="co_d1t">File Certificate of Incorporation in Delaware</strong> <span data-i18n="co_d1b">$89 state fee + $100 for expedited (1-hour) processing. Use Stripe Atlas, Clerky, or directly via Delaware's Division of Corporations website. Entity exists the moment it's filed.</span></div></div>
+    <div class="tli"><div class="tlyear">DAY 3–5</div><div class="tlc"><strong data-i18n="co_d2t">Get EIN from IRS</strong> <span data-i18n="co_d2b">If you have a US SSN: apply online at IRS.gov, get EIN instantly. If you're a foreign founder: submit Form SS-4 by fax — takes 4-8 weeks. Use an ITIN or work with Stripe Atlas who expedites this.</span></div></div>
+    <div class="tli"><div class="tlyear">DAY 5–7</div><div class="tlc"><strong data-i18n="co_d3t">Open Mercury bank account</strong> <span data-i18n="co_d3b">Apply online at mercury.com. Submit: Certificate of Incorporation, EIN letter, founder ID. Approval typically in 1-3 business days. If using Stripe Atlas, this is bundled into the flow.</span></div></div>
+    <div class="tli"><div class="tlyear">DAY 7–14</div><div class="tlc"><strong data-i18n="co_d4t">Issue founder shares + file 83(b) election</strong> <span data-i18n="co_d4b">Issue shares at $0.0001/share or similar. Sign Founder Stock Purchase Agreement + IP Assignment. Mail 83(b) election to IRS via certified mail within 30 days of share issuance. Keep all records.</span></div></div>
+    <div class="tli"><div class="tlyear">WEEK 3–4</div><div class="tlc"><strong data-i18n="co_d5t">Foreign qualify in your operating state</strong> <span data-i18n="co_d5b">If you're based in California, New York, or another state, register as a foreign corporation in that state. Costs $100-500, takes 1-3 weeks. Required to legally conduct business there.</span></div></div>
+    <div class="tli"><div class="tlyear">MONTH 2</div><div class="tlc"><strong data-i18n="co_d6t">Full operational stack running</strong> <span data-i18n="co_d6b">QuickBooks set up and connected to Mercury, Gusto for payroll (if any), Carta for cap table, Clerky or your lawyer for ongoing agreements. You're now a fully operational US corporation.</span></div></div>
+  </div>
+
+  <div class="callout"><div class="callout-t" data-i18n="co_ct">// TOTAL COST SUMMARY</div><p data-i18n="co_cb">Minimum to get running: <strong>~$800</strong> (Stripe Atlas $500 + Delaware expedited filing ~$189 + misc). With proper legal: <strong>$3,000–$8,000</strong>. Annual ongoing: <strong>$3,000–$15,000</strong> depending on state, accounting setup, and legal activity. For a VC-backed startup, this is noise compared to your burn rate — don't cheap out on the legal structure. <strong>A messy cap table or wrong entity structure will cost 10-100x more to fix during a Series A than to do right from day one.</strong></p></div>
+</div></div>
+
+<script>
+// ── TRANSLATIONS ────────────────────────────────────────────────────
+const T = {
+en: {
+  n0:"00 OVERVIEW",n1:"01 ENTITY STRUCTURES",n2:"02 FORMATION STEPS",n3:"03 BANKING OPTIONS",n4:"04 EQUITY & CAP TABLE",n5:"05 OPERATIONAL STACK",n6:"06 COSTS & TIMELINE",
+  ov_badge:"EARLY-STAGE · US MARKET",ov_lbl:"// STARTUP FORMATION · USA · FROM ZERO",
+  ov_title:"Building your US company<br>the <span>right way</span> from day one",
+  ov_desc:"Before writing a single line of code or pitching a single investor, you need a legal entity. In the US, the choice of entity, state of incorporation, banking setup, and equity structure can make or break your fundraising, your taxes, and your ability to scale. This guide covers the essential infrastructure every serious startup needs from day one.",
+  ov_s1:"To form a Delaware C-Corp online with services like Stripe Atlas or Clerky",
+  ov_s2:"Typical total cost to incorporate in Delaware (filing fees + registered agent)",
+  ov_s3:"State where 68%+ of US-listed public companies are incorporated — the default for VC-backed startups",
+  ov_s4:"The only entity structure that VCs, YC, and institutional investors will fund — full stop",
+  ov_mt:"The Formation Stack",ov_ms:"What you need to set up, in order, before you can operate",
+  ov_wk1:"WEEK 1",ov_w1t:"Choose entity + state → Incorporate",ov_w1b:"Delaware C-Corp is the default. File Certificate of Incorporation with Delaware Division of Corporations. Takes 24-48h standard, 1h expedited. Cost: ~$89 state fee + registered agent.",
+  ov_wk2:"WEEK 1–2",ov_w2t:"Get your EIN (Employer Identification Number)",ov_w2b:"The IRS issues this — it's your company's tax ID. Required to open a bank account. Free via IRS.gov (online if you have a US SSN, or via Form SS-4 by fax for foreign founders).",
+  ov_wk2b:"WEEK 2",ov_w3t:"Open a business bank account",ov_w3b:"Mercury is the standard choice for startups in 2025. Requires: Certificate of Incorporation + EIN + ID of all founders. 100% online. Fully functional in 1-2 days after approval.",
+  ov_wk3:"WEEK 2–3",ov_w4t:"Issue founder shares + vesting agreements",ov_w4b:"Issue shares to founders at a very low price (e.g. $0.0001/share). File 83(b) election with the IRS within 30 days — critical for tax optimization. Set up vesting schedules (typically 4 years, 1-year cliff).",
+  ov_wk4:"WEEK 3–4",ov_w5t:"Register in your operating state (Foreign Qualification)",ov_w5b:"If incorporated in Delaware but operating in California, New York, etc., you must 'foreign qualify' in that state. Register with the Secretary of State and pay that state's fees and taxes.",
+  ov_wk5:"MONTH 2",ov_w6t:"Set up operational stack",ov_w6b:"Accounting (QuickBooks / Bench), payroll (Gusto), legal (Clerky or Orrick), cap table management (Carta or LTSE Equity), and your first contracts.",
+  ov_ct:"// THE MOST COMMON MISTAKE",ov_cb:"Many founders — especially those coming from outside the US — <strong>delay incorporation</strong> while building the product. This is a trap. Every day you operate without a legal entity, you accumulate personal liability. <strong>Incorporate first, build second.</strong> It takes less than a week and costs under $500.",
+  en_t:"Entity Structures",en_s:"The 4 main options — and why one dominates for VC-backed startups",
+  en_warn_t:"TL;DR — If you want to raise VC money: Delaware C-Corp, period.",
+  en_warn_b:"VCs, accelerators (including YC), and institutional angels are structured to invest in C-Corps. They have legal, tax, and fiduciary reasons not to invest in LLCs or S-Corps. If you ever want to raise from institutional investors or go public, the Delaware C-Corp is the only viable path.",
+  en_corp_tag:"VC-BACKED STANDARD · RECOMMENDED",en_corp_sub:"Corporation · Most common startup entity",
+  en_corp_desc:"The default for any startup planning to raise institutional funding. Delaware's Court of Chancery has centuries of corporate case law, creating predictability for investors. Allows unlimited classes of shares (common, preferred), ISOs for employees, and is fully compatible with VC term sheets.",
+  en_corp_1:"VCs, YC, angels — will invest. No exceptions or negotiations needed",en_corp_2:"Unlimited share classes: common for founders, preferred for investors",
+  en_corp_3:"ISO stock options for employees (massive tax advantage for team)",en_corp_4:"Delaware Court of Chancery: predictable, founder-friendly case law",
+  en_corp_5:"QSBS (Section 1202): up to $10M tax-free capital gains for early investors",en_corp_6:"Double taxation: corp pays tax, then shareholders pay tax on dividends",
+  en_corp_7:"More expensive to maintain: annual report fees, registered agent, franchise tax",
+  en_llc_tag:"GOOD FOR SMALL BIZ · NOT FOR VC",en_llc_sub:"Limited Liability Company · Flexible but VC-incompatible",
+  en_llc_desc:"Excellent for small businesses, real estate, and lifestyle companies. Venture investors can't easily hold LLC units due to their own fund structures and tax reasons.",
+  en_llc_1:"Pass-through taxation: no double taxation",en_llc_2:"Very flexible operating agreement",
+  en_llc_3:"Less compliance burden than a C-Corp",en_llc_4:"Great for consulting, real estate, small teams",
+  en_llc_5:"VCs (especially funds) structurally cannot invest — UBTI tax issue",en_llc_6:"No ISO stock options",en_llc_7:"Converting to C-Corp later is costly and triggers tax events",
+  en_scorp_tag:"SMALL BIZ · MAX 100 SHAREHOLDERS",en_scorp_sub:"S Corporation · Pass-through with restrictions",
+  en_scorp_desc:"A C-Corp that elects special tax treatment. Max 100 shareholders, only one class of stock, no foreign shareholders. Completely incompatible with VC funding.",
+  en_scorp_1:"Pass-through taxation",en_scorp_2:"Self-employment tax savings",en_scorp_3:"Max 100 shareholders — kills any VC round",en_scorp_4:"Only one class of stock",en_scorp_5:"No foreign shareholders",en_scorp_6:"Almost never used for scaling startups",
+  en_bene_tag:"MISSION-DRIVEN · IMPACT COMPANIES",en_bene_sub:"Public Benefit Corporation · Purpose + profit",
+  en_bene_desc:"A C-Corp that legally commits to a public benefit purpose alongside profit. Directors are shielded from shareholder pressure. Compatible with VC funding.",
+  en_bene_1:"Legal protection for mission-driven decisions",en_bene_2:"Compatible with VC funding — still a C-Corp",en_bene_3:"Strong for ESG-conscious enterprise clients",
+  en_bene_4:"Some VCs may push back on mission constraints",en_bene_5:"Annual benefit reporting requirements",en_bene_6:"Rarely a meaningful differentiator early on",
+  en_state_t:"Delaware vs. Other States — Where to Incorporate",en_state_s:"Incorporation state ≠ operating state. You can incorporate in Delaware and operate anywhere.",
+  en_c0:"Factor",en_c_home:"Your home state",en_varies:"Varies",en_f1:"VC acceptance",en_f2:"Case law quality",en_f3:"Annual cost",en_f4:"Foreign qualification needed?",en_f5:"Best for",
+  en_if_op:"If operating elsewhere",en_if_op2:"If operating elsewhere",en_if_op3:"If operating elsewhere",
+  en_best_del:"VC-backed, any startup",en_best_wy:"Crypto/fintech, privacy",en_best_nv:"Privacy, asset protection",en_best_home:"Solo ops, no VC plans",
+  en_wtax_t:"Delaware Franchise Tax trap:",en_wtax_b:"Delaware charges franchise tax calculated two ways: 'Authorized Shares' method (can be $50K+ for startups) or 'Assumed Par Value Capital' method (usually under $400 for early startups). Always calculate using BOTH and pay the lower one.",
+  fm_t:"Formation Steps in Detail",fm_s:"Every step to go from idea to fully operational company — with costs and timelines",
+  fm_opt_t:"Option A: DIY with Formation Services (Fastest)",
+  fm_atlas_desc:"Stripe's formation service. Incorporates a Delaware C-Corp, gets your EIN, opens a Mercury bank account, and issues founder shares — all in one flow. The most popular option for non-US founders.",
+  fm_atlas_1:"All-in-one: corp + EIN + bank account in 1 week",fm_atlas_2:"Built for international founders — no US SSN required",fm_atlas_3:"Direct Mercury bank account integration",fm_atlas_4:"Basic legal templates — not for complex cap tables",fm_atlas_5:"Stripe ecosystem lock-in for some services",
+  fm_clerky_desc:"Lawyer-designed platform used by YC-backed companies. Handles incorporation + all YC-standard legal documents. Highly recommended if you plan to apply to YC.",
+  fm_clerky_1:"YC-standard documents — reduces friction with accelerators",fm_clerky_2:"Includes: IP assignment, confidentiality, vesting",fm_clerky_3:"Lawyer-reviewed — higher quality than generic services",fm_clerky_4:"Slightly more complex flow than Atlas",
+  fm_others_desc:"Cheaper services that handle basic incorporation but provide minimal legal support. Risky for co-founder situations or anyone planning to fundraise.",
+  fm_others_1:"Cheapest option for basic incorporation",fm_others_2:"No legal guidance",fm_others_3:"Generic documents not tailored for startups",
+  fm_key_t:"Critical Legal Documents You Need at Formation",
+  fm_d1t:"Certificate of Incorporation",fm_d1b:"Filed with Delaware Division of Corporations. Keep authorized shares at 10,000,000 common to avoid high franchise tax. Public document.",
+  fm_d2t:"Bylaws",fm_d2b:"Internal governance rules: how board meetings work, quorum, voting procedures. Not public. Standard YC-style bylaws are fine for early stage.",
+  fm_d3t:"Founder Stock Purchase Agreement + IP Assignment",fm_d3b:"Issues shares to founders at a very low price. Includes IP Assignment clause transferring all pre-existing IP to the company. File 83(b) election within 30 days.",
+  fm_d4t:"Vesting Agreement",fm_d4b:"Standard: 4-year vesting with 1-year cliff. If someone leaves early, they don't walk away with a large equity stake. Required by most VCs before closing a round.",
+  fm_d5t:"83(b) Election — DO NOT MISS THIS",fm_d5b:"Filed with the IRS within 30 calendar days of stock issuance. Elects to pay income tax on shares at current (very low) value. Missing this deadline = massive tax bill when shares vest. No extensions.",
+  fm_d6t:"Employee/Contractor PIIA Agreement",fm_d6b:"Proprietary Information and Inventions Agreement. Every employee and contractor must sign. Ensures the company owns anything they build. Without PIIAs from all contributors, your IP ownership is legally questionable.",
+  fm_83b_t:"🚨 The 83(b) Election — The Single Most Time-Sensitive Action in Formation",
+  fm_83b_b:"You have exactly <strong>30 calendar days</strong> from the date shares are issued to file Form 83(b) with the IRS. Send via certified mail, keep the postal receipt. This is the most commonly missed and most expensive mistake in startup formation.",
+  bk_t:"Banking Options",bk_s:"The startup banking landscape has changed dramatically — here's the current state in 2025-26",
+  bk_svb_t:"Post-SVB landscape (March 2023 collapse)",
+  bk_svb_b:"SVB's collapse was a wake-up call: <strong>concentration risk is real</strong>. Most sophisticated startups now maintain accounts at 2+ banks, keep operating expenses at one and reserves at another, and stay under the $250K FDIC insurance limit per institution. Mercury has emerged as the new default.",
+  bk_neo_t:"Neobanks & Fintech-First (Recommended for Early Stage)",
+  bk_mercury_desc:"The de-facto standard for startups in 2025. Excellent UI, fast onboarding, free for most startups. Supports both US and non-US founders. Treasury product for yield on idle cash.",
+  bk_m1:"100% online onboarding — no branch visit",bk_m2:"Free checking + savings, wire transfers",bk_m3:"International founders accepted (most countries)",bk_m4:"Mercury Treasury: 4-5% APY on idle cash (T-Bills)",bk_m5:"Excellent API and integrations",bk_m6:"Virtual + physical debit cards, immediate",bk_m7:"Not a bank itself — deposits at partner banks",bk_m8:"Some high-risk sectors rejected",
+  bk_brex_desc:"Strong combination of banking + corporate card. Famous for giving credit to startups without personal guarantees. Better fit for companies with VC funding already raised.",
+  bk_b1:"Corporate card with no personal guarantee needed",bk_b2:"High credit limits based on bank balance, not credit score",bk_b3:"Great rewards: 7x rideshare, 3x travel/software",bk_b4:"Strong expense management and ERP integrations",bk_b5:"Dropped many small startups in 2022",bk_b6:"More complex onboarding than Mercury",
+  bk_relay_desc:"Excellent for small teams and bootstrapped startups. Multiple sub-accounts for budget management, strong bookkeeper access features.",
+  bk_r1:"Up to 20 checking accounts + 50 savings accounts",bk_r2:"Great bookkeeper/accountant access",bk_r3:"Physical and virtual debit cards per account",bk_r4:"Less startup-native than Mercury",bk_r5:"Fewer integrations with startup tools",
+  bk_trad_t:"Traditional Banks (When You Need Them)",
+  bk_chase_desc:"The traditional bank most used by startups for secondary accounts. Good for receiving large wire transfers, international banking, and when enterprise clients require a 'real' bank.",
+  bk_ch1:"Most stable — FDIC insured, too big to fail",bk_ch2:"International presence",bk_ch3:"Enterprise clients and investors trust it",bk_ch4:"Slow onboarding — often requires in-person visit",bk_ch5:"Fees on everything",bk_ch6:"Bureaucratic — slow to adapt",
+  bk_fr_desc:"First Republic Bank (acquired by JPMorgan in 2023) was the other classic startup bank alongside SVB. Its demise left a gap filled by SVB's HSBC acquisition and traditional banks trying to win startup clients.",
+  bk_fr1:"HSBC Innovation Banking fills some of the SVB gap",bk_fr2:"First Citizens Bank acquired SVB's loan portfolio",bk_fr3:"None are as startup-native as SVB or First Republic were",
+  bk_svb2_desc:"SVB still exists under First Citizens Bank ownership. Maintains startup and VC focus, venture debt products, and international banking. Still credible for Series A+ companies.",
+  bk_svb1:"Best venture debt / credit lines for funded startups",bk_svb2p:"Deep VC network relationships intact",bk_svb3:"Trust damaged post-collapse",bk_svb4:"Not recommended as sole banking relationship",
+  bk_strat_t:"Recommended Banking Strategy",
+  bk_strat_rec:"The 2-Bank Rule: Mercury + one traditional bank",
+  bk_st1:"<strong>Mercury (primary):</strong> Day-to-day operations, payroll, vendor payments, cards. Keep 3–6 months of runway here.",
+  bk_st2:"<strong>JPMorgan Chase or similar (secondary):</strong> Emergency reserve, large wires. Keep 6–12 months of runway here.",
+  bk_st3:"<strong>Mercury Treasury:</strong> Excess cash above operating needs → T-Bills for 4-5% yield.",
+  bk_st4:"<strong>FDIC limit:</strong> Keep under $250K per account per bank. Use Mercury's sweep accounts or split across institutions.",
+  bk_intl_t:"Note for Foreign Founders (Non-US)",
+  bk_intl_b:"Opening a US bank account as a foreign founder is possible but requires planning. <strong>Mercury and Brex</strong> are the most international-founder-friendly. You'll need: Certificate of Incorporation, EIN, valid passport, and proof of company address. Stripe Atlas bundles the Mercury account opening into the formation flow — the most frictionless path.",
+  eq_t:"Equity & Cap Table",eq_s:"How ownership is structured — the foundation of every investor conversation",
+  eq_intro_t:"What is a Cap Table?",eq_intro_b:"The cap table (capitalization table) is the definitive record of who owns what percentage of the company, and what type of shares they hold. It starts simple and grows complex with each funding round. Every investor will want to see it before writing a check.",
+  eq_typical_t:"Typical Cap Table Evolution",
+  eq_phase0:"// PHASE 0: AT INCORPORATION (Pre-everything)",eq_founders:"Founders (2)",
+  eq_phase1:"// PHASE 1: AFTER OPTION POOL CREATION (Pre-seed)",eq_founders2:"Founders",eq_pool:"Option Pool (ESOP)",
+  eq_phase2:"// PHASE 2: AFTER PRE-SEED / ANGELS (SAFEs or equity)",eq_founders3:"Founders",eq_pool2:"Option Pool",eq_angels:"Angels / Pre-seed",
+  eq_phase3:"// PHASE 3: AFTER SEED ROUND (Priced equity)",eq_founders4:"Founders",eq_pool3:"Option Pool",eq_angels2:"Angels / Pre-seed (converted)",eq_seed_vc:"Seed VCs (new)",
+  eq_instruments_t:"Key Funding Instruments",
+  eq_safe_sub:"Simple Agreement for Future Equity · Y Combinator standard",
+  eq_safe_desc:"Created by YC in 2013 and now the dominant early-stage instrument. Not a loan — no interest, no maturity date. Converts to equity at the next priced round. Two key parameters: valuation cap and discount.",
+  eq_safe_1:"No interest accrual — not debt",eq_safe_2:"Closes in days, not weeks",eq_safe_3:"Valuation cap: investor converts at the lower of cap or round price",eq_safe_4:"Discount: typically 10-20% to next round price",eq_safe_5:"YC post-money SAFE (2018) is now the standard",eq_safe_6:"Dilution is deferred — founders don't know exact % until conversion",
+  eq_cn_sub:"Debt instrument that converts to equity",
+  eq_cn_desc:"A loan that converts to equity at the next round. Has interest rate (4-8%/yr), maturity date (18-24 months), and conversion cap/discount. More complex than a SAFE.",
+  eq_cn_1:"Some investors prefer the debt structure",eq_cn_2:"Accrued interest increases investor return slightly",eq_cn_3:"Has a maturity date — must repay or renegotiate if no round",eq_cn_4:"Interest accrual = more dilution at conversion",eq_cn_5:"More complex and expensive than SAFE",
+  eq_pr_sub:"Series Seed, Series A — actual equity at set valuation",
+  eq_pr_desc:"A proper venture round with a set pre-money valuation and issuance of Preferred Stock. Takes 6-12 weeks and $20-50K in legal fees. Required for rounds above ~$2-3M from institutional VCs.",
+  eq_pr_1:"Clear valuation and cap table",eq_pr_2:"Preferred stock: liquidation preferences, anti-dilution",eq_pr_3:"Formal board structure",eq_pr_4:"Expensive: $20-50K+ in legal fees",eq_pr_5:"Slow: 6-12 weeks to close",eq_pr_6:"Complex terms: pro-rata rights, information rights, board composition",
+  eq_opt_sub:"The standard employee equity incentive in the US",
+  eq_opt_desc:"Options give employees the right to buy shares at a set price (strike price = 409A fair market value). ISOs for employees, NSOs for contractors. Both vest over 4 years typically.",
+  eq_opt_1:"ISOs: taxed at capital gains rate if held correctly",eq_opt_2:"Attracts top talent who accept lower salary for upside",eq_opt_3:"Requires a 409A valuation (~$1,500-$3,000)",eq_opt_4:"Exercise window: typically 90 days post-termination",eq_opt_5:"Complex AMT implications — employees need tax advice",
+  eq_cap_tools_t:"Cap Table Management Tools",
+  eq_carta_desc:"The dominant cap table platform. Handles equity issuance, 409A valuations, waterfall analysis, employee option grants. Required by most Series A VCs. Free for simple cap tables.",
+  eq_pulley_desc:"Growing competitor to Carta with better UX and lower pricing. Increasingly accepted by VCs. Good choice to avoid Carta's data practices.",
+  eq_sheet_sub:"Founders only · Pre-seed",eq_sheet_desc:"A Google Sheet is fine when you have 2 founders and no investors. The moment you have outside investors or issue options, move to Carta or Pulley.",
+  st_t:"Operational Stack",st_s:"The software and services that run a modern US startup — tools investors expect to see",
+  tc_accounting:"ACCOUNTING",td_qb:"The standard for startup accounting. Most accountants know it. Integrates with Mercury, Stripe, and payroll.",
+  tc_accounting2:"ACCOUNTING (MANAGED)",td_bench:"Full-service bookkeeping. Bench for small startups, Pilot for VC-backed companies.",
+  tc_payroll:"PAYROLL",td_gusto:"The standard payroll platform. Handles US payroll, benefits, W-2s, 1099s. Also supports international contractors.",
+  tc_payroll2:"PAYROLL (GLOBAL)",td_deel:"For international teams. Deel handles global contractors + EOR in 100+ countries. Rippling is full HR stack.",
+  tc_payments:"PAYMENTS",td_stripe:"The default payment processor. Best developer experience, global coverage, embedded finance via Stripe Treasury.",
+  tc_legal:"LEGAL",td_legal:"Clerky for self-serve legal docs. Orrick for full startup legal. Cooley and Wilson Sonsini are other top startup law firms.",
+  tc_captable:"CAP TABLE",td_carta:"Cap table management, 409A valuations, option grants. The standard VCs check.",
+  tc_tax:"TAX / COMPLIANCE",td_tax:"For foreign founders: Doola handles formation + registered agent + annual compliance. Stripe Atlas handles the banking side.",
+  tc_erp:"SPEND MANAGEMENT",td_brex:"Corporate cards + expense management. Brex for funded startups, Ramp for cost-control. Both integrate with QuickBooks.",
+  tc_crm:"CRM",td_crm:"HubSpot free tier is excellent for early startups. Move to Salesforce post-Series A.",
+  tc_contracts:"CONTRACTS",td_contracts:"E-signature for all agreements. DocuSign is the enterprise standard. PandaDoc is cheaper with better proposal features.",
+  tc_insurance:"INSURANCE",td_insurance:"Startup-focused business insurance. Required before most enterprise contracts. Get this before your first enterprise sale.",
+  st_tip_t:"Startup Programs — Get $50K-$500K in Credits",
+  st_tip_b:"Most tools above offer significant <strong>startup credits</strong> through programs like AWS Activate, Google for Startups, Stripe Atlas, YC Deal. Always ask: 'Do you have a startup program?'",
+  co_t:"Costs & Timeline",co_s:"What it actually costs to form and run a US startup in year one",
+  co_form_t:"Formation Costs (One-Time)",co_min_t:"Minimum Viable Formation (~$800–$1,500)",
+  co_del:"Delaware filing fee",co_del_sub:"Certificate of Incorporation, standard processing",co_agent:"Registered agent (year 1)",co_agent_sub:"Required for all DE corporations — CT Corp, Northwest Registered Agent, etc.",
+  co_atlas:"Formation service (e.g., Stripe Atlas)",co_atlas_sub:"Includes: incorporation + EIN + bank account + founder docs",co_ein:"EIN application",co_ein_sub:"Free via IRS. Instant with US SSN, 4-8 weeks via fax for foreign founders",co_83b:"83(b) election filing",co_83b_sub:"You prepare it, you mail it. USPS certified mail + postal receipt",
+  co_full_t:"Full Formation with Legal (~$3,000–$8,000)",co_law:"Startup law firm engagement",co_law_sub:"Cooley, Orrick, Wilson Sonsini have startup programs. Clerky is self-service alternative.",
+  co_foq:"Foreign qualification (operating state)",co_foq_sub:"If incorporated in DE but operating in CA, NY, TX — register there too",co_409a:"First 409A valuation",co_409a_sub:"Required before issuing any stock options.",
+  co_annual_t:"Annual Ongoing Costs (Year 1)",co_annual_sub:"What you'll pay every year just to exist legally",
+  co_de_tax:"Delaware franchise tax",co_de_tax_sub:"Minimum $50/yr. Use Assumed Par Value method — don't use the default.",co_de_report:"Delaware annual report",co_de_report_sub:"Filed by March 1 each year",co_reg_agent:"Registered agent (ongoing)",co_reg_agent_sub:"CT Corp is enterprise standard. Northwest Registered Agent is cheaper.",
+  co_state_tax:"State income/franchise tax (operating state)",co_state_tax_sub:"CA has minimum $800/yr franchise tax.",co_accounting:"Bookkeeping + accounting",co_accounting_sub:"QuickBooks + your own time, or managed service via Bench/Pilot",co_tax_return:"Federal + state tax returns",co_tax_return_sub:"Even with $0 revenue, you must file. CPA or startup-focused firm (e.g., Kruze Consulting)",
+  co_timeline_t:"Realistic Formation Timeline",
+  co_d1t:"File Certificate of Incorporation in Delaware",co_d1b:"$89 state fee + $100 for expedited processing. Entity exists the moment it's filed.",
+  co_d2t:"Get EIN from IRS",co_d2b:"US SSN: apply online, get EIN instantly. Foreign founder: Form SS-4 by fax, 4-8 weeks. Stripe Atlas expedites this.",
+  co_d3t:"Open Mercury bank account",co_d3b:"Apply online. Submit: Certificate of Incorporation, EIN letter, founder ID. Approval in 1-3 business days.",
+  co_d4t:"Issue founder shares + file 83(b) election",co_d4b:"Issue shares at $0.0001/share. Sign Founder Stock Purchase Agreement + IP Assignment. Mail 83(b) within 30 days. Keep all records.",
+  co_d5t:"Foreign qualify in your operating state",co_d5b:"If based in California, New York, or another state, register as a foreign corporation. Costs $100-500, takes 1-3 weeks.",
+  co_d6t:"Full operational stack running",co_d6b:"QuickBooks connected to Mercury, Gusto for payroll, Carta for cap table. You're now a fully operational US corporation.",
+  co_ct:"// TOTAL COST SUMMARY",co_cb:"Minimum: <strong>~$800</strong> (Stripe Atlas $500 + Delaware filing ~$189 + misc). With proper legal: <strong>$3,000–$8,000</strong>. Annual ongoing: <strong>$3,000–$15,000</strong>. <strong>A messy cap table or wrong entity structure will cost 10-100x more to fix during a Series A than to do right from day one.</strong>"
+},
+
+es: {
+  n0:"00 OVERVIEW",n1:"01 ESTRUCTURAS LEGALES",n2:"02 PASOS DE FORMACIÓN",n3:"03 OPCIONES BANCARIAS",n4:"04 EQUITY Y CAP TABLE",n5:"05 STACK OPERATIVO",n6:"06 COSTOS Y TIMELINE",
+  ov_badge:"EARLY-STAGE · MERCADO USA",ov_lbl:"// FORMACIÓN DE STARTUP · USA · DESDE CERO",
+  ov_title:"Construyendo tu empresa en USA<br>de la <span>manera correcta</span> desde el día uno",
+  ov_desc:"Antes de escribir una sola línea de código o hablar con un inversor, necesitas una entidad legal. En USA, la elección de entidad, estado de incorporación, setup bancario y estructura de equity pueden definir tu capacidad de levantar capital, tus impuestos y tu capacidad de escalar. Esta guía cubre la infraestructura esencial que toda startup seria necesita desde el día uno.",
+  ov_s1:"Para formar un Delaware C-Corp online con servicios como Stripe Atlas o Clerky",
+  ov_s2:"Costo total típico para incorporarse en Delaware (filing fees + registered agent)",
+  ov_s3:"Estado donde está incorporado el 68%+ de las empresas públicas de USA — el default para startups VC-backed",
+  ov_s4:"La única estructura que los VCs, YC e inversores institucionales financiarán — sin excepciones",
+  ov_mt:"El Stack de Formación",ov_ms:"Lo que necesitas configurar, en orden, antes de poder operar",
+  ov_wk1:"SEMANA 1",ov_w1t:"Elegir entidad + estado → Incorporarse",ov_w1b:"Delaware C-Corp es el default. Registrar el Certificate of Incorporation con Delaware Division of Corporations. Demora 24-48h estándar, 1h expedited. Costo: ~$89 state fee + registered agent.",
+  ov_wk2:"SEMANA 1–2",ov_w2t:"Obtener tu EIN (Employer Identification Number)",ov_w2b:"El IRS lo emite — es el tax ID de tu empresa. Necesario para abrir una cuenta bancaria. Gratis vía IRS.gov (online si tienes US SSN, o vía Form SS-4 por fax para founders extranjeros).",
+  ov_wk2b:"SEMANA 2",ov_w3t:"Abrir una cuenta bancaria de negocios",ov_w3b:"Mercury es el estándar para startups en 2025. Requiere: Certificate of Incorporation + EIN + ID de todos los founders. 100% online. Completamente funcional en 1-2 días tras la aprobación.",
+  ov_wk3:"SEMANA 2–3",ov_w4t:"Emitir acciones a founders + vesting agreements",ov_w4b:"Emitir acciones a los founders a un precio muy bajo (ej. $0.0001/acción). Presentar el 83(b) election al IRS dentro de 30 días — crítico para optimización fiscal. Configurar los vesting schedules (típicamente 4 años, 1-año cliff).",
+  ov_wk4:"SEMANA 3–4",ov_w5t:"Registrar en el estado donde operas (Foreign Qualification)",ov_w5b:"Si estás incorporado en Delaware pero operando en California, New York, etc., debes hacer una 'foreign qualification' en ese estado. Registrar con el Secretary of State y pagar los fees e impuestos del estado.",
+  ov_wk5:"MES 2",ov_w6t:"Configurar el stack operativo",ov_w6b:"Contabilidad (QuickBooks / Bench), nómina (Gusto), legal (Clerky u Orrick), gestión del cap table (Carta o LTSE Equity), y tus primeros contratos.",
+  ov_ct:"// EL ERROR MÁS COMÚN",ov_cb:"Muchos founders — especialmente los que vienen de fuera de USA — <strong>retrasan la incorporación</strong> mientras construyen el producto. Esto es una trampa. Cada día que operas sin entidad legal, acumulas responsabilidad personal. <strong>Incorpórate primero, construye después.</strong> Tarda menos de una semana y cuesta menos de $500.",
+  en_t:"Estructuras Legales",en_s:"Las 4 opciones principales — y por qué una domina para startups VC-backed",
+  en_warn_t:"Resumen ejecutivo: si quieres levantar capital VC, Delaware C-Corp, punto.",
+  en_warn_b:"Los VCs, aceleradoras (incluyendo YC) e inversores institucionales están estructurados para invertir en C-Corps. Tienen razones legales, fiscales y fiduciarias para no invertir en LLCs o S-Corps. Si alguna vez quieres levantar de inversores institucionales o salir a bolsa, el Delaware C-Corp es el único camino viable.",
+  en_corp_tag:"ESTÁNDAR VC-BACKED · RECOMENDADO",en_corp_sub:"Corporation · Entidad de startup más común",
+  en_corp_desc:"El default para cualquier startup que planee levantar capital institucional. La Court of Chancery de Delaware tiene siglos de jurisprudencia corporativa, creando predictibilidad para los inversores. Permite clases ilimitadas de acciones y opciones ISO para empleados.",
+  en_corp_1:"VCs, YC, angels — invertirán. Sin excepciones ni negociaciones",en_corp_2:"Clases ilimitadas de acciones: comunes para founders, preferidas para inversores",
+  en_corp_3:"Stock options ISO para empleados (enorme ventaja fiscal para el equipo)",en_corp_4:"Delaware Court of Chancery: jurisprudencia predecible y pro-founder",
+  en_corp_5:"QSBS (Section 1202): hasta $10M de ganancias de capital exentas de impuestos",en_corp_6:"Doble tributación: la corp paga impuestos, luego los accionistas pagan sobre dividendos",
+  en_corp_7:"Más caro de mantener: cuotas anuales, registered agent, franchise tax",
+  en_llc_tag:"BUENO PARA PEQUEÑOS NEGOCIOS · NO PARA VC",en_llc_sub:"Limited Liability Company · Flexible pero incompatible con VCs",
+  en_llc_desc:"Excelente para pequeños negocios, real estate y empresas lifestyle. Los inversores de venture no pueden fácilmente tener units de LLC por razones fiscales de sus propios fondos.",
+  en_llc_1:"Tributación pass-through: sin doble tributación",en_llc_2:"Operating agreement muy flexible",
+  en_llc_3:"Menos carga de compliance que un C-Corp",en_llc_4:"Ideal para consulting, real estate, equipos pequeños",
+  en_llc_5:"Los VCs (especialmente fondos) estructuralmente no pueden invertir — problema de impuesto UBTI",en_llc_6:"Sin stock options ISO",en_llc_7:"Convertir a C-Corp después es costoso y genera eventos fiscales",
+  en_scorp_tag:"PEQUEÑO NEGOCIO · MÁX 100 ACCIONISTAS",en_scorp_sub:"S Corporation · Pass-through con restricciones",
+  en_scorp_desc:"Un C-Corp que elige tratamiento fiscal especial. Máximo 100 accionistas, solo una clase de acciones, sin accionistas extranjeros. Completamente incompatible con financiamiento VC.",
+  en_scorp_1:"Tributación pass-through",en_scorp_2:"Ahorro en impuestos de autoempleo",en_scorp_3:"Máx 100 accionistas — destruye cualquier ronda VC",en_scorp_4:"Solo una clase de acciones",en_scorp_5:"Sin accionistas extranjeros",en_scorp_6:"Casi nunca se usa para startups que escalan",
+  en_bene_tag:"ORIENTADA A IMPACTO · EMPRESAS CON MISIÓN",en_bene_sub:"Public Benefit Corporation · Propósito + beneficio",
+  en_bene_desc:"Un C-Corp que se compromete legalmente a un propósito de beneficio público junto al lucro. Los directores están protegidos de la presión de accionistas. Compatible con financiamiento VC.",
+  en_bene_1:"Protección legal para decisiones orientadas a la misión",en_bene_2:"Compatible con VCs — sigue siendo un C-Corp",en_bene_3:"Fuerte para ventas a clientes enterprise conscientes del ESG",
+  en_bene_4:"Algunos VCs pueden resistirse a las restricciones de misión",en_bene_5:"Requisitos anuales de reporte de beneficios",en_bene_6:"Rara vez es un diferenciador significativo en etapas tempranas",
+  en_state_t:"Delaware vs. Otros Estados — Dónde Incorporarse",en_state_s:"Estado de incorporación ≠ estado de operación. Puedes incorporarte en Delaware y operar en cualquier lugar.",
+  en_c0:"Factor",en_c_home:"Tu estado de origen",en_varies:"Variable",en_f1:"Aceptación de VCs",en_f2:"Calidad jurisprudencial",en_f3:"Costo anual",en_f4:"¿Necesitas foreign qualification?",en_f5:"Mejor para",
+  en_if_op:"Si operas en otro estado",en_if_op2:"Si operas en otro estado",en_if_op3:"Si operas en otro estado",
+  en_best_del:"Startups VC-backed, cualquier startup",en_best_wy:"Crypto/fintech, privacidad",en_best_nv:"Privacidad, protección de activos",en_best_home:"Operaciones locales, sin planes de VC",
+  en_wtax_t:"Trampa del Delaware Franchise Tax:",en_wtax_b:"Delaware cobra el franchise tax calculado de dos maneras: método 'Authorized Shares' (puede ser $50K+ para startups) o método 'Assumed Par Value Capital' (generalmente menos de $400 para startups tempranas). Siempre calcula ambos y paga el menor.",
+  fm_t:"Pasos de Formación en Detalle",fm_s:"Cada paso para ir de idea a empresa completamente operativa — con costos y timelines",
+  fm_opt_t:"Opción A: Hazlo tú mismo con servicios de formación (Más rápido)",
+  fm_atlas_desc:"El servicio de formación de Stripe. Incorpora un Delaware C-Corp, obtiene tu EIN, abre una cuenta en Mercury y emite acciones de founders — todo en un solo flujo. La opción más popular para founders no estadounidenses.",
+  fm_atlas_1:"Todo en uno: corp + EIN + cuenta bancaria en 1 semana",fm_atlas_2:"Diseñado para founders internacionales — no requiere US SSN",fm_atlas_3:"Integración directa con cuenta bancaria Mercury",fm_atlas_4:"Plantillas legales básicas — no para cap tables complejos",fm_atlas_5:"Lock-in en el ecosistema Stripe para algunos servicios",
+  fm_clerky_desc:"Plataforma diseñada por abogados, usada por empresas YC-backed. Maneja la incorporación + todos los documentos legales estándar de YC. Muy recomendado si planeas aplicar a YC.",
+  fm_clerky_1:"Documentos estándar de YC — reduce fricción con aceleradoras",fm_clerky_2:"Incluye: IP assignment, confidencialidad, vesting",fm_clerky_3:"Revisado por abogados — mayor calidad que servicios genéricos",fm_clerky_4:"Flujo ligeramente más complejo que Atlas",
+  fm_others_desc:"Servicios más baratos que manejan la incorporación básica pero con soporte legal mínimo. Riesgoso para situaciones con co-founders o planes de levantar capital.",
+  fm_others_1:"Opción más económica para incorporación básica",fm_others_2:"Sin guía legal",fm_others_3:"Documentos genéricos, no diseñados para startups",
+  fm_key_t:"Documentos Legales Críticos que Necesitas en la Formación",
+  fm_d1t:"Certificate of Incorporation",fm_d1b:"Presentado ante la Delaware Division of Corporations. Mantén las acciones autorizadas en 10,000,000 comunes para evitar alto franchise tax. Documento público.",
+  fm_d2t:"Bylaws (Estatutos)",fm_d2b:"Reglas de gobernanza interna: cómo funcionan las reuniones del board, quórum, procedimientos de votación. No es público. Los Bylaws estándar de YC están bien para early stage.",
+  fm_d3t:"Founder Stock Purchase Agreement + IP Assignment",fm_d3b:"Emite acciones a los founders a un precio muy bajo. Incluye una cláusula de IP Assignment que transfiere toda la IP preexistente a la empresa. Presentar el 83(b) dentro de 30 días.",
+  fm_d4t:"Vesting Agreement",fm_d4b:"Estándar: 4 años de vesting con cliff de 1 año. Si alguien se va temprano, no se lleva una gran participación accionaria. Requerido por la mayoría de los VCs antes de cerrar una ronda.",
+  fm_d5t:"83(b) Election — NO TE LO PIERDAS",fm_d5b:"Presentado al IRS dentro de los 30 días calendario de la emisión de acciones. Elige pagar impuesto sobre la renta sobre las acciones al valor actual (muy bajo). Perder este plazo = factura fiscal masiva cuando las acciones hagan vesting. Sin prórrogas.",
+  fm_d6t:"Acuerdo PIIA para Empleados/Contratistas",fm_d6b:"Proprietary Information and Inventions Agreement. Todos los empleados y contratistas deben firmarlo. Garantiza que la empresa sea dueña de todo lo que construyan. Sin PIIAs, la propiedad de tu IP es legalmente cuestionable.",
+  fm_83b_t:"🚨 El 83(b) Election — La Acción Más Urgente en la Formación",
+  fm_83b_b:"Tienes exactamente <strong>30 días calendario</strong> desde la fecha en que se emiten las acciones para presentar el Form 83(b) al IRS. Envíalo por correo certificado y guarda el recibo postal. Este es el error más comúnmente cometido y más costoso en la formación de una startup.",
+  bk_t:"Opciones Bancarias",bk_s:"El panorama bancario para startups ha cambiado dramáticamente — este es el estado actual en 2025-26",
+  bk_svb_t:"Panorama post-SVB (colapso de marzo 2023)",
+  bk_svb_b:"El colapso del Silicon Valley Bank fue un llamado de atención: <strong>el riesgo de concentración es real</strong>. La mayoría de las startups sofisticadas ahora mantienen cuentas en 2+ bancos y se mantienen bajo el límite de seguro FDIC de $250K por institución. Mercury ha emergido como el nuevo default.",
+  bk_neo_t:"Neobancos y Fintech-First (Recomendados para Early Stage)",
+  bk_mercury_desc:"El estándar de facto para startups en 2025. Excelente UI, onboarding rápido, gratis para la mayoría de startups. Soporta founders estadounidenses y extranjeros. Producto Treasury para rendimiento en efectivo inactivo.",
+  bk_m1:"Onboarding 100% online — sin visita a sucursal",bk_m2:"Cuenta corriente + ahorros gratuita, wire transfers",bk_m3:"Founders internacionales aceptados (mayoría de países)",bk_m4:"Mercury Treasury: 4-5% APY en efectivo inactivo (T-Bills)",bk_m5:"Excelentes API e integraciones",bk_m6:"Tarjetas de débito virtuales y físicas, inmediatas",bk_m7:"No es un banco por sí mismo — depósitos en bancos partner",bk_m8:"Algunos sectores de alto riesgo rechazados",
+  bk_brex_desc:"Fuerte combinación de banca + tarjeta corporativa. Famoso por dar crédito a startups sin garantías personales. Mejor para empresas que ya levantaron financiamiento VC.",
+  bk_b1:"Tarjeta corporativa sin garantía personal requerida",bk_b2:"Altos límites de crédito basados en saldo bancario, no en score crediticio",bk_b3:"Excelentes recompensas: 7x en rideshare, 3x en viajes/software",bk_b4:"Gestión de gastos e integraciones ERP sólidas",bk_b5:"Desconectó muchas startups pequeñas en 2022",bk_b6:"Onboarding más complejo que Mercury",
+  bk_relay_desc:"Excelente para equipos pequeños y startups bootstrapped. Múltiples sub-cuentas para gestión de presupuesto, funciones sólidas de acceso para contadores.",
+  bk_r1:"Hasta 20 cuentas corrientes + 50 cuentas de ahorro",bk_r2:"Excelente acceso y permisos para contadores",bk_r3:"Tarjetas de débito físicas y virtuales por cuenta",bk_r4:"Menos startup-native que Mercury",bk_r5:"Menos integraciones con herramientas de startups",
+  bk_trad_t:"Bancos Tradicionales (Cuándo los Necesitas)",
+  bk_chase_desc:"El banco tradicional más usado por startups como cuenta secundaria. Bueno para recibir grandes transferencias, banca internacional y cuando clientes enterprise requieren un banco 'real'.",
+  bk_ch1:"El más estable — asegurado por FDIC, too big to fail",bk_ch2:"Presencia internacional",bk_ch3:"Los clientes enterprise e inversores confían en él",bk_ch4:"Onboarding lento — frecuentemente requiere visita en persona",bk_ch5:"Comisiones en todo",bk_ch6:"Burocrático — lento para adaptarse",
+  bk_fr_desc:"First Republic Bank (adquirido por JPMorgan en 2023) era el otro banco clásico para startups junto a SVB. Su desaparición dejó un vacío que están llenando HSBC Innovation Banking y bancos tradicionales.",
+  bk_fr1:"HSBC Innovation Banking llena parte del vacío de SVB",bk_fr2:"First Citizens Bank adquirió el portafolio de préstamos de SVB",bk_fr3:"Ninguno es tan startup-native como SVB o First Republic",
+  bk_svb2_desc:"SVB sigue existiendo bajo la propiedad de First Citizens Bank. Mantiene su enfoque en startups y VCs, productos de venture debt y banca internacional.",
+  bk_svb1:"Mejor venture debt / líneas de crédito para startups con funding",bk_svb2p:"Relaciones profundas con la red de VCs intactas",bk_svb3:"Confianza dañada post-colapso",bk_svb4:"No recomendado como única relación bancaria",
+  bk_strat_t:"Estrategia Bancaria Recomendada",
+  bk_strat_rec:"La Regla de 2 Bancos: Mercury + un banco tradicional",
+  bk_st1:"<strong>Mercury (primario):</strong> Operaciones diarias, nómina, pagos a proveedores, tarjetas. Mantén 3-6 meses de runway aquí.",
+  bk_st2:"<strong>JPMorgan Chase o similar (secundario):</strong> Reserva de emergencia, grandes wires. Mantén 6-12 meses de runway aquí.",
+  bk_st3:"<strong>Mercury Treasury:</strong> Efectivo excedente por encima de las necesidades operativas → T-Bills para rendimiento del 4-5%.",
+  bk_st4:"<strong>Límite FDIC:</strong> Mantener por debajo de $250K por cuenta por banco. Usa las sweep accounts de Mercury o divide entre instituciones.",
+  bk_intl_t:"Nota para Founders Extranjeros (No-US)",
+  bk_intl_b:"Abrir una cuenta bancaria en USA como founder extranjero es posible pero requiere planificación. <strong>Mercury y Brex</strong> son los más amigables para founders internacionales. Necesitarás: Certificate of Incorporation, EIN, pasaporte válido y prueba de dirección de la empresa. Stripe Atlas incluye la apertura de la cuenta Mercury en el flujo de formación.",
+  eq_t:"Equity y Cap Table",eq_s:"Cómo se estructura la propiedad — la base de cada conversación con inversores",
+  eq_intro_t:"¿Qué es un Cap Table?",eq_intro_b:"El cap table (tabla de capitalización) es el registro definitivo de quién posee qué porcentaje de la empresa y qué tipo de acciones tienen. Comienza simple y se vuelve complejo con cada ronda de financiamiento. Todo inversor querrá verlo antes de escribir un cheque.",
+  eq_typical_t:"Evolución Típica del Cap Table",
+  eq_phase0:"// FASE 0: AL MOMENTO DE INCORPORACIÓN (Pre-todo)",eq_founders:"Founders (2)",
+  eq_phase1:"// FASE 1: DESPUÉS DE CREAR EL OPTION POOL (Pre-seed)",eq_founders2:"Founders",eq_pool:"Option Pool (ESOP)",
+  eq_phase2:"// FASE 2: DESPUÉS DE PRE-SEED / ANGELS (SAFEs o equity)",eq_founders3:"Founders",eq_pool2:"Option Pool",eq_angels:"Angels / Pre-seed",
+  eq_phase3:"// FASE 3: DESPUÉS DE LA RONDA SEED (Equity con precio)",eq_founders4:"Founders",eq_pool3:"Option Pool",eq_angels2:"Angels / Pre-seed (convertidos)",eq_seed_vc:"VCs Seed (nuevos)",
+  eq_instruments_t:"Instrumentos de Financiamiento Clave",
+  eq_safe_sub:"Simple Agreement for Future Equity · Estándar de Y Combinator",
+  eq_safe_desc:"Creado por YC en 2013 y ahora el instrumento dominante en etapas tempranas. No es un préstamo — sin intereses ni fecha de vencimiento. Se convierte en equity en la próxima ronda con precio. Dos parámetros clave: valuation cap y descuento.",
+  eq_safe_1:"Sin acumulación de intereses — no es deuda",eq_safe_2:"Cierra en días, no semanas",eq_safe_3:"Valuation cap: el inversor convierte al menor entre el cap y el precio de la ronda",eq_safe_4:"Descuento: típicamente 10-20% sobre el precio de la próxima ronda",eq_safe_5:"SAFE post-money de YC (2018) es ahora el estándar",eq_safe_6:"La dilución se difiere — los founders no saben el % exacto hasta la conversión",
+  eq_cn_sub:"Instrumento de deuda que se convierte en equity",
+  eq_cn_desc:"Un préstamo que se convierte en equity en la próxima ronda. Tiene tasa de interés (4-8%/año), fecha de vencimiento (18-24 meses) y cap/descuento de conversión. Más complejo que un SAFE.",
+  eq_cn_1:"Algunos inversores prefieren la estructura de deuda",eq_cn_2:"El interés acumulado aumenta ligeramente el retorno del inversor",eq_cn_3:"Tiene fecha de vencimiento — si no hay ronda, hay que devolver o renegociar",eq_cn_4:"La acumulación de intereses = más dilución al convertir",eq_cn_5:"Más complejo y caro de documentar que un SAFE",
+  eq_pr_sub:"Series Seed, Series A — equity real a valuación establecida",
+  eq_pr_desc:"Una ronda de venture 'formal' con un pre-money valuation establecido y emisión de Preferred Stock. Tarda 6-12 semanas y $20-50K en honorarios legales. Requerido para rondas superiores a ~$2-3M de VCs institucionales.",
+  eq_pr_1:"Valuación y cap table claros",eq_pr_2:"Preferred stock: liquidation preferences, anti-dilución",eq_pr_3:"Estructura formal de board",eq_pr_4:"Costoso: $20-50K+ en honorarios legales",eq_pr_5:"Lento: 6-12 semanas para cerrar",eq_pr_6:"Términos complejos: pro-rata rights, information rights, composición del board",
+  eq_opt_sub:"El incentivo estándar de equity para empleados en USA",
+  eq_opt_desc:"Las opciones dan a los empleados el derecho de comprar acciones a un precio establecido (strike price = fair market value según 409A). ISOs para empleados, NSOs para contratistas. Ambos hacen vesting en 4 años típicamente.",
+  eq_opt_1:"ISOs: tributadas a tasa de ganancias de capital si se mantienen correctamente",eq_opt_2:"Atrae talento top que acepta salario más bajo por upside",eq_opt_3:"Requiere una valoración 409A (~$1,500-$3,000)",eq_opt_4:"Ventana de ejercicio: típicamente 90 días post-terminación",eq_opt_5:"Implicaciones complejas del AMT para ISOs",
+  eq_cap_tools_t:"Herramientas de Gestión del Cap Table",
+  eq_carta_desc:"La plataforma dominante de gestión del cap table. Maneja emisión de equity, valoraciones 409A, análisis de waterfall, emisión de opciones de empleados. Gratuito para cap tables simples.",
+  eq_pulley_desc:"Competidor creciente de Carta con mejor UX y precios más bajos. Buena opción para evitar las prácticas de datos de Carta.",
+  eq_sheet_sub:"Solo founders · Pre-seed",eq_sheet_desc:"Una hoja de cálculo de Google está bien cuando solo hay 2 founders sin inversores. En el momento en que haya inversores externos u opciones, migrar a Carta o Pulley.",
+  st_t:"Stack Operativo",st_s:"El software y servicios que hacen funcionar una startup moderna en USA — herramientas que los inversores esperan ver",
+  tc_accounting:"CONTABILIDAD",td_qb:"El estándar para contabilidad de startups. La mayoría de contadores lo conocen. Se integra con Mercury, Stripe y nómina.",
+  tc_accounting2:"CONTABILIDAD (GESTIONADA)",td_bench:"Bookkeeping full-service. Bench para startups pequeñas, Pilot para empresas VC-backed.",
+  tc_payroll:"NÓMINA",td_gusto:"La plataforma estándar de nómina para startups. Maneja nómina USA, beneficios, W-2s, 1099s. También soporta contratistas internacionales.",
+  tc_payroll2:"NÓMINA (GLOBAL)",td_deel:"Para equipos internacionales. Deel maneja contratistas globales + EOR en 100+ países.",
+  tc_payments:"PAGOS",td_stripe:"El procesador de pagos default. Mejor experiencia de developer, cobertura global, finanzas embebidas vía Stripe Treasury.",
+  tc_legal:"LEGAL",td_legal:"Clerky para documentos legales self-service. Orrick para legal completo de startups. Cooley y Wilson Sonsini son otros bufetes top.",
+  tc_captable:"CAP TABLE",td_carta:"Gestión del cap table, valoraciones 409A, emisión de opciones. El estándar que los VCs verifican.",
+  tc_tax:"IMPUESTOS / COMPLIANCE",td_tax:"Para founders extranjeros: Doola maneja la formación + registered agent + compliance anual.",
+  tc_erp:"GESTIÓN DE GASTOS",td_brex:"Tarjetas corporativas + gestión de gastos. Brex para startups con funding, Ramp para control de costos.",
+  tc_crm:"CRM",td_crm:"El nivel gratuito de HubSpot es excelente para startups tempranas. Migrar a Salesforce post-Series A.",
+  tc_contracts:"CONTRATOS",td_contracts:"Firma electrónica para todos los acuerdos. DocuSign es el estándar empresarial. PandaDoc es más económico.",
+  tc_insurance:"SEGUROS",td_insurance:"Seguros de negocios para startups. Requerido antes de la mayoría de contratos empresariales. Obtenerlo antes de la primera venta enterprise.",
+  st_tip_t:"Programas de Startups — Obtén $50K-$500K en Créditos",
+  st_tip_b:"La mayoría de las herramientas anteriores ofrecen <strong>créditos significativos para startups</strong> a través de programas como AWS Activate, Google for Startups, Stripe Atlas, YC Deal. Siempre preguntar: '¿Tienen un programa para startups?'",
+  co_t:"Costos y Timeline",co_s:"Lo que realmente cuesta formar y operar una startup en USA en el año uno",
+  co_form_t:"Costos de Formación (Una vez)",co_min_t:"Formación Mínima Viable (~$800–$1,500)",
+  co_del:"Filing fee de Delaware",co_del_sub:"Certificate of Incorporation, procesamiento estándar",co_agent:"Registered agent (año 1)",co_agent_sub:"Requerido para todas las corporations de DE",
+  co_atlas:"Servicio de formación (ej. Stripe Atlas)",co_atlas_sub:"Incluye: incorporación + EIN + cuenta bancaria + documentos de founders",co_ein:"Solicitud de EIN",co_ein_sub:"Gratis vía IRS. Instantáneo con US SSN, 4-8 semanas vía fax para founders extranjeros",co_83b:"Presentación del 83(b) election",co_83b_sub:"Lo preparas tú, lo envías tú. Correo certificado USPS + recibo postal",
+  co_full_t:"Formación Completa con Legal (~$3,000–$8,000)",co_law:"Contratación de bufete de startups",co_law_sub:"Cooley, Orrick, Wilson Sonsini tienen programas para startups. Clerky es la alternativa self-service.",
+  co_foq:"Foreign qualification (estado donde operas)",co_foq_sub:"Si estás incorporado en DE pero operando en CA, NY, TX — registrarte también allí",co_409a:"Primera valoración 409A",co_409a_sub:"Requerida antes de emitir cualquier stock option.",
+  co_annual_t:"Costos Anuales Continuos (Año 1)",co_annual_sub:"Lo que pagarás cada año solo para existir legalmente",
+  co_de_tax:"Delaware franchise tax",co_de_tax_sub:"Mínimo $50/año. Usar el método Assumed Par Value — no usar el método default.",co_de_report:"Reporte anual de Delaware",co_de_report_sub:"Presentado antes del 1 de marzo de cada año",co_reg_agent:"Registered agent (continuo)",co_reg_agent_sub:"CT Corp es el estándar empresarial. Northwest Registered Agent es más económico.",
+  co_state_tax:"Impuesto estatal sobre la renta/franchise (estado de operación)",co_state_tax_sub:"CA tiene mínimo $800/año de franchise tax.",co_accounting:"Bookkeeping + contabilidad",co_accounting_sub:"QuickBooks + tu propio tiempo, o servicio gestionado vía Bench/Pilot",co_tax_return:"Declaraciones de impuestos federales + estatales",co_tax_return_sub:"Incluso con $0 de ingresos, debes presentarlas. CPA o firma especializada en startups (ej. Kruze Consulting)",
+  co_timeline_t:"Timeline Realista de Formación",
+  co_d1t:"Presentar Certificate of Incorporation en Delaware",co_d1b:"$89 de fee estatal + $100 para procesamiento expedited. La entidad existe en el momento en que se registra.",
+  co_d2t:"Obtener EIN del IRS",co_d2b:"Con US SSN: solicitar online, obtener EIN al instante. Founder extranjero: Form SS-4 por fax, 4-8 semanas. Stripe Atlas agiliza esto.",
+  co_d3t:"Abrir cuenta bancaria en Mercury",co_d3b:"Solicitar online. Presentar: Certificate of Incorporation, carta del EIN, ID del founder. Aprobación en 1-3 días hábiles.",
+  co_d4t:"Emitir acciones a founders + presentar el 83(b) election",co_d4b:"Emitir acciones a $0.0001/acción. Firmar Founder Stock Purchase Agreement + IP Assignment. Enviar el 83(b) dentro de 30 días. Conservar todos los registros.",
+  co_d5t:"Foreign qualify en tu estado de operación",co_d5b:"Si estás basado en California, New York u otro estado, registrarte como corporation extranjera allí. Costo $100-500, tarda 1-3 semanas.",
+  co_d6t:"Stack operativo completamente funcionando",co_d6b:"QuickBooks conectado a Mercury, Gusto para nómina, Carta para cap table. Ahora eres una corporation de USA completamente operativa.",
+  co_ct:"// RESUMEN TOTAL DE COSTOS",co_cb:"Mínimo para empezar: <strong>~$800</strong> (Stripe Atlas $500 + filing de Delaware ~$189 + misceláneos). Con legal adecuado: <strong>$3,000–$8,000</strong>. Costos anuales: <strong>$3,000–$15,000</strong>. <strong>Un cap table desordenado o una estructura legal incorrecta costará 10-100x más arreglarlo durante un Series A que hacerlo bien desde el primer día.</strong>"
+},
+
+it: {
+  n0:"00 PANORAMICA",n1:"01 STRUTTURE LEGALI",n2:"02 PASSI DI FORMAZIONE",n3:"03 OPZIONI BANCARIE",n4:"04 EQUITY E CAP TABLE",n5:"05 STACK OPERATIVO",n6:"06 COSTI E TIMELINE",
+  ov_badge:"EARLY-STAGE · MERCATO USA",ov_lbl:"// FORMAZIONE STARTUP · USA · DA ZERO",
+  ov_title:"Costruire la tua azienda in USA<br>nel <span>modo giusto</span> dal primo giorno",
+  ov_desc:"Prima di scrivere una riga di codice o presentarti a un investitore, hai bisogno di un'entità legale. Negli USA, la scelta dell'entità, dello stato di costituzione, del setup bancario e della struttura azionaria può determinare il successo del tuo fundraising, le tue tasse e la tua capacità di crescere. Questa guida copre l'infrastruttura essenziale che ogni startup seria deve avere dal primo giorno.",
+  ov_s1:"Per costituire una Delaware C-Corp online con servizi come Stripe Atlas o Clerky",
+  ov_s2:"Costo totale tipico per costituirsi in Delaware (spese di registrazione + agente registrato)",
+  ov_s3:"Stato dove è incorporato il 68%+ delle società quotate USA — lo standard per startup finanziate da VC",
+  ov_s4:"L'unica struttura che VC, YC e investitori istituzionali finanzieranno — senza eccezioni",
+  ov_mt:"Lo Stack di Formazione",ov_ms:"Cosa devi configurare, in ordine, prima di poter operare",
+  ov_wk1:"SETTIMANA 1",ov_w1t:"Scegliere entità + stato → Costituirsi",ov_w1b:"Delaware C-Corp è lo standard. Registrare il Certificate of Incorporation con la Delaware Division of Corporations. Richiede 24-48h standard, 1h accelerato. Costo: ~$89 spesa statale + agente registrato.",
+  ov_wk2:"SETTIMANA 1–2",ov_w2t:"Ottenere il tuo EIN (Employer Identification Number)",ov_w2b:"Emesso dall'IRS — è il codice fiscale della tua azienda. Necessario per aprire un conto bancario. Gratuito su IRS.gov (online con SSN USA, o tramite Form SS-4 via fax per fondatori stranieri).",
+  ov_wk2b:"SETTIMANA 2",ov_w3t:"Aprire un conto bancario aziendale",ov_w3b:"Mercury è la scelta standard per le startup nel 2025. Richiede: Certificate of Incorporation + EIN + ID di tutti i fondatori. 100% online. Completamente operativo in 1-2 giorni dall'approvazione.",
+  ov_wk3:"SETTIMANA 2–3",ov_w4t:"Emettere azioni ai fondatori + accordi di vesting",ov_w4b:"Emettere azioni ai fondatori a un prezzo molto basso (es. $0.0001/azione). Presentare l'83(b) election all'IRS entro 30 giorni — critico per l'ottimizzazione fiscale. Impostare i piani di vesting (tipicamente 4 anni, cliff di 1 anno).",
+  ov_wk4:"SETTIMANA 3–4",ov_w5t:"Registrarsi nello stato di operazione (Foreign Qualification)",ov_w5b:"Se costituita in Delaware ma operante in California, New York, ecc., devi fare la 'foreign qualification' in quello stato. Registrarsi con il Secretary of State e pagare le tasse statali.",
+  ov_wk5:"MESE 2",ov_w6t:"Configurare lo stack operativo",ov_w6b:"Contabilità (QuickBooks / Bench), buste paga (Gusto), legale (Clerky o Orrick), gestione del cap table (Carta o LTSE Equity), e i primi contratti.",
+  ov_ct:"// L'ERRORE PIÙ COMUNE",ov_cb:"Molti fondatori — specialmente quelli provenienti da fuori dagli USA — <strong>ritardano la costituzione</strong> mentre costruiscono il prodotto. Questo è una trappola. Ogni giorno che operi senza un'entità legale, accumuli responsabilità personale. <strong>Prima costituisci, poi costruisci.</strong> Richiede meno di una settimana e costa meno di $500.",
+  en_t:"Strutture Legali",en_s:"Le 4 principali opzioni — e perché una domina per le startup finanziate da VC",
+  en_warn_t:"Sintesi: se vuoi raccogliere capitale VC, Delaware C-Corp, punto.",
+  en_warn_b:"I VC, le acceleratrici (inclusa YC) e gli angel istituzionali sono strutturati per investire in C-Corp. Hanno ragioni legali, fiscali e fiduciarie per non investire in LLC o S-Corp. Se mai vuoi raccogliere da investitori istituzionali o quotarti in borsa, la Delaware C-Corp è l'unica via praticabile.",
+  en_corp_tag:"STANDARD VC-BACKED · RACCOMANDATO",en_corp_sub:"Corporation · Entità startup più comune",
+  en_corp_desc:"Lo standard per qualsiasi startup che pianifica di raccogliere finanziamenti istituzionali. La Court of Chancery del Delaware ha secoli di giurisprudenza societaria. Consente classi illimitate di azioni e opzioni ISO per i dipendenti.",
+  en_corp_1:"VC, YC, angel — investiranno. Nessuna eccezione necessaria",en_corp_2:"Classi di azioni illimitate: ordinarie per i fondatori, privilegiate per gli investitori",
+  en_corp_3:"Stock option ISO per i dipendenti (enorme vantaggio fiscale per il team)",en_corp_4:"Delaware Court of Chancery: giurisprudenza prevedibile e favorevole ai fondatori",
+  en_corp_5:"QSBS (Section 1202): fino a $10M di plusvalenze esenti da tasse",en_corp_6:"Doppia tassazione: la corp paga le tasse, poi gli azionisti pagano sui dividendi",
+  en_corp_7:"Più costoso da mantenere: quote annuali, agente registrato, franchise tax",
+  en_llc_tag:"BUONO PER PICCOLE IMPRESE · NON PER VC",en_llc_sub:"Limited Liability Company · Flessibile ma incompatibile con i VC",
+  en_llc_desc:"Eccellente per piccole imprese e aziende lifestyle. Gli investitori di venture non possono facilmente detenere quote LLC a causa della struttura dei loro fondi e per ragioni fiscali.",
+  en_llc_1:"Tassazione pass-through: nessuna doppia tassazione",en_llc_2:"Operating agreement molto flessibile",
+  en_llc_3:"Meno oneri di compliance rispetto a una C-Corp",en_llc_4:"Ottimo per consulenza, immobiliare, piccoli team",
+  en_llc_5:"I VC strutturalmente non possono investire — problema fiscale UBTI",en_llc_6:"Nessuna stock option ISO",en_llc_7:"Convertire in C-Corp in seguito è costoso e genera eventi fiscali",
+  en_scorp_tag:"PICCOLA IMPRESA · MAX 100 AZIONISTI",en_scorp_sub:"S Corporation · Pass-through con restrizioni",
+  en_scorp_desc:"Una C-Corp che elegge un trattamento fiscale speciale. Massimo 100 azionisti, solo una classe di azioni, nessun azionista straniero. Completamente incompatibile con i finanziamenti VC.",
+  en_scorp_1:"Tassazione pass-through",en_scorp_2:"Risparmio fiscale sul lavoro autonomo",en_scorp_3:"Max 100 azionisti — blocca qualsiasi round VC",en_scorp_4:"Solo una classe di azioni",en_scorp_5:"Nessun azionista straniero",en_scorp_6:"Quasi mai usata per startup in crescita",
+  en_bene_tag:"ORIENTATA ALL'IMPATTO · AZIENDE CON MISSIONE",en_bene_sub:"Public Benefit Corporation · Scopo + profitto",
+  en_bene_desc:"Una C-Corp che si impegna legalmente a uno scopo di beneficio pubblico insieme al profitto. Gli amministratori sono protetti dalla pressione degli azionisti. Compatibile con i finanziamenti VC.",
+  en_bene_1:"Protezione legale per decisioni orientate alla missione",en_bene_2:"Compatibile con i VC — è ancora una C-Corp",en_bene_3:"Forte per vendite a clienti enterprise attenti all'ESG",
+  en_bene_4:"Alcuni VC potrebbero resistere ai vincoli della missione",en_bene_5:"Requisiti annuali di rendicontazione dei benefici",en_bene_6:"Raramente un differenziatore significativo nelle prime fasi",
+  en_state_t:"Delaware vs. Altri Stati — Dove Costituirsi",en_state_s:"Stato di costituzione ≠ stato di operazione. Puoi costituirti in Delaware e operare ovunque.",
+  en_c0:"Fattore",en_c_home:"Il tuo stato d'origine",en_varies:"Variabile",en_f1:"Accettazione dei VC",en_f2:"Qualità della giurisprudenza",en_f3:"Costo annuale",en_f4:"Serve la foreign qualification?",en_f5:"Ideale per",
+  en_if_op:"Se si opera altrove",en_if_op2:"Se si opera altrove",en_if_op3:"Se si opera altrove",
+  en_best_del:"Startup VC-backed, qualsiasi startup",en_best_wy:"Crypto/fintech, privacy",en_best_nv:"Privacy, protezione patrimoniale",en_best_home:"Operazioni locali, nessun piano VC",
+  en_wtax_t:"Trappola del Delaware Franchise Tax:",en_wtax_b:"Il Delaware calcola il franchise tax in due modi: metodo 'Authorized Shares' (può essere $50K+ per le startup) o metodo 'Assumed Par Value Capital' (di solito meno di $400 per startup nelle prime fasi). Calcola sempre entrambi e paga il minore.",
+  fm_t:"Passi di Formazione nel Dettaglio",fm_s:"Ogni passo per andare dall'idea a un'azienda completamente operativa — con costi e timeline",
+  fm_opt_t:"Opzione A: Fai da te con i servizi di formazione (Il più veloce)",
+  fm_atlas_desc:"Il servizio di formazione di Stripe. Costituisce una Delaware C-Corp, ottiene il tuo EIN, apre un conto Mercury e emette azioni dei fondatori — tutto in un unico flusso. L'opzione più popolare per i fondatori non statunitensi.",
+  fm_atlas_1:"Tutto in uno: corp + EIN + conto bancario in 1 settimana",fm_atlas_2:"Pensato per fondatori internazionali — non richiede SSN USA",fm_atlas_3:"Integrazione diretta con conto bancario Mercury",fm_atlas_4:"Modelli legali di base — non per cap table complessi",fm_atlas_5:"Dipendenza dall'ecosistema Stripe per alcuni servizi",
+  fm_clerky_desc:"Piattaforma progettata da avvocati, usata da aziende finanziate da YC. Gestisce la costituzione + tutti i documenti legali standard YC. Altamente raccomandato se pensi di candidarti a YC.",
+  fm_clerky_1:"Documenti standard YC — riduce le difficoltà con le acceleratrici",fm_clerky_2:"Include: cessione IP, riservatezza, vesting",fm_clerky_3:"Revisionato da avvocati — qualità superiore ai servizi generici",fm_clerky_4:"Flusso leggermente più complesso di Atlas",
+  fm_others_desc:"Servizi più economici che gestiscono la costituzione di base ma con un supporto legale minimo. Rischioso per situazioni con co-fondatori o per chi pianifica di raccogliere capitali.",
+  fm_others_1:"L'opzione più economica per la costituzione di base",fm_others_2:"Nessuna guida legale",fm_others_3:"Documenti generici non pensati per le startup",
+  fm_key_t:"Documenti Legali Critici Necessari alla Costituzione",
+  fm_d1t:"Certificate of Incorporation",fm_d1b:"Presentato alla Delaware Division of Corporations. Mantieni le azioni autorizzate a 10.000.000 ordinarie per evitare un alto franchise tax. Documento pubblico.",
+  fm_d2t:"Statuto (Bylaws)",fm_d2b:"Regole di governance interna: come funzionano le riunioni del board, quorum, procedure di voto. Non pubblico. Gli statuti standard YC vanno bene per le prime fasi.",
+  fm_d3t:"Founder Stock Purchase Agreement + IP Assignment",fm_d3b:"Emette azioni ai fondatori a un prezzo molto basso. Include una clausola di cessione IP che trasferisce tutta la proprietà intellettuale preesistente all'azienda. Presentare l'83(b) entro 30 giorni.",
+  fm_d4t:"Accordo di Vesting",fm_d4b:"Standard: 4 anni di vesting con cliff di 1 anno. Se qualcuno lascia presto, non porta via una grande quota. Richiesto dalla maggior parte dei VC prima di chiudere un round.",
+  fm_d5t:"83(b) Election — NON PERDERTELO",fm_d5b:"Presentato all'IRS entro 30 giorni di calendario dall'emissione delle azioni. Sceglie di pagare l'imposta sul reddito sulle azioni all'attuale valore (molto basso). Perdere questa scadenza = enorme carico fiscale al momento del vesting. Nessuna proroga.",
+  fm_d6t:"Accordo PIIA per Dipendenti/Collaboratori",fm_d6b:"Proprietary Information and Inventions Agreement. Ogni dipendente e collaboratore deve firmarlo. Garantisce che l'azienda sia proprietaria di tutto ciò che costruisce. Senza PIIA, la proprietà della tua IP è legalmente contestabile.",
+  fm_83b_t:"🚨 L'83(b) Election — L'Azione Più Urgente nella Formazione",
+  fm_83b_b:"Hai esattamente <strong>30 giorni di calendario</strong> dalla data di emissione delle azioni per presentare il Form 83(b) all'IRS. Invia tramite posta certificata e conserva la ricevuta postale. Questo è l'errore più frequente e più costoso nella formazione di una startup.",
+  bk_t:"Opzioni Bancarie",bk_s:"Il panorama bancario per le startup è cambiato drammaticamente — ecco lo stato attuale nel 2025-26",
+  bk_svb_t:"Panorama post-SVB (collasso di marzo 2023)",
+  bk_svb_b:"Il collasso della Silicon Valley Bank è stato un campanello d'allarme: <strong>il rischio di concentrazione è reale</strong>. La maggior parte delle startup sofisticate ora mantiene conti in 2+ banche e rimane al di sotto del limite di assicurazione FDIC di $250K per istituto. Mercury è emerso come il nuovo standard.",
+  bk_neo_t:"Neobanks e Fintech-First (Consigliati per le Prime Fasi)",
+  bk_mercury_desc:"Lo standard de facto per le startup nel 2025. Interfaccia eccellente, onboarding veloce, gratuito per la maggior parte delle startup. Supporta fondatori sia statunitensi che stranieri. Prodotto Treasury per rendimento sulla liquidità inattiva.",
+  bk_m1:"Onboarding 100% online — nessuna visita in filiale",bk_m2:"Conto corrente + risparmio gratuito, bonifici",bk_m3:"Fondatori internazionali accettati (la maggior parte dei paesi)",bk_m4:"Mercury Treasury: 4-5% APY sulla liquidità inattiva (T-Bills)",bk_m5:"Ottime API e integrazioni",bk_m6:"Carte di debito virtuali e fisiche, immediate",bk_m7:"Non è una banca propria — depositi presso banche partner",bk_m8:"Alcuni settori ad alto rischio rifiutati",
+  bk_brex_desc:"Forte combinazione di banca + carta aziendale. Famoso per concedere credito alle startup senza garanzie personali. Più adatto per aziende che hanno già raccolto finanziamenti VC.",
+  bk_b1:"Carta aziendale senza garanzia personale richiesta",bk_b2:"Alti limiti di credito basati sul saldo bancario, non sul credit score",bk_b3:"Ottimi premi: 7x su rideshare, 3x su viaggi/software",bk_b4:"Gestione delle spese e integrazioni ERP solide",bk_b5:"Ha escluso molte startup piccole nel 2022",bk_b6:"Onboarding più complesso di Mercury",
+  bk_relay_desc:"Eccellente per piccoli team e startup bootstrapped. Più sotto-conti per la gestione del budget, ottime funzionalità di accesso per i contabili.",
+  bk_r1:"Fino a 20 conti correnti + 50 conti di risparmio",bk_r2:"Ottimo accesso e permessi per contabili",bk_r3:"Carte di debito fisiche e virtuali per conto",bk_r4:"Meno orientato alle startup rispetto a Mercury",bk_r5:"Meno integrazioni con strumenti per startup",
+  bk_trad_t:"Banche Tradizionali (Quando ne Hai Bisogno)",
+  bk_chase_desc:"La banca tradizionale più usata dalle startup come conto secondario. Buona per ricevere grandi bonifici e banca internazionale.",
+  bk_ch1:"Il più stabile — assicurato FDIC, too big to fail",bk_ch2:"Presenza internazionale",bk_ch3:"I clienti enterprise e gli investitori si fidano",bk_ch4:"Onboarding lento — spesso richiede visita di persona",bk_ch5:"Commissioni su tutto",bk_ch6:"Burocratico — lento ad adattarsi",
+  bk_fr_desc:"First Republic Bank (acquisita da JPMorgan nel 2023) era l'altra banca classica per startup insieme a SVB. La sua scomparsa ha lasciato un vuoto riempito da HSBC Innovation Banking e banche tradizionali.",
+  bk_fr1:"HSBC Innovation Banking riempie parte del vuoto di SVB",bk_fr2:"First Citizens Bank ha acquisito il portafoglio prestiti di SVB",bk_fr3:"Nessuno è orientato alle startup come SVB o First Republic",
+  bk_svb2_desc:"SVB esiste ancora sotto la proprietà di First Citizens Bank. Mantiene il focus su startup e VC, prodotti di venture debt e banca internazionale.",
+  bk_svb1:"Miglior venture debt / linee di credito per startup finanziate",bk_svb2p:"Relazioni profonde con la rete VC intatte",bk_svb3:"Fiducia danneggiata dopo il collasso",bk_svb4:"Non raccomandato come unica relazione bancaria",
+  bk_strat_t:"Strategia Bancaria Raccomandata",
+  bk_strat_rec:"La Regola dei 2 Conti: Mercury + una banca tradizionale",
+  bk_st1:"<strong>Mercury (primario):</strong> Operazioni quotidiane, buste paga, pagamenti ai fornitori, carte. Tieni 3-6 mesi di runway qui.",
+  bk_st2:"<strong>JPMorgan Chase o simile (secondario):</strong> Riserva d'emergenza, grandi bonifici. Tieni 6-12 mesi di runway qui.",
+  bk_st3:"<strong>Mercury Treasury:</strong> Liquidità in eccesso oltre le esigenze operative → T-Bills per rendimento del 4-5%.",
+  bk_st4:"<strong>Limite FDIC:</strong> Mantieni sotto $250K per conto per banca. Usa i conti sweep di Mercury o dividi tra istituzioni.",
+  bk_intl_t:"Nota per Fondatori Stranieri (Non-US)",
+  bk_intl_b:"Aprire un conto bancario USA come fondatore straniero è possibile ma richiede pianificazione. <strong>Mercury e Brex</strong> sono i più amichevoli con i fondatori internazionali. Avrai bisogno di: Certificate of Incorporation, EIN, passaporto valido e prova dell'indirizzo aziendale. Stripe Atlas include l'apertura del conto Mercury nel flusso di formazione.",
+  eq_t:"Equity e Cap Table",eq_s:"Come è strutturata la proprietà — la base di ogni conversazione con gli investitori",
+  eq_intro_t:"Cos'è un Cap Table?",eq_intro_b:"Il cap table (tabella di capitalizzazione) è il registro definitivo di chi possiede quale percentuale dell'azienda e che tipo di azioni detiene. Inizia semplice e diventa complesso con ogni round di finanziamento. Ogni investitore vorrà vederlo prima di firmare un assegno.",
+  eq_typical_t:"Evoluzione Tipica del Cap Table",
+  eq_phase0:"// FASE 0: ALLA COSTITUZIONE (Pre-tutto)",eq_founders:"Fondatori (2)",
+  eq_phase1:"// FASE 1: DOPO LA CREAZIONE DELL'OPTION POOL (Pre-seed)",eq_founders2:"Fondatori",eq_pool:"Option Pool (ESOP)",
+  eq_phase2:"// FASE 2: DOPO PRE-SEED / ANGEL (SAFE o equity)",eq_founders3:"Fondatori",eq_pool2:"Option Pool",eq_angels:"Angel / Pre-seed",
+  eq_phase3:"// FASE 3: DOPO IL ROUND SEED (Equity con prezzo)",eq_founders4:"Fondatori",eq_pool3:"Option Pool",eq_angels2:"Angel / Pre-seed (convertiti)",eq_seed_vc:"VC Seed (nuovi)",
+  eq_instruments_t:"Strumenti di Finanziamento Chiave",
+  eq_safe_sub:"Simple Agreement for Future Equity · Standard Y Combinator",
+  eq_safe_desc:"Creato da YC nel 2013 e ora lo strumento dominante nelle prime fasi. Non è un prestito — nessun interesse, nessuna scadenza. Si converte in equity al prossimo round con prezzo. Due parametri chiave: valuation cap e sconto.",
+  eq_safe_1:"Nessun interesse maturato — non è debito",eq_safe_2:"Chiude in giorni, non settimane",eq_safe_3:"Valuation cap: l'investitore converte al minore tra cap e prezzo del round",eq_safe_4:"Sconto: tipicamente 10-20% rispetto al prezzo del prossimo round",eq_safe_5:"SAFE post-money YC (2018) è ora lo standard",eq_safe_6:"La diluizione è differita — i fondatori non sanno la % esatta fino alla conversione",
+  eq_cn_sub:"Strumento di debito che si converte in equity",
+  eq_cn_desc:"Un prestito che si converte in equity al prossimo round. Ha tasso d'interesse (4-8%/anno), scadenza (18-24 mesi) e cap/sconto di conversione. Più complesso di un SAFE.",
+  eq_cn_1:"Alcuni investitori preferiscono la struttura del debito",eq_cn_2:"Gli interessi maturati aumentano leggermente il rendimento dell'investitore",eq_cn_3:"Ha una scadenza — se non c'è round, bisogna rimborsare o rinegoziare",eq_cn_4:"Interessi maturati = maggiore diluizione alla conversione",eq_cn_5:"Più complesso e costoso da documentare rispetto al SAFE",
+  eq_pr_sub:"Series Seed, Series A — equity reale a valutazione stabilita",
+  eq_pr_desc:"Un round di venture 'vero' con una pre-money valuation stabilita e emissione di Preferred Stock. Richiede 6-12 settimane e $20-50K in spese legali. Necessario per round superiori a ~$2-3M da VC istituzionali.",
+  eq_pr_1:"Cap table e valutazione chiari",eq_pr_2:"Preferred stock: preferenze di liquidazione, anti-diluizione",eq_pr_3:"Struttura formale del board",eq_pr_4:"Costoso: $20-50K+ in spese legali",eq_pr_5:"Lento: 6-12 settimane per chiudere",eq_pr_6:"Termini complessi: diritti pro-rata, diritti informativi, composizione del board",
+  eq_opt_sub:"L'incentivo equity standard per i dipendenti negli USA",
+  eq_opt_desc:"Le opzioni danno ai dipendenti il diritto di acquistare azioni a un prezzo stabilito (prezzo di esercizio = fair market value secondo la 409A). ISO per dipendenti, NSO per collaboratori. Entrambi con vesting tipicamente su 4 anni.",
+  eq_opt_1:"ISO: tassate all'aliquota delle plusvalenze se detenute correttamente",eq_opt_2:"Attrae talenti di alto livello che accettano uno stipendio inferiore in cambio di upside",eq_opt_3:"Richiede una valutazione 409A (~$1.500-$3.000)",eq_opt_4:"Finestra di esercizio: tipicamente 90 giorni post-cessazione",eq_opt_5:"Complesse implicazioni AMT per le ISO",
+  eq_cap_tools_t:"Strumenti di Gestione del Cap Table",
+  eq_carta_desc:"La piattaforma dominante per la gestione del cap table. Gestisce emissione di equity, valutazioni 409A, analisi waterfall, emissione di opzioni per dipendenti. Gratuito per cap table semplici.",
+  eq_pulley_desc:"Concorrente in crescita di Carta con UX migliore e prezzi più bassi. Buona scelta per evitare le pratiche sui dati di Carta.",
+  eq_sheet_sub:"Solo fondatori · Pre-seed",eq_sheet_desc:"Un foglio Google va bene quando hai solo 2 fondatori e nessun investitore. Appena hai investitori esterni o emetti opzioni, passa a Carta o Pulley.",
+  st_t:"Stack Operativo",st_s:"Il software e i servizi che fanno funzionare una moderna startup USA — strumenti che gli investitori si aspettano di vedere",
+  tc_accounting:"CONTABILITÀ",td_qb:"Lo standard per la contabilità delle startup. La maggior parte dei commercialisti lo conosce. Si integra con Mercury, Stripe e buste paga.",
+  tc_accounting2:"CONTABILITÀ (GESTITA)",td_bench:"Bookkeeping full-service. Bench per piccole startup, Pilot per aziende finanziate da VC.",
+  tc_payroll:"BUSTE PAGA",td_gusto:"La piattaforma standard per le buste paga delle startup. Gestisce buste paga USA, benefit, W-2, 1099. Supporta anche collaboratori internazionali.",
+  tc_payroll2:"BUSTE PAGA (GLOBALE)",td_deel:"Per team internazionali. Deel gestisce collaboratori globali + EOR in 100+ paesi.",
+  tc_payments:"PAGAMENTI",td_stripe:"Il processore di pagamenti predefinito. Migliore esperienza per sviluppatori, copertura globale, finanza incorporata tramite Stripe Treasury.",
+  tc_legal:"LEGALE",td_legal:"Clerky per documenti legali self-service. Orrick per legale completo delle startup. Cooley e Wilson Sonsini sono altri studi legali top.",
+  tc_captable:"CAP TABLE",td_carta:"Gestione del cap table, valutazioni 409A, emissione di opzioni. Lo standard che i VC verificano.",
+  tc_tax:"FISCALE / COMPLIANCE",td_tax:"Per fondatori stranieri: Doola gestisce la formazione + agente registrato + compliance annuale.",
+  tc_erp:"GESTIONE SPESE",td_brex:"Carte aziendali + gestione delle spese. Brex per startup finanziate, Ramp per il controllo dei costi.",
+  tc_crm:"CRM",td_crm:"Il livello gratuito di HubSpot è eccellente per le startup nelle prime fasi. Passare a Salesforce dopo la Series A.",
+  tc_contracts:"CONTRATTI",td_contracts:"Firma elettronica per tutti gli accordi. DocuSign è lo standard aziendale. PandaDoc è più economico.",
+  tc_insurance:"ASSICURAZIONE",td_insurance:"Assicurazione aziendale per startup. Richiesta prima della maggior parte dei contratti enterprise.",
+  st_tip_t:"Programmi Startup — Ottieni $50K-$500K in Crediti",
+  st_tip_b:"La maggior parte degli strumenti sopra offrono <strong>crediti significativi per startup</strong> tramite programmi come AWS Activate, Google for Startups, Stripe Atlas, YC Deal. Chiedere sempre: 'Avete un programma per startup?'",
+  co_t:"Costi e Timeline",co_s:"Quanto costa realmente costituire e gestire una startup USA nel primo anno",
+  co_form_t:"Costi di Formazione (Una Tantum)",co_min_t:"Formazione Minima Vitale (~$800–$1.500)",
+  co_del:"Quota di registrazione Delaware",co_del_sub:"Certificate of Incorporation, elaborazione standard",co_agent:"Agente registrato (anno 1)",co_agent_sub:"Richiesto per tutte le corporations del DE",
+  co_atlas:"Servizio di formazione (es. Stripe Atlas)",co_atlas_sub:"Include: costituzione + EIN + conto bancario + documenti dei fondatori",co_ein:"Richiesta EIN",co_ein_sub:"Gratuito via IRS. Istantaneo con SSN USA, 4-8 settimane via fax per fondatori stranieri",co_83b:"Presentazione dell'83(b) election",co_83b_sub:"Lo prepari tu, lo invii tu. Posta certificata USPS + ricevuta postale",
+  co_full_t:"Formazione Completa con Legale (~$3.000–$8.000)",co_law:"Incarico a uno studio legale per startup",co_law_sub:"Cooley, Orrick, Wilson Sonsini hanno programmi per startup. Clerky è l'alternativa self-service.",
+  co_foq:"Foreign qualification (stato di operazione)",co_foq_sub:"Se costituita in DE ma operante in CA, NY, TX — registrarsi anche lì",co_409a:"Prima valutazione 409A",co_409a_sub:"Richiesta prima di emettere qualsiasi stock option.",
+  co_annual_t:"Costi Annuali Continuativi (Anno 1)",co_annual_sub:"Quello che pagherai ogni anno solo per esistere legalmente",
+  co_de_tax:"Delaware franchise tax",co_de_tax_sub:"Minimo $50/anno. Usare il metodo Assumed Par Value — non usare il metodo predefinito.",co_de_report:"Rapporto annuale Delaware",co_de_report_sub:"Presentato entro il 1 marzo di ogni anno",co_reg_agent:"Agente registrato (continuativo)",co_reg_agent_sub:"CT Corp è lo standard aziendale. Northwest Registered Agent è più economico.",
+  co_state_tax:"Imposta statale sul reddito/franchise (stato di operazione)",co_state_tax_sub:"La CA ha un franchise tax minimo di $800/anno.",co_accounting:"Bookkeeping + contabilità",co_accounting_sub:"QuickBooks + il tuo tempo, o servizio gestito tramite Bench/Pilot",co_tax_return:"Dichiarazioni fiscali federali + statali",co_tax_return_sub:"Anche con $0 di ricavi, devi presentarle. Commercialista o studio specializzato in startup (es. Kruze Consulting)",
+  co_timeline_t:"Timeline Realistica di Formazione",
+  co_d1t:"Presentare il Certificate of Incorporation in Delaware",co_d1b:"$89 di quota statale + $100 per elaborazione accelerata. L'entità esiste nel momento in cui viene registrata.",
+  co_d2t:"Ottenere l'EIN dall'IRS",co_d2b:"Con SSN USA: richiedere online, ottenere EIN istantaneamente. Fondatore straniero: Form SS-4 via fax, 4-8 settimane. Stripe Atlas accelera questo processo.",
+  co_d3t:"Aprire conto bancario su Mercury",co_d3b:"Richiedere online. Presentare: Certificate of Incorporation, lettera EIN, ID del fondatore. Approvazione in 1-3 giorni lavorativi.",
+  co_d4t:"Emettere azioni ai fondatori + presentare l'83(b) election",co_d4b:"Emettere azioni a $0.0001/azione. Firmare Founder Stock Purchase Agreement + IP Assignment. Inviare l'83(b) entro 30 giorni. Conservare tutti i documenti.",
+  co_d5t:"Foreign qualify nello stato di operazione",co_d5b:"Se sei in California, New York o un altro stato, registrarti come corporation straniera. Costo $100-500, richiede 1-3 settimane.",
+  co_d6t:"Stack operativo completamente funzionante",co_d6b:"QuickBooks connesso a Mercury, Gusto per le buste paga, Carta per il cap table. Ora sei una corporation USA completamente operativa.",
+  co_ct:"// RIEPILOGO TOTALE DEI COSTI",co_cb:"Minimo per iniziare: <strong>~$800</strong> (Stripe Atlas $500 + registrazione Delaware ~$189 + varie). Con legale adeguato: <strong>$3.000–$8.000</strong>. Costi annuali: <strong>$3.000–$15.000</strong>. <strong>Un cap table disordinato o una struttura legale sbagliata costerà 10-100x di più da correggere durante un Series A rispetto a farlo bene fin dal primo giorno.</strong>"
+}
+};
+
+// ── APPLY TRANSLATIONS ────────────────────────────────────────────
+let lang = 'en';
+function setLang(l, btn) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (T[l] && T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+}
+function show(tab, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + tab).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+// init
+setLang('es', document.querySelector('.lang-btn.active'));
+</script>
+<div id="google_translate_element"></div>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -111,6 +111,106 @@
   ::-webkit-scrollbar{width:4px;height:4px}
   ::-webkit-scrollbar-track{background:var(--bg)}
   ::-webkit-scrollbar-thumb{background:var(--border)}
+
+  /* ─────────────────────────────────────────────
+     RESPONSIVE (tablet & mobile)
+     ───────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    body { font-size: 13px; }
+
+    /* GLOBAL NAV: brand + lang on top, links wrap below */
+    .global-nav { grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 8px 12px; padding: 8px 12px; }
+    .global-brand { grid-column: 1; grid-row: 1; gap: 8px; }
+    .global-logo { width: 60px; height: 60px; }
+    .lang-switch { grid-column: 2; grid-row: 1; }
+    .global-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; flex-wrap: wrap; gap: 6px; }
+    .global-nav-link { font-size: 10px; padding: 5px 10px; }
+
+    /* TAB NAV: tighter, already scrolls horizontally */
+    .nav { padding: 0 12px; }
+    .nav-btn { padding: 10px 12px; font-size: 10px; letter-spacing: .03em; }
+
+    /* CONTAINER + HERO */
+    .container { padding: 24px 16px; }
+    .hero { padding: 24px 20px; margin-bottom: 24px; }
+    .hero-title { font-size: 24px; }
+    .hero-desc { font-size: 13px; line-height: 1.65; }
+
+    /* STAT GRID: 4 → 2 columns */
+    .stat-grid { grid-template-columns: repeat(2, 1fr); margin-bottom: 24px; }
+    .stat-card { padding: 18px 16px; }
+    .stat-num { font-size: 22px; }
+    .stat-label { font-size: 10px; }
+
+    /* AGENCY GRID: 2 → 1 column */
+    .agency-grid { grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+    .agency-card { padding: 20px; }
+    .agency-name { font-size: 16px; }
+    .agency-desc { font-size: 12px; }
+
+    /* STATE GRID: 3 → 1 column */
+    .state-grid { grid-template-columns: 1fr; gap: 10px; }
+    .state-card { padding: 16px; }
+    .state-name { font-size: 14px; }
+
+    /* SECTION TITLES */
+    .section-title { font-size: 18px; }
+    .section-sub { font-size: 12px; margin-bottom: 20px; }
+
+    /* TABLES: scroll horizontally on small screens */
+    .reg-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; white-space: nowrap; }
+    .reg-table th, .reg-table td { padding: 8px 10px; font-size: 11px; }
+
+    /* MATRIX: already overflow-x; just compact cells */
+    .matrix-cell { padding: 10px 10px; font-size: 10px; }
+    .matrix-header .matrix-cell { font-size: 9px; }
+
+    /* INFO BLOCKS */
+    .info-block { padding: 16px 18px; }
+    .info-block-title { font-size: 13px; }
+    .info-block p { font-size: 12px; }
+
+    /* FLOW */
+    .flow-content { padding: 12px 16px; }
+    .flow-content-title { font-size: 12px; }
+    .flow-content p { font-size: 11px; }
+
+    /* TIMELINE */
+    .tl-item { gap: 12px; }
+    .tl-year { width: 50px; padding-top: 12px; font-size: 10px; }
+    .tl-content { padding: 12px 14px; font-size: 11px; }
+
+    /* CALLOUT + WARNING */
+    .callout { padding: 16px 18px; }
+    .callout p { font-size: 12px; }
+    .warning { padding: 14px 16px; }
+    .warning-text { font-size: 11px; }
+  }
+
+  @media (max-width: 480px) {
+    .global-logo { width: 48px; height: 48px; }
+    .global-year { display: none; }
+    .global-nav-link { font-size: 9px; padding: 4px 8px; letter-spacing: .04em; }
+    .lang-btn { font-size: 9px; padding: 5px 6px; }
+
+    .nav { padding: 0 8px; }
+    .nav-btn { padding: 9px 10px; font-size: 9px; }
+
+    .container { padding: 18px 12px; }
+    .hero { padding: 20px 16px; }
+    .hero-title { font-size: 20px; }
+    .hero-desc { font-size: 12px; }
+
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .stat-num { font-size: 20px; }
+    .stat-card { padding: 16px 12px; }
+
+    .section-title { font-size: 16px; }
+    .agency-card { padding: 16px; }
+    .agency-name { font-size: 15px; }
+
+    .matrix-cell { padding: 8px 8px; font-size: 9.5px; }
+  }
 </style>
 </head>
 <body>
@@ -121,7 +221,9 @@
   </div>
   <div class="global-links">
     <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
-    <a class="global-nav-link active" href="./us_fintech_regulation_research.html">US Regulation Research</a>
+    <a class="global-nav-link active" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link" href="./us_banking_infrastructure.html">US Banking</a>
   </div>
   <div class="lang-switch" aria-label="Language selector">
     <button class="lang-btn active" data-lang="es" onclick="setLanguage('es')">ES</button>
