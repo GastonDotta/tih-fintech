@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NYC FinTech Ecosystem Map 2026 — TIH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:hsl(222 47% 11%);
+  --secondary:hsl(222 40% 16%);
+  --gold:hsl(32 95% 44%);
+  --accent:hsl(32 95% 54%);
+  --accent2:#4EFEE7;
+  --accent3:#FE4E7A;
+  --accent4:#B44EFE;
+  --muted:hsl(222 20% 60%);
+  --muted2:hsl(222 15% 48%);
+  --text:hsl(222 20% 95%);
+  --bg:hsl(222 47% 11%);
+  --surface:hsl(222 40% 16%);
+  --surface2:hsl(222 35% 20%);
+  --border:hsl(222 30% 26%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+#google_translate_element{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none}
+
+/* NAV */
+.global-nav{background:var(--secondary);border-bottom:1px solid var(--border);padding:10px 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px}
+.global-brand{display:flex;align-items:center;gap:10px}
+.global-logo{height:28px;width:auto;object-fit:contain;opacity:.9}
+.global-year{font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;border-left:1px solid var(--border);padding-left:10px}
+.global-links{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.global-nav-link{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border:1px solid transparent;border-radius:999px;transition:all .2s}
+.global-nav-link:hover{color:var(--text);border-color:var(--border)}
+.global-nav-link.active{color:#000;background:var(--accent);border-color:var(--accent);font-weight:700}
+.lang-switch{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px;background:var(--surface)}
+.lang-btn{background:none;border:none;color:var(--muted);font-size:11px;font-weight:600;padding:5px 9px;cursor:pointer;border-radius:3px;transition:all .2s;font-family:'DM Sans',sans-serif;letter-spacing:.06em}
+.lang-btn.active{background:var(--accent);color:#000}
+.lang-btn:hover:not(.active){color:var(--text);background:var(--surface2)}
+
+/* HERO */
+.hero{padding:60px 32px 48px;max-width:1100px;margin:0 auto}
+.hero-badge{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hero-badge::before{content:'';width:24px;height:1px;background:var(--accent2)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:16px}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:680px;line-height:1.65}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:40px}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px;border-top:2px solid var(--accent)}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.stat-label{font-size:11px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.08em}
+
+/* TABS */
+.nav{background:var(--secondary);border-bottom:1px solid var(--border);padding:0 24px;overflow-x:auto;white-space:nowrap}
+.nav::-webkit-scrollbar{height:3px}
+.nav::-webkit-scrollbar-thumb{background:var(--border)}
+.tab{display:inline-block;padding:14px 18px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-weight:600}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.section{display:none;max-width:1100px;margin:0 auto;padding:48px 32px 80px}
+.section.active{display:block}
+
+/* TITLES */
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;margin-bottom:8px}
+.section-title.sm{font-size:1.3rem;margin-top:40px}
+.section-sub{color:var(--muted);margin-bottom:32px;font-size:.95rem;line-height:1.6}
+
+/* INFO BLOCKS */
+.info-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:24px;margin-bottom:16px;border-radius:2px}
+.info-block.a2{border-left-color:var(--accent2)}
+.info-block.a3{border-left-color:var(--accent3)}
+.info-block.a4{border-left-color:var(--accent4)}
+.info-block.ag{border-left-color:var(--gold)}
+.info-block h3{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+.info-block p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.info-block ul{margin-top:8px;padding-left:20px}
+.info-block ul li{color:var(--muted2);font-size:.88rem;margin-bottom:4px;line-height:1.5}
+
+/* CALLOUT / WARNING */
+.callout{background:hsl(32 95% 44% / .1);border:1px solid hsl(32 95% 44% / .3);border-left:3px solid var(--accent);padding:16px 20px;margin:20px 0;border-radius:2px}
+.callout.a2{background:hsl(174 97% 65% / .07);border-color:hsl(174 97% 65% / .25);border-left-color:var(--accent2)}
+.callout p{color:var(--muted);font-size:.88rem;line-height:1.6}
+.callout strong{color:var(--text)}
+.warning{background:hsl(0 80% 60% / .08);border:1px solid hsl(0 80% 60% / .3);border-left:3px solid var(--accent3);padding:16px 20px;margin:20px 0;border-radius:2px}
+.warning p{color:#e0a0a8;font-size:.88rem;line-height:1.6}
+
+/* TABLES */
+.reg-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.85rem}
+.reg-table th{background:var(--surface2);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border)}
+.reg-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted2)}
+.reg-table td:first-child{color:var(--text);font-weight:600}
+.reg-table tr:hover td{background:var(--surface)}
+
+/* PLATFORM GRID */
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:20px}
+.platform-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px;transition:border-color .2s}
+.platform-card:hover{border-color:var(--accent)}
+.platform-card .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.platform-card h4{font-size:.95rem;font-weight:700;color:var(--text)}
+.platform-tag{font-size:9px;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:999px;font-weight:700}
+.pt-g{background:hsl(174 97% 65%/.15);color:var(--accent2)}
+.pt-b{background:hsl(222 80% 65%/.15);color:#7EB8FE}
+.pt-r{background:hsl(340 80% 65%/.15);color:var(--accent3)}
+.pt-p{background:hsl(280 80% 65%/.15);color:var(--accent4)}
+.pt-gold{background:hsl(32 95% 54%/.15);color:var(--accent)}
+.plist{margin-top:8px;padding-left:16px}
+.plist li{font-size:.82rem;color:var(--muted2);margin-bottom:3px;line-height:1.5}
+
+/* MATRIX */
+.matrix{display:grid;gap:16px;margin:24px 0}
+.matrix-cell{background:var(--surface);border:1px solid var(--border);padding:18px;border-radius:4px}
+.matrix-cell h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:8px;font-weight:700}
+.matrix-cell p{font-size:.85rem;color:var(--muted);line-height:1.55}
+
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:0;margin:24px 0}
+.flow-step{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:flex-start}
+.flow-num{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#000;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0;margin-top:2px}
+.flow-content{padding-bottom:24px}
+.flow-content h4{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.flow-content p{font-size:.88rem;color:var(--muted);line-height:1.55}
+.flow-connector{width:1px;height:20px;background:var(--border);margin-left:56px;margin-top:-4px;margin-bottom:4px}
+
+/* RESOURCE GRID */
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px}
+.resource-card{background:var(--surface);border:1px solid var(--border);padding:16px;border-radius:4px;text-decoration:none;transition:all .2s;display:flex;flex-direction:column;gap:6px}
+.resource-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.resource-card h5{font-size:.85rem;font-weight:700;color:var(--text)}
+.resource-card p{font-size:.78rem;color:var(--muted2);line-height:1.4}
+
+/* PILLS */
+.pill{display:inline-block;font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px;font-weight:700;margin-right:4px}
+.p-g{background:hsl(140 60%/15%);color:#5FD98A}
+.p-b{background:hsl(210 70%/15%);color:#7EB8FE}
+.p-r{background:hsl(0 70%/15%);color:var(--accent3)}
+
+/* CHECKLIST */
+.checklist-wrap{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:24px}
+.checklist-head{display:grid;grid-template-columns:1fr 120px 100px;background:var(--surface2);padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.checklist-row{display:grid;grid-template-columns:1fr 120px 100px;padding:12px 16px;border-top:1px solid var(--border);align-items:start;transition:background .15s}
+.checklist-row:hover{background:var(--surface2)}
+.ci{font-size:.88rem;color:var(--text)}
+.ci small{display:block;font-size:.78rem;color:var(--muted2);margin-top:2px}
+.cp{font-size:.78rem;color:var(--muted2)}
+.cp-d{color:var(--accent)}
+.cp-s{color:var(--accent2)}
+.cp-m{color:#7EB8FE}
+
+/* BADGE */
+.badge{display:inline-block;font-size:9px;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:3px;font-weight:700;margin-right:4px;margin-bottom:4px}
+.badge-gold{background:hsl(32 95% 54%/.2);color:var(--accent);border:1px solid hsl(32 95% 54%/.3)}
+.badge-teal{background:hsl(174 97% 65%/.1);color:var(--accent2);border:1px solid hsl(174 97% 65%/.2)}
+.badge-pink{background:hsl(340 80% 65%/.1);color:var(--accent3);border:1px solid hsl(340 80% 65%/.2)}
+.badge-purple{background:hsl(280 80% 65%/.1);color:var(--accent4);border:1px solid hsl(280 80% 65%/.2)}
+
+/* PRIORITY BOX */
+.outreach-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:20px}
+.outreach-card{background:var(--surface);border:1px solid var(--border);padding:18px;border-radius:4px;border-top:2px solid var(--accent2)}
+.outreach-card .oc-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--accent2);line-height:1}
+.outreach-card h4{font-size:.9rem;font-weight:700;margin:6px 0 4px}
+.outreach-card p{font-size:.82rem;color:var(--muted2);line-height:1.5}
+.outreach-card .oc-line{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .global-nav{grid-template-columns:1fr auto;grid-template-rows:auto auto}
+  .global-links{grid-column:1/-1;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:6px}
+  .global-nav-link{font-size:10px;padding:5px 10px}
+  .nav{padding:0 16px}
+  .hero{padding:40px 20px 32px}
+  .section{padding:32px 20px 60px}
+  .reg-table{font-size:.78rem}
+  .checklist-head,.checklist-row{grid-template-columns:1fr 90px 80px}
+}
+@media(max-width:480px){
+  .global-year{display:none}
+  .global-nav-link{font-size:9px;padding:4px 8px;letter-spacing:.04em}
+  .lang-btn{font-size:9px;padding:5px 6px}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .checklist-head,.checklist-row{grid-template-columns:1fr 80px}
+  .checklist-head .ch-pri,.checklist-row .cp-pri{display:none}
+  .platform-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="google_translate_element"></div>
+
+<!-- GLOBAL NAV -->
+<nav class="global-nav">
+  <div class="global-brand">
+    <img src="./tih-logo-white-CV3af6jQ.png" alt="TIH" class="global-logo">
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link active" href="./us_nyc_fintech_map.html">NYC Map</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link" href="./us_banking_infrastructure.html">US Banking</a>
+    <a class="global-nav-link" href="./us_fundraising.html">Fundraising</a>
+    <a class="global-nav-link" href="./us_gtm.html">GTM</a>
+    <a class="global-nav-link" href="./us_hr_hiring.html">HR & Hiring</a>
+    <a class="global-nav-link" href="./us_checklist.html">Checklist</a>
+  </div>
+  <div class="lang-switch" aria-label="Language selector">
+    <button class="lang-btn active" onclick="triggerTranslate('es',this)">ES</button>
+    <button class="lang-btn" onclick="triggerTranslate('en',this)">EN</button>
+    <button class="lang-btn" onclick="triggerTranslate('it',this)">IT</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">TIH × YLAI Fellowship · Gastón Dotta · May 2026</div>
+  <h1>New York City<br><span>FinTech Ecosystem Map</span></h1>
+  <p class="hero-sub">La única ciudad del mundo donde Wall Street, el capital de Silicon Valley y un ecosistema startup world-class coexisten en el mismo radio de 10 cuadras. Cada empresa listada tiene un link, una persona en LinkedIn y una razón para contactar.</p>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">$7.8B</div><div class="stat-label">VC deployado NYC 2025</div></div>
+    <div class="stat-card"><div class="stat-num">400+</div><div class="stat-label">FinTechs activas</div></div>
+    <div class="stat-card"><div class="stat-num">50+</div><div class="stat-label">Unicornios NYC</div></div>
+    <div class="stat-card"><div class="stat-num">$18M+</div><div class="stat-label">Avg check Serie A</div></div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="nav">
+  <span class="tab active" onclick="showTab('s0',this)">00 Overview</span>
+  <span class="tab" onclick="showTab('s1',this)">01 FinTechs</span>
+  <span class="tab" onclick="showTab('s2',this)">02 VCs & Capital</span>
+  <span class="tab" onclick="showTab('s3',this)">03 Bancos</span>
+  <span class="tab" onclick="showTab('s4',this)">04 Aceleradoras</span>
+  <span class="tab" onclick="showTab('s5',this)">05 Regulación</span>
+  <span class="tab" onclick="showTab('s6',this)">06 Eventos</span>
+  <span class="tab" onclick="showTab('s7',this)">07 Entry Playbook</span>
+</div>
+
+<!-- ─── TAB 0: OVERVIEW ─────────────────────────────────────── -->
+<div id="s0" class="section active">
+  <div class="section-title">Por qué New York City</div>
+  <p class="section-sub">NYC es la capital global de FinTech por una razón estructural: los compradores (bancos), el capital (VCs) y el ecosistema startup están todos en el mismo lugar.</p>
+
+  <table class="reg-table">
+    <thead><tr><th>Métrica</th><th>Valor</th><th>Por qué importa para un founder FinTech</th></tr></thead>
+    <tbody>
+      <tr><td>VC deployado en NYC fintech (2025)</td><td>$7.8B en 372 deals</td><td>Segundo mercado VC fintech globalmente tras SF; creciendo más rápido</td></tr>
+      <tr><td>Headquarters de bancos principales</td><td>JPMorgan, Goldman, Citi, Morgan Stanley, AmEx, BNY Mellon</td><td>Mayor concentración de decision-makers bancarios del mundo</td></tr>
+      <tr><td>FinTechs activas</td><td>400+ incluyendo 50+ unicornios</td><td>Talent pool profundo; efectos de red del ecosistema; co-locación con compradores</td></tr>
+      <tr><td>Avg check Serie A (NYC)</td><td>$18M+ (mayor que SF promedio)</td><td>Los inversores NYC escriben cheques más grandes por proximidad al cliente bancario</td></tr>
+      <tr><td>Cuerpos regulatorios presentes</td><td>DFS, FINRA, NY Fed, SEC (regional)</td><td>Reguladores y founders en la misma ciudad; las relaciones son posibles</td></tr>
+      <tr><td>Universidades top cercanas</td><td>Columbia, NYU Stern, Cornell Tech, NYU Law</td><td>Pipeline de talento en ingeniería + finanzas + legal a 30 min</td></tr>
+      <tr><td>Programas aceleradora con acceso bancario</td><td>Fintech Innovation Lab, Techstars, Rise, Plug and Play</td><td>Introducciones estructuradas a bancos no disponibles en ningún otro lugar de EEUU</td></tr>
+      <tr><td>Eventos FinTech anuales</td><td>NY FinTech Week, FinovateFall, Money20/20</td><td>5.000+ decision-makers fintech en una ciudad durante 2 semanas al año</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Geografía FinTech de Manhattan</div>
+  <p class="section-sub">El ecosistema NYC fintech está distribuido por zonas con características propias.</p>
+
+  <table class="reg-table">
+    <thead><tr><th>Zona</th><th>Qué hay</th><th>Mejor para</th></tr></thead>
+    <tbody>
+      <tr><td>Midtown (34th–57th St)</td><td>JPMorgan HQ, Citigroup, MasterCard, AmEx, BNY Mellon, mayoría de oficinas VC</td><td>Primeras reuniones con bancos y VCs; acceso a HQ corporativos</td></tr>
+      <tr><td>Financial District (bajo Chambers St)</td><td>Goldman Sachs, NYSE, NY Fed, oficinas regulatorias, hedge funds</td><td>Mercados de capitales, trading, conversaciones de settlement</td></tr>
+      <tr><td>Flatiron / Chelsea (14th–30th St)</td><td>Tech startups, Techstars, co-working, seed VCs, media companies</td><td>Empresas early-stage; densidad del ecosistema startup</td></tr>
+      <tr><td>Hudson Yards (30th–36th St, Oeste)</td><td>Morgan Stanley, BlackRock, KKR, Deloitte, estudios de abogados</td><td>Asset management; private equity; enterprise tech sales</td></tr>
+      <tr><td>Silicon Alley (corredor amplio)</td><td>El nombre informal del ecosistema tech de NYC; en todas partes</td><td>Cultura startup; embedded en el DNA de los servicios financieros</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout a2">
+    <p><strong>TIH en NYC:</strong> Transatlantic Innovation Hub está en 417 Fifth Avenue, Midtown Manhattan — infrastructure diseñada para que founders LatAm y europeos aterricen, construyan su red y escalen al mercado US desde el epicentro del ecosistema.</p>
+  </div>
+</div>
+
+<!-- ─── TAB 1: FINTECHS ─────────────────────────────────────── -->
+<div id="s1" class="section">
+  <div class="section-title">FinTechs NYC — Scaled & Startups</div>
+  <p class="section-sub">Las empresas que definen el ecosistema y las que están en trayectoria hacia convertirse en los próximos unicornios.</p>
+
+  <div class="section-title sm">🏆 Empresas Scaled & Listadas</div>
+  <table class="reg-table">
+    <thead><tr><th>Empresa</th><th>Segmento</th><th>Valoración / Estado</th><th>Métrica Clave 2025</th></tr></thead>
+    <tbody>
+      <tr><td>Ramp</td><td>Corporate finance automation</td><td>$16B</td><td>Plataforma B2B más rápida en crecer; $500M Serie E (2025); AI-native</td></tr>
+      <tr><td>Chime</td><td>Consumer neobank</td><td>$25B (pre-IPO)</td><td>Mayor neobank US; fee-free; serving underbanked Americans; 22M+ miembros</td></tr>
+      <tr><td>Oscar Health</td><td>Health insurance</td><td>Nasdaq: OSCR</td><td>Tech-first insurer; usando data para simplificar la navegación de salud US</td></tr>
+      <tr><td>Betterment</td><td>Robo-advisory</td><td>$1.3B+ AUM</td><td>800K+ clientes; mayor robo-advisor independiente; automated retirement planning</td></tr>
+      <tr><td>Lemonade</td><td>AI insurance</td><td>NYSE: LMND</td><td>AI + behavioral economics; renters, homeowners, pets, life; B-Corp</td></tr>
+      <tr><td>MoneyLion</td><td>Financial super-app</td><td>NYSE: ML</td><td>Consumer banking + crédito + inversión; embedded finance marketplace</td></tr>
+      <tr><td>Gemini</td><td>Crypto exchange</td><td>$7B+</td><td>Winklevoss-founded; SOC 2; institutional custody; regulado en 50 estados</td></tr>
+      <tr><td>Chainalysis</td><td>Blockchain analytics</td><td>$8.6B</td><td>Blockchain data para gobiernos + bancos; líder global en crypto compliance</td></tr>
+      <tr><td>Clear Street</td><td>Capital markets infra</td><td>$2.37B</td><td>Cloud-native clearing + custody; modernizando el back-office de Wall Street</td></tr>
+      <tr><td>Capitolis</td><td>Capital optimization</td><td>$302M raised</td><td>Conecta bancos para optimizar balance sheets; infraestructura mercados de capital</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">🚀 Startups Clave & High-Growth</div>
+  <p class="section-sub" style="margin-bottom:16px">Empresas en trayectoria de alto crecimiento con relevancia directa para founders LatAm FinTech.</p>
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="top"><h4>Alloy</h4><span class="platform-tag pt-g">KYC / AML</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Identity risk management para bancos + fintechs. $1.35B valoración; 600+ bancos clientes. Si un LatAm fintech vende a bancos US, Alloy probablemente ya está en el stack del cliente.</p>
+    </div>
+    <div class="platform-card">
+      <div class="top"><h4>Plaid</h4><span class="platform-tag pt-b">Data API</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Financial data network que alimenta 8.000+ apps fintech. $13.4B valoración. Los LatAm fintechs necesitan integración Plaid para conectar cuentas bancarias US.</p>
+    </div>
+    <div class="platform-card">
+      <div class="top"><h4>Unit</h4><span class="platform-tag pt-g">BaaS</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Banking-as-a-Service APIs. $1.2B valoración. LatAm fintechs pueden construir productos US sobre Unit sin licencia bancaria propia.</p>
+    </div>
+    <div class="platform-card">
+      <div class="top"><h4>Mercury</h4><span class="platform-tag pt-gold">Startup Banking</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Business banking para startups. Sin SSN requerido. Free. Integra con Stripe Atlas. $1.6B valoración. <strong>Mejor cuenta bancaria US para founders extranjeros.</strong></p>
+    </div>
+    <div class="platform-card">
+      <div class="top"><h4>Marqeta</h4><span class="platform-tag pt-b">Card Issuing</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Modern card issuing platform (Nasdaq: MQ). Potencia Square, DoorDash, Uber. Los LatAm fintechs lanzando productos de tarjeta US necesitan Marqeta o Lithic.</p>
+    </div>
+    <div class="platform-card">
+      <div class="top"><h4>Rho</h4><span class="platform-tag pt-b">Business Banking</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Digital banking + spend management para negocios. AP automation + corporate cards. $500M+. Sin comisiones. Fuerte para B2B fintechs bootstrapped.</p>
+    </div>
+    <div class="platform-card">
+      <div class="top"><h4>Pinwheel</h4><span class="platform-tag pt-g">Payroll Data</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Income and employment data API. Payroll connectivity para lenders. $50M+. Verificación de ingresos; habilita crédito para trabajadores gig + underbanked US.</p>
+    </div>
+    <div class="platform-card">
+      <div class="top"><h4>Current</h4><span class="platform-tag pt-r">Neobank</span></div>
+      <p style="font-size:.82rem;color:var(--muted2)">Neobank para millennials + Gen Z. $588M raised; 4.6M+ active users. Financial wellness + rewards model. Modelo replicable en LatAm.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TAB 2: VCs & CAPITAL ──────────────────────────────────── -->
+<div id="s2" class="section">
+  <div class="section-title">VCs & Capital — Quién Escribe Cheques</div>
+  <p class="section-sub">Los fondos que mueven el ecosistema NYC. El capital no es escaso — el acceso sí. Cada VC tiene una tesis, un tamaño de cheque preferido y una red que importa más que el dinero.</p>
+
+  <div class="section-title sm">🎯 VCs Especialistas FinTech (Primera Llamada)</div>
+  <table class="reg-table">
+    <thead><tr><th>Fondo</th><th>Stage</th><th>Cheque</th><th>Tesis + Inversiones Notables</th></tr></thead>
+    <tbody>
+      <tr><td>Thrive Capital</td><td>Seed–Growth</td><td>$5M–$200M</td><td>VC fintech #1 NYC; lideró Serie A de Stripe $20M + Robinhood early; OpenAI $6.6B; filosofía revenue-first</td></tr>
+      <tr><td>QED Investors</td><td>Seed–Series C</td><td>$2M–$50M</td><td>Único VC fundado por un CEO fintech (Capital One); Nubank, Credit Karma, Remitly, SoFi, Klarna</td></tr>
+      <tr><td>Ribbit Capital</td><td>Series A–C</td><td>$10M–$100M</td><td>Especialista fintech global; Robinhood, Coinbase, Nubank; $1.15B Fund VIII; profundidad en LatAm</td></tr>
+      <tr><td>Nyca Partners</td><td>Seed–Series B</td><td>$5M–$20M</td><td>B2B fintech vendiendo a bancos; ~$1B AUM; 100+ portfolio; fundado por ex-Citi exec Hans Morris</td></tr>
+      <tr><td>Clocktower Ventures</td><td>Seed–Series B</td><td>$1M–$10M</td><td><strong style="color:var(--accent2)">LatAm + emerging market fintech; tesis de corredor EXPLÍCITA; NYC-based. Primera llamada para founders LatAm.</strong></td></tr>
+      <tr><td>FinTech Collective</td><td>Seed–Series A</td><td>$500K–$5M</td><td>NYC fintech-only; bancos como LPs = acceso warm intro a compradores FI; B2B especialista</td></tr>
+      <tr><td>Canapi Ventures</td><td>Series A–C</td><td>$5M–$50M</td><td>FinTechs sirviendo bancos + FIs; red de LPs bancarios = introducciones comerciales warm</td></tr>
+      <tr><td>Anthemis</td><td>Seed–Series B</td><td>$2M–$20M</td><td>Insurance + infraestructura financiera; NYC + Londres; foco en fintechs lideradas por mujeres</td></tr>
+      <tr><td>Better Tomorrow Ventures</td><td>Pre-seed–Seed</td><td>$100K–$1M</td><td>Aceleradora fintech + micro-VC; LPs bancarios + aseguradoras = introducciones comerciales</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">🏙️ VCs Generalistas Activos en FinTech</div>
+  <table class="reg-table">
+    <thead><tr><th>Fondo</th><th>AUM</th><th>Stage</th><th>Portfolio FinTech Notable</th></tr></thead>
+    <tbody>
+      <tr><td>Bessemer Venture Partners</td><td>$18B+</td><td>Series A–C</td><td>Alloy, Betterment, Toast, Affirm; práctica fintech más profunda de cualquier VC generalista US</td></tr>
+      <tr><td>Insight Partners</td><td>$90B</td><td>Series B–Growth</td><td>400+ ScaleUps; growth equity global líder; fuerte cobertura fintech + SaaS</td></tr>
+      <tr><td>a16z FinTech</td><td>$2B+ fintech AUM</td><td>Seed–Growth</td><td>Stripe, Plaid, Chime; infraestructura + consumer; $2B+ fintech AUM; 20+ deals en 2025</td></tr>
+      <tr><td>Greycroft</td><td>$2B+</td><td>Series A–B</td><td>Venmo (pre-adquisición PayPal), Acorns; especialista pagos; NYC-native consumer fintech</td></tr>
+      <tr><td>Union Square Ventures</td><td>$1B+</td><td>Seed–Series A</td><td>Coinbase, Etsy, Twitter early; Web3 + fintech protocols; tesis de network effects</td></tr>
+      <tr><td>Valor Capital Group</td><td>$500M</td><td>Seed–Series B</td><td>Tesis cross-border Brasil–US; Pismo + B2B infrastructure plays; NYC-based</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">🏦 Corporate Venture Capital (Brazos de Innovación Bancaria)</div>
+  <p class="section-sub" style="margin-bottom:16px">Los CVCs de bancos son los inversores más estratégicamente valiosos — invierten Y abren relaciones comerciales simultáneamente.</p>
+  <table class="reg-table">
+    <thead><tr><th>Fondo / Brazo</th><th>Banco Padre</th><th>Foco</th><th>Qué Ofrecen Más Allá del Capital</th></tr></thead>
+    <tbody>
+      <tr><td>Citi Ventures</td><td>Citigroup</td><td>B2B fintech, pagos, cybersecurity</td><td>Acceso directo a equipos de producto Citi en 160+ países</td></tr>
+      <tr><td>JPMorgan Strategic Investments</td><td>JPMorgan Chase</td><td>Infraestructura, data, mercados de capital</td><td>Oportunidades de pilot dentro del presupuesto tech anual $15B de JPMorgan</td></tr>
+      <tr><td>American Express Ventures</td><td>American Express</td><td>Pagos, loyalty, B2B spend</td><td>Red de SME + corporativos; red global de aceptación de merchants</td></tr>
+      <tr><td>Visa Ventures</td><td>Visa</td><td>Infraestructura pagos, BaaS enablers</td><td>Pathway de partnership; red global de aceptación + emisión Visa</td></tr>
+      <tr><td>Santander InnoVentures</td><td>Santander</td><td>LatAm + US dual mandate</td><td>Explícitamente relevante para founders LatAm; red comercial US + LatAm</td></tr>
+      <tr><td>BBVA Open Innovation</td><td>BBVA</td><td>API banking, embedded finance</td><td>Open Platform + partnerships fintech LatAm + US; BBVA Spark program</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p><strong>Estrategia de Targeting para Founders LatAm:</strong> Primera llamada → Clocktower Ventures (tesis LatAm explícita). Segunda → QED Investors (portfolio Nubank, Remitly; comprenden LatAm). Tercera → Canapi Ventures (fintechs vendiendo a bancos; network de LPs bancarios). CVC estratégico → Santander InnoVentures (mandato US + LatAm dual).</p>
+  </div>
+</div>
+
+<!-- ─── TAB 3: BANCOS ─────────────────────────────────────── -->
+<div id="s3" class="section">
+  <div class="section-title">Bancos & Instituciones Financieras</div>
+  <p class="section-sub">Los compradores. 6 de los 10 bancos principales de EEUU tienen HQ o oficina primaria en NYC. Cada banco tiene un presupuesto tech masivo, un ciclo de ventas de 12–24 meses y equipos de innovación que buscan activamente proveedores fintech.</p>
+
+  <div class="section-title sm">🏦 Los 6 Grandes Bancos US</div>
+  <table class="reg-table">
+    <thead><tr><th>Institución</th><th>Dirección HQ</th><th>Budget Tech Anual</th><th>Modelo de Engagement FinTech</th></tr></thead>
+    <tbody>
+      <tr><td>JPMorgan Chase</td><td>383 Madison Ave, Midtown</td><td>$15B+/año</td><td>Fintech partnerships + brazo Strategic Investments; partner de Techstars NYC</td></tr>
+      <tr><td>Goldman Sachs</td><td>200 West Street, FiDi</td><td>$3B+/año</td><td>Marcus consumer fintech + GS Accelerate innovation program</td></tr>
+      <tr><td>Citigroup</td><td>388 Greenwich Street, Tribeca</td><td>$8B+/año</td><td>Citi Ventures CVC + partnerships de red de pagos global</td></tr>
+      <tr><td>Morgan Stanley</td><td>1585 Broadway, Midtown</td><td>$5B+/año</td><td>Integración E*TRADE; Calvert Impact + digital wealth management</td></tr>
+      <tr><td>American Express</td><td>200 Vesey Street, Battery Park</td><td>$4B+/año</td><td>AMEX Ventures + partnerships fintech SME; red global de merchants</td></tr>
+      <tr><td>BNY Mellon</td><td>240 Greenwich Street, FiDi</td><td>$3B+/año</td><td>Digital asset custody + settlement; innovation labs para blockchain</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">🌐 Bancos Globales con Presencia NYC Relevante para LatAm</div>
+  <table class="reg-table">
+    <thead><tr><th>Institución</th><th>Tipo</th><th>Por qué Relevante</th></tr></thead>
+    <tbody>
+      <tr><td>HSBC Innovation Banking</td><td>Banco global (UK)</td><td>Startup banking + HSBC Innovation Ventures activo en fintech</td></tr>
+      <tr><td>Barclays Rise NYC</td><td>Banco UK</td><td>Co-working + aceleradora; acceso directo al equipo fintech de Barclays</td></tr>
+      <tr><td>Santander InnoVentures</td><td>Banco español</td><td>CVC con mandato dual LatAm + US; altamente relevante para founders LatAm</td></tr>
+      <tr><td>BBVA Open Innovation</td><td>Banco español</td><td>BBVA Open Platform; API banking; corredor LatAm relevante</td></tr>
+      <tr><td>Standard Chartered (SC Ventures)</td><td>Banco UK/Asia</td><td>SC Ventures CVC; fintech mercados emergentes; interés en remesas LatAm</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">📋 Cómo Acercarse a Bancos NYC — La Realidad</div>
+  <table class="reg-table">
+    <thead><tr><th>Etapa</th><th>Qué Necesitás</th><th>Timeline Realista</th><th>A Quién Apuntar Primero</th></tr></thead>
+    <tbody>
+      <tr><td>Conversación inicial</td><td>Introducción warm (NO email frío); problema + solución en 1 slide</td><td>Mes 1–3</td><td>Equipos de innovación, NO procurement</td></tr>
+      <tr><td>Evaluación técnica</td><td>Entorno demo; integration docs; security overview</td><td>Mes 3–5</td><td>CTO / Head of Digital, equipos de producto</td></tr>
+      <tr><td>Vendor due diligence</td><td>SOC 2 Type II; pen test report; D&amp;O + E&amp;O + Cyber insurance; financials</td><td>Mes 4–8</td><td>Equipo de vendor risk management</td></tr>
+      <tr><td>Pilot agreement</td><td>POC scoped; métricas de éxito claras; pilot contract pagado ($5K–$25K)</td><td>Mes 6–10</td><td>Legal + producto + business sponsor</td></tr>
+      <tr><td>Contrato full</td><td>MSA + DPA + SOW; approved vendor status</td><td>Mes 10–18</td><td>Procurement + legal + C-suite sponsor</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <p><strong>⚠ SOC 2 Type II es un Hard Requirement:</strong> Ningún banco principal de EEUU avanzará más allá de la conversación inicial sin SOC 2 Type II. Iniciá la auditoría inmediatamente — el período de observación de 9–12 meses empieza cuando lo decidís. Usá Vanta o Drata para automatizar el proceso.</p>
+  </div>
+
+  <div class="section-title sm">🏘️ Community Banks & Credit Unions — El Camino Más Rápido</div>
+  <p class="section-sub" style="margin-bottom:16px">Para fintechs LatAm entrando al mercado US, los community banks y credit unions son los primeros clientes de mayor probabilidad.</p>
+  <table class="reg-table">
+    <thead><tr><th>Tipo de Institución</th><th># en EEUU</th><th>Timeline de Decisión</th><th>Por qué Relevante para FinTech B2B LatAm</th></tr></thead>
+    <tbody>
+      <tr><td>CDFIs (Community Development FIs)</td><td>~1.400</td><td>3–6 meses</td><td>Mandato de financial inclusion = alineado con ICP LatAm; procurement más rápido</td></tr>
+      <tr><td>Credit Unions</td><td>~5.000</td><td>3–9 meses</td><td>Member-owned; technology-hungry; modelo Bankingly directamente aplicable</td></tr>
+      <tr><td>Community Banks (&lt;$1B assets)</td><td>~4.000</td><td>4–9 meses</td><td>Decisiones más rápidas; relationship-driven; menor carga regulatoria</td></tr>
+      <tr><td>Minority Depository Institutions (MDIs)</td><td>~150</td><td>3–6 meses</td><td>Foco en comunidades underserved; Hispanic MDIs especialmente relevantes</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ─── TAB 4: ACELERADORAS ──────────────────────────────────── -->
+<div id="s4" class="section">
+  <div class="section-title">Aceleradoras, Labs & Programas del Ecosistema</div>
+  <p class="section-sub">Las aceleradoras en fintech no son solo capital — son acceso estructurado a clientes bancarios que de otro modo tomarían 18 meses de relationship-building alcanzar.</p>
+
+  <div class="section-title sm">🏆 Tier 1 — Programas Respaldados por Bancos con Acceso Directo a FIs</div>
+  <table class="reg-table">
+    <thead><tr><th>Programa</th><th>Respaldado Por</th><th>Inversión</th><th>Qué Obtenés Más Allá del Funding</th></tr></thead>
+    <tbody>
+      <tr><td>Fintech Innovation Lab</td><td>Accenture + Partnership Fund for NYC</td><td>$0 — sin equity</td><td>Sesiones de trabajo directas con 40+ equipos de innovación bancaria; 270+ alumni; $2.7B raised por alumni</td></tr>
+      <tr><td>Techstars NYC</td><td>J.P. Morgan Chase partnership</td><td>$220K por 6%</td><td>Track de partnership J.P. Morgan; mentorship fintech-específico; $2M+ en créditos de producto</td></tr>
+      <tr><td>Barclays Rise NYC</td><td>Barclays Bank</td><td>$0 (modelo co-working)</td><td>Acceso directo a equipos de producto + tech de Barclays; programas para fundadoras mujeres</td></tr>
+      <tr><td>Plug and Play NYC (FinTech)</td><td>30+ sponsors bancarios + corporativos</td><td>$0 sin equity</td><td>Introducciones directas a partners corporativos desde el día 1; programa 3 meses</td></tr>
+      <tr><td>Better Tomorrow Ventures (The Mint)</td><td>VC independiente + LPs bancarios</td><td>$100K–$1M</td><td>Acceso a partnerships bancarios + aseguradoras; mentores operadores; guidance regulatorio US</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">🎓 Programas Universitarios & Labs</div>
+  <table class="reg-table">
+    <thead><tr><th>Programa</th><th>Institución</th><th>Foco</th><th>Relevancia para Founders FinTech</th></tr></thead>
+    <tbody>
+      <tr><td>Cornell Tech Startup Studio</td><td>Cornell Tech (Roosevelt Island)</td><td>Deep tech + fintech; creación empresa 1 año</td><td>Talento de ingeniería + acceso a VCs; Demo Day anual con top VCs NYC</td></tr>
+      <tr><td>Columbia Greenhouse</td><td>Columbia Business School</td><td>MBA + fintech entrepreneurship</td><td>Top red MBA; introducciones a alumni Wall Street</td></tr>
+      <tr><td>NYU Stern FinTech Lab</td><td>NYU Stern School of Business</td><td>Research académico + industry partnerships</td><td>Research partnerships; conexiones académicas con reguladores</td></tr>
+      <tr><td>Fordham FinTech Lab</td><td>Fordham University</td><td>Compliance + regulatory fintech focus</td><td>Enfoque compliance-first; acceso a reguladores; conexiones NYC DFS</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">🏢 Co-Working & Espacios del Ecosistema</div>
+  <table class="reg-table">
+    <thead><tr><th>Espacio</th><th>Ubicación</th><th>Quién Está Allí</th><th>Mejor Para</th></tr></thead>
+    <tbody>
+      <tr><td>Barclays Rise NYC</td><td>745 Seventh Ave, Midtown</td><td>Startups fintech; equipos Barclays</td><td>Acceso bancario directo; peer network fintech; eventos</td></tr>
+      <tr><td>TIH — Transatlantic Innovation Hub</td><td>417 Fifth Ave, Midtown</td><td>Empresas europeas + LatAm entrando al US</td><td>Programas de market entry; introducciones a inversores + bancos</td></tr>
+      <tr><td>1 World Trade (varias oficinas)</td><td>1 World Trade, FiDi</td><td>Bancos, estudios de abogados, fintechs, consulting</td><td>Proximidad a Goldman, NYSE, reguladores; dirección de prestigio</td></tr>
+      <tr><td>WeWork (múltiples)</td><td>Midtown + FiDi + Flatiron</td><td>Startups mixtos; algunos clusters fintech</td><td>Espacio flexible; networking; dirección para licencias DFS</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout a2">
+    <p><strong>Relación más importante del ecosistema:</strong> El Fintech Innovation Lab (FIL). Fundado por Accenture + Partnership Fund for NYC, el FIL es equity-free y da acceso a sesiones de trabajo con JPMorgan, Citi, Goldman, AmEx y 40+ instituciones más. 270+ alumni han levantado $2.7B+ combinados. Aplicá tan pronto como tenés producto listo para evaluación bancaria.</p>
+  </div>
+</div>
+
+<!-- ─── TAB 5: REGULACIÓN ─────────────────────────────────────── -->
+<div id="s5" class="section">
+  <div class="section-title">Regulación & Compliance Infrastructure</div>
+  <p class="section-sub">Nueva York tiene el entorno regulatorio más complejo de EEUU para fintech. Eso no es una razón para evitar Nueva York — es una razón para entenderlo. Las empresas que navegan el framework regulatorio de NY han demostrado que pueden operar en el mercado más exigente del mundo.</p>
+
+  <div class="section-title sm">🏛️ Cuerpos Regulatorios Clave</div>
+  <table class="reg-table">
+    <thead><tr><th>Cuerpo</th><th>Nombre Completo</th><th>Jurisdicción</th><th>Qué Significa para un FinTech</th></tr></thead>
+    <tbody>
+      <tr><td>DFS</td><td>NY Dept. of Financial Services</td><td>Todos los servicios financieros en NY State</td><td>Emite money transmitter licenses; BitLicense para crypto; regula 1.500+ entidades</td></tr>
+      <tr><td>FINRA</td><td>Financial Industry Regulatory Authority</td><td>Broker-dealers a nivel nacional; HQ: NYC</td><td>Registro requerido si tu producto toca securities; proximidad NYSE</td></tr>
+      <tr><td>NY Federal Reserve (NYIC)</td><td>New York Innovation Center</td><td>Federal reserve research + CBDC</td><td>Partner para B2B fintechs trabajando en payment rails; pilots CBDC</td></tr>
+      <tr><td>CFPB (presencia NY)</td><td>Consumer Financial Protection Bureau</td><td>Productos de consumidor a nivel nacional</td><td>Open Banking Rule (Section 1033); supervisión BNPL + crédito al consumidor</td></tr>
+      <tr><td>OCC (oficina NY)</td><td>Office of the Comptroller of the Currency</td><td>Bancos nacionales</td><td>Decisiones de bank charter; guidance de partnership tecnológico</td></tr>
+      <tr><td>SEC (regional NY)</td><td>Securities and Exchange Commission</td><td>Securities, crypto, investment products</td><td>Crítico para cualquier producto que toque inversiones, securities o crypto</td></tr>
+      <tr><td>CFTC (presencia NY)</td><td>Commodity Futures Trading Commission</td><td>Derivatives, commodities, crypto</td><td>Supervisión crypto futures + derivatives; en evolución post-GENIUS Act</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">📋 BitLicense — El Gateway Crypto de NYC</div>
+  <div class="info-block a4">
+    <h3>BitLicense (DFS)</h3>
+    <p>El BitLicense de NY, emitido por DFS, es el framework regulatorio crypto más riguroso de EEUU — y el más creíble. Tener una BitLicense señala a bancos, inversores y reguladores en cada otro estado que tu producto cumple con el estándar de compliance más alto. Las empresas con BitLicense pueden acceder a instituciones financieras a las que ningún competidor sin licencia puede acceder.</p>
+    <ul>
+      <li><strong>Quién la necesita:</strong> Cualquier empresa en 'virtual currency business activity' con residentes NY — exchanges, custodians, wallets y payment processors</li>
+      <li><strong>Qué requiere:</strong> Programa AML/BSA, política de cybersecurity, capital requirements, medidas de consumer protection y un compliance officer aprobado</li>
+      <li><strong>Costo + timeline:</strong> $5.000 application fee; 12–24 meses para aprobación; inversión legal y compliance significativa ($100K–$500K)</li>
+      <li><strong>Holders:</strong> Coinbase, Gemini, Ripple, Circle, Kraken — los jugadores crypto de grado institucional</li>
+      <li><strong>Alternativa:</strong> Limited Purpose Trust Charter (LPTC) — licencia bancaria para custodios crypto; Paxos y otros</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">🔧 Proveedores Clave de Infraestructura Compliance en NYC</div>
+  <table class="reg-table">
+    <thead><tr><th>Empresa</th><th>Servicio</th><th>Mejor Para</th><th>Pricing</th></tr></thead>
+    <tbody>
+      <tr><td>Vanta</td><td>Automatización SOC 2</td><td>Path más rápido a SOC 2 Type II; integra con AWS, GCP</td><td>$10K–$30K/año</td></tr>
+      <tr><td>Drata</td><td>Automatización compliance</td><td>SOC 2, ISO 27001, HIPAA; fuerte para deals enterprise B2B</td><td>$12K–$40K/año</td></tr>
+      <tr><td>Alloy</td><td>KYC/AML + identity</td><td>Verificación de identidad + monitoreo continuo para clientes US</td><td>Usage-based</td></tr>
+      <tr><td>Sardine</td><td>Fraud detection</td><td>AI-native fraud prevention; usado por fintechs LatAm entrando al US</td><td>Usage-based</td></tr>
+      <tr><td>Persona</td><td>KYC/KYB</td><td>Verificación de identidad; flexible para onboarding US + internacional</td><td>Usage-based</td></tr>
+      <tr><td>Chainalysis</td><td>Crypto compliance</td><td>Blockchain analytics para compliance crypto con FINRA/DFS</td><td>Enterprise pricing</td></tr>
+      <tr><td>Orrick</td><td>Fintech legal</td><td>Top startup law firm; templates gratuitos; guidance regulatorio</td><td>Hourly / fixed fee</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ─── TAB 6: EVENTOS ─────────────────────────────────────── -->
+<div id="s6" class="section">
+  <div class="section-title">Eventos, Media & Comunidad</div>
+  <p class="section-sub">En fintech, las relaciones preceden al revenue. Cada pilot bancario, cada reunión con un VC, cada introducción regulatoria que avanza rápido empezó con una conexión humana hecha en un evento o un meetup.</p>
+
+  <div class="section-title sm">📆 Eventos Anuales Clave</div>
+  <table class="reg-table">
+    <thead><tr><th>Evento</th><th>Cuándo</th><th>Dónde</th><th>Quién Asiste + Por qué Ir</th></tr></thead>
+    <tbody>
+      <tr><td>NY FinTech Week</td><td>Mayo anual</td><td>Varios venues Manhattan</td><td>5.000+ founders fintech, VCs, equipos innovación bancaria, reguladores; EL evento anual de referencia</td></tr>
+      <tr><td>FinovateFall</td><td>Septiembre anual</td><td>NYC Marriott Marquis, Times Square</td><td>1.500+ asistentes; demos live de 7 min; audiencia directa bancos + VCs</td></tr>
+      <tr><td>Money20/20 USA</td><td>Octubre anual</td><td>Las Vegas (con presencia NYC mayor)</td><td>10.000+ fintech global; la mayor feria fintech del mundo</td></tr>
+      <tr><td>LendIt Fintech USA</td><td>Abril anual</td><td>NYC</td><td>Lending, crédito, alternative data; introducciones banco + VC</td></tr>
+      <tr><td>FinTech Nexus</td><td>Mayo anual</td><td>NYC</td><td>B2B fintech + lending; conversaciones de bank partnerships</td></tr>
+      <tr><td>LAVCA Annual Summit</td><td>Octubre anual</td><td>NYC (Midtown)</td><td>Comunidad VC LatAm; founders LatAm + inversores US en una sala — crítico para TIH</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">📱 Comunidades & Networking Ongoing</div>
+  <table class="reg-table">
+    <thead><tr><th>Comunidad</th><th>Formato</th><th>Foco</th><th>Cómo Unirse</th></tr></thead>
+    <tbody>
+      <tr><td>NY FinTech Women</td><td>Eventos mensuales + mentorship</td><td>Fundadoras + líderes en fintech; partnership Barclays</td><td>nyfintechwoman.com</td></tr>
+      <tr><td>FinTech Meetup NYC</td><td>Meetups mensuales en persona</td><td>Comunidad fintech amplia; 3.000+ miembros</td><td>Meetup.com / LinkedIn</td></tr>
+      <tr><td>NYC FinTech Alliance</td><td>Advocacy + networking</td><td>Política + advocacy regulatoria; diálogo banco + fintech</td><td>Aplicar como organización miembro</td></tr>
+      <tr><td>Wall Street Blockchain Alliance</td><td>Eventos + research</td><td>Intersección blockchain + fintech; foco institucional</td><td>WSBA.org membership</td></tr>
+      <tr><td>Fintech Innovation Lab Alumni</td><td>Peer network</td><td>350+ alumni companies; cultura de warm intros</td><td>Programa alumni FIL</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">📰 Media & Research Outlets Clave</div>
+  <table class="reg-table">
+    <thead><tr><th>Outlet</th><th>Tipo</th><th>Foco</th><th>Por qué Seguir</th></tr></thead>
+    <tbody>
+      <tr><td>TechCrunch / TC Fintech</td><td>Media</td><td>Noticias de funding startups; vertical fintech</td><td>Primero en cubrir funding rounds; contexto de relaciones inversoras</td></tr>
+      <tr><td>PYMNTS.com</td><td>Trade media</td><td>Pagos + cobertura fintech profunda</td><td>Noticias diarias de industria pagos; anuncios de partnerships banco + fintech</td></tr>
+      <tr><td>The Financial Brand</td><td>Trade media</td><td>Transformación digital bancaria</td><td>Perspectiva del comprador bancario; qué están buscando resolver las FIs</td></tr>
+      <tr><td>CB Insights</td><td>Research</td><td>Funding data + market maps</td><td>Quarterly state of fintech market; data del ecosistema NYC</td></tr>
+      <tr><td>PitchBook</td><td>Research</td><td>Deal data + VC tracking</td><td>Rastrear qué VCs están activos en tu espacio; benchmarks de deals</td></tr>
+      <tr><td>American Banker</td><td>Trade media</td><td>Noticias bancarias + fintech</td><td>Perspectiva del comprador bancario; noticias regulatorias + fintech</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ─── TAB 7: ENTRY PLAYBOOK ─────────────────────────────────── -->
+<div id="s7" class="section">
+  <div class="section-title">Entry Playbook — Tu Secuencia de NYC</div>
+  <p class="section-sub">Este mapa está diseñado para ser accionable. Cada empresa, fondo y programa listado tiene un link que podés clickear, una persona que podés encontrar en LinkedIn y una razón para contactarlos. Esta sección da la secuencia de outreach que convierte el mapa en un pipeline.</p>
+
+  <div class="section-title sm">📍 Semana 1 — Establecer Base Física + Digital</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-content">
+        <h4>Dirección business NYC</h4>
+        <p>TIH Dedicated Desk (417 Fifth Ave) o Mercury virtual address. Sin dirección US no podés abrir cuenta bancaria, registrarte con DFS, ni recibir correo legal.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-content">
+        <h4>Abrir cuenta Mercury</h4>
+        <p>mercury.com — sin SSN requerido; abre en 48 horas; gratis; integra con Stripe Atlas. Primer banco US del founder LatAm.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-content">
+        <h4>Registrarse en NY FinTech Week y Finovate</h4>
+        <p>nyfintech.com y finovate.com. Saber qué eventos están próximos y empezar a planificar asistencia antes de llegar.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-content">
+        <h4>Unirse al FinTech Meetup NYC</h4>
+        <p>Meetup.com — asistir al próximo evento mensual. Estas son las relaciones que llevan a warm introductions a VCs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title sm">🎯 Secuencia de Outreach Prioritaria</div>
+  <div class="outreach-grid">
+    <div class="outreach-card">
+      <div class="oc-num">01</div>
+      <h4>Clocktower Ventures</h4>
+      <p>VC intro; tienen tesis LatAm explícita. clocktowervc.com</p>
+      <div class="oc-line">"Somos un fintech LatAm que [X]. Ustedes han respaldado empresas similares. ¿Podemos tener 30 min?"</div>
+    </div>
+    <div class="outreach-card">
+      <div class="oc-num">02</div>
+      <h4>Fintech Innovation Lab</h4>
+      <p>Aplicar para próxima cohorte. fintechinnovationlab.com</p>
+      <div class="oc-line">"Estamos entrando al mercado US. ¿Hay una ventana de aplicación de cohorte actual?"</div>
+    </div>
+    <div class="outreach-card">
+      <div class="oc-num">03</div>
+      <h4>Nyca Partners</h4>
+      <p>VC intro; B2B fintech vendiendo a bancos. nycapartners.com</p>
+      <div class="oc-line">"Vendemos [X] a bancos en LatAm. Estamos entrando al US. ¿Nos gustaría tu perspectiva?"</div>
+    </div>
+    <div class="outreach-card">
+      <div class="oc-num">04</div>
+      <h4>Barclays Rise NYC</h4>
+      <p>Aceleradora + co-working. rise.barclays</p>
+      <div class="oc-line">"Estamos aterrizando en NYC. ¿Hay desks disponibles? ¿Cuál es el programa FinTech?"</div>
+    </div>
+    <div class="outreach-card">
+      <div class="oc-num">05</div>
+      <h4>JPMorgan Chase Innovation</h4>
+      <p>Conversación de bank pilot. <strong>Requiere warm intro via Techstars NYC o Fintech Innovation Lab primero.</strong></p>
+      <div class="oc-line">No outreach frío. Llegar a través del ecosistema de aceleradoras.</div>
+    </div>
+  </div>
+
+  <div class="section-title sm">📊 Framework de Pipeline Mes 1–3</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">A</div>
+      <div class="flow-content">
+        <h4>50 clientes potenciales US antes de los Top-10 bancos</h4>
+        <p>Community banks, CDFIs, credit unions antes de los grandes bancos. Instituciones más pequeñas = decisiones más rápidas = primeros case studies. Estos case studies son los que abren las puertas de los bancos grandes.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num">B</div>
+      <div class="flow-content">
+        <h4>Asistir a NY FinTech Week</h4>
+        <p>Budget $500–$2.000 para eventos; el ROI en contactos es 10x. Documentar cada conversación en un CRM (HubSpot free tier).</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num">C</div>
+      <div class="flow-content">
+        <h4>Iniciar auditoría SOC 2 Type II inmediatamente</h4>
+        <p>Vanta o Drata. El período de observación de 6 meses empieza el reloj — no esperar hasta que un banco lo pida. Sin SOC 2, no hay contratos enterprise.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num">D</div>
+      <div class="flow-content">
+        <h4>D&amp;O + E&amp;O + Cyber insurance antes de la primera reunión bancaria</h4>
+        <p>Pedirán certificados de seguros. Budget: $15.000–$30.000/año. Sin esto, el equipo de vendor risk management para el proceso.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout a2">
+    <p><strong>Data sources:</strong> PitchBook NYC Fintech Report 2025, Tech:NYC, Innovate Finance, CB Insights, company public disclosures, direct research. Todas las cifras al Q1 2026. Producido por Gastón Dotta, FinTech Fellow en TIH, Mayo 2026.</p>
+  </div>
+</div>
+
+<script>
+function showTab(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+function triggerTranslate(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (lang === 'es') {
+    var gs = document.querySelector('.goog-te-combo');
+    if (gs) { gs.value = 'es'; gs.dispatchEvent(new Event('change')); }
+  } else {
+    var gs = document.querySelector('.goog-te-combo');
+    if (gs) { gs.value = lang === 'en' ? '' : lang; gs.dispatchEvent(new Event('change')); }
+  }
+}
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage:'es',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Checklist — TIH FinTech US Market Entry 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: hsl(222 47% 11%);
+  --secondary: hsl(222 35% 18%);
+  --gold: hsl(45 90% 55%);
+  --accent: hsl(32 95% 54%);
+  --accent2: #4EFEE7;
+  --accent3: #FE4E7A;
+  --accent4: #B44EFE;
+  --muted: hsl(222 20% 55%);
+  --muted2: hsl(222 20% 38%);
+  --text: hsl(210 30% 94%);
+  --bg: hsl(222 47% 11%);
+  --surface: hsl(222 38% 16%);
+  --surface2: hsl(222 32% 21%);
+  --border: hsl(222 25% 28%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+
+/* ── GLOBAL NAV ── */
+.global-nav{display:flex;align-items:center;gap:1rem;padding:.75rem 2rem;background:rgba(10,16,32,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;flex-wrap:wrap}
+.global-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;flex-shrink:0}
+.global-logo{height:32px;width:auto}
+.global-year{font-size:.75rem;color:var(--muted);letter-spacing:.08em}
+.global-links{display:flex;align-items:center;gap:.25rem;flex-wrap:wrap;flex:1}
+.global-nav-link{font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;padding:.35rem .7rem;border-radius:6px;transition:all .2s;white-space:nowrap}
+.global-nav-link:hover{color:var(--text);background:var(--surface2)}
+.global-nav-link.active{color:#000;background:var(--gold);font-weight:600}
+.lang-switch{display:flex;gap:.25rem;margin-left:auto;flex-shrink:0}
+.lang-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:.72rem;padding:.3rem .55rem;border-radius:5px;cursor:pointer;transition:all .2s;font-family:inherit}
+.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+.lang-btn.active{background:var(--gold);border-color:var(--gold);color:#000;font-weight:600}
+#google_translate_element{display:none}
+
+/* ── HERO ── */
+.hero{padding:3.5rem 2rem 2rem;max-width:1200px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(254,78,122,.12);border:1px solid rgba(254,78,122,.3);border-radius:999px;padding:.35rem .9rem;font-size:.75rem;font-weight:600;color:var(--accent3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.2rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.15;margin-bottom:.75rem}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--muted);font-size:1.05rem;max-width:600px;margin-bottom:2rem}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem 2rem;max-width:1200px;margin:0 auto 2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1.5rem}
+.progress-left h2{font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
+.progress-bar-bg{background:var(--surface2);border-radius:999px;height:12px;overflow:hidden;width:100%}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--gold));border-radius:999px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+.progress-stats{display:flex;gap:1.5rem;margin-top:.6rem}
+.pstat{text-align:center}
+.pstat-num{font-size:1.6rem;font-weight:700;line-height:1;color:var(--gold)}
+.pstat-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.progress-right{text-align:center}
+.pct-circle{width:80px;height:80px;border-radius:50%;background:conic-gradient(var(--accent2) 0% var(--pct,0%),var(--surface2) var(--pct,0%) 100%);display:flex;align-items:center;justify-content:center;position:relative}
+.pct-inner{width:58px;height:58px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:var(--text)}
+
+/* ── FILTERS ── */
+.filters-wrap{max-width:1200px;margin:0 auto 1.5rem;padding:0 .5rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:.75rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-right:.25rem}
+.filter-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:.78rem;font-weight:500;padding:.4rem .85rem;border-radius:8px;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
+.filter-btn:hover{border-color:var(--gold);color:var(--text)}
+.filter-btn.active{color:#000;font-weight:600}
+.filter-btn[data-filter="all"].active{background:var(--gold);border-color:var(--gold)}
+.filter-btn[data-filter="legal"].active{background:#4EFEE7;border-color:#4EFEE7}
+.filter-btn[data-filter="banking"].active{background:hsl(32 95% 54%);border-color:hsl(32 95% 54%)}
+.filter-btn[data-filter="compliance"].active{background:#FE4E7A;border-color:#FE4E7A}
+.filter-btn[data-filter="gtm"].active{background:#B44EFE;border-color:#B44EFE}
+.filter-btn[data-filter="fundraising"].active{background:var(--gold);border-color:var(--gold)}
+.filter-btn[data-filter="hr"].active{background:#4EFEE7;border-color:#4EFEE7}
+.filter-btn[data-filter="ecosystem"].active{background:hsl(32 95% 54%);border-color:hsl(32 95% 54%)}
+.filter-sep{width:1px;height:24px;background:var(--border);margin:0 .25rem}
+.filter-btn[data-filter="critical"].active{background:#FE4E7A;border-color:#FE4E7A}
+.filter-btn[data-filter="pending"].active{background:var(--surface2);border-color:var(--muted);color:var(--text)}
+.filter-btn[data-filter="done"].active{background:#4EFEE7;border-color:#4EFEE7}
+
+/* ── CHECKLIST SECTIONS ── */
+.sections-wrap{max-width:1200px;margin:0 auto;padding:0 .5rem 4rem}
+.phase-block{margin-bottom:2rem}
+.phase-header{display:flex;align-items:center;gap:.75rem;padding:.6rem 0;margin-bottom:.75rem;border-bottom:1px solid var(--border)}
+.phase-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.phase-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600}
+.phase-sub{font-size:.78rem;color:var(--muted);margin-left:auto}
+.phase-progress{font-size:.78rem;color:var(--muted2);white-space:nowrap}
+
+/* ── CHECKLIST ITEMS ── */
+.check-item{display:grid;grid-template-columns:24px 1fr auto;align-items:start;gap:.75rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;margin-bottom:.5rem;transition:all .25s;cursor:pointer}
+.check-item:hover{border-color:var(--muted2);background:var(--surface2)}
+.check-item.done{opacity:.55}
+.check-item.done .item-title{text-decoration:line-through;color:var(--muted)}
+.check-item.hidden{display:none}
+.check-item input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent2);cursor:pointer;margin-top:2px;flex-shrink:0}
+.item-body{display:flex;flex-direction:column;gap:.2rem}
+.item-title{font-size:.9rem;font-weight:500;line-height:1.4}
+.item-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+.item-meta{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin-top:.3rem}
+.item-tag{display:inline-block;font-size:.68rem;font-weight:600;padding:.15rem .5rem;border-radius:5px;text-transform:uppercase;letter-spacing:.05em}
+.tag-legal{background:rgba(78,254,231,.12);color:#4EFEE7;border:1px solid rgba(78,254,231,.25)}
+.tag-banking{background:rgba(254,149,78,.12);color:var(--accent);border:1px solid rgba(254,149,78,.25)}
+.tag-compliance{background:rgba(254,78,122,.12);color:var(--accent3);border:1px solid rgba(254,78,122,.25)}
+.tag-gtm{background:rgba(180,78,254,.12);color:var(--accent4);border:1px solid rgba(180,78,254,.25)}
+.tag-fundraising{background:rgba(245,196,64,.12);color:var(--gold);border:1px solid rgba(245,196,64,.25)}
+.tag-hr{background:rgba(78,254,231,.12);color:#4EFEE7;border:1px solid rgba(78,254,231,.25)}
+.tag-ecosystem{background:rgba(254,149,78,.12);color:var(--accent);border:1px solid rgba(254,149,78,.25)}
+.priority-badge{font-size:.66rem;font-weight:700;padding:.15rem .5rem;border-radius:5px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+.priority-critical{background:rgba(254,78,122,.18);color:var(--accent3);border:1px solid rgba(254,78,122,.35)}
+.priority-high{background:rgba(254,149,78,.18);color:var(--accent);border:1px solid rgba(254,149,78,.35)}
+.priority-medium{background:rgba(245,196,64,.15);color:var(--gold);border:1px solid rgba(245,196,64,.3)}
+.priority-low{background:rgba(130,140,170,.12);color:var(--muted);border:1px solid var(--border)}
+.item-right{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;flex-shrink:0}
+.item-module{font-size:.68rem;color:var(--muted2);white-space:nowrap}
+.item-week{font-size:.68rem;color:var(--muted2);white-space:nowrap;text-align:right}
+
+/* ── RESET BUTTON ── */
+.reset-wrap{max-width:1200px;margin:0 auto 1rem;display:flex;justify-content:flex-end;padding:0 .5rem}
+.reset-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:.78rem;padding:.4rem 1rem;border-radius:8px;cursor:pointer;transition:all .2s;font-family:inherit}
+.reset-btn:hover{border-color:var(--accent3);color:var(--accent3)}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:3rem;color:var(--muted);display:none}
+.empty-state.show{display:block}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.progress-wrap{grid-template-columns:1fr;gap:1rem}.progress-right{display:none}.global-links{gap:.15rem}.global-nav-link{font-size:.72rem;padding:.3rem .5rem}}
+@media(max-width:480px){.hero{padding:2rem 1rem 1.5rem}.sections-wrap{padding:0 .25rem 3rem}.check-item{grid-template-columns:22px 1fr;}.item-right{display:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="global-nav">
+  <div class="global-brand">
+    <img src="./tih-logo-white-CV3af6jQ.png" alt="TIH" class="global-logo">
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link" href="./us_nyc_fintech_map.html">NYC Map</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link" href="./us_banking_infrastructure.html">US Banking</a>
+    <a class="global-nav-link" href="./us_fundraising.html">Fundraising</a>
+    <a class="global-nav-link" href="./us_gtm.html">GTM</a>
+    <a class="global-nav-link" href="./us_hr_hiring.html">HR &amp; Hiring</a>
+    <a class="global-nav-link active" href="./us_checklist.html">Checklist</a>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="triggerTranslate('es',this)">ES</button>
+    <button class="lang-btn" onclick="triggerTranslate('en',this)">EN</button>
+    <button class="lang-btn" onclick="triggerTranslate('it',this)">IT</button>
+  </div>
+</nav>
+<div id="google_translate_element"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ TIH × YLAI Fellowship</div>
+  <h1>Master <span>Startup Checklist</span><br>US Market Entry 2026</h1>
+  <p>Cada acción que necesitás ejecutar para lanzar tu FinTech en el mercado americano — organizada por fase, módulo y prioridad.</p>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-left">
+    <h2>Tu progreso total</h2>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-stats">
+      <div class="pstat"><div class="pstat-num" id="statDone">0</div><div class="pstat-label">Completados</div></div>
+      <div class="pstat"><div class="pstat-num" id="statTotal">0</div><div class="pstat-label">Total</div></div>
+      <div class="pstat"><div class="pstat-num" id="statCritical">0</div><div class="pstat-label">Críticos</div></div>
+    </div>
+  </div>
+  <div class="progress-right">
+    <div class="pct-circle" id="pctCircle" style="--pct:0%">
+      <div class="pct-inner" id="pctNum">0%</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-wrap">
+  <span class="filter-label">Módulo:</span>
+  <button class="filter-btn active" data-filter="all" onclick="applyFilter('all',this)">Todos</button>
+  <button class="filter-btn" data-filter="legal" onclick="applyFilter('legal',this)">⚖️ Legal</button>
+  <button class="filter-btn" data-filter="banking" onclick="applyFilter('banking',this)">🏦 Banking</button>
+  <button class="filter-btn" data-filter="compliance" onclick="applyFilter('compliance',this)">🔒 Compliance</button>
+  <button class="filter-btn" data-filter="gtm" onclick="applyFilter('gtm',this)">🚀 GTM</button>
+  <button class="filter-btn" data-filter="fundraising" onclick="applyFilter('fundraising',this)">💰 Fundraising</button>
+  <button class="filter-btn" data-filter="hr" onclick="applyFilter('hr',this)">👥 HR</button>
+  <button class="filter-btn" data-filter="ecosystem" onclick="applyFilter('ecosystem',this)">🗺️ Ecosistema</button>
+  <div class="filter-sep"></div>
+  <span class="filter-label">Estado:</span>
+  <button class="filter-btn" data-filter="critical" onclick="applyFilter('critical',this)">🔴 Críticos</button>
+  <button class="filter-btn" data-filter="pending" onclick="applyFilter('pending',this)">⬜ Pendientes</button>
+  <button class="filter-btn" data-filter="done" onclick="applyFilter('done',this)">✅ Completados</button>
+</div>
+
+<div class="reset-wrap">
+  <button class="reset-btn" onclick="resetAll()">↺ Reiniciar progreso</button>
+</div>
+
+<!-- CHECKLIST CONTENT -->
+<div class="sections-wrap">
+<div id="emptyState" class="empty-state">No hay ítems que coincidan con el filtro seleccionado.</div>
+
+<!-- ═══════════════════════════════════════════
+     FASE 0 — PRE-LAUNCH (Semanas 1-2)
+════════════════════════════════════════════ -->
+<div class="phase-block" id="phase0">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:var(--accent3)"></div>
+    <span class="phase-title">Fase 0 · Pre-Launch</span>
+    <span class="phase-sub">Semanas 1–2 · Fundaciones no negociables</span>
+    <span class="phase-progress" id="prog-phase0"></span>
+  </div>
+
+  <div class="check-item" data-module="legal" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Incorporar Delaware C-Corp</div>
+      <div class="item-desc">Usar Stripe Atlas, Clerky o abogado corporativo. Estructura preferida por VCs americanos. Costo estimado: $500–$2,000.</div>
+      <div class="item-meta"><span class="item-tag tag-legal">Legal</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M1 Formation</span><span class="item-week">Semana 1</span></div>
+  </div>
+
+  <div class="check-item" data-module="legal" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Obtener EIN (Employer Identification Number)</div>
+      <div class="item-desc">Tramitar online vía IRS.gov o a través del abogado. Necesario para abrir cuentas bancarias y contratar empleados. Gratuito.</div>
+      <div class="item-meta"><span class="item-tag tag-legal">Legal</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M1 Formation</span><span class="item-week">Semana 1</span></div>
+  </div>
+
+  <div class="check-item" data-module="legal" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Contratar Registered Agent en Delaware</div>
+      <div class="item-desc">Requerido por ley de Delaware. Proveedores: CT Corporation, Northwest, Registered Agents Inc. Costo: $50–$300/año.</div>
+      <div class="item-meta"><span class="item-tag tag-legal">Legal</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M1 Formation</span><span class="item-week">Semana 1</span></div>
+  </div>
+
+  <div class="check-item" data-module="legal" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Firmar IP Assignment Agreements con todos los founders</div>
+      <div class="item-desc">Transferir toda la propiedad intelectual a la corporación. Obligatorio antes de cualquier ronda. Sin esto, los VCs no invierten.</div>
+      <div class="item-meta"><span class="item-tag tag-legal">Legal</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M1 Formation</span><span class="item-week">Semana 1</span></div>
+  </div>
+
+  <div class="check-item" data-module="legal" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Presentar elección 83(b) ante el IRS — Deadline: 30 días</div>
+      <div class="item-desc">Dentro de los 30 días de recibir acciones restringidas. Error más caro y frecuente de founders. Protege contra impuestos futuros sobre vesting. ¡NO olvidar!</div>
+      <div class="item-meta"><span class="item-tag tag-legal">Legal</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M1 Formation</span><span class="item-week">Semana 1–2</span></div>
+  </div>
+
+  <div class="check-item" data-module="legal" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Establecer estructura accionaria y Founder Vesting (4-year cliff 1)</div>
+      <div class="item-desc">4 años de vesting con 1 año de cliff es el estándar del mercado. Documentar en Cap Table desde el inicio. Usar Carta o Pulley.</div>
+      <div class="item-meta"><span class="item-tag tag-legal">Legal</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M1 Formation</span><span class="item-week">Semana 1–2</span></div>
+  </div>
+
+  <div class="check-item" data-module="legal" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Abrir Cap Table digital en Carta o Pulley</div>
+      <div class="item-desc">Gestión profesional de equity desde día uno. Carta es el estándar VC. Plan gratuito disponible para early-stage. Requiere EIN.</div>
+      <div class="item-meta"><span class="item-tag tag-legal">Legal</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 2</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FASE 1 — BANKING & COMPLIANCE (Semanas 1-4)
+════════════════════════════════════════════ -->
+<div class="phase-block" id="phase1">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:var(--accent)"></div>
+    <span class="phase-title">Fase 1 · Banking & Compliance</span>
+    <span class="phase-sub">Semanas 1–4 · Infraestructura financiera</span>
+    <span class="phase-progress" id="prog-phase1"></span>
+  </div>
+
+  <div class="check-item" data-module="banking" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Abrir cuenta bancaria Mercury</div>
+      <div class="item-desc">Banco digital #1 para startups. Sin fees, interfaz moderna, compatible con Stripe/Brex. Requiere EIN + documentos de incorporación. Proceso 100% online.</div>
+      <div class="item-meta"><span class="item-tag tag-banking">Banking</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M3 Banking</span><span class="item-week">Semana 1</span></div>
+  </div>
+
+  <div class="check-item" data-module="banking" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Obtener ITIN (Individual Taxpayer ID) para founders extranjeros</div>
+      <div class="item-desc">Necesario si founders no tienen SSN. Tramitar con Form W-7 ante IRS. Tiempo estimado: 6–11 semanas. Comenzar lo antes posible.</div>
+      <div class="item-meta"><span class="item-tag tag-banking">Banking</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M3 Banking</span><span class="item-week">Semana 1–2</span></div>
+  </div>
+
+  <div class="check-item" data-module="banking" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Configurar Stripe para pagos</div>
+      <div class="item-desc">Setup de cuenta Stripe con la Delaware entity. Integrar payment links, invoicing o Stripe Billing según modelo de negocio. Reservas: 2–7% del procesamiento.</div>
+      <div class="item-meta"><span class="item-tag tag-banking">Banking</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M3 Banking</span><span class="item-week">Semana 2</span></div>
+  </div>
+
+  <div class="check-item" data-module="banking" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Evaluar BaaS provider según arquitectura del producto</div>
+      <div class="item-desc">Si el producto requiere cuentas, tarjetas o transfers: evaluar Synapse, Unit, Treasury Prime, Column Bank. Comparar fees, latencia y soporte regulatorio.</div>
+      <div class="item-meta"><span class="item-tag tag-banking">Banking</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M3 Banking</span><span class="item-week">Semana 2–4</span></div>
+  </div>
+
+  <div class="check-item" data-module="banking" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Configurar Brex o Ramp para gastos corporativos</div>
+      <div class="item-desc">Tarjeta corporativa sin SSN requerido para founders extranjeros. Cashback en SaaS, viajes. Integra con QuickBooks/Xero para contabilidad.</div>
+      <div class="item-meta"><span class="item-tag tag-banking">Banking</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M3 Banking</span><span class="item-week">Semana 2–3</span></div>
+  </div>
+
+  <div class="check-item" data-module="compliance" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Investigar requerimientos de Money Transmitter License (MTL) en estados target</div>
+      <div class="item-desc">Cada estado tiene requisitos distintos. NY: BitLicense para crypto. CA, TX, FL tienen sus propias reglas. Consultar con abogado FinTech ANTES de lanzar. Costo MTL: $1K–$50K por estado.</div>
+      <div class="item-meta"><span class="item-tag tag-compliance">Compliance</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M2 Regulation</span><span class="item-week">Semana 1–2</span></div>
+  </div>
+
+  <div class="check-item" data-module="compliance" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Iniciar proceso SOC 2 Type II con Vanta o Drata</div>
+      <div class="item-desc">Requerido por enterprise clients y muchos VCs. Proceso toma 6–12 meses. Iniciar temprano. Vanta: $7,500/año. Drata: $9,000/año. Automatiza evidencia continua.</div>
+      <div class="item-meta"><span class="item-tag tag-compliance">Compliance</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M2 Regulation</span><span class="item-week">Semana 2–4</span></div>
+  </div>
+
+  <div class="check-item" data-module="compliance" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Contratar D&O + E&O + Cyber Insurance</div>
+      <div class="item-desc">D&O (Directors & Officers) protege a founders. E&O (Errors & Omissions) protege el producto. Cyber Insurance es requerida por enterprise. Bundle típico: $5K–$15K/año. Proveedores: Embroker, CoverWallet.</div>
+      <div class="item-meta"><span class="item-tag tag-compliance">Compliance</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M2 Regulation</span><span class="item-week">Semana 3–4</span></div>
+  </div>
+
+  <div class="check-item" data-module="compliance" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Redactar Privacy Policy + Terms of Service conformes a CCPA/GLBA</div>
+      <div class="item-desc">Obligatorio para operar. CCPA aplica si hay usuarios en California. GLBA aplica a datos financieros. Usar Termly o abogado. No copiar de otros sitios.</div>
+      <div class="item-meta"><span class="item-tag tag-compliance">Compliance</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M2 Regulation</span><span class="item-week">Semana 3–4</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FASE 2 — GO-TO-MARKET (Semanas 3-8)
+════════════════════════════════════════════ -->
+<div class="phase-block" id="phase2">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:var(--accent4)"></div>
+    <span class="phase-title">Fase 2 · Go-to-Market</span>
+    <span class="phase-sub">Semanas 3–8 · Primeros clientes</span>
+    <span class="phase-progress" id="prog-phase2"></span>
+  </div>
+
+  <div class="check-item" data-module="gtm" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Definir ICP (Ideal Customer Profile) en 4 dimensiones</div>
+      <div class="item-desc">Dimensiones: firmográficas (tipo institución, AUM), tecnológicas (core bancario, APIs), conductuales (pain points activos), geográficas (estado, ciudad). Entrevistar 10+ prospectos antes de finalizar.</div>
+      <div class="item-meta"><span class="item-tag tag-gtm">GTM</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M5 GTM</span><span class="item-week">Semana 3</span></div>
+  </div>
+
+  <div class="check-item" data-module="gtm" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Aplicar a ICBA ThinkTECH Accelerator</div>
+      <div class="item-desc">El canal de distribución más eficiente para FinTechs B2B con bancos comunitarios. Acceso a 4,500+ community banks. Cohorte anual. Convierte al 25–40% en contratos pagos. Deadline: revisar icba.org/thinktech.</div>
+      <div class="item-meta"><span class="item-tag tag-gtm">GTM</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M5 GTM</span><span class="item-week">Semana 3–4</span></div>
+  </div>
+
+  <div class="check-item" data-module="gtm" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Configurar CRM (HubSpot gratuito o Salesforce)</div>
+      <div class="item-desc">Trackear pipeline desde día uno. HubSpot Free tiene todo lo necesario para etapa seed. Crear stages: Prospect → Meeting → Pilot → Contract → Live.</div>
+      <div class="item-meta"><span class="item-tag tag-gtm">GTM</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M5 GTM</span><span class="item-week">Semana 3</span></div>
+  </div>
+
+  <div class="check-item" data-module="gtm" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Aplicar a FinLab (FIL) — Financial Innovation Lab</div>
+      <div class="item-desc">Acceso a CDFIs (Community Development Financial Institutions), el mejor primer cliente para FinTechs LatAm. Misión social alineada, ciclos de compra más cortos que big banks. Revisar fi.org/FIL.</div>
+      <div class="item-meta"><span class="item-tag tag-gtm">GTM</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M5 GTM</span><span class="item-week">Semana 3–5</span></div>
+  </div>
+
+  <div class="check-item" data-module="gtm" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Diseñar Pilot Program de 3 etapas (POC → Paid → Full)</div>
+      <div class="item-desc">Stage 1: POC gratuito 30 días. Stage 2: Paid Pilot $5K–$25K/mes. Stage 3: Full Contract. KPIs definidos en cada etapa. Exit criteria claros. Contrato de piloto firmado siempre.</div>
+      <div class="item-meta"><span class="item-tag tag-gtm">GTM</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M5 GTM</span><span class="item-week">Semana 4–5</span></div>
+  </div>
+
+  <div class="check-item" data-module="gtm" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Construir lista de 50 prospectos calificados y comenzar warm intros</div>
+      <div class="item-desc">Priorizar warm intros (25–40% conversión) sobre cold outreach (1–3%). Usar LinkedIn, alumni networks, coinversores, aceleradoras. Template de intro en Docsend.</div>
+      <div class="item-meta"><span class="item-tag tag-gtm">GTM</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M5 GTM</span><span class="item-week">Semana 4–6</span></div>
+  </div>
+
+  <div class="check-item" data-module="gtm" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Definir modelo de pricing y preparar propuesta comercial</div>
+      <div class="item-desc">Para B2B: SaaS mensual + transaction fees. No cobrar solo por transacción al inicio. Incluir implementation fee. Preparar 3 tiers: Starter, Growth, Enterprise.</div>
+      <div class="item-meta"><span class="item-tag tag-gtm">GTM</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M5 GTM</span><span class="item-week">Semana 4</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FASE 3 — FUNDRAISING (Semanas 4-12)
+════════════════════════════════════════════ -->
+<div class="phase-block" id="phase3">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:var(--gold)"></div>
+    <span class="phase-title">Fase 3 · Fundraising</span>
+    <span class="phase-sub">Semanas 4–12 · Capital pre-seed & seed</span>
+    <span class="phase-progress" id="prog-phase3"></span>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Descargar YC SAFE (Post-Money) y preparar términos</div>
+      <div class="item-desc">Standard American startup instrument. Descarga gratuita en ycombinator.com/documents. Usar post-money SAFE, no pre-money. Valuation cap: negociar basado en mercado actual (pre-seed 2025: $5M–$15M cap).</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 4</span></div>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Armar Data Room completo (Google Drive estructurado)</div>
+      <div class="item-desc">Carpetas: 1-Company Overview, 2-Financials, 3-Legal, 4-Product, 5-Team, 6-Market Research, 7-Customers. Incluir: deck, modelo financiero 3 años, cap table, contratos clave, métricas producto.</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 4–5</span></div>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Obtener 409A Valuation</div>
+      <div class="item-desc">Requerida para fijar el strike price de opciones. Sin 409A no se pueden emitir ISOs. Costo: $1,500–$3,000. Proveedores: Carta 409A, Preferred Return, Aranca. Renovar anualmente o en cada ronda.</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 5–6</span></div>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Crear pitch deck de 10 slides y hostear en Docsend</div>
+      <div class="item-desc">Estructura: 1-Problem, 2-Solution, 3-Market, 4-Product, 5-Traction, 6-Business Model, 7-Team, 8-Competition, 9-Ask, 10-Vision. Docsend trackea tiempo por slide. Versión "teaser" sin financials para primera conversación.</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 4–5</span></div>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Primer contacto con Clocktower Technology Ventures</div>
+      <div class="item-desc">VC #1 especializado en FinTech LatAm → US. Tesis: infraestructura financiera. Portfolio: Konfío, Boa Compra, etc. Buscar warm intro via YC, aceleradoras o portfolio companies. Partner: Arti Raman.</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 5–8</span></div>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Abrir perfil en AngelList Raise y activar SPV si aplica</div>
+      <div class="item-desc">Para rondas pre-seed con múltiples angels. AngelList Rolling Funds o SPVS: consolida múltiples cheques en uno. Fee: 5% carried interest. También crear perfil público para inbound.</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 6–8</span></div>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Preparar métricas clave para VCs: NRR, CAC, Burn Multiple, ARR</div>
+      <div class="item-desc">NRR objetivo: &gt;120%. CAC payback: &lt;18 meses. Burn Multiple: &lt;1.5x. ARR mínimo Serie A (2025): $4M. Dashboard con métricas en tiempo real (ChartMogul o Baremetrics).</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Ongoing</span></div>
+  </div>
+
+  <div class="check-item" data-module="fundraising" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Evaluar aplicar a Y Combinator</div>
+      <div class="item-desc">YC da $500K por $7% equity (post-money SAFE). Acceso al network más valioso de Silicon Valley. 2 cohorts/año (invierno y verano). Aplicar incluso con baja probabilidad por el aprendizaje del proceso.</div>
+      <div class="item-meta"><span class="item-tag tag-fundraising">Fundraising</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M4 Fundraising</span><span class="item-week">Semana 4–8</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FASE 4 — HR & PRIMER HIRE (Semanas 6-16)
+════════════════════════════════════════════ -->
+<div class="phase-block" id="phase4">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:var(--accent2)"></div>
+    <span class="phase-title">Fase 4 · HR &amp; Primer Hire</span>
+    <span class="phase-sub">Semanas 6–16 · Equipo US</span>
+    <span class="phase-progress" id="prog-phase4"></span>
+  </div>
+
+  <div class="check-item" data-module="hr" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Seleccionar y contratar PEO (Professional Employer Organization)</div>
+      <div class="item-desc">SIEMPRE el primer paso para contratar en USA. El PEO maneja payroll, benefits, tax compliance. Sin PEO, los riesgos legales son enormes. Opciones: Rippling (tech-forward, $35/empleado/mes), Gusto (simple, $40), Justworks (NYC-popular, $59).</div>
+      <div class="item-meta"><span class="item-tag tag-hr">HR</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M6 HR</span><span class="item-week">Semana 6</span></div>
+  </div>
+
+  <div class="check-item" data-module="hr" data-priority="critical">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Configurar Deel para equipo en Uruguay/LatAm</div>
+      <div class="item-desc">Para contractors y empleados fuera de USA. Deel maneja compliance local, pagos en USD, contrato internacional. Costo: $49/contractor/mes o $599/empleado/mes (EOR). Esencial para mantener el equipo LatAm legalmente.</div>
+      <div class="item-meta"><span class="item-tag tag-hr">HR</span><span class="priority-badge priority-critical">Crítico</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M6 HR</span><span class="item-week">Semana 6</span></div>
+  </div>
+
+  <div class="check-item" data-module="hr" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Definir perfil del Primer Hire US — VP Sales o BDR</div>
+      <div class="item-desc">El primer hire determina el éxito del GTM. Para B2B FinTech: VP Sales o Senior BDR con red en banca comunitaria o CDFIs. OTE mínimo NYC: $208K–$315K. No escatimar aquí.</div>
+      <div class="item-meta"><span class="item-tag tag-hr">HR</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M6 HR</span><span class="item-week">Semana 8–10</span></div>
+  </div>
+
+  <div class="check-item" data-module="hr" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Crear Stock Option Pool y emitir primeras opciones</div>
+      <div class="item-desc">Reservar 10–20% para Option Pool antes de ronda seed. ISOs para empleados US (ventaja fiscal). NSOs para contractors y advisors. 4-year vesting, 1-year cliff estándar. Requiere 409A previa.</div>
+      <div class="item-meta"><span class="item-tag tag-hr">HR</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M6 HR</span><span class="item-week">Semana 8</span></div>
+  </div>
+
+  <div class="check-item" data-module="hr" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Redactar Employment Agreement conforme a At-Will (estado específico)</div>
+      <div class="item-desc">USA es "at-will" — empleador puede despedir sin causa. Pero el contrato debe incluir: IP assignment, non-solicitation, confidentiality. Evitar non-competes (ilegales en California). Usar abogado laboral por estado.</div>
+      <div class="item-meta"><span class="item-tag tag-hr">HR</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M6 HR</span><span class="item-week">Semana 10</span></div>
+  </div>
+
+  <div class="check-item" data-module="hr" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Consultar opciones de visa — E-2 (Uruguay es treaty country)</div>
+      <div class="item-desc">Uruguay tiene tratado E-2 con USA — ventaja ÚNICA para founders uruguayos. E-2 requiere inversión sustancial ($50K+) en la empresa. O-1A para founders con logros extraordinarios. L-1A si hay filial preexistente. Consultar abogado de inmigración.</div>
+      <div class="item-meta"><span class="item-tag tag-hr">HR</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M6 HR</span><span class="item-week">Semana 6–12</span></div>
+  </div>
+
+  <div class="check-item" data-module="hr" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Documentar cultura At-Will y diferencias con cultura LatAm para el equipo</div>
+      <div class="item-desc">El equipo LatAm puede malinterpretar feedback directo, ausencia de jerarquía visible, o decisiones sin consenso. Documentar: directness, accountability, autonomía, 1-on-1s semanales, feedback asíncrono.</div>
+      <div class="item-meta"><span class="item-tag tag-hr">HR</span><span class="priority-badge priority-low">Bajo</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">M6 HR</span><span class="item-week">Ongoing</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FASE 5 — NYC ECOSYSTEM (Semanas 4-12)
+════════════════════════════════════════════ -->
+<div class="phase-block" id="phase5">
+  <div class="phase-header">
+    <div class="phase-dot" style="background:var(--accent)"></div>
+    <span class="phase-title">Fase 5 · NYC FinTech Ecosystem</span>
+    <span class="phase-sub">Semanas 4–12 · Networking y visibilidad</span>
+    <span class="phase-progress" id="prog-phase5"></span>
+  </div>
+
+  <div class="check-item" data-module="ecosystem" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Registrarse en NY FinTech Week (Abril anual)</div>
+      <div class="item-desc">El evento más importante del ecosistema FinTech de NYC. 3,000+ asistentes, 200+ speakers, deal flow masivo. Sponsor packages disponibles para startups. Registrar en nyfintech.com. Speaker applications abren en enero.</div>
+      <div class="item-meta"><span class="item-tag tag-ecosystem">Ecosistema</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">NYC Map</span><span class="item-week">Semana 4–8</span></div>
+  </div>
+
+  <div class="check-item" data-module="ecosystem" data-priority="high">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Conseguir dirección física en NYC (WeWork o Mercury virtual address)</div>
+      <div class="item-desc">Muchos enterprise clients y reguladores requieren dirección NY física. Mercury ofrece virtual address. WeWork Flatiron o Midtown son los hubs FinTech más reconocibles. Costo: $100–$500/mes para virtual/coworking básico.</div>
+      <div class="item-meta"><span class="item-tag tag-ecosystem">Ecosistema</span><span class="priority-badge priority-high">Alto</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">NYC Map</span><span class="item-week">Semana 4–6</span></div>
+  </div>
+
+  <div class="check-item" data-module="ecosystem" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Unirse a FinTech Meetup NYC y NYC FinTech Women</div>
+      <div class="item-desc">FinTech Meetup: 5,000+ miembros, eventos mensuales en Midtown. NYC FinTech Women: acceso al network de VCs y ejecutivas del sector. Ambos son gratuitos o de bajo costo. Meetup.com.</div>
+      <div class="item-meta"><span class="item-tag tag-ecosystem">Ecosistema</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">NYC Map</span><span class="item-week">Semana 4</span></div>
+  </div>
+
+  <div class="check-item" data-module="ecosystem" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Aplicar a acceleradoras con foco FinTech — Plug and Play, FinTech Innovation Lab</div>
+      <div class="item-desc">FinTech Innovation Lab (Accenture): acceso a 30+ bancos y aseguradoras globales. Plug and Play FinTech: red de 400+ VCs, cheque de inversión posible. Barclays Accelerator: programa de 13 semanas. Todas son gratuitas o dan capital.</div>
+      <div class="item-meta"><span class="item-tag tag-ecosystem">Ecosistema</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">NYC Map</span><span class="item-week">Semana 6–10</span></div>
+  </div>
+
+  <div class="check-item" data-module="ecosystem" data-priority="medium">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Mapear y contactar a 5 FinTechs scaled que puedan ser partners o references</div>
+      <div class="item-desc">Ramp, Chime, Oscar Health, Betterment, Gemini tienen programas de partnerships. Una referencia de Ramp o Chime vale más que 100 cold emails. Buscar en LinkedIn a sus Partnerships Managers.</div>
+      <div class="item-meta"><span class="item-tag tag-ecosystem">Ecosistema</span><span class="priority-badge priority-medium">Medio</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">NYC Map</span><span class="item-week">Semana 8–12</span></div>
+  </div>
+
+  <div class="check-item" data-module="ecosystem" data-priority="low">
+    <input type="checkbox" onchange="toggle(this)">
+    <div class="item-body">
+      <div class="item-title">Registrar startup en NYC Economic Development Corporation (NYCEDC)</div>
+      <div class="item-desc">NYCEDC ofrece programas de grants, tax incentives y connections para startups en NYC. Gratuito. Puede acceder a programas de subsidio de espacio de oficina. edc.nyc/startups.</div>
+      <div class="item-meta"><span class="item-tag tag-ecosystem">Ecosistema</span><span class="priority-badge priority-low">Bajo</span></div>
+    </div>
+    <div class="item-right"><span class="item-module">NYC Map</span><span class="item-week">Semana 8–12</span></div>
+  </div>
+</div>
+
+</div><!-- end sections-wrap -->
+
+<script>
+// ── STATE ──────────────────────────────────────────────────────
+var state = { checked: {}, filter: 'all' };
+var allItems = [];
+
+// ── INIT ───────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  allItems = Array.from(document.querySelectorAll('.check-item'));
+  allItems.forEach(function(item, i) {
+    item.dataset.id = 'item-' + i;
+  });
+  updateStats();
+  updatePhaseCounters();
+});
+
+// ── TOGGLE CHECKBOX ────────────────────────────────────────────
+function toggle(cb) {
+  var item = cb.closest('.check-item');
+  var id = item.dataset.id;
+  state.checked[id] = cb.checked;
+  if (cb.checked) {
+    item.classList.add('done');
+  } else {
+    item.classList.remove('done');
+  }
+  updateStats();
+  updatePhaseCounters();
+}
+
+// ── STATS ──────────────────────────────────────────────────────
+function updateStats() {
+  var total = allItems.length;
+  var done = Object.values(state.checked).filter(Boolean).length;
+  var critical = allItems.filter(function(i) { return i.dataset.priority === 'critical' && !state.checked[i.dataset.id]; }).length;
+  var pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statCritical').textContent = critical;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('pctNum').textContent = pct + '%';
+  document.getElementById('pctCircle').style.setProperty('--pct', pct + '%');
+}
+
+// ── PHASE COUNTERS ─────────────────────────────────────────────
+function updatePhaseCounters() {
+  ['phase0','phase1','phase2','phase3','phase4','phase5'].forEach(function(phaseId) {
+    var phase = document.getElementById(phaseId);
+    if (!phase) return;
+    var items = Array.from(phase.querySelectorAll('.check-item'));
+    var done = items.filter(function(i) { return state.checked[i.dataset.id]; }).length;
+    var el = document.getElementById('prog-' + phaseId);
+    if (el) el.textContent = done + '/' + items.length + ' completados';
+  });
+}
+
+// ── FILTER ─────────────────────────────────────────────────────
+function applyFilter(filter, btn) {
+  state.filter = filter;
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+
+  allItems.forEach(function(item) {
+    var show = false;
+    if (filter === 'all') {
+      show = true;
+    } else if (filter === 'critical') {
+      show = item.dataset.priority === 'critical';
+    } else if (filter === 'pending') {
+      show = !state.checked[item.dataset.id];
+    } else if (filter === 'done') {
+      show = !!state.checked[item.dataset.id];
+    } else {
+      show = item.dataset.module === filter;
+    }
+    item.classList.toggle('hidden', !show);
+  });
+
+  // Empty state
+  var visible = allItems.filter(function(i) { return !i.classList.contains('hidden'); });
+  var es = document.getElementById('emptyState');
+  if (visible.length === 0) {
+    es.classList.add('show');
+  } else {
+    es.classList.remove('show');
+  }
+}
+
+// ── RESET ──────────────────────────────────────────────────────
+function resetAll() {
+  if (!confirm('¿Reiniciar todo el progreso? Esta acción no se puede deshacer.')) return;
+  state.checked = {};
+  allItems.forEach(function(item) {
+    item.classList.remove('done');
+    var cb = item.querySelector('input[type=checkbox]');
+    if (cb) cb.checked = false;
+  });
+  updateStats();
+  updatePhaseCounters();
+}
+
+// ── TRANSLATE ──────────────────────────────────────────────────
+function triggerTranslate(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var gs = document.querySelector('.goog-te-combo');
+  if (gs) {
+    gs.value = lang === 'en' ? '' : lang;
+    gs.dispatchEvent(new Event('change'));
+  }
+}
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({ pageLanguage: 'es', autoDisplay: false }, 'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

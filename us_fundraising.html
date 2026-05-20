@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fundraising & Investors — TIH US Market Entry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:hsl(222 47% 11%);
+  --secondary:hsl(222 40% 16%);
+  --gold:hsl(32 95% 44%);
+  --accent:hsl(32 95% 54%);
+  --accent2:#4EFEE7;
+  --accent3:#FE4E7A;
+  --accent4:#B44EFE;
+  --muted:hsl(222 20% 60%);
+  --muted2:hsl(222 15% 48%);
+  --text:hsl(222 20% 95%);
+  --bg:hsl(222 47% 11%);
+  --surface:hsl(222 40% 16%);
+  --surface2:hsl(222 35% 20%);
+  --border:hsl(222 30% 26%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+#google_translate_element{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none}
+
+/* NAV */
+.global-nav{background:var(--secondary);border-bottom:1px solid var(--border);padding:10px 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px}
+.global-brand{display:flex;align-items:center;gap:10px}
+.global-logo{height:28px;width:auto;object-fit:contain;opacity:.9}
+.global-year{font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;border-left:1px solid var(--border);padding-left:10px}
+.global-links{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.global-nav-link{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border:1px solid transparent;border-radius:999px;transition:all .2s}
+.global-nav-link:hover{color:var(--text);border-color:var(--border)}
+.global-nav-link.active{color:#000;background:var(--accent);border-color:var(--accent);font-weight:700}
+.lang-switch{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px;background:var(--surface)}
+.lang-btn{background:none;border:none;color:var(--muted);font-size:11px;font-weight:600;padding:5px 9px;cursor:pointer;border-radius:3px;transition:all .2s;font-family:'DM Sans',sans-serif;letter-spacing:.06em}
+.lang-btn.active{background:var(--accent);color:#000}
+.lang-btn:hover:not(.active){color:var(--text);background:var(--surface2)}
+
+/* HERO */
+.hero{padding:60px 32px 48px;max-width:1100px;margin:0 auto}
+.hero-badge{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hero-badge::before{content:'';width:24px;height:1px;background:var(--accent2)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:16px}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:680px;line-height:1.65}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:40px}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px;border-top:2px solid var(--accent)}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.stat-label{font-size:11px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.08em}
+
+/* TABS */
+.nav{background:var(--secondary);border-bottom:1px solid var(--border);padding:0 24px;overflow-x:auto;white-space:nowrap}
+.nav::-webkit-scrollbar{height:3px}
+.nav::-webkit-scrollbar-thumb{background:var(--border)}
+.tab{display:inline-block;padding:14px 18px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-weight:600}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.section{display:none;max-width:1100px;margin:0 auto;padding:48px 32px 80px}
+.section.active{display:block}
+
+/* TITLES */
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;margin-bottom:8px}
+.section-title.sm{font-size:1.3rem;margin-top:40px}
+.section-sub{color:var(--muted);margin-bottom:32px;font-size:.95rem;line-height:1.6}
+
+/* INFO BLOCKS */
+.info-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:24px;margin-bottom:16px;border-radius:2px}
+.info-block.a2{border-left-color:var(--accent2)}
+.info-block.a3{border-left-color:var(--accent3)}
+.info-block.a4{border-left-color:var(--accent4)}
+.info-block.ag{border-left-color:var(--gold)}
+.info-block h3{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+.info-block p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.info-block ul{margin-top:8px;padding-left:20px}
+.info-block ul li{color:var(--muted2);font-size:.88rem;margin-bottom:6px;line-height:1.55}
+.info-block strong{color:var(--text)}
+
+/* CALLOUT / WARNING */
+.callout{background:hsl(32 95% 44% / .1);border:1px solid hsl(32 95% 44% / .3);border-left:3px solid var(--accent);padding:16px 20px;margin:20px 0;border-radius:2px}
+.callout.a2{background:hsl(174 97% 65% / .07);border-color:hsl(174 97% 65% / .25);border-left-color:var(--accent2)}
+.callout.a4{background:hsl(280 80% 65% / .07);border-color:hsl(280 80% 65% / .25);border-left-color:var(--accent4)}
+.callout p{color:var(--muted);font-size:.88rem;line-height:1.6}
+.callout strong{color:var(--text)}
+.warning{background:hsl(0 80% 60% / .08);border:1px solid hsl(0 80% 60% / .3);border-left:3px solid var(--accent3);padding:16px 20px;margin:20px 0;border-radius:2px}
+.warning p{color:#e0a0a8;font-size:.88rem;line-height:1.6}
+
+/* TABLES */
+.reg-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.85rem}
+.reg-table th{background:var(--surface2);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border)}
+.reg-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted2)}
+.reg-table td:first-child{color:var(--text);font-weight:600}
+.reg-table tr:hover td{background:var(--surface)}
+
+/* COMPARISON GRID */
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}
+.comp-col{background:var(--surface);border:1px solid var(--border);padding:24px;border-radius:4px}
+.comp-col.highlight{border-color:var(--accent2);border-top:2px solid var(--accent2)}
+.comp-col h3{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--text)}
+.comp-col h3 span{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:999px;margin-left:8px;font-family:'DM Sans',sans-serif}
+.safe-tag{background:hsl(174 97% 65%/.15);color:var(--accent2)}
+.note-tag{background:hsl(222 60% 65%/.15);color:#7EB8FE}
+.comp-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.comp-row:last-child{border-bottom:none}
+.comp-label{color:var(--muted);font-size:.8rem}
+.comp-val{color:var(--text);text-align:right;font-size:.82rem;max-width:55%}
+
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:0;margin:24px 0}
+.flow-step{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:flex-start}
+.flow-num{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#000;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0;margin-top:2px}
+.flow-num.a2{background:var(--accent2)}
+.flow-content{padding-bottom:24px}
+.flow-content h4{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.flow-content p{font-size:.88rem;color:var(--muted);line-height:1.55}
+.flow-connector{width:1px;height:20px;background:var(--border);margin-left:56px;margin-top:-4px;margin-bottom:4px}
+
+/* PLATFORM GRID */
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:20px}
+.platform-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px;transition:border-color .2s}
+.platform-card:hover{border-color:var(--accent)}
+.platform-card .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.platform-card h4{font-size:.95rem;font-weight:700;color:var(--text)}
+.platform-tag{font-size:9px;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:999px;font-weight:700}
+.pt-g{background:hsl(174 97% 65%/.15);color:var(--accent2)}
+.pt-b{background:hsl(222 80% 65%/.15);color:#7EB8FE}
+.pt-gold{background:hsl(32 95% 54%/.15);color:var(--accent)}
+.pt-p{background:hsl(280 80% 65%/.15);color:var(--accent4)}
+.plist{margin-top:8px;padding-left:16px}
+.plist li{font-size:.82rem;color:var(--muted2);margin-bottom:3px;line-height:1.5}
+
+/* METRIC CARDS */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:24px 0}
+.metric-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px}
+.metric-card .mc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.metric-card h4{font-size:.9rem;font-weight:700;color:var(--text)}
+.metric-card .mc-bench{font-size:.78rem;color:var(--accent2);font-weight:700}
+.metric-card p{font-size:.82rem;color:var(--muted2);line-height:1.5}
+
+/* CHECKLIST */
+.checklist-wrap{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:24px}
+.checklist-head{display:grid;grid-template-columns:1fr 140px 80px;background:var(--surface2);padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.checklist-row{display:grid;grid-template-columns:1fr 140px 80px;padding:12px 16px;border-top:1px solid var(--border);align-items:start;transition:background .15s}
+.checklist-row:hover{background:var(--surface2)}
+.ci{font-size:.88rem;color:var(--text)}
+.ci small{display:block;font-size:.78rem;color:var(--muted2);margin-top:2px}
+.cp{font-size:.78rem;color:var(--muted2)}
+.cp-d{color:var(--accent)}
+.cp-s{color:var(--accent2)}
+.cp-m{color:#7EB8FE}
+.cp-p{color:var(--accent4)}
+
+/* RESOURCE GRID */
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px}
+.resource-card{background:var(--surface);border:1px solid var(--border);padding:16px;border-radius:4px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:all .2s}
+.resource-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.resource-card h5{font-size:.85rem;font-weight:700;color:var(--text)}
+.resource-card p{font-size:.78rem;color:var(--muted2);line-height:1.4}
+
+/* NARRATIVE CARDS */
+.narrative-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px}
+.narrative-card{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--accent4);padding:18px;border-radius:4px}
+.narrative-card .nc-step{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent4);font-weight:700;margin-bottom:6px}
+.narrative-card h4{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.narrative-card p{font-size:.8rem;color:var(--muted2);line-height:1.5}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .global-nav{grid-template-columns:1fr auto;grid-template-rows:auto auto}
+  .global-links{grid-column:1/-1;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:6px}
+  .global-nav-link{font-size:10px;padding:5px 10px}
+  .comp-grid{grid-template-columns:1fr}
+  .nav{padding:0 16px}
+  .hero{padding:40px 20px 32px}
+  .section{padding:32px 20px 60px}
+  .reg-table{font-size:.78rem}
+  .checklist-head,.checklist-row{grid-template-columns:1fr 110px 70px}
+}
+@media(max-width:480px){
+  .global-year{display:none}
+  .global-nav-link{font-size:9px;padding:4px 8px;letter-spacing:.04em}
+  .lang-btn{font-size:9px;padding:5px 6px}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .checklist-head,.checklist-row{grid-template-columns:1fr 100px}
+}
+</style>
+</head>
+<body>
+
+<div id="google_translate_element"></div>
+
+<!-- GLOBAL NAV -->
+<nav class="global-nav">
+  <div class="global-brand">
+    <img src="./tih-logo-white-CV3af6jQ.png" alt="TIH" class="global-logo">
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link" href="./us_nyc_fintech_map.html">NYC Map</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link" href="./us_banking_infrastructure.html">US Banking</a>
+    <a class="global-nav-link active" href="./us_fundraising.html">Fundraising</a>
+    <a class="global-nav-link" href="./us_gtm.html">GTM</a>
+    <a class="global-nav-link" href="./us_hr_hiring.html">HR & Hiring</a>
+    <a class="global-nav-link" href="./us_checklist.html">Checklist</a>
+  </div>
+  <div class="lang-switch" aria-label="Language selector">
+    <button class="lang-btn active" onclick="triggerTranslate('es',this)">ES</button>
+    <button class="lang-btn" onclick="triggerTranslate('en',this)">EN</button>
+    <button class="lang-btn" onclick="triggerTranslate('it',this)">IT</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">US Market Entry Framework · Módulo 4 de 9 · TIH × YLAI Fellowship</div>
+  <h1>Fundraising &<br><span>Inversores US</span></h1>
+  <p class="hero-sub">Levantar capital en Estados Unidos es un juego fundamentalmente diferente al de LatAm. Los instrumentos son distintos, los timelines son distintos, las expectativas de los inversores son distintas — y las preguntas que recibís en la sala son distintas. Este módulo cubre el landscape VC, SAFE vs Note, qué quieren los inversores US de founders LatAm, aceleradoras y las métricas que importan en due diligence.</p>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">$27.2B</div><div class="stat-label">VC fintech US 2025</div></div>
+    <div class="stat-card"><div class="stat-num">90%</div><div class="stat-label">Pre-seed via SAFE</div></div>
+    <div class="stat-card"><div class="stat-num">$7.8B</div><div class="stat-num" style="font-size:1rem">NYC solo</div></div>
+    <div class="stat-card"><div class="stat-num">300+</div><div class="stat-label">Decks por check escrito</div></div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="nav">
+  <span class="tab active" onclick="showTab('s0',this)">00 Overview</span>
+  <span class="tab" onclick="showTab('s1',this)">01 VC Landscape</span>
+  <span class="tab" onclick="showTab('s2',this)">02 SAFE vs Note</span>
+  <span class="tab" onclick="showTab('s3',this)">03 Qué Quieren los VCs</span>
+  <span class="tab" onclick="showTab('s4',this)">04 Aceleradoras</span>
+  <span class="tab" onclick="showTab('s5',this)">05 AngelList & Pre-Seed</span>
+  <span class="tab" onclick="showTab('s6',this)">06 Due Diligence</span>
+  <span class="tab" onclick="showTab('s7',this)">07 Pitch Deck</span>
+</div>
+
+<!-- ─── TAB 0: OVERVIEW ─────────────────────────────────────── -->
+<div id="s0" class="section active">
+  <div class="section-title">Levantar Capital en EEUU en 2026</div>
+  <p class="section-sub">Un founder LatAm que levantó $2M en Uruguay o Argentina sabe que puede construir. Lo que los inversores US quieren ver es si podés escalar en el mercado más competitivo del mundo.</p>
+
+  <div class="info-block a2">
+    <h3>Lo que este módulo cubre</h3>
+    <ul>
+      <li><strong>4.1 VC Landscape:</strong> Los fondos que mueven el ecosistema fintech US, por tier y tesis</li>
+      <li><strong>4.2 SAFE vs Convertible Note:</strong> El debate está resuelto en 2026 — a favor del SAFE. Por qué, la mecánica y las excepciones</li>
+      <li><strong>4.3 Qué quieren los VCs US:</strong> La narrativa que funciona, lo que va en tu contra y cómo abordarlo</li>
+      <li><strong>4.4 Aceleradoras:</strong> YC como caso especial, Fintech Innovation Lab, Techstars y el resto del Tier 1</li>
+      <li><strong>4.5 AngelList:</strong> Qué es realmente en 2026 y cómo usarlo efectivamente</li>
+      <li><strong>4.6 Due Diligence:</strong> Las métricas que importan en 2026, qué mata deals y cómo preparar tu data room</li>
+      <li><strong>4.7 Pitch Deck Norms:</strong> Las 10 slides y las expectativas estructurales de los inversores fintech US</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">El Contexto del Mercado 2026</div>
+  <p class="section-sub" style="margin-bottom:16px">El mercado VC fintech US deployó $27.2B en 2025. NYC solo sumó $7.8B en 372 deals. Pero capital concentrado no significa acceso fácil — los inversores fintech NYC son de los más selectivos del mundo; ven 300+ decks por cada cheque que escriben.</p>
+
+  <div class="info-block ag">
+    <h3>El cambio post-2022: Growth AND Unit Economics</h3>
+    <p>En la era ZIRP (2019–2022), la tasa de crecimiento era el filtro principal: crecer rápido, preocuparse por la rentabilidad después. En 2026, el marcador cambió. Los inversores ahora requieren <strong>tanto crecimiento como unit economics</strong> — y no aceptan intercambiar uno por el otro. El fundador que llega con $500K de ARR y 140% NRR consigue reuniones. El que llega con $2M de ARR y 78% NRR necesita explicar el churn primero.</p>
+  </div>
+</div>
+
+<!-- ─── TAB 1: VC LANDSCAPE ─────────────────────────────────── -->
+<div id="s1" class="section">
+  <div class="section-title">El Landscape VC FinTech US 2026</div>
+  <p class="section-sub">Los fondos relevantes organizados por tier. Para un LatAm FinTech, la primera llamada siempre es a los especialistas — son los que tienen el pattern recognition y el acceso a redes bancarias que un generalista no puede ofrecer.</p>
+
+  <div class="section-title sm">Tier 1 — Fondos Especialistas FinTech (Primera Prioridad)</div>
+  <table class="reg-table">
+    <thead><tr><th>Fondo</th><th>Stage</th><th>Cheque</th><th>Tesis + Inversiones Clave</th></tr></thead>
+    <tbody>
+      <tr><td>Thrive Capital</td><td>Seed–Growth</td><td>$5M–$200M</td><td>VC fintech #1 NYC; Serie A Stripe $20M; Robinhood early; lead OpenAI $6.6B; filosofía revenue-first</td></tr>
+      <tr><td>QED Investors</td><td>Seed–Series C</td><td>$2M–$50M</td><td><strong style="color:var(--accent2)">Único VC fundado por CEO fintech (Capital One)</strong>; Nubank, Credit Karma, Remitly, SoFi, Klarna</td></tr>
+      <tr><td>Ribbit Capital</td><td>Series A–C</td><td>$10M–$100M</td><td>Especialista fintech global; Robinhood, Coinbase, Nubank; $1.15B Fund VIII; profundidad LatAm + India</td></tr>
+      <tr><td>Bessemer Venture Partners</td><td>Series A–C</td><td>$5M–$80M</td><td>Alloy, Betterment, Toast, Affirm; práctica fintech más profunda de cualquier VC generalista</td></tr>
+      <tr><td>Nyca Partners</td><td>Seed–Series B</td><td>$3M–$20M</td><td>B2B fintech vendiendo a bancos; ~$1B AUM; 100+ portfolio; fundado por ex-Citi exec Hans Morris</td></tr>
+      <tr><td>Canapi Ventures</td><td>Series A–C</td><td>$5M–$50M</td><td>FinTechs sirviendo bancos + FIs; red de LPs bancarios = warm intros comerciales para portfolio</td></tr>
+      <tr><td>a16z FinTech</td><td>Seed–Growth</td><td>$5M–$200M</td><td>Stripe, Plaid, Chime; infraestructura + consumer; $2B+ fintech AUM; 20+ deals en 2025</td></tr>
+      <tr><td>Anthemis</td><td>Seed–Series B</td><td>$2M–$20M</td><td>Insurance + infraestructura financiera; NYC + Londres; foco mujeres en fintech</td></tr>
+      <tr><td>FinTech Collective</td><td>Seed–Series A</td><td>$500K–$5M</td><td>NYC fintech-only; bancos como LPs = warm intros a compradores FI; B2B especialista</td></tr>
+      <tr><td>Clocktower Ventures</td><td>Seed–Series B</td><td>$1M–$10M</td><td><strong style="color:var(--accent)">Tesis LatAm + emerging market EXPLÍCITA; NYC-based. Primera llamada para founders LatAm.</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Tier 2 — VCs Generalistas Activos en FinTech</div>
+  <table class="reg-table">
+    <thead><tr><th>Fondo</th><th>AUM</th><th>Stage</th><th>Portfolio FinTech Notable</th></tr></thead>
+    <tbody>
+      <tr><td>Thrive Capital</td><td>~$15B</td><td>Seed–Growth</td><td>Stripe, Nubank, Robinhood — VC fintech definitivo de NYC; lente revenue-obsessed</td></tr>
+      <tr><td>Bessemer Venture Partners</td><td>$18B+</td><td>Series A–C</td><td>Alloy, Betterment, Toast, Affirm — práctica fintech más profunda de cualquier generalista</td></tr>
+      <tr><td>Founders Fund</td><td>$3B+</td><td>Seed–Growth</td><td>Stripe, Nubank, Klarna — rara disposición a hacer bets LatAm/Brasil temprano</td></tr>
+      <tr><td>Greycroft</td><td>$2B+</td><td>Series A–B</td><td>Venmo (pre-PayPal acquisition), Acorns — especialista pagos; NYC-native consumer fintech</td></tr>
+      <tr><td>Valor Capital Group</td><td>$500M</td><td>Seed–Series B</td><td>Tesis cross-border Brasil–US; Pismo + B2B infrastructure plays; NYC-based</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Tier 3 — Corporate VCs (Brazos de Innovación Bancaria)</div>
+  <p class="section-sub" style="margin-bottom:16px">Los CVCs de bancos son los inversores más estratégicamente valiosos para un B2B FinTech — invierten Y abren relaciones comerciales simultáneamente. Para un LatAm FinTech entrando al US, una inversión CVC vale más que su valor en dólares porque convierte a un inversor en un potencial cliente al mismo tiempo.</p>
+  <table class="reg-table">
+    <thead><tr><th>Brazo CVC</th><th>Institución Padre</th><th>Foco</th><th>Qué Ofrecen Más Allá del Capital</th></tr></thead>
+    <tbody>
+      <tr><td>Citi Ventures</td><td>Citigroup</td><td>B2B fintech, pagos, cybersecurity</td><td>Acceso directo a equipos de producto Citi en 160+ países; pathway de pilot</td></tr>
+      <tr><td>JPMorgan Strategic Investments</td><td>JPMorgan Chase</td><td>Infraestructura, data, mercados de capital</td><td>Oportunidades de pilot dentro del presupuesto tech anual $15B de JPMorgan</td></tr>
+      <tr><td>American Express Ventures</td><td>American Express</td><td>Pagos, loyalty, B2B spend</td><td>Red de SME + corporativos; red global de aceptación de merchants</td></tr>
+      <tr><td>Visa Ventures</td><td>Visa</td><td>Infraestructura pagos, BaaS enablers</td><td>Pathway de partnership; red global de aceptación + emisión Visa</td></tr>
+      <tr><td>Santander InnoVentures</td><td>Santander</td><td>LatAm + US dual mandate</td><td>Explícitamente relevante para founders LatAm; red comercial US + LatAm</td></tr>
+      <tr><td>BBVA Open Innovation</td><td>BBVA</td><td>API banking, embedded finance</td><td>Open Platform + partnerships fintech LatAm + US; BBVA Spark program</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <p><strong>Targeting para founders LatAm:</strong> Primera llamada → Clocktower Ventures. Segunda → QED Investors (Nubank, Remitly; entienden LatAm). Tercera → Canapi Ventures (FinTechs vendiendo a bancos; LPs bancarios). CVC estratégico → Santander InnoVentures (mandato US + LatAm dual).</p>
+  </div>
+</div>
+
+<!-- ─── TAB 2: SAFE vs NOTE ─────────────────────────────────── -->
+<div id="s2" class="section">
+  <div class="section-title">SAFE vs Convertible Note — El Estándar 2026</div>
+  <p class="section-sub">El debate entre SAFEs y Convertible Notes está en gran medida resuelto en 2026 — a favor de los SAFEs. El 90% de las rondas pre-seed en Carta usaron SAFEs en Q1 2025. Pero entender el por qué, la mecánica y las circunstancias donde aún se usan notes es crítico antes de abrir cualquier conversación de fundraising.</p>
+
+  <div class="comp-grid">
+    <div class="comp-col highlight">
+      <h3>SAFE (Post-Money) <span class="safe-tag">Estándar 2026</span></h3>
+      <div class="comp-row"><span class="comp-label">Qué es</span><span class="comp-val">Instrumento equity-like; convierte en próxima ronda priced</span></div>
+      <div class="comp-row"><span class="comp-label">Tasa de interés</span><span class="comp-val">Ninguna</span></div>
+      <div class="comp-row"><span class="comp-label">Maturity date</span><span class="comp-val">Ninguna — sin obligación de repago</span></div>
+      <div class="comp-row"><span class="comp-label">Valuation cap</span><span class="comp-val">Sí — inversor obtiene equity al menor de cap o precio de ronda</span></div>
+      <div class="comp-row"><span class="comp-label">Costo legal</span><span class="comp-val">$1.000–$3.000</span></div>
+      <div class="comp-row"><span class="comp-label">Balance sheet</span><span class="comp-val">No es deuda — no aparece como liability</span></div>
+      <div class="comp-row"><span class="comp-label">Velocidad de cierre</span><span class="comp-val">1–2 semanas</span></div>
+      <div class="comp-row"><span class="comp-label">Market standard 2026</span><span class="comp-val" style="color:var(--accent2)">SÍ — 90% pre-seed, 64% seed</span></div>
+    </div>
+    <div class="comp-col">
+      <h3>Convertible Note <span class="note-tag">Uso decreciente</span></h3>
+      <div class="comp-row"><span class="comp-label">Qué es</span><span class="comp-val">Instrumento de deuda; convierte a equity en financing calificado</span></div>
+      <div class="comp-row"><span class="comp-label">Tasa de interés</span><span class="comp-val">4–8% anual en 2026 — acumula y convierte en más shares</span></div>
+      <div class="comp-row"><span class="comp-label">Maturity date</span><span class="comp-val">Sí — típicamente 18–24 meses; presión de repago si no hay ronda priced</span></div>
+      <div class="comp-row"><span class="comp-label">Valuation cap</span><span class="comp-val">Sí — misma mecánica</span></div>
+      <div class="comp-row"><span class="comp-label">Costo legal</span><span class="comp-val">$5.000–$15.000 (documento más complejo)</span></div>
+      <div class="comp-row"><span class="comp-label">Balance sheet</span><span class="comp-val">Es deuda — aparece como liability; complica líneas de crédito bancarias</span></div>
+      <div class="comp-row"><span class="comp-label">Velocidad de cierre</span><span class="comp-val">2–4 semanas</span></div>
+      <div class="comp-row"><span class="comp-label">Market standard 2026</span><span class="comp-val" style="color:var(--accent3)">NO — 10% seed; declinando</span></div>
+    </div>
+  </div>
+
+  <div class="section-title sm">Post-Money SAFE vs Pre-Money SAFE — La Distinción que Importa</div>
+  <div class="info-block a4">
+    <h3>Usá siempre el Post-Money SAFE (versión YC 2018+)</h3>
+    <ul>
+      <li><strong>Pre-money SAFE (versión vieja):</strong> La ownership del inversor se calcula ANTES de incluir el dinero SAFE en la capitalización. Múltiples SAFEs a diferentes caps se diluyen entre sí de maneras imposibles de modelar con precisión al momento de firmar. Creaba sorpresas en el cap table en Serie A.</li>
+      <li><strong>Post-money SAFE (2018+, estándar actual):</strong> La ownership del inversor se calcula DESPUÉS de que todo el dinero SAFE está contabilizado. Cada inversor SAFE sabe exactamente cuánto de la empresa posee desde el momento en que firma. Los founders saben exactamente cuánta dilución crea cada SAFE. <strong>Usar esta versión exclusivamente.</strong></li>
+      <li><strong>El trade-off del founder:</strong> Los SAFEs post-money son más limpios y rápidos — pero cada nuevo SAFE diluye al founder directamente. Modelar la dilución total antes de abrir una ronda SAFE rolling. Un SAFE de $2M a cap $10M = 20% de dilución para los founders.</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">Cuándo Usar un Convertible Note en Cambio</div>
+  <table class="reg-table">
+    <thead><tr><th>Situación</th><th>Por Qué una Note</th></tr></thead>
+    <tbody>
+      <tr><td>Bridge round</td><td>Haciendo bridge entre una ronda priced y la siguiente, con inversores existentes que prefieren instrumentos de deuda</td></tr>
+      <tr><td>Requisito inversor institucional</td><td>Algunos inversores institucionales US (family offices, ciertos growth equity funds) prefieren las protecciones de deuda que proveen las notes</td></tr>
+      <tr><td>Inversores internacionales</td><td>Inversores UK prefieren ASAs; inversores de Singapur usan CLAs. Confirmar con el inversor internacional su instrumento estándar</td></tr>
+      <tr><td>Cuando necesitás una forcing function</td><td>El maturity date de una convertible note crea un deadline para cerrar una ronda priced. Si querés presión estructural para levantar una Serie A en 18 meses — aunque la mayoría de founders lo considera un bug, no un feature</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout a2">
+    <p><strong>Descargá los documentos estándar gratis:</strong> Los documentos SAFE de YC están disponibles en ycombinator.com/documents — 4 versiones estándar: Cap + sin discount, Cap + discount, Sin cap + discount, MFN (Most Favored Nation). Son los documentos de inversión más usados del mundo en pre-seed.</p>
+  </div>
+</div>
+
+<!-- ─── TAB 3: QUÉ QUIEREN LOS VCS ───────────────────────────── -->
+<div id="s3" class="section">
+  <div class="section-title">Qué Quieren los VCs US de un LatAm FinTech</div>
+  <p class="section-sub">Levantar de VCs US como LatAm FinTech en 2026 no es imposible — pero requiere una narrativa específica, evidencia específica y una respuesta clara a un conjunto específico de preguntas que los inversores US siempre hacen sobre empresas de mercados que no conocen tan bien como Silicon Valley.</p>
+
+  <div class="section-title sm">Lo que Trabaja a Tu Favor</div>
+  <div class="info-block a2">
+    <h3>5 ventajas estructurales que los VCs US comprenden</h3>
+    <ul>
+      <li><strong>Resiliencia del modelo en mercados más difíciles:</strong> LatAm tiene infraestructura de crédito más débil, menos penetración bancaria, más informalidad y más complejidad operacional. Si tenés PMF en Uruguay, Argentina o Perú, demostraste resiliencia en condiciones más difíciles que la mayoría de mercados US. <em>Enmarcarlo explícitamente.</em></li>
+      <li><strong>Data moat propietario:</strong> Si tu producto genera datos transaccionales, de comportamiento u operacionales que los incumbentes US no tienen — particularmente en poblaciones underserved — eso es una ventaja competitiva durable. Es la tesis central detrás de las inversiones de QED en LatAm.</li>
+      <li><strong>Corredor LatAm-US:</strong> EEUU tiene 62M+ hispanoamericanos con $2.8T en poder de compra. Remesas cross-border ($67B en el corredor Mexico-US solo). Si tu producto toca este corredor, liderarlo en el pitch.</li>
+      <li><strong>Estructura de costos operacionales:</strong> Talento de ingeniería en LatAm es world-class y 40–60% menos costoso que equivalentes US. Es una ventaja durable en unit economics, no un arbitraje temporal.</li>
+      <li><strong>Proof of exit LatAm:</strong> Nubank (NYSE), dLocal (Nasdaq), Stone (Nasdaq), MercadoLibre (Nasdaq), XP (Nasdaq). Más LatAm FinTechs han hecho exit a mercados públicos US que cualquier otra región emergente. Cada inversor US conoce al menos dos de estas.</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">Lo que Va en Tu Contra — Y Cómo Abordarlo</div>
+  <table class="reg-table">
+    <thead><tr><th>Preocupación del Inversor</th><th>La Pregunta Real</th><th>Cómo Abordarlo</th></tr></thead>
+    <tbody>
+      <tr><td>Sin traction US</td><td>¿Por qué comprarían bancos/clientes US?</td><td>Tener un plan GTM de 90 días con 3–5 instituciones target nombradas y una historia de diferenciación clara</td></tr>
+      <tr><td>Marca desconocida en US</td><td>¿Cómo te valido?</td><td>Apoyarse en TIH, YLAI fellowship, advisors US, y cualquier relación inversor/banco US que ya tenés</td></tr>
+      <tr><td>Exposición regulatoria</td><td>¿Entendés el compliance US?</td><td>Mostrar el mapa regulatorio del Módulo 2. Nombrar las licencias específicas necesarias. Tener compliance counsel identificado</td></tr>
+      <tr><td>Equipo remoto en timezone diferente</td><td>¿Van a estar acá?</td><td>Tener un plan claro para tu primera contratación US + cronograma de presencia propia en NYC (mínimo viajes mensuales)</td></tr>
+      <tr><td>Validación en mercado pequeño</td><td>LatAm no es EEUU</td><td>Reencuadrar: "LatAm es más difícil. Nuestro modelo funciona en la versión más difícil del mismo problema. Acá está el TAM US."</td></tr>
+      <tr><td>Estructura de entidad extranjera</td><td>¿Es una inversión limpia en EEUU?</td><td>Mostrar la estructura Delaware C-Corp. Demostrar que todo el IP está asignado a la entidad US. Eliminar esto como objeción antes de que aparezca</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <p><strong>⚠ La Pregunta que Mata los Pitches de LatAm FinTech:</strong> "¿Cuál es tu estrategia GTM US?" es la pregunta que termina la mayoría de las conversaciones de fundraising LatAm FinTech sin preparación. Sin una respuesta específica — con nombres de clientes target, un plan de 90 días, y por qué ganás vs. alternativas US — la conversación no avanza.</p>
+  </div>
+
+  <div class="section-title sm">El Framework de Narrativa que Funciona</div>
+  <p class="section-sub" style="margin-bottom:16px">El pitch más efectivo para un LatAm FinTech entrando al US sigue este arco de 5 partes:</p>
+  <div class="narrative-grid">
+    <div class="narrative-card">
+      <div class="nc-step">Hook</div>
+      <h4>El problema en términos humanos</h4>
+      <p>Empezar con la conexión personal del founder al problema (exclusión financiera, economía informal, el SME negado un crédito). Diferencia inmediatamente de founders US-native que aprendieron el problema intelectualmente.</p>
+    </div>
+    <div class="narrative-card">
+      <div class="nc-step">Proof</div>
+      <h4>Qué construiste y qué pasó</h4>
+      <p>La tracción en LatAm es tu evidencia. Métricas, clientes, revenue, NPS. Ser específico: "Procesamos $X millones en transacciones mensualmente para Y merchants en Uruguay y Perú."</p>
+    </div>
+    <div class="narrative-card">
+      <div class="nc-step">Bridge</div>
+      <h4>Por qué EEUU ahora</h4>
+      <p>La oportunidad de mercado US específica. Tamaño, segmento underserved, tailwind regulatorio (CFPB Open Banking Rule, GENIUS Act). Por qué 2026 específicamente.</p>
+    </div>
+    <div class="narrative-card">
+      <div class="nc-step">Differentiation</div>
+      <h4>Por qué vos y no un competidor US</h4>
+      <p>Tu data propietario, tu playbook operacional LatAm, tu estructura de costos, tu equipo. No comparaciones de features — ventajas estructurales.</p>
+    </div>
+    <div class="narrative-card">
+      <div class="nc-step">Ask</div>
+      <h4>Pedido específico, dimensionado, con propósito</h4>
+      <p>"Estamos levantando $X en un SAFE a cap $Y para alcanzar Z hitos en 18 meses." Saber exactamente qué hace el dinero.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TAB 4: ACELERADORAS ──────────────────────────────────── -->
+<div id="s4" class="section">
+  <div class="section-title">Aceleradoras con Track FinTech</div>
+  <p class="section-sub">Las aceleradoras en fintech no son solo capital — son acceso estructurado a clientes bancarios que de otro modo tomarían 18 meses de relationship-building alcanzar. El Fintech Innovation Lab no solo te da mentores — te da 12 semanas de sesiones de trabajo con JPMorgan, Citi, Goldman y otros.</p>
+
+  <div class="section-title sm">Tier 1 — Programas Respaldados por Bancos con Acceso Directo a FIs</div>
+  <table class="reg-table">
+    <thead><tr><th>Programa</th><th>Respaldado Por</th><th>Inversión</th><th>Qué Obtenés Realmente</th></tr></thead>
+    <tbody>
+      <tr><td>Y Combinator</td><td>Independiente</td><td>$500K por 7%</td><td>Red alumni más fuerte globalmente (6.000+ companies); Stripe, Brex, Mercury alumni; Demo Day frente a 1.000+ inversores</td></tr>
+      <tr><td>Fintech Innovation Lab</td><td>Accenture + PFNYC</td><td>Sin equity</td><td>Programa 12 semanas; sesiones directas con 40+ equipos innovación bancaria; 270+ alumni; $2.7B raised por alumni</td></tr>
+      <tr><td>Techstars NYC</td><td>J.P. Morgan + otros</td><td>$220K por 6%</td><td>Track de partnership J.P. Morgan; mentorship fintech; $2M+ en créditos de producto; Demo Day con VCs NYC</td></tr>
+      <tr><td>Barclays Accelerator</td><td>Barclays Bank</td><td>$120K por 6%</td><td>Acceso directo al equipo Barclays; pathway estructurado de bank pilot; presencia NYC + Londres</td></tr>
+      <tr><td>Plug and Play FinTech</td><td>30+ sponsors bancarios</td><td>Sin equity</td><td>Sin dilución; introducciones directas a corporate partners desde el día 1; programa 3 meses; red global</td></tr>
+      <tr><td>Better Tomorrow Ventures</td><td>LPs bancarios + aseguradoras</td><td>$100K–$1M</td><td>Fintech-only; LPs bancarios = introducciones comerciales junto con la inversión; mentores operadores</td></tr>
+      <tr><td>MassChallenge FinTech</td><td>Sin equity — competencia</td><td>Cash awards (sin equity)</td><td>No dilutivo; validación early-stage; premios cash; Boston + NYC; bueno para productos heavy en regulación</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">YC — El Caso Especial</div>
+  <div class="info-block ag">
+    <h3>Y Combinator merece análisis separado</h3>
+    <p>YC no es una aceleradora fintech-específica — es la aceleradora startup más poderosa del mundo, con fintech como uno de sus verticales más exitosos. Stripe, Brex, Mercury, Coinbase y docenas de unicornios fintech más son alumni de YC. Para un LatAm FinTech entrando al US:</p>
+    <ul>
+      <li><strong>Credibilidad de marca:</strong> YC acceptance señala calidad a cada inversor, banco y enterprise client US. Elimina la fase de "probate" de la mayoría de conversaciones US.</li>
+      <li><strong>Acceso a red:</strong> 6.000+ alumni de YC. Bookface (red interna alumni) da acceso directo a founders de Stripe, Brex, Mercury, Plaid que toman una llamada de 30 min como fellow alumni.</li>
+      <li><strong>Introducciones a inversores:</strong> Demo Day pone frente a 1.000+ inversores. Las top companies de YC reciben 10+ term sheets en 48 horas.</li>
+      <li><strong>$500K en SAFE post-money estándar:</strong> Sin negociación, sin fricción. El dinero es rápido y founder-friendly.</li>
+      <li><strong>Precedente LatAm:</strong> YC ha respaldado múltiples fintechs LatAm incluyendo Nubank (W15), Konfío (S15) y otros. Hay comunidad de founders LatAm activa dentro de YC.</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">Estrategia de Aplicación para LatAm FinTechs</div>
+  <table class="reg-table">
+    <thead><tr><th>Aceleradora</th><th>Cuándo Aplica</th><th>Criterios Clave</th><th>Precedente LatAm</th></tr></thead>
+    <tbody>
+      <tr><td>Y Combinator</td><td>3 batches/año (Ene, Jun, Oct)</td><td>Producto en mercado, traction early o revenue, equipo founding sólido, camino claro al US</td><td>Nubank, Konfío, múltiples fintechs LatAm; alumni LatAm activo</td></tr>
+      <tr><td>Fintech Innovation Lab</td><td>Anual (típicamente Nov–Ene)</td><td>Producto listo para evaluación bancaria; awareness regulatorio; foco B2B</td><td>Empresas internacionales aceptadas; aplicar desde cualquier geografía</td></tr>
+      <tr><td>Techstars NYC</td><td>Anual (típicamente Ago–Oct)</td><td>Traction early, equipo técnico, conexión NYC</td><td>Founders internacionales aceptados; conexión YLAI + US Embassy ayuda</td></tr>
+      <tr><td>Plug and Play</td><td>Aplicaciones rolling</td><td>Cualquier stage; alineamiento con problema corporativo</td><td>Empresas internacionales explícitamente bienvenidas; sin restricción geográfica</td></tr>
+      <tr><td>Better Tomorrow Ventures</td><td>Rolling (programa The Mint)</td><td>B2B fintech; señales de bank LOIs o pilot; foco US</td><td>Foco en mercado US requerido; producto LatAm usado como proof of model</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ─── TAB 5: ANGELLIST ───────────────────────────────────── -->
+<div id="s5" class="section">
+  <div class="section-title">AngelList en 2026 & Pre-Seed</div>
+  <p class="section-sub">AngelList es una de las plataformas más incomprendidas del ecosistema startup. En 2026, AngelList es principalmente una plataforma de sindicatos pre-seed — una herramienta para levantar rondas pequeñas a medianas de redes de angels organizados por un lead investor.</p>
+
+  <div class="section-title sm">Qué es AngelList Realmente en 2026</div>
+  <table class="reg-table">
+    <thead><tr><th>Producto</th><th>Qué Hace</th><th>¿Relevante para LatAm FinTech?</th></tr></thead>
+    <tbody>
+      <tr><td>AngelList Syndicates</td><td>Lead investors individuales juntan capital de su red; a menudo $50K–$500K total de ronda</td><td>Sí — buena manera de obtener $100K–$500K de angels US sin proceso VC institucional</td></tr>
+      <tr><td>Rolling Funds</td><td>Inversores levantan capital en suscripción trimestral y deployean en deals</td><td>Sí — algunos rolling fund managers se enfocan en fintech o emerging markets</td></tr>
+      <tr><td>AngelList Stack (fund admin)</td><td>Back-office para operaciones de fondos VC; no es una herramienta de fundraising</td><td>No — herramienta operacional para VCs, no para founders</td></tr>
+      <tr><td>AngelList Venture</td><td>Perfil de startup + deal discovery para inversores institucionales</td><td>Marginal — VCs institucionales no descubren deals acá; angels sí</td></tr>
+      <tr><td>Republic (comparable)</td><td>Equity crowdfunding para inversores acreditados + retail</td><td>Sí — si apuntás a ángulos de impacto US o fintech de mercados emergentes</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Cómo Usar AngelList Efectivamente</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num a2">1</div>
+      <div class="flow-content">
+        <h4>Construir perfil completo de empresa</h4>
+        <p>Producto, equipo, tracción y detalles de ronda de funding en AngelList. Esto es indexado por inversores haciendo background research después de una warm introduction — no un canal de descubrimiento primario.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num a2">2</div>
+      <div class="flow-content">
+        <h4>Encontrar los sindicatos correctos</h4>
+        <p>Buscar sindicatos enfocados en fintech, LatAm o emerging markets. Lead investors como Gil Penchina (sindicador veterano) y Hustle Fund regularmente corren sindicatos en deals fintech. Pitchear al lead del sindicato, no a los angels individuales.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num a2">3</div>
+      <div class="flow-content">
+        <h4>Acceso a rolling funds</h4>
+        <p>Identificar rolling fund managers que invierten en fintech B2B. Rolling fund GPs con foco fintech pueden escribir cheques de $25K–$100K rápido via infraestructura AngelList.</p>
+      </div>
+    </div>
+    <div class="flow-connector"></div>
+    <div class="flow-step">
+      <div class="flow-num a2">4</div>
+      <div class="flow-content">
+        <h4>Usarlo para social proof</h4>
+        <p>Tener $500K+ mostrando como "comprometidos" en AngelList antes de cerrar la ronda formal crea momentum que acelera las conversaciones institucionales. Los angels cierran más rápido que los VCs — usar esa velocidad.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title sm">Reality Check: Tamaños de Cheque por Stage</div>
+  <table class="reg-table">
+    <thead><tr><th>Stage</th><th>Cheque US Típico</th><th>Qué Esperan los Inversores</th><th>Instrumento Típico</th></tr></thead>
+    <tbody>
+      <tr><td>Angel / Pre-seed</td><td>$25K–$250K por inversor</td><td>Idea + founder + señal early</td><td>SAFE (MFN o cap-only)</td></tr>
+      <tr><td>Ronda Pre-seed</td><td>$250K–$2M total</td><td>Producto early, clientes pilot o LOIs</td><td>SAFE (cap + discount)</td></tr>
+      <tr><td>Seed</td><td>$2M–$8M total</td><td>Producto probado, $50K–$500K ARR, GTM US claro</td><td>SAFE (cap) o Priced Seed round</td></tr>
+      <tr><td>Serie A</td><td>$8M–$25M total</td><td>$500K–$3M ARR, 2–3x YoY growth, tracción US</td><td>Ronda de equity priced (Serie A preferred)</td></tr>
+      <tr><td>Serie B</td><td>$25M–$100M+ total</td><td>$5M+ ARR, 80%+ NRR, camino claro a rentabilidad</td><td>Ronda de equity priced</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout a2">
+    <p><strong>Estrategia AngelList + Visible:</strong> Combinar AngelList (visibilidad en plataforma) con Visible.vc (comunicación de investor updates) y Docsend (tracking de engagement del deck). Los tres juntos crean un sistema de gestión de relaciones con inversores que señala madurez operacional — un differentiator para founders LatAm en mercados donde los inversores no te conocen aún.</p>
+  </div>
+</div>
+
+<!-- ─── TAB 6: DUE DILIGENCE ──────────────────────────────────── -->
+<div id="s6" class="section">
+  <div class="section-title">Due Diligence & Métricas que Importan</div>
+  <p class="section-sub">El framework de métricas para due diligence fintech B2B cambió fundamentalmente desde 2022. En 2026, los inversores requieren tanto crecimiento como unit economics — y no aceptan intercambiar uno por el otro.</p>
+
+  <div class="section-title sm">Las Métricas Core — Por Prioridad</div>
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="mc-header"><h4>ARR / MRR</h4><span class="mc-bench">26–50% YoY growth</span></div>
+      <p>Annual/Monthly Recurring Revenue — solo revenue predecible de subscripción. Base del negocio; debe calcularse correctamente (sin fees one-time, sin free trials).</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-header"><h4>Net Revenue Retention (NRR)</h4><span class="mc-bench">120%+ = top tier</span></div>
+      <p>La señal más fuerte de PMF. Más de 120% significa que los clientes existentes financian el nuevo crecimiento. Por debajo de 100% es red flag inmediata.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-header"><h4>Gross Revenue Retention (GRR)</h4><span class="mc-bench">90%+ saludable</span></div>
+      <p>Starting ARR – Churn ÷ Starting ARR (sin expansion). Muestra churn bruto sin que el revenue de expansion lo enmascare. Los inversores lo revisan por separado del NRR.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-header"><h4>LTV:CAC Ratio</h4><span class="mc-bench">3:1 mínimo; 4:1–6:1 top</span></div>
+      <p>Lifetime Value ÷ Customer Acquisition Cost. Mide si tu motor de ventas crea o destruye valor por cliente. Mediana B2B es 3.2:1.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-header"><h4>CAC Payback Period</h4><span class="mc-bench">&lt;12 meses = excelente</span></div>
+      <p>Meses para recuperar el costo de adquisición del cliente desde el gross profit. Determina qué tan eficientemente el capital se convierte en revenue sostenible.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-header"><h4>Gross Margin</h4><span class="mc-bench">75%+ para B2B SaaS</span></div>
+      <p>Determina la escalabilidad. Gross margin bajo en SaaS usualmente significa costos de infraestructura o compliance altos. Debajo de 60% es una flag que requiere explicación.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-header"><h4>Rule of 40</h4><span class="mc-bench">40+ = premium; 20–40 = solid</span></div>
+      <p>Revenue growth rate % + Profit margin %. Shorthand de inversores para "¿funciona este negocio?" — usado como filtro rápido antes de análisis más profundo.</p>
+    </div>
+    <div class="metric-card">
+      <div class="mc-header"><h4>Burn Multiple</h4><span class="mc-bench">&lt;1.5x = excelente</span></div>
+      <p>Net Burn ÷ Net New ARR. Cuánto cash quemás para generar cada nuevo dólar de ARR. Se volvió crítico post-corrección 2022. &gt;2x genera conversaciones difíciles.</p>
+    </div>
+  </div>
+
+  <div class="section-title sm">Red Flags que Matan Deals</div>
+  <table class="reg-table">
+    <thead><tr><th>Red Flag</th><th>Por qué Importa</th><th>Cómo Abordarlo</th></tr></thead>
+    <tbody>
+      <tr><td>ARR incluye revenue no-recurrente</td><td>Infla la métrica core; los inversores lo encuentran en la revisión financiera</td><td>Separar revenue recurrente vs. one-time claramente en todos los reportes</td></tr>
+      <tr><td>NRR por debajo del 90%</td><td>Sugiere que el producto no es sticky o el ICP es incorrecto</td><td>Entender y corregir la causa raíz del churn antes de levantar capital</td></tr>
+      <tr><td>CAC no incluye el tiempo del founder</td><td>Subestima el costo real de adquisición; inversores recalculan</td><td>Incluir un fair market value del tiempo del founder en BD/sales en el CAC</td></tr>
+      <tr><td>IP no asignado a entidad US</td><td>Deal-killer en legal due diligence</td><td>Corregir inmediatamente — Módulo 1 cubre IP assignment</td></tr>
+      <tr><td>Sin US GAAP o financials auditados</td><td>Crea incertidumbre sobre revenue recognition accuracy</td><td>Implementar bookkeeping alineado con US GAAP con Pilot o QuickBooks</td></tr>
+      <tr><td>Concentración de clientes &gt;50%</td><td>Perder un cliente podría ser terminal para la empresa</td><td>Mostrar pipeline + LOIs firmados de nuevos clientes para demostrar path de diversificación</td></tr>
+      <tr><td>Sin SOC 2 en progreso</td><td>Bloquea cualquier contrato enterprise bancario; señala naivety en compliance</td><td>Iniciar auditoría SOC 2 inmediatamente — 9–12 meses antes de necesitarlo</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Cómo Preparar tu Data Room</div>
+  <div class="info-block a2">
+    <h3>Estructura del Data Room para Due Diligence</h3>
+    <p>Cuando un VC avanza a term sheet y due diligence, va a solicitar un data room. Tenerlo listo de antemano ahorra semanas y señala madurez operacional.</p>
+    <ul>
+      <li><strong>Documentos corporativos:</strong> Certificate of Incorporation, bylaws, board minutes, todas las equity issuances (founder shares, SAFEs, convertible notes, option grants). Todo en Carta.</li>
+      <li><strong>Cap table:</strong> Fully diluted en Carta o Pulley. Mostrar el escenario post-conversión con todos los SAFEs convirtiendo a varios tamaños de ronda.</li>
+      <li><strong>Estados financieros:</strong> P&amp;L, balance sheet, cash flow últimos 12–24 meses. US GAAP o IFRS auditado. Mínimo: management accounts limpios y consistentes.</li>
+      <li><strong>Metrics dashboard:</strong> ARR/MRR, NRR/GRR, CAC, LTV, burn rate, runway — todo en un dashboard limpio. ChartMogul o Baremetrics para métricas SaaS. PDF los trailing 12 meses.</li>
+      <li><strong>Revenue documentation:</strong> Top 10 contratos de clientes, MRR por cliente, análisis de churn por cohorte, breakdown de expansion revenue.</li>
+      <li><strong>IP y legal:</strong> Todos los IP assignments, patent filings (si hay), registros de trademark, contratos clave.</li>
+      <li><strong>Equipo:</strong> Org chart, bios de founders, key employee agreements, tabla del option pool.</li>
+      <li><strong>Regulatorio:</strong> Todas las licencias actuales, aplicaciones pendientes, correspondencia regulatoria, estado SOC 2.</li>
+      <li><strong>Seguros:</strong> Certificados D&amp;O, E&amp;O, Cyber liability.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─── TAB 7: PITCH DECK ──────────────────────────────────── -->
+<div id="s7" class="section">
+  <div class="section-title">Pitch Deck — Normas US FinTech 2026</div>
+  <p class="section-sub">Los inversores fintech US reciben 300+ decks por mes. Estas son las expectativas estructurales que determinan si tu deck consigue una reunión o un pass.</p>
+
+  <div class="info-block">
+    <h3>Reglas de formato</h3>
+    <ul>
+      <li>Slide count total: 10–15 máximo. El apéndice es separado y solo se saca si te lo piden.</li>
+      <li>Peso del deck: 15–20 MB máximo para email. Usar Docsend para analytics de tracking.</li>
+      <li>Slide regulatoria: No-negociable para fintech. Mostrar que entendés tu posición regulatoria.</li>
+      <li>Slide de tracción: La más importante en 2026. Liderar con NRR, no solo con crecimiento de revenue.</li>
+      <li>Tracción LatAm: Presentarla como proof of model, no como limitación. "Construimos esto en LatAm (mercado más difícil) y ahora entramos al US (mercado más grande)."</li>
+    </ul>
+  </div>
+
+  <div class="section-title sm">Las 10 Slides — Lo que Debe Mostrar Cada Una</div>
+  <table class="reg-table">
+    <thead><tr><th>Slide</th><th>Qué Debe Mostrar</th><th>Error Común</th></tr></thead>
+    <tbody>
+      <tr><td>1 — Problema</td><td>Problema específico, humano, doloroso. Una oración, máximo dos.</td><td>Empezar con el tamaño de mercado. Liderar con el problema, no la oportunidad.</td></tr>
+      <tr><td>2 — Solución</td><td>Qué construiste y cómo funciona. Un screenshot, una oración.</td><td>Lista de features del producto. Mostrar el outcome, no el feature.</td></tr>
+      <tr><td>3 — Mercado</td><td>TAM/SAM/SOM con fuentes creíbles. Mercado US específicamente.</td><td>Citar el tamaño del mercado fintech global sin especificidad US.</td></tr>
+      <tr><td>4 — Producto</td><td>Screenshots, diagrama de arquitectura, capacidades clave.</td><td>Demasiado texto. Los inversores quieren ver el producto en acción.</td></tr>
+      <tr><td>5 — Business Model</td><td>Cómo hacés dinero. Modelo de revenue, pricing, take rate.</td><td>Vago "subscription + transaction" sin números específicos.</td></tr>
+      <tr><td>6 — Tracción</td><td>ARR, tasa de crecimiento, NRR, clientes clave. Ser específico.</td><td>% de crecimiento sin números absolutos. Mostrar ambos.</td></tr>
+      <tr><td>7 — Equipo</td><td>Por qué este equipo, por qué ahora. Experiencia LatAm como feature.</td><td>Lista de bios sin narrativa "por qué nosotros". Conectar equipo a ventaja injusta.</td></tr>
+      <tr><td>8 — Competencia</td><td>Landscape honesto. Dónde encajás, qué NO sos.</td><td>"Sin competidores directos" — señala naivety de mercado.</td></tr>
+      <tr><td>9 — Regulatorio</td><td>Tu estado actual. Qué necesitás. Timeline.</td><td>Omitir esta slide completamente — los inversores fintech lo preguntan de inmediato.</td></tr>
+      <tr><td>10 — El Ask</td><td>$X en SAFE a cap $Y / priced round. Uso de fondos. Hitos.</td><td>Vago "estamos levantando $XM" sin uso específico de fondos + hitos.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title sm">Action Checklist — Módulo 4</div>
+  <div class="checklist-wrap">
+    <div class="checklist-head">
+      <div>Acción</div>
+      <div>Responsable</div>
+      <div>Prioridad</div>
+    </div>
+    <div class="checklist-row"><div class="ci">Configurar Carta o Pulley para cap table management<small>Antes de cualquier inversión</small></div><div class="cp">Founder</div><div class="cp cp-d">INMEDIATO</div></div>
+    <div class="checklist-row"><div class="ci">Construir data room de inversores (corporate docs + financials + metrics)<small>Antes de empezar a levantar</small></div><div class="cp">Founder + abogado</div><div class="cp cp-d">INMEDIATO</div></div>
+    <div class="checklist-row"><div class="ci">Descargar YC Post-Money SAFE de ycombinator.com/documents<small>Antes de primera conversación con inversor</small></div><div class="cp">Founder</div><div class="cp cp-d">INMEDIATO</div></div>
+    <div class="checklist-row"><div class="ci">Obtener valoración 409A antes de emitir stock options<small>Antes del primer option grant</small></div><div class="cp">CFO + abogado</div><div class="cp cp-d">INMEDIATO</div></div>
+    <div class="checklist-row"><div class="ci">Construir metrics dashboard 12 meses (ARR, NRR, CAC, burn)<small>Carta de presentación para cualquier VC</small></div><div class="cp">CFO / Founder</div><div class="cp cp-d">INMEDIATO</div></div>
+    <div class="checklist-row"><div class="ci">Identificar 10 VCs US target (Tier 1: Clocktower, QED, Canapi)<small>Empezar el proceso de mapping</small></div><div class="cp">Founder</div><div class="cp cp-s">MES 1</div></div>
+    <div class="checklist-row"><div class="ci">Investigar portfolio y tesis de cada VC antes del outreach<small>No enviar deck sin investigación previa</small></div><div class="cp">Founder</div><div class="cp cp-s">MES 1–2</div></div>
+    <div class="checklist-row"><div class="ci">Aplicar al Fintech Innovation Lab (ventana de aplicación anual)<small>Cuando se abre la ventana</small></div><div class="cp">Founder</div><div class="cp cp-s">CUANDO ABRE</div></div>
+    <div class="checklist-row"><div class="ci">Aplicar a YC si el stage es apropiado (3 batches/año)<small>S26: cierra Nov 2025 · W27: cierra May 2026</small></div><div class="cp">Founder</div><div class="cp cp-s">PRÓXIMO BATCH</div></div>
+    <div class="checklist-row"><div class="ci">Configurar perfil de empresa en AngelList<small>Canal de visibilidad para angels</small></div><div class="cp">Founder</div><div class="cp cp-m">MES 1</div></div>
+    <div class="checklist-row"><div class="ci">Configurar Docsend para tracking de pitch deck<small>Antes de enviar el primer deck</small></div><div class="cp">Founder</div><div class="cp cp-m">MES 1</div></div>
+    <div class="checklist-row"><div class="ci">Asegurar 2 introducciones warm a inversores US (no cold email)<small>Las intros warm convierten 10x más que el outreach frío</small></div><div class="cp">Founder</div><div class="cp cp-m">MES 1–2</div></div>
+    <div class="checklist-row"><div class="ci">Corregir gaps de IP assignment antes de conversaciones de fundraising<small>Deal-killer si no está resuelto</small></div><div class="cp">Abogado — ver Módulo 1</div><div class="cp cp-d">INMEDIATO</div></div>
+    <div class="checklist-row"><div class="ci">Iniciar auditoría SOC 2 (9–12 meses lead time para clientes bancarios)<small>Path crítico — no esperar hasta que un banco lo pida</small></div><div class="cp">CTO</div><div class="cp cp-d">INMEDIATO</div></div>
+    <div class="checklist-row"><div class="ci">Briefear a 3 advisors US que puedan proveer warm intros a inversores<small>Los advisors son el canal de fundraising más eficiente</small></div><div class="cp">Founder</div><div class="cp cp-m">MES 1–3</div></div>
+  </div>
+
+  <div class="section-title sm">Recursos Clave</div>
+  <div class="resource-grid">
+    <div class="resource-card"><h5>YC SAFE Documents</h5><p>ycombinator.com/documents — formularios SAFE post-money estándar gratuitos</p></div>
+    <div class="resource-card"><h5>Carta</h5><p>carta.com — gestión de cap table + valuaciones 409A; estándar de la industria</p></div>
+    <div class="resource-card"><h5>Pulley</h5><p>pulley.com — alternativa de cap table; UI más simple; pricing competitivo</p></div>
+    <div class="resource-card"><h5>Docsend</h5><p>docsend.com — sharing de pitch deck con analytics de engagement de inversores</p></div>
+    <div class="resource-card"><h5>Visible</h5><p>visible.vc — plataforma de investor updates + fundraising CRM</p></div>
+    <div class="resource-card"><h5>AngelList</h5><p>angellist.com — plataforma de sindicatos pre-seed; rolling funds; investor discovery</p></div>
+    <div class="resource-card"><h5>Y Combinator</h5><p>ycombinator.com — aplicar para batch S26 o W27</p></div>
+    <div class="resource-card"><h5>Fintech Innovation Lab</h5><p>fintechinnovationlab.com — aplicación anual; acceso directo a bancos</p></div>
+    <div class="resource-card"><h5>Clocktower Ventures</h5><p>clocktowervc.com — primera llamada para founders LatAm FinTech entrando al US</p></div>
+    <div class="resource-card"><h5>QED Investors</h5><p>qedinvestors.com — especialista fintech; mayor pattern recognition LatAm</p></div>
+    <div class="resource-card"><h5>Canapi Ventures</h5><p>canapiventures.com — FinTechs vendiendo a bancos; red LP bancario</p></div>
+    <div class="resource-card"><h5>ChartMogul</h5><p>chartmogul.com — metrics dashboard SaaS; ARR, NRR, churn, cohort analysis</p></div>
+    <div class="resource-card"><h5>Baremetrics</h5><p>baremetrics.com — tracking MRR, LTV, CAC conectado a Stripe</p></div>
+    <div class="resource-card"><h5>Techstars NYC</h5><p>techstars.com/accelerators/nyc — aplicación anual; partnership JPMorgan</p></div>
+    <div class="resource-card"><h5>Plug and Play FinTech</h5><p>plugandplaytechcenter.com/fintech — aplicaciones rolling; sin equity</p></div>
+  </div>
+
+  <div class="callout a2" style="margin-top:32px">
+    <p><strong>Módulo 4 de 9 · US Market Entry Framework — FinTech Edition · TIH × YLAI Fellowship · Mayo 2026</strong><br>Este documento es solo para propósitos informativos y no constituye asesoramiento legal, financiero o de inversión. Producido por Gastón Dotta, FinTech Fellow en TIH.</p>
+  </div>
+</div>
+
+<script>
+function showTab(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+function triggerTranslate(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  var gs = document.querySelector('.goog-te-combo');
+  if (gs) { gs.value = lang === 'en' ? '' : lang; gs.dispatchEvent(new Event('change')); }
+}
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage:'es',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

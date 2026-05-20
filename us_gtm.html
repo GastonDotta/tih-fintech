@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Go-to-Market Strategy — TIH US Market Entry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:hsl(222 47% 11%);--secondary:hsl(222 40% 16%);--gold:hsl(32 95% 44%);
+  --accent:hsl(32 95% 54%);--accent2:#4EFEE7;--accent3:#FE4E7A;--accent4:#B44EFE;
+  --muted:hsl(222 20% 60%);--muted2:hsl(222 15% 48%);--text:hsl(222 20% 95%);
+  --bg:hsl(222 47% 11%);--surface:hsl(222 40% 16%);--surface2:hsl(222 35% 20%);--border:hsl(222 30% 26%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+#google_translate_element{position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none}
+.global-nav{background:var(--secondary);border-bottom:1px solid var(--border);padding:10px 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px}
+.global-brand{display:flex;align-items:center;gap:10px}
+.global-logo{height:28px;width:auto;object-fit:contain;opacity:.9}
+.global-year{font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;border-left:1px solid var(--border);padding-left:10px}
+.global-links{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.global-nav-link{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border:1px solid transparent;border-radius:999px;transition:all .2s}
+.global-nav-link:hover{color:var(--text);border-color:var(--border)}
+.global-nav-link.active{color:#000;background:var(--accent);border-color:var(--accent);font-weight:700}
+.lang-switch{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:3px;background:var(--surface)}
+.lang-btn{background:none;border:none;color:var(--muted);font-size:11px;font-weight:600;padding:5px 9px;cursor:pointer;border-radius:3px;transition:all .2s;font-family:'DM Sans',sans-serif;letter-spacing:.06em}
+.lang-btn.active{background:var(--accent);color:#000}
+.lang-btn:hover:not(.active){color:var(--text);background:var(--surface2)}
+.hero{padding:60px 32px 48px;max-width:1100px;margin:0 auto}
+.hero-badge{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.hero-badge::before{content:'';width:24px;height:1px;background:var(--accent2)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:16px}
+.hero h1 span{color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:680px;line-height:1.65}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:40px}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px;border-top:2px solid var(--accent)}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1}
+.stat-label{font-size:11px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.08em}
+.nav-tabs{background:var(--secondary);border-bottom:1px solid var(--border);padding:0 24px;overflow-x:auto;white-space:nowrap}
+.nav-tabs::-webkit-scrollbar{height:3px}
+.nav-tabs::-webkit-scrollbar-thumb{background:var(--border)}
+.tab{display:inline-block;padding:14px 18px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-weight:600}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.section{display:none;max-width:1100px;margin:0 auto;padding:48px 32px 80px}
+.section.active{display:block}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;margin-bottom:8px}
+.section-title.sm{font-size:1.3rem;margin-top:40px}
+.section-sub{color:var(--muted);margin-bottom:32px;font-size:.95rem;line-height:1.6}
+.info-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:24px;margin-bottom:16px;border-radius:2px}
+.info-block.a2{border-left-color:var(--accent2)}.info-block.a3{border-left-color:var(--accent3)}.info-block.a4{border-left-color:var(--accent4)}.info-block.ag{border-left-color:var(--gold)}
+.info-block h3{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+.info-block p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.info-block ul{margin-top:8px;padding-left:20px}
+.info-block ul li{color:var(--muted2);font-size:.88rem;margin-bottom:6px;line-height:1.55}
+.info-block strong{color:var(--text)}
+.callout{background:hsl(32 95% 44%/.1);border:1px solid hsl(32 95% 44%/.3);border-left:3px solid var(--accent);padding:16px 20px;margin:20px 0;border-radius:2px}
+.callout.a2{background:hsl(174 97% 65%/.07);border-color:hsl(174 97% 65%/.25);border-left-color:var(--accent2)}
+.callout p{color:var(--muted);font-size:.88rem;line-height:1.6}
+.callout strong{color:var(--text)}
+.warning{background:hsl(0 80% 60%/.08);border:1px solid hsl(0 80% 60%/.3);border-left:3px solid var(--accent3);padding:16px 20px;margin:20px 0;border-radius:2px}
+.warning p{color:#e0a0a8;font-size:.88rem;line-height:1.6}
+.reg-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.85rem}
+.reg-table th{background:var(--surface2);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:10px 14px;text-align:left;border-bottom:2px solid var(--border)}
+.reg-table td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--muted2)}
+.reg-table td:first-child{color:var(--text);font-weight:600}
+.reg-table tr:hover td{background:var(--surface)}
+.flow{display:flex;flex-direction:column;gap:0;margin:24px 0}
+.flow-step{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:flex-start}
+.flow-num{width:32px;height:32px;border-radius:50%;background:var(--accent);color:#000;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;flex-shrink:0;margin-top:2px}
+.flow-num.a2{background:var(--accent2)}
+.flow-content{padding-bottom:24px}
+.flow-content h4{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.flow-content p{font-size:.88rem;color:var(--muted);line-height:1.55}
+.flow-connector{width:1px;height:20px;background:var(--border);margin-left:56px;margin-top:-4px;margin-bottom:4px}
+.icp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:24px 0}
+.icp-card{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--accent2);padding:20px;border-radius:4px}
+.icp-card h4{font-size:.9rem;font-weight:700;color:var(--accent2);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.icp-card p{font-size:.83rem;color:var(--muted2);line-height:1.55}
+.icp-card .icp-q{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.channel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:20px 0}
+.channel-card{background:var(--surface);border:1px solid var(--border);padding:18px;border-radius:4px;transition:border-color .2s}
+.channel-card:hover{border-color:var(--accent)}
+.channel-card .ch-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.channel-card h4{font-size:.9rem;font-weight:700;color:var(--text)}
+.channel-card .ch-rate{font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:999px;font-weight:700}
+.rate-high{background:hsl(140 60%/15%);color:#5FD98A}
+.rate-med{background:hsl(32 95% 54%/15%);color:var(--accent)}
+.rate-low{background:hsl(0 70%/15%);color:var(--accent3)}
+.channel-card p{font-size:.82rem;color:var(--muted2);line-height:1.5}
+.channel-card .ch-meta{display:flex;gap:12px;margin-top:10px;font-size:.76rem;color:var(--muted)}
+.pilot-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+.pilot-stage{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px;position:relative}
+.pilot-stage::before{content:attr(data-num);position:absolute;top:-10px;left:16px;background:var(--accent);color:#000;font-size:9px;font-weight:700;padding:2px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+.pilot-stage h4{font-size:.9rem;font-weight:700;margin-bottom:8px;color:var(--text)}
+.pilot-stage .ps-cost{font-size:.8rem;color:var(--accent2);font-weight:700;margin-bottom:4px}
+.pilot-stage p{font-size:.82rem;color:var(--muted2);line-height:1.5}
+.diff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:20px 0}
+.diff-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent4);padding:18px;border-radius:4px}
+.diff-card h4{font-size:.85rem;font-weight:700;color:var(--accent4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.diff-card p{font-size:.82rem;color:var(--muted2);line-height:1.5}
+.checklist-wrap{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-top:24px}
+.checklist-head{display:grid;grid-template-columns:1fr 120px 80px;background:var(--surface2);padding:10px 16px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700}
+.checklist-row{display:grid;grid-template-columns:1fr 120px 80px;padding:12px 16px;border-top:1px solid var(--border);align-items:start;transition:background .15s}
+.checklist-row:hover{background:var(--surface2)}
+.ci{font-size:.88rem;color:var(--text)}
+.ci small{display:block;font-size:.78rem;color:var(--muted2);margin-top:2px}
+.cp{font-size:.78rem}
+.cp-d{color:var(--accent)}.cp-s{color:var(--accent2)}.cp-m{color:#7EB8FE}
+.resource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:20px}
+.resource-card{background:var(--surface);border:1px solid var(--border);padding:14px;border-radius:4px;transition:all .2s}
+.resource-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.resource-card h5{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.resource-card p{font-size:.78rem;color:var(--muted2);line-height:1.4}
+@media(max-width:900px){
+  .global-nav{grid-template-columns:1fr auto;grid-template-rows:auto auto}
+  .global-links{grid-column:1/-1;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:6px}
+  .global-nav-link{font-size:10px;padding:5px 10px}
+  .pilot-stages{grid-template-columns:1fr}
+  .hero{padding:40px 20px 32px}.section{padding:32px 20px 60px}
+  .reg-table{font-size:.78rem}
+  .checklist-head,.checklist-row{grid-template-columns:1fr 100px 70px}
+}
+@media(max-width:480px){
+  .global-year{display:none}
+  .global-nav-link{font-size:9px;padding:4px 8px;letter-spacing:.04em}
+  .lang-btn{font-size:9px;padding:5px 6px}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="google_translate_element"></div>
+<nav class="global-nav">
+  <div class="global-brand">
+    <img src="./tih-logo-white-CV3af6jQ.png" alt="TIH" class="global-logo">
+    <span class="global-year">2026</span>
+  </div>
+  <div class="global-links">
+    <a class="global-nav-link" href="./index.html">LatAm Ecosystem</a>
+    <a class="global-nav-link" href="./us_nyc_fintech_map.html">NYC Map</a>
+    <a class="global-nav-link" href="./us_fintech_regulation_research.html">US Regulation</a>
+    <a class="global-nav-link" href="./us_startup_build_formation.html">US Formation</a>
+    <a class="global-nav-link" href="./us_banking_infrastructure.html">US Banking</a>
+    <a class="global-nav-link" href="./us_fundraising.html">Fundraising</a>
+    <a class="global-nav-link active" href="./us_gtm.html">GTM</a>
+    <a class="global-nav-link" href="./us_hr_hiring.html">HR & Hiring</a>
+    <a class="global-nav-link" href="./us_checklist.html">Checklist</a>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="triggerTranslate('es',this)">ES</button>
+    <button class="lang-btn" onclick="triggerTranslate('en',this)">EN</button>
+    <button class="lang-btn" onclick="triggerTranslate('it',this)">IT</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">US Market Entry Framework · Módulo 5 de 9 · TIH × YLAI Fellowship</div>
+  <h1>Go-to-Market<br><span>Strategy</span></h1>
+  <p class="hero-sub">El FinTech mediano en Serie A en 2025 tenía $4M de ARR — frente a $1M hace cuatro años. El bar se movió. Un LatAm FinTech entrando al US sin un ICP claro, un framework de pilots estructurado y una historia de diferenciación pasará 18 meses en conversaciones que no avanzan.</p>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">$4M</div><div class="stat-label">ARR mediano en Serie A 2025</div></div>
+    <div class="stat-card"><div class="stat-num">25–40%</div><div class="stat-label">Conversión con warm intro</div></div>
+    <div class="stat-card"><div class="stat-num">1–3%</div><div class="stat-label">Conversión cold outreach</div></div>
+    <div class="stat-card"><div class="stat-num">90 días</div><div class="stat-label">Framework primer pipeline</div></div>
+  </div>
+</div>
+
+<div class="nav-tabs">
+  <span class="tab active" onclick="showTab('s0',this)">00 Overview</span>
+  <span class="tab" onclick="showTab('s1',this)">01 ICP Definition</span>
+  <span class="tab" onclick="showTab('s2',this)">02 Sales Channels</span>
+  <span class="tab" onclick="showTab('s3',this)">03 Pilot Program</span>
+  <span class="tab" onclick="showTab('s4',this)">04 Pricing Models</span>
+  <span class="tab" onclick="showTab('s5',this)">05 Diferenciación LatAm</span>
+  <span class="tab" onclick="showTab('s6',this)">06 90-Day Checklist</span>
+</div>
+
+<!-- 0 OVERVIEW -->
+<div id="s0" class="section active">
+  <div class="section-title">Go-to-Market en US FinTech B2B</div>
+  <p class="section-sub">B2B FinTech es la frontera dominante de crecimiento. Consumer neobanking está madurando. La siguiente ola es infraestructura — vender a bancos, credit unions y clientes enterprise. Ahí es donde los LatAm FinTechs tienen la ventaja natural más grande.</p>
+  <div class="info-block a2">
+    <h3>Lo que cubre este módulo</h3>
+    <ul>
+      <li><strong>5.1 ICP Definition:</strong> "Bancos" no es un ICP. Cómo definir tu cliente ideal en 4 dimensiones con la especificidad que convierte</li>
+      <li><strong>5.2 Sales Channels:</strong> La jerarquía de canales — warm intros, aceleradoras, eventos, outbound frío — y por qué el orden importa más que el mensaje</li>
+      <li><strong>5.3 Pilot Program:</strong> Un pilot bancario US no es una prueba gratuita. Cómo estructurarlo para que no termines siendo consultor gratis por 6 meses</li>
+      <li><strong>5.4 Pricing Models:</strong> Por qué el modelo híbrido es el estándar, cómo usarlo y cómo establecer mínimos que protejan tu ARR</li>
+      <li><strong>5.5 Diferenciación LatAm:</strong> Por qué "somos más baratos" es una posición commodity y cuáles son las 5 ventajas estructurales que funcionan</li>
+      <li><strong>5.6 90-Day Checklist:</strong> La secuencia semana a semana para construir tu primer pipeline desde cero</li>
+    </ul>
+  </div>
+  <div class="info-block ag">
+    <h3>El insight fundamental del mercado</h3>
+    <p>B2B FinTech es la frontera dominante. Consumer neobanking está madurando — ya hay 15+ neobanks compitiendo por el mismo segmento US. La siguiente ola es infraestructura: vender a bancos, credit unions y enterprise clients las herramientas que necesitan para sobrevivir. Ese es el espacio donde los LatAm FinTechs tienen la ventaja más natural — y donde este módulo pone el foco.</p>
+  </div>
+</div>
+
+<!-- 1 ICP -->
+<div id="s1" class="section">
+  <div class="section-title">ICP Definition para el Mercado US</div>
+  <p class="section-sub">"Bancos" no es un ICP. Un Ideal Customer Profile para un B2B FinTech en EEUU es un tipo de institución específico, con tamaño de activos específico, un rol comprador específico, un pain específico y una razón específica para actuar ahora. Sin esta especificidad, tu outreach es ruido.</p>
+
+  <div class="section-title sm">Las 4 Dimensiones del ICP Framework</div>
+  <div class="icp-grid">
+    <div class="icp-card">
+      <h4>Tipo de Institución</h4>
+      <p>¿Community bank? ¿Credit union? ¿CDFI? ¿Banco regional? ¿Neobank? ¿Plataforma fintech?</p>
+      <div class="icp-q">Cada tipo tiene ciclos de decisión, requisitos de compliance y autoridad de presupuesto distintos</div>
+    </div>
+    <div class="icp-card">
+      <h4>Tamaño de Activos / Escala</h4>
+      <p>¿Menos de $500M en activos? ¿$500M–$5B? ¿Más de $5B? ¿Número de miembros/clientes?</p>
+      <div class="icp-q">Determina directamente la duración del ciclo de ventas, la complejidad de procurement y el tamaño del deal</div>
+    </div>
+    <div class="icp-card">
+      <h4>Rol Comprador</h4>
+      <p>¿Quién firma? ¿Chief Lending Officer? ¿Chief Digital Officer? ¿CTO? ¿VP Risk?</p>
+      <div class="icp-q">Contacto incorrecto = 0% conversión sin importar qué tan bueno sea el producto</div>
+    </div>
+    <div class="icp-card">
+      <h4>Urgencia del Problema</h4>
+      <p>¿Es un problema "crítico este trimestre" o "bueno resolver algún día"?</p>
+      <div class="icp-q">Solo vender a instituciones con un mandato activo de resolver tu problema AHORA</div>
+    </div>
+  </div>
+
+  <div class="section-title sm">Los 4 Tipos Principales de Clientes B2B FinTech US</div>
+  <table class="reg-table">
+    <thead><tr><th>Tipo de Institución</th><th># en EEUU</th><th>Timeline Decisión</th><th>Presupuesto</th><th>Mejor Para</th><th>Barrera de Entrada</th></tr></thead>
+    <tbody>
+      <tr><td>Top-25 Bancos (JPM, BofA, Wells, Citi…)</td><td>25</td><td>12–24 meses</td><td>$500K–$10M+ contratos</td><td>Validación a escala; logos de impacto en prensa</td><td>Muy alta; SOC 2, due diligence extensivo, 12+ stakeholders</td></tr>
+      <tr><td>Bancos Regionales ($1B–$50B activos)</td><td>~400</td><td>6–12 meses</td><td>$100K–$2M contratos</td><td>Revenue + logos sin la complejidad de mega-banco</td><td>Alta; compliance similar; menos stakeholders</td></tr>
+      <tr><td>Community Banks (&lt;$1B activos)</td><td>~4.000</td><td>3–9 meses</td><td>$20K–$200K contratos</td><td>Case studies rápidos; proof of model</td><td>Media; menos compliance theater; CEO decide frecuentemente</td></tr>
+      <tr><td>Credit Unions</td><td>~5.000</td><td>3–9 meses</td><td>$20K–$300K contratos</td><td>Mandato de financial inclusion = ICP alineado</td><td>Media; member-focused; aprobación de pilot más rápida</td></tr>
+      <tr><td>CDFIs (Community Development FIs)</td><td>~1.400</td><td>2–6 meses</td><td>$10K–$150K contratos</td><td><strong style="color:var(--accent2)">Mejor alineación para ICP LatAm FinTech; decisiones más rápidas</strong></td><td>Baja; mission-aligned; presión regulatoria para innovar</td></tr>
+      <tr><td>Neobanks / Plataformas FinTech</td><td>200+</td><td>1–4 meses</td><td>Variable</td><td>Plays de infra B2B; más rápidos en cerrar</td><td>Baja; tech-native; sin procurement legacy</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout a2">
+    <p><strong>Para un LatAm FinTech con un ángulo de financial inclusion o crédito alternativo:</strong> empezar con CDFIs y credit unions. Ambos tienen mandatos explícitos de servir a comunidades underserved que se alinean directamente con la propuesta de valor que los LatAm FinTechs ya probaron. Timeline: 2–6 meses vs. 12–24 meses para los top bancos. Usar estos primeros clientes como case studies para escalar hacia bancos regionales en el año 2.</p>
+  </div>
+</div>
+
+<!-- 2 SALES CHANNELS -->
+<div id="s2" class="section">
+  <div class="section-title">Sales Channels — De Dónde Vienen los Primeros Clientes</div>
+  <p class="section-sub">Cómo conseguís tu primer cliente US importa más que lo que vendés. El canal determina el timeline, la tasa de conversión y la naturaleza de la relación. En FinTech B2B, hay una jerarquía clara.</p>
+
+  <div class="channel-grid">
+    <div class="channel-card">
+      <div class="ch-header"><h4>Warm Introduction</h4><span class="ch-rate rate-high">25–40% conversión</span></div>
+      <p>Un contacto mutuo que presenta. Es el único canal que funciona en la etapa early. La calidad de la intro importa más que el mensaje.</p>
+      <div class="ch-meta"><span>⏱ 2–6 meses</span><span>💰 Costo casi cero</span></div>
+    </div>
+    <div class="channel-card">
+      <div class="ch-header"><h4>Accelerator Network (FIL, Techstars, YC)</h4><span class="ch-rate rate-high">15–30% conversión</span></div>
+      <p>Introducciones bancarias que no podés conseguir de ninguna otra manera en un timeline comprimido. Es el camino corto estructurado.</p>
+      <div class="ch-meta"><span>⏱ 2–6 meses</span><span>💰 Equity o costo del programa</span></div>
+    </div>
+    <div class="channel-card">
+      <div class="ch-header"><h4>Industry Associations (ICBA, CU)</h4><span class="ch-rate rate-med">10–20% conversión</span></div>
+      <p>ICBA ThinkTECH = acceso warm a 5.000+ community banks. America's Credit Unions = 5.000+ credit unions. Son intermediarios de confianza.</p>
+      <div class="ch-meta"><span>⏱ 2–5 meses</span><span>💰 $0 equity (ICBA ThinkTECH)</span></div>
+    </div>
+    <div class="channel-card">
+      <div class="ch-header"><h4>Industry Events</h4><span class="ch-rate rate-med">5–15% conversión</span></div>
+      <p>NY FinTech Week, ICBA ThinkTECH, America's CU Annual Convention. Construcción de pipeline; relationship-first. Documentar cada contacto.</p>
+      <div class="ch-meta"><span>⏱ 3–8 meses</span><span>💰 $500–$5K por evento</span></div>
+    </div>
+    <div class="channel-card">
+      <div class="ch-header"><h4>Partner / BaaS Distribution</h4><span class="ch-rate rate-med">15–25% conversión</span></div>
+      <p>Aprovechar distribución existente — una plataforma, muchos clientes. Unit, Column, Plaid tienen partners que llegan a cientos de instituciones.</p>
+      <div class="ch-meta"><span>⏱ 2–6 meses</span><span>💰 Revenue share</span></div>
+    </div>
+    <div class="channel-card">
+      <div class="ch-header"><h4>Direct Outbound (cold email/LinkedIn)</h4><span class="ch-rate rate-low">1–3% conversión</span></div>
+      <p>Volume play para etapa más avanzada. No es el canal primario en market entry. Funciona como complemento cuando ya tenés case studies.</p>
+      <div class="ch-meta"><span>⏱ 6–18 meses</span><span>💰 Intensivo en tiempo</span></div>
+    </div>
+  </div>
+
+  <div class="section-title sm">El Association Play — Acceso a Industria a Escala</div>
+  <div class="info-block a2">
+    <h3>La introducción warm más rápida a 9.000+ instituciones</h3>
+    <p>La forma más rápida de llegar a 5.000+ credit unions o 4.000+ community banks es a través de sus asociaciones de industria. No son grupos de networking — son intermediarios de confianza que endosan vendors a sus miembros.</p>
+    <ul>
+      <li><strong>ICBA ThinkTECH Accelerator:</strong> Selecciona 10 empresas fintech por año e introduce al ecosistema de 5.000+ community bank members. Sin equity. Aceptación = acceso warm al ecosistema completo de community banks.</li>
+      <li><strong>America's Credit Unions (antes CUNA/NAFCU):</strong> La asociación combinada de 5.000+ credit unions. La Annual Convention = 200+ contactos warm en 3 días con un booth o slot de hablar.</li>
+      <li><strong>CDFI Coalition:</strong> La organización de advocacy para los 1.400+ CDFIs. Su conferencia anual = tu mayor oportunidad concentrada para conocer clientes mission-aligned en una sala.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <p><strong>Aplicar al ICBA ThinkTECH Accelerator</strong> (aplicación anual; sin equity). Si sos aceptado, tu producto es presentado a 5.000+ community banks con el endoso de ICBA. Es equivalente en impacto a una Serie A de distribución sin capital requerido. <strong>Esta es la táctica de market access más subestimada para LatAm FinTechs B2B.</strong></p>
+  </div>
+</div>
+
+<!-- 3 PILOT PROGRAM -->
+<div id="s3" class="section">
+  <div class="section-title">Structuring a US Pilot Program</div>
+  <p class="section-sub">Un pilot bancario US no es una prueba gratuita. Es un engagement comercial estructurado con alcance definido, criterios de éxito acordados y un camino pre-negociado a un contrato full. La diferencia entre un founder que ejecuta un pilot exitoso y uno que provee 6 meses de consultoría gratuita es esta estructura.</p>
+
+  <div class="pilot-stages">
+    <div class="pilot-stage" data-num="Etapa 1">
+      <h4>Proof of Concept (POC)</h4>
+      <div class="ps-cost">Costo al cliente: Gratis (vos absorbés)</div>
+      <p>30–60 días. Datos sintéticos o anonimizados. Objetivo: probar factibilidad técnica. Criterio binario: ¿Funciona? Sí o No — definir 2–3 métricas upfront.</p>
+    </div>
+    <div class="pilot-stage" data-num="Etapa 2">
+      <h4>Paid Pilot</h4>
+      <div class="ps-cost">Costo al cliente: $5K–$25K</div>
+      <p>60–120 días. Datos y operaciones reales. Objetivo: probar valor. 3–5 KPIs pre-acordados medidos objetivamente (ej: 15% mejora en tasa de aprobación de crédito).</p>
+    </div>
+    <div class="pilot-stage" data-num="Etapa 3">
+      <h4>Full Contract</h4>
+      <div class="ps-cost">Costo al cliente: $20K–$500K+/año</div>
+      <p>Anual + renovación. Relación comercial ongoing. Auto-renewal + 90-day notice; cláusulas de expansión incorporadas desde el principio.</p>
+    </div>
+  </div>
+
+  <div class="section-title sm">Principios de Diseño del Pilot</div>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-content"><h4>Acotar el scope sin piedad</h4><p>Un pilot que intenta testear todo no prueba nada. Definir un caso de uso, una integración de datos, un output medible. Los pilots que fallan usualmente fallan porque el scope fue demasiado amplio.</p></div></div>
+    <div class="flow-connector"></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-content"><h4>Cobrar el pilot</h4><p>Los pilots gratuitos atraen tire-kickers. Un pilot de $5K–$25K es suficientemente pequeño para que cualquier institución seria lo apruebe, y suficientemente grande para garantizar engagement real. Incluirlo en el proposal estándar.</p></div></div>
+    <div class="flow-connector"></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-content"><h4>Pre-negociar los términos del contrato full</h4><p>Antes de que empiece el pilot, tener un term sheet o LOI firmado que especifique: "Si se cumplen los criterios X, Y, Z, la institución se compromete a un contrato full a $X/mes." Esto previene re-negociación post-pilot.</p></div></div>
+    <div class="flow-connector"></div>
+    <div class="flow-step"><div class="flow-num">4</div><div class="flow-content"><h4>Definir criterios de éxito conjuntamente</h4><p>Nunca definir KPIs de forma unilateral. El banco debe acordar los KPIs antes de que empiece el pilot — de lo contrario moverán los goalposts después. Ponerlos por escrito.</p></div></div>
+    <div class="flow-connector"></div>
+    <div class="flow-step"><div class="flow-num">5</div><div class="flow-content"><h4>Executive sponsor requerido</h4><p>Cada pilot necesita un executive sponsor nombrado en la institución (nivel VP o superior) que sea accountable del resultado del pilot. Si no podés identificar a esta persona, el pilot no está listo para empezar.</p></div></div>
+  </div>
+
+  <div class="section-title sm">KPIs de Pilot por Tipo de Producto FinTech</div>
+  <table class="reg-table">
+    <thead><tr><th>Tipo de Producto</th><th>KPI Ejemplo</th><th>Método de Medición</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>Credit scoring / underwriting</td><td>Aumento en tasa de aprobación para thin-file applicants</td><td>Comparar tasa mes a mes en segmento pilot vs control</td><td>Mejora 15–25%</td></tr>
+      <tr><td>Alternative data enrichment</td><td>Reducción en tiempo de revisión manual por aplicación</td><td>Horas registradas en sistema de originación antes/después</td><td>Reducción 30–40%</td></tr>
+      <tr><td>Fraud detection</td><td>Reducción en tasa de falsos positivos en alertas de transacciones</td><td>Conteo de transacciones flaggeadas pero legítimas</td><td>Mejora 20–35%</td></tr>
+      <tr><td>SME financial management</td><td>Tasa de adopción entre merchants onboardeados</td><td>% de merchants usando activamente la plataforma al día 60</td><td>&gt;40% uso activo</td></tr>
+      <tr><td>Payment infrastructure</td><td>Mejora en tiempo de settlement de transacciones</td><td>Tiempo promedio a settlement antes/después</td><td>Same-day vs T+2 baseline</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning">
+    <p><strong>⚠ La Trampa del "Extended Pilot":</strong> Los bancos son expertos en mantener vendors en estado de pilot indefinidamente — obteniendo el valor sin pagar el precio del contrato full. Tu defensa: cláusula contractual que especifique "Si los criterios de éxito se cumplen al final del pilot, la institución tiene 30 días para firmar el contrato full o el acceso se termina." Ponelo en el agreement inicial del pilot, no al final.</p>
+  </div>
+</div>
+
+<!-- 4 PRICING -->
+<div id="s4" class="section">
+  <div class="section-title">Pricing Models para FinTech B2B US</div>
+  <p class="section-sub">El pricing en FinTech B2B US sigue patrones — no porque los founders carezcan de creatividad, sino porque los bancos e instituciones financieras tienen procesos de procurement estándar que esperan modelos de pricing estándar. Usar el modelo correcto para el producto correcto es una ventaja comercial, no una restricción.</p>
+
+  <table class="reg-table">
+    <thead><tr><th>Modelo</th><th>Descripción</th><th>Mejor Para</th><th>Rango Típico</th></tr></thead>
+    <tbody>
+      <tr><td>Platform / SaaS subscription</td><td>Fee mensual o anual fijo por acceso al software</td><td>Infraestructura, analytics, compliance tools</td><td>$2K–$50K/mes</td></tr>
+      <tr><td>Transaction fee</td><td>Cargo por transacción basado en volumen procesado</td><td>Pagos, lending decisioning, data pulls</td><td>$0.05–$5.00/transacción</td></tr>
+      <tr><td>Revenue share</td><td>Porcentaje del volumen de originación de préstamos o revenue habilitado</td><td>Infraestructura de crédito, scoring, origination tools</td><td>0.5%–3% del volumen originado</td></tr>
+      <tr><td>API call / usage-based</td><td>Precio por API call vinculado al uso real</td><td>Data enrichment, KYC/KYB, verification</td><td>$0.01–$5.00/call según complejidad</td></tr>
+      <tr><td>Setup + implementation fee</td><td>Fee one-time por integración y onboarding</td><td>Integraciones complejas, core banking connections</td><td>$10K–$100K one-time</td></tr>
+      <tr><td style="color:var(--accent2)">Hybrid (recomendado)</td><td>Fee mensual de plataforma + capa de usage</td><td>La mayoría de productos B2B FinTech a escala</td><td>$3K–$15K/mes base + usage</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-block a2">
+    <h3>Por qué el modelo híbrido es el estándar</h3>
+    <ul>
+      <li><strong>Revenue base predecible para vos:</strong> El platform fee cubre tus costos baseline y crea ARR para inversores.</li>
+      <li><strong>Upside mientras el cliente crece:</strong> El usage fee crece proporcionalmente con el volumen del cliente — participás de su éxito sin renegociar.</li>
+      <li><strong>Alineación con el cliente:</strong> Los clientes pagan más mientras obtienen más valor — no un fee fijo independientemente de la adopción. Esto reduce el churn y mejora el NRR.</li>
+      <li><strong>Siempre incluir un mínimo mensual:</strong> Establecer un floor mensual (ej: $3K/mes independientemente del uso). Esto previene que los primeros meses de baja adopción destruyan tu modelo de revenue durante los primeros 6 meses de una nueva relación con cliente.</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <p><strong>Tu pricing LatAm es irrelevante como punto de referencia.</strong> Los bancos US tienen distinta autoridad de presupuesto, distintos procesos de procurement y distintas expectativas de ROI. Un community bank con $500M en activos tiene un budget de tecnología de $2M–$5M/año. Un contrato de $50K–$200K/año es 1–5% de su presupuesto tech total. No es un número grande para ellos si el ROI es claro. No under-price por fear de ser percibido como "caro".</p>
+  </div>
+</div>
+
+<!-- 5 DIFERENCIACIÓN -->
+<div id="s5" class="section">
+  <div class="section-title">Diferenciación LatAm en el Mercado US</div>
+  <p class="section-sub">La pregunta que cada LatAm FinTech debe responder antes de su primera conversación de ventas US: ¿por qué un banco US compraría a nosotros en lugar de Plaid, Alloy, Sardine o cualquiera de los 400+ fintechs US que ya conocen? La respuesta no es "somos más baratos" — esa es una posición commodity.</p>
+
+  <div class="section-title sm">Tus Ventajas Estructurales — Nombrarlas Explícitamente</div>
+  <div class="diff-grid">
+    <div class="diff-card">
+      <h4>Expertise en thin-file credit</h4>
+      <p>Los LatAm FinTechs construyeron modelos de crédito sin datos de bureau, para poblaciones con 70%+ de informalidad. Este es exactamente el expertise necesario para los 45M+ credit-invisible Americans. Tu modelo fue stress-tested en una versión más difícil del mismo problema.</p>
+    </div>
+    <div class="diff-card">
+      <h4>Data moat en underserved populations</h4>
+      <p>62M hispanoamericanos. 15M inmigrantes sin documentación. 60M gig economy workers. 32M SMEs sin credit history. Tu producto fue diseñado para estas poblaciones — eso es un data moat, no un nicho.</p>
+    </div>
+    <div class="diff-card">
+      <h4>Resiliencia operacional comprobada</h4>
+      <p>Construir a través de hiperinflación argentina, volatilidad regulatoria brasileña y reforma pensional uruguaya crea un producto y equipo que maneja adversidad diferente. Es una habilidad operacional real que se manifiesta en confiabilidad del producto.</p>
+    </div>
+    <div class="diff-card">
+      <h4>Ventaja de estructura de costos</h4>
+      <p>Talento de ingeniería world-class a 40–60% del costo US es una ventaja durable en unit economics. Evidenciado por la adquisición de Pismo (Brasil) por Visa a $1B — el mercado lo reconoce.</p>
+    </div>
+    <div class="diff-card">
+      <h4>Ventaja en corredor cross-border</h4>
+      <p>$67B en remesas US→México. $5B+ en corredores US→Colombia, US→Perú, US→Argentina. Ningún FinTech US-native entiende estos flujos como vos. Es una ventaja que no puede ser replicada por incumbentes.</p>
+    </div>
+  </div>
+
+  <div class="section-title sm">El Framework de Pitch que Funciona</div>
+  <table class="reg-table">
+    <thead><tr><th>Elemento del Pitch</th><th>Qué Decir</th><th>Qué Evitar</th></tr></thead>
+    <tbody>
+      <tr><td>Framing del problema</td><td>Empezar con tu historia como founder — el merchant negado un crédito, la familia enviando remesas al 8% de fee, el trabajador informal sin acceso</td><td>Abrir con tamaño de mercado. Liderar con el problema humano, no la oportunidad.</td></tr>
+      <tr><td>LatAm como proof</td><td>"Construimos este modelo en un mercado con 70% de informalidad y sin bureaus de crédito. En EEUU, tenemos mejor infraestructura de datos y el mismo problema humano sin resolver."</td><td>Disculparse por ser LatAm o tratarlo como un liability</td></tr>
+      <tr><td>Oportunidad US</td><td>"45M americanos credit-invisible. 60M gig workers. 32M SMEs underbanked. La versión US del problema que ya resolvemos."</td><td>Citar tamaño genérico del mercado fintech global sin especificidad US</td></tr>
+      <tr><td>Por qué ahora</td><td>Referenciar CFPB Open Banking Rule (Section 1033), GENIUS Act, presión regulatoria de inclusión financiera en CDFIs y community banks</td><td>Vago "el mercado está listo" sin catalizadores regulatorios específicos</td></tr>
+      <tr><td>El Ask</td><td>"$X en SAFE a cap $Y para lograr Z hitos: 3 pilots firmados, $500K ARR, SOC 2 Type II, primer hire US."</td><td>"Levantando $XM para crecer." — Demasiado vago; los inversores no van a moverse.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 6 90 DAYS -->
+<div id="s6" class="section">
+  <div class="section-title">First 90 Days GTM Checklist</div>
+  <p class="section-sub">La secuencia semana a semana para construir tu primer pipeline US desde cero. Cada semana tiene un dueño y un output concreto.</p>
+
+  <div class="checklist-wrap">
+    <div class="checklist-head"><div>Acción</div><div>Responsable</div><div>Timing</div></div>
+    <div class="checklist-row"><div class="ci">Definir ICP precisamente (tipo, tamaño, rol comprador)<small>Investigar 50 instituciones target por nombre; construir lista de contactos en CRM (HubSpot gratis)</small></div><div class="cp">Founder</div><div class="cp cp-d">Semana 1–2</div></div>
+    <div class="checklist-row"><div class="ci">Comenzar outreach: 10 warm intro requests + 30 cold outreach via Apollo.io<small>LinkedIn personalizado; no blast genérico — un párrafo de por qué ellos específicamente</small></div><div class="cp">Founder + BD</div><div class="cp cp-d">Semana 3–4</div></div>
+    <div class="checklist-row"><div class="ci">Primeras 10 discovery calls<small>Usar cada llamada para validar ICP, entender objeciones y refinar pitch. Documentar cada objeción</small></div><div class="cp">Founder</div><div class="cp cp-s">Semana 5–6</div></div>
+    <div class="checklist-row"><div class="ci">Asistir a 2 eventos de industria (NY FinTech Week, ICBA, America's CU conference)<small>Target: 20 nuevos contactos por evento. Follow-up en 48 horas.</small></div><div class="cp">Founder</div><div class="cp cp-s">Semana 7–8</div></div>
+    <div class="checklist-row"><div class="ci">Preparar y enviar 3–5 propuestas de POC a los mejores prospects<small>Iniciar proceso de auditoría SOC 2 (Vanta o Drata) — track paralelo, no secuencial</small></div><div class="cp">Founder + CTO</div><div class="cp cp-s">Semana 9–10</div></div>
+    <div class="checklist-row"><div class="ci">Primer POC firmado. Iniciar conversaciones de pilot con 2–3 prospects adicionales<small>Aplicar a ICBA ThinkTECH o Fintech Innovation Lab si la ventana está abierta</small></div><div class="cp">Founder</div><div class="cp cp-m">Semana 11–12</div></div>
+    <div class="checklist-row"><div class="ci">Revisión de pipeline al día 90<small>10+ conversaciones calificadas, 3+ en evaluación técnica, 1 POC live, SOC 2 en progreso, CRM US configurado</small></div><div class="cp">Founder</div><div class="cp cp-m">Día 90</div></div>
+  </div>
+
+  <div class="section-title sm">Recursos Clave — Módulo 5</div>
+  <div class="resource-grid">
+    <div class="resource-card"><h5>HubSpot</h5><p>hubspot.com — CRM gratis; empezar acá antes de considerar Salesforce</p></div>
+    <div class="resource-card"><h5>Apollo.io</h5><p>apollo.io — Base de datos B2B prospecting; 275M+ contactos; $49/mes</p></div>
+    <div class="resource-card"><h5>ICBA ThinkTECH</h5><p>icba.org — Aplicar al acelerador de community banks + acceso al mercado</p></div>
+    <div class="resource-card"><h5>America's Credit Unions</h5><p>americascreditunions.org — Asociación de credit unions; conferencia anual</p></div>
+    <div class="resource-card"><h5>CDFI Fund</h5><p>cdfifund.gov — Base de datos del Tesoro de 1.400+ CDFIs certificados; tu primera lista de ICP</p></div>
+    <div class="resource-card"><h5>Fintech Innovation Lab</h5><p>fintechinnovationlab.com — Acceso estructurado a bancos; aplicación anual</p></div>
+    <div class="resource-card"><h5>Vanta</h5><p>vanta.com — Iniciar auditoría SOC 2 inmediatamente; requerido antes del primer contrato bancario</p></div>
+  </div>
+
+  <div class="callout a2" style="margin-top:28px">
+    <p><strong>Módulo 5 de 9 · US Market Entry Framework — FinTech Edition · TIH × YLAI Fellowship · Mayo 2026</strong><br>Este documento es solo para propósitos informativos y no constituye asesoramiento legal o financiero. Producido por Gastón Dotta, FinTech Fellow en TIH.</p>
+  </div>
+</div>
+
+<script>
+function showTab(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');el.classList.add('active')}
+function triggerTranslate(lang,btn){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');var gs=document.querySelector('.goog-te-combo');if(gs){gs.value=lang==='en'?'':lang;gs.dispatchEvent(new Event('change'))}}
+function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'es',autoDisplay:false},'google_translate_element')}
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
